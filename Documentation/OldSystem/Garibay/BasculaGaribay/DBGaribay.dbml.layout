@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 14.25" name="DBGaribay">
+  <DataContextMoniker Name="/Garibay" />
+  <nestedChildShapes>
+    <classShape Id="663bb1ed-bd9a-462e-9123-a6da608bbb0c" absoluteBounds="0.75, 0.75, 2, 11.578269856770833">
+      <DataClassMoniker Name="/Garibay/Dbo_Boletas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c04feaaf-2a1b-43ad-b67f-0428188ab569" absoluteBounds="0.765, 1.21, 1.9700000000000002, 11.018269856770832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f02d9c40-3c88-4b33-930c-0eaa90b49769" absoluteBounds="3.75, 0.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/Garibay/Dbo_ClientesVentas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="893fee41-b815-4607-ae90-b0aa6b978bc6" absoluteBounds="3.765, 1.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a6bfe9c6-1597-4bf7-8e1f-03d071faf6e3" absoluteBounds="3.75, 5.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/Garibay/Dbo_ClienteVenta_Boletas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="286edce3-8a39-4d7b-9471-ad259b35ee6b" absoluteBounds="3.765, 6.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="47319388-e026-4949-ac58-af25c6fb9280" absoluteBounds="6.75, 0.75, 2, 2.5401025390625005">
+      <DataClassMoniker Name="/Garibay/Dbo_gan_Proveedores" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dafa351b-2c54-4d3f-a667-b0277f0fc701" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1d60988c-2b76-44a1-b4bd-355ac2597032" absoluteBounds="6.75, 4.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/Garibay/Dbo_gan_Proveedores_Boletas" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8ef4e1c0-da6e-4115-b314-1efee5ba9a48" absoluteBounds="6.765, 5.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9df0a3cc-aa4e-4f05-a211-1009cf07f656" absoluteBounds="6.75, 7.75, 2, 6.1938297526041666">
+      <DataClassMoniker Name="/Garibay/Dbo_Productores" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ecff2b03-77b2-413b-b61a-ec6776b2dc8b" absoluteBounds="6.765, 8.21, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ff221a02-8d4f-4423-960b-d90dde5b9000" absoluteBounds="9.75, 0.75, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/Garibay/Dbo_Productos" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fea7ea61-e50c-42f1-81ae-cfda3003bd37" absoluteBounds="9.765, 1.21, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a35a5638-c8bd-4ac5-b558-7feacf8b8a8f" absoluteBounds="9.75, 5.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/Garibay/Dbo_SecurityLevels" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2e62b40c-5c15-42ec-9f7e-83fddba6afa0" absoluteBounds="9.765, 6.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="867c8af1-d1d4-4f17-b828-d4c5c0299d7e" absoluteBounds="9.75, 8.75, 2, 2.5401025390624987">
+      <DataClassMoniker Name="/Garibay/Dbo_Users" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ef521bca-798d-4998-9b53-cb3d670064bb" absoluteBounds="9.765, 9.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

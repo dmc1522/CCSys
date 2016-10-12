@@ -1,0 +1,39 @@
+﻿<asp:Label  SkinID="labelmensaje" Font-Bold = "true" runat = "server" Font-Size= "20pt" ForeColor="#800000" ></asp:Label>
+<asp:Label  SkinID="labelmendescription" Font-Bold = "true" runat = "server" Font-Size= "16pt" Font-Names="Tempus Sans ITC" ForeColor="#CC0000" ></asp:Label>
+
+<asp:GridView CellPadding="4"  ForeColor="Black" GridLines="None"  runat="server">
+  <RowStyle  BackColor="#FFFBD6" ForeColor="#333333" />
+  <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+  <HeaderStyle BackColor = "#CC0000" ForeColor = "#FFCC99" Font-Size = "12pt" HorizontalAlign = "Center"/>
+  <AlternatingRowStyle BackColor="White" />
+</asp:GridView>
+
+<asp:RequiredFieldValidator runat="server" Forecolor = "#FF0000" Font-size = "12pt" Font-Bold="true"   >
+ 
+</asp:RequiredFieldValidator>
+
+<asp:CustomValidator runat="server" Forecolor = "#FF0000" Font-size = "12pt" Font-Bold="true"   >
+ 
+</asp:CustomValidator>
+<asp:CompareValidator runat="server" Forecolor = "#FF0000" Font-size = "12pt" Font-Bold="true"   >
+ 
+</asp:CompareValidator>
+
+ <asp:Image runat="server" ImageUrl="~/imagenes/LogoGaribay124x90.jpg" SkinID="imagen" >
+</asp:Image>
+
+<asp:Button BackColor="#800000" runat="server" Font-size = "10pt" ForeColor = "White" Font-Bold = "true">
+ 
+</asp:Button>
+
+<asp:Menu BackColor="#FFFBD6" runat="server"  DynamicHorizontalOffset="2" ForeColor="#990000" StaticSubMenuIndent="10px"
+     Font-Names="Verdana" Font-Size="0.8em" >
+      <StaticSelectedStyle BackColor="#FFCC66" />
+      <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+      <DynamicHoverStyle BackColor="#990000" ForeColor="White" />
+      <DynamicMenuStyle BackColor="#FFFBD6" />
+      <DynamicSelectedStyle BackColor="#FFCC66" />
+      <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+      <StaticHoverStyle BackColor="#990000" ForeColor="White" />
+</asp:Menu>
+

@@ -1,0 +1,161 @@
+.ModernStyle
+{
+	background-color:#FFFBD6;
+}
+
+.ModernStyle .TitleStyle
+{
+	background-color:#339933;
+}
+
+.ModernStyle .TitleStyle table
+{
+	color:#FFF999;
+	font-family:arial;
+	font-size:11px;
+	font-weight:bold;  
+}
+
+.ModernStyle .TitleStyle td
+{
+	padding:2px;
+}
+
+.ModernStyle .TitleStyle .DropDownStyle,
+.ModernStyle .TitleStyle .DropDownOutStyle
+{
+	cursor:default;
+	border-style:solid;
+	border-width:1px;
+	border-color:#339933;
+}
+
+.ModernStyle .TitleStyle .DropDownOverStyle
+{
+	cursor:default;
+	border-style:solid;
+	border-width:1px;
+	border-color:#FFFBD6;
+}
+
+.ModernStyle .TitleStyle .DropDownStyle img,
+.ModernStyle .TitleStyle .DropDownOutStyle img,
+.ModernStyle .TitleStyle .DropDownOverStyle img
+{
+
+} 
+
+.ModernStyle .TitleStyle .CloseButtonStyle
+{
+	width:15px;
+	height:13px;
+	border:0;
+}
+
+.ModernStyle .BodyStyle
+{
+	font-family:verdana;
+	font-size:10px;
+}
+
+.ModernStyle .BodyStyle .HeaderStyle
+{
+	font-weight:bold; 
+	padding:2px 3px 2px 3px;
+	cursor:default;
+	white-space:nowrap;  
+}
+
+.ModernStyle .BodyStyle .DateStyle
+{
+	text-decoration:none;
+	color:#339933;
+	cursor:default;
+	padding:2px 0px 2px 4px; 
+	white-space:nowrap;
+}
+
+.ModernStyle .BodyStyle .DaysOutOfMonthStyle
+{
+	color:#c0c0c0!important; 
+}
+
+.ModernStyle .BodyStyle .WeekNumberStyle
+{
+	width:20px;
+	padding:0px;
+	text-align:center;
+}
+
+.ModernStyle .BodyStyle .SelectedDateStyle
+{
+	border-style:solid;
+	border-width:1px;
+	border-color:#a0a0a0;
+}
+
+.ModernStyle .BodyStyle .WeekendStyle
+{
+	color:#909090;
+}
+
+.ModernStyle .BodyStyle .CurrentDateStyle
+{
+	font-weight:Bold;
+	color:#003300;
+}
+
+.ModernStyle .BodyStyle .SpecialDayStyle
+{
+	background-color:#70ffd0;
+}
+
+.ModernStyle .BodyStyle .HolidayStyle
+{
+	background-color:#ffdddd;
+}
+
+.ModernStyle .BodyStyle .DisableDateStyle
+{
+	text-decoration:line-through;
+}
+
+
+.ModernStyle .BodyStyle .DayOverStyle
+{
+
+}
+
+.ModernStyle .TodayStyle
+{
+	cursor:default;
+	font-size:11px;
+	background-color:#f0f0f0;
+}
+
+.ModernStyle .TodayStyle .TextStyle
+{
+	font-family:arial;
+	font-size:11px;
+	text-decoration:none;
+	color:#000000;
+	cursor:default;	
+}
+
+.ModernStyle .ListStyle /* Month And Year List */
+{
+	font-family:arial; 
+	font-size:11px; 
+	background-color:#ffffdd;
+}
+
+.ModernStyle .ListStyle .OptionStyle,
+.ModernStyle .ListStyle .OptionOutStyle
+{
+
+}
+
+.ModernStyle .ListStyle .OptionOverStyle
+{
+	background-color:#99FF99;
+}

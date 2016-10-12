@@ -1,0 +1,4 @@
+public partial class FacturaDeProveedorDetalle
+{
+}
+

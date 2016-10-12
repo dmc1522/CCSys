@@ -1,0 +1,110 @@
+﻿
+<asp:Label  SkinID="lblMensajeTitle" Font-Bold = "true" runat = "server" Font-Size= "20pt" ForeColor="#003300" ></asp:Label>
+<asp:Label  SkinID="lblMensajeOperationresult" Font-Bold = "true" runat = "server" Font-Size= "16pt" Font-Names="Verdana" ForeColor="#33CC33" ></asp:Label>
+<asp:Label  SkinID="lblMensajeException" Font-Bold = "true" runat = "server" Font-Size= "14pt" Font-Italic= "True" Font-Names="Arial" ForeColor="Black" ></asp:Label>
+<asp:Label  SkinID="lblPasosSOl" Font-Bold = "true" runat = "server" Font-Size= "20pt" Font-Italic= "True" Font-Names="Arial" ForeColor="#003300" ></asp:Label>
+
+ <asp:Image runat="server" ImageUrl="~/imagenes/palomita.jpg" SkinID="imagenbien" >
+</asp:Image>
+ <asp:Image runat="server" ImageUrl="~/imagenes/tache.jpg" SkinID="imagenmal" >
+</asp:Image>
+<asp:GridView CellPadding="4"  ForeColor="Black" GridLines="None"  runat="server" skinID="gridTextoSmall">
+
+  <RowStyle BackColor="#FFFBD6" ForeColor="#333333" Font-Size = "8pt" CssClass="mayus"/>
+  <HeaderStyle BackColor = "#339933" ForeColor = "#FFF999" Font-Size = "8pt" HorizontalAlign = "Center"/>
+  <SelectedRowStyle BackColor="#99FF99" Font-Bold="True" ForeColor="Navy" Font-Size = "8pt"/>
+  <AlternatingRowStyle BackColor="White" Font-Size = "8pt" />
+  
+</asp:GridView>
+<asp:GridView SkinID= "gridNormal" CellPadding="4"  ForeColor="Black" GridLines="None"  runat="server" >
+
+  <RowStyle BackColor="#FFFBD6" ForeColor="#333333" Font-Size = "12pt" CssClass="mayus"/>
+  <HeaderStyle BackColor = "#339933" ForeColor = "#FFF999" Font-Size = "12pt" HorizontalAlign = "Center"/>
+  <SelectedRowStyle BackColor="#99FF99" Font-Bold="True" ForeColor="Navy" Font-Size = "12pt"/>
+  <AlternatingRowStyle BackColor="White" Font-Size = "12pt" />
+  
+</asp:GridView>
+
+
+<asp:Calendar BackColor="White" BorderColor="Black" BorderStyle="Solid" CellSpacing="1"
+  Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="250px" 
+  NextPrevFormat="ShortMonth" Width="330px" runat="server">
+  <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+  <OtherMonthDayStyle ForeColor="#999999" />
+  <TodayDayStyle BackColor="#999999" ForeColor="White" />
+  <DayStyle BackColor="#CCCCCC" />
+  <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="White" />
+  <DayHeaderStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" Height="8pt" />
+  <TitleStyle BackColor="#333399" BorderStyle="Solid" Font-Bold="True" Font-Size="12pt"
+    ForeColor="White" Height="12pt" />
+</asp:Calendar>
+
+
+<asp:RequiredFieldValidator runat="server" Forecolor = "#FF0000" Font-size = "12pt" Font-Bold="true"   >
+ 
+</asp:RequiredFieldValidator>
+
+<asp:CustomValidator runat="server" Forecolor = "#FF0000" Font-size = "12pt" Font-Bold="true"   >
+ 
+</asp:CustomValidator>
+<asp:CompareValidator runat="server" Forecolor = "#FF0000" Font-size = "12pt" Font-Bold="true"   >
+ 
+</asp:CompareValidator>
+<asp:RegularExpressionValidator runat="server" Forecolor = "#FF0000" Font-size = "12pt" Font-Bold="true"   >
+ 
+</asp:RegularExpressionValidator>
+<asp:RangeValidator runat="server" Forecolor = "#FF0000" Font-size = "12pt" Font-Bold="true"   >
+ 
+</asp:RangeValidator>
+
+
+
+
+
+
+
+
+<asp:Button BackColor="#009933" runat="server" Font-size = "10pt" ForeColor = "White" Font-Bold = "true">
+
+
+  
+</asp:Button>
+ <asp:Image runat="server" ImageUrl="~/imagenes/IPROJALsmall.jpg" SkinID="imagen" >
+</asp:Image>
+
+<asp:Menu BackColor="#FFFBD6" runat="server"  DynamicHorizontalOffset="2" ForeColor="#009933" StaticSubMenuIndent="10px"                
+          Font-Names="Verdana" Font-Size="0.8em" >
+           <StaticSelectedStyle BackColor="#FFCC66" />
+           <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+           <DynamicHoverStyle BackColor="#339933" ForeColor="#FFF999" />
+           <DynamicMenuStyle BackColor="#FFFBD6" />
+           <DynamicSelectedStyle BackColor="#FFCC66" />
+           <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+           <StaticHoverStyle BackColor="#339933" ForeColor="#FFF999" />
+                 
+</asp:Menu>
+<asp:TextBox runat="server"  style="text-transform: uppercase"></asp:TextBox>
+<asp:DropDownList runat="server" style="text-transform: uppercase"></asp:DropDownList>
+
+<asp:GridView CellPadding="4"  ForeColor="Black" GridLines="None"  runat="server">
+
+  <RowStyle BackColor="#FFFBD6" ForeColor="#333333" CssClass="mayus" Font-Size = "8pt" />
+  <HeaderStyle BackColor = "#339933" ForeColor = "#FFF999" Font-Size = "9pt" HorizontalAlign = "Center"/>
+  <SelectedRowStyle BackColor="#99FF99" Font-Bold="True" ForeColor="Navy" Font-Size = "8pt" />
+  <AlternatingRowStyle BackColor="White" Font-Size = "8pt" />
+  <FooterStyle BackColor = "#339933" ForeColor = "#FFF999" Font-Size = "10pt" HorizontalAlign = "Center" Font-Bold="True"/>
+  
+</asp:GridView>
+    
+<asp:DetailsView runat="server" BorderStyle="Double" BorderWidth="3px" CellPadding="4" >
+                        
+                        <RowStyle BackColor="White" ForeColor="Black" CssClass="mayus"/>
+                        <FieldHeaderStyle BackColor="#339933" Font-Bold="True" ForeColor = "White"/>
+                        
+                       
+                       
+</asp:DetailsView>
+      
+      
+        
+        

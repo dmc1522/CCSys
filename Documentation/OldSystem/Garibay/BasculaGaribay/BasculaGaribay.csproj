@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{59A30BD6-7D9A-41EB-B6D1-46D2701C2368}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BasculaGaribay</RootNamespace>
+    <AssemblyName>BasculaGaribay</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>BasculaGaribay.Program</StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Garibay\App_Data\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Garibay\App_Data\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data.SqlCe, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Synchronization.Data, Version=1.0.0.0" />
+    <Reference Include="Microsoft.Synchronization.Data.Server, Version=1.0.0.0" />
+    <Reference Include="Microsoft.Synchronization.Data.SqlServerCe, Version=3.5.0.0" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.3.1.24483, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache.cs" />
+    <Compile Include="CCryptorEngine.cs" />
+    <Compile Include="CompressUtils.cs" />
+    <Compile Include="DBGaribay.cs">
+      <DependentUpon>DBGaribay.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DBGaribay.designer.cs">
+      <DependentUpon>DBGaribay.dbml</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="frmBoletasListFromDS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBoletasListFromDS.Designer.cs">
+      <DependentUpon>frmBoletasListFromDS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmailUtils.cs" />
+    <Compile Include="FormListaBoletasSinSalir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormListaBoletasSinSalir.Designer.cs">
+      <DependentUpon>FormListaBoletasSinSalir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddBoletas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddBoletas.Designer.cs">
+      <DependentUpon>frmAddBoletas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBoletasPendientesToolBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBoletasPendientesToolBox.Designer.cs">
+      <DependentUpon>frmBoletasPendientesToolBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLecturaBascula.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLecturaBascula.Designer.cs">
+      <DependentUpon>frmLecturaBascula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListBoletas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListBoletas.Designer.cs">
+      <DependentUpon>frmListBoletas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddProductor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddProductor.Designer.cs">
+      <DependentUpon>frmAddProductor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConfiguracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfiguracion.Designer.cs">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListProductores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListProductores.Designer.cs">
+      <DependentUpon>frmListProductores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMessageBox.Designer.cs">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProveedor.Designer.cs">
+      <DependentUpon>frmProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProveedores.Designer.cs">
+      <DependentUpon>frmProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GaribayCache.cs">
+      <DependentUpon>GaribayCache.sync</DependentUpon>
+    </Compile>
+    <Compile Include="GaribayCache.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GaribayCache.sync</DependentUpon>
+    </Compile>
+    <Compile Include="Logger.cs" />
+    <Compile Include="Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="DBGaribay.dbml.layout">
+      <DependentUpon>DBGaribay.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="frmBoletasListFromDS.resx">
+      <DependentUpon>frmBoletasListFromDS.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormListaBoletasSinSalir.resx">
+      <DependentUpon>FormListaBoletasSinSalir.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddBoletas.resx">
+      <DependentUpon>frmAddBoletas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBoletasPendientesToolBox.resx">
+      <DependentUpon>frmBoletasPendientesToolBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLecturaBascula.resx">
+      <DependentUpon>frmLecturaBascula.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListBoletas.resx">
+      <DependentUpon>frmListBoletas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddProductor.resx">
+      <DependentUpon>frmAddProductor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListProductores.resx">
+      <DependentUpon>frmListProductores.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMessageBox.resx">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProveedor.resx">
+      <DependentUpon>frmProveedor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProveedores.resx">
+      <DependentUpon>frmProveedores.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Utils.cs" />
+    <Compile Include="Web References\WSGaribay\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="WSConnector.cs">
+    </Compile>
+    <Compile Include="WSGaribayDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WSGaribayDataSet.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoIPROJALMedium.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://www.ws.cheliskis.com/Servicios.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSGaribay\</RelPath>
+      <UpdateFromURL>http://www.ws.cheliskis.com/Servicios.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>BasculaGaribay_WSGaribay_Servicios</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DBGaribay.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DBGaribay.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GaribayCache.sync">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSyncGenerator</Generator>
+      <LastGenOutput>GaribayCache.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\DataSources\Estados.datasource" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.Boletas.sql" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.ClientesVentas.sql" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.ClienteVenta_Boletas.sql" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.gan_Proveedores.sql" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.gan_Proveedores_Boletas.sql" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.Productores.sql" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.Productos.sql" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.SecurityLevels.sql" />
+    <None Include="SQLScripts\BoletasDBCache.dbo.Users.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.Boletas.undo.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.ClientesVentas.undo.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.ClienteVenta_Boletas.undo.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.gan_Proveedores.undo.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.gan_Proveedores_Boletas.undo.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.Productores.undo.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.Productos.undo.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.SecurityLevels.undo.sql" />
+    <None Include="SQLUndoScripts\BoletasDBCache.dbo.Users.undo.sql" />
+    <None Include="Web References\WSGaribay\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WSGaribay\Servicios.disco" />
+    <None Include="Web References\WSGaribay\Servicios.wsdl" />
+    <None Include="WSGaribayDataSet.xsc">
+      <DependentUpon>WSGaribayDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WSGaribayDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WSGaribayDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="WSGaribayDataSet.xss">
+      <DependentUpon>WSGaribayDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dlls\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="Garibay.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BasculaDAL\BasculaDAL.csproj">
+      <Project>{700376A7-C463-45D9-B18B-0039F51CACBB}</Project>
+      <Name>BasculaDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_ConfigurationName="Release" BuildVersion_BuildVersioningStyle="None.None.Increment.DayStamp" BuildVersion_StartDate="2010/1/1" BuildVersion_UpdateAssemblyVersion="True" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

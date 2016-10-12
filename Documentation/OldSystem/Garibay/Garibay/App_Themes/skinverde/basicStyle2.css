@@ -1,0 +1,73 @@
+﻿body
+{
+}
+
+#AlertDiv
+{
+    position: absolute; width: 90%; top: 0%;
+    visibility: hidden; z-index: 99; background-color: #009933;
+    font-size: larger;  font-family: Tahoma; 
+    border-right: navy thin solid; border-top: navy thin solid; 
+    border-left: navy thin solid; border-bottom: navy thin solid;    
+    color: White;
+}
+    
+div.centrado
+{
+    text-align: center;
+    position: relative;
+    top: 100px;
+}
+div.centrado table
+{
+    margin: 0 auto;
+    width: 40%;
+}
+
+input.Button
+{
+    background-color: #009933;
+    font-size: 10pt;
+    color: White;
+    font-weight: bold;
+}
+    
+
+th.header
+{
+    background-color: #CC0000; 
+    font-family: Verdana; 
+    font-size: medium; 
+    font-weight: bold; 
+    color: #FFFFFF;
+    text-align : center;
+}
+
+.TableHeader
+{
+    background-color: #339933; 
+    font-family: Verdana; 
+    font-size: 12pt; 
+    font-weight: bold; 
+    color: #FFF999;
+    text-align : center;
+}
+
+.TablaField
+{
+    background-color: #339933; 
+    font-family: Verdana; 
+    font-size: 9pt; 
+    font-weight:bold;
+    color: #FFFFFF;
+    text-align : left;
+}
+.EstilomenuforIE{
+    z-index:50;
+}
+
+.mayus
+{
+	text-transform: uppercase;
+}
+

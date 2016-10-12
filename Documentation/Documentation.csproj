@@ -1,0 +1,1900 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{74B7666F-FE36-4CE0-A9C4-432568F5726D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Documentation</RootNamespace>
+    <AssemblyName>Documentation</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OldSystem\Garibay\BasculaDAL\App_Data\Estados.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaDAL\App_Data\Estados_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaDAL\App_Data\Proveedores.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaDAL\App_Data\Proveedores_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaDAL\Properties\AssemblyInfo.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Cache.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\CCryptorEngine.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\CompressUtils.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\DBGaribay.cs">
+      <DependentUpon>DBGaribay.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\DBGaribay.designer.cs">
+      <DependentUpon>DBGaribay.dbml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\EmailUtils.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\FormListaBoletasSinSalir.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\FormListaBoletasSinSalir.Designer.cs">
+      <DependentUpon>FormListaBoletasSinSalir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmAddBoletas.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmAddBoletas.Designer.cs">
+      <DependentUpon>frmAddBoletas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmAddProductor.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmAddProductor.Designer.cs">
+      <DependentUpon>frmAddProductor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmBoletasListFromDS.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmBoletasListFromDS.Designer.cs">
+      <DependentUpon>frmBoletasListFromDS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmBoletasPendientesToolBox.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmBoletasPendientesToolBox.Designer.cs">
+      <DependentUpon>frmBoletasPendientesToolBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmConfiguracion.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmConfiguracion.Designer.cs">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmLecturaBascula.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmLecturaBascula.Designer.cs">
+      <DependentUpon>frmLecturaBascula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmListBoletas.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmListBoletas.Designer.cs">
+      <DependentUpon>frmListBoletas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmListProductores.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmListProductores.Designer.cs">
+      <DependentUpon>frmListProductores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmLogin.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmMain.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmMessageBox.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmMessageBox.Designer.cs">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmProveedor.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmProveedor.Designer.cs">
+      <DependentUpon>frmProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmProveedores.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\frmProveedores.Designer.cs">
+      <DependentUpon>frmProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\GaribayCache.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\GaribayCache.Designer.cs">
+      <DependentUpon>GaribayCache.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Logger.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Principal.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Program.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Properties\AssemblyInfo.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Properties\Resources.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Properties\Settings.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Utils.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\Web References\WSGaribay\Reference.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\WSConnector.cs" />
+    <Compile Include="OldSystem\Garibay\BasculaGaribay\WSGaribayDataSet.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Bodegas.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Bodegas_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\BoletaProveedor.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\BoletaProveedor_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Boletas.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Boletas_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Ciclos.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Ciclos_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\ClientesVentas.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\ClientesVentas_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\ClienteVentaBoletas.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\ClienteVentaBoletas_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\EntradaDeProductos.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\EntradaDeProductos_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\FacturaDeProveedor.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\FacturaDeProveedorDetalle.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\FacturaDeProveedorDetalle_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\FacturaDeProveedor_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\NotasDeCompra.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\NotasDeCompraDetalle.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\NotasDeCompraDetalle_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\NotasDeCompra_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Presentaciones.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Presentaciones_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Proveedores.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Proveedores_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Solicitudes.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\SolicitudesSisBancos.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\SolicitudesSisBancosSeguroAgricola.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\SolicitudesSisBancosSeguroAgricola_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\SolicitudesSisBancos_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Solicitudes_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Transportistas.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Transportistas_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Users.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\App_Data\Users_GENERATED.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\BasePage.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\CalculoIntereses.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\CCryptorEngine.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\DateDifference.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dbFunctions.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\dsBoletas.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dsEstadodeCuenta.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dsFacturaDeProveedor.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dsFacturasClientes.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dsLiquidacion.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dsMovBanco.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dsMovCajaChica.cs">
+      <DependentUpon>dsMovCajaChica.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\dsMovCajaChica.Designer.cs">
+      <DependentUpon>dsMovCajaChica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\dsNCdatos.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dsNCdetalle.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\dsNV.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\EMailUtils.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\Empty.Master.cs">
+      <DependentUpon>Empty.Master</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\Empty.Master.designer.cs">
+      <DependentUpon>Empty.Master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\ExcelFileReader.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\FormatosPdf.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\frmAcceptDenySolicitud.aspx.cs">
+      <DependentUpon>frmAcceptDenySolicitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAcceptDenySolicitud.aspx.designer.cs">
+      <DependentUpon>frmAcceptDenySolicitud.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyAnticipo.aspx.cs">
+      <DependentUpon>frmAddModifyAnticipo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyAnticipo.aspx.designer.cs">
+      <DependentUpon>frmAddModifyAnticipo.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyBoletas.aspx.cs">
+      <DependentUpon>frmAddModifyBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyBoletas.aspx.designer.cs">
+      <DependentUpon>frmAddModifyBoletas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyCheques.aspx.cs">
+      <DependentUpon>frmAddModifyCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyCheques.aspx.designer.cs">
+      <DependentUpon>frmAddModifyCheques.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyCreditos.aspx.cs">
+      <DependentUpon>frmAddModifyCreditos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyCreditos.aspx.designer.cs">
+      <DependentUpon>frmAddModifyCreditos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyEntradaProductos.aspx.cs">
+      <DependentUpon>frmAddModifyEntradaProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyEntradaProductos.aspx.designer.cs">
+      <DependentUpon>frmAddModifyEntradaProductos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyPredios.aspx.cs">
+      <DependentUpon>frmAddModifyPredios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyPredios.aspx.designer.cs">
+      <DependentUpon>frmAddModifyPredios.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyPrestamo.aspx.cs">
+      <DependentUpon>frmAddModifyPrestamo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyPrestamo.aspx.designer.cs">
+      <DependentUpon>frmAddModifyPrestamo.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyProductores.aspx.cs">
+      <DependentUpon>frmAddModifyProductores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifyProductores.aspx.designer.cs">
+      <DependentUpon>frmAddModifyProductores.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifySalidaDeProducto.aspx.cs">
+      <DependentUpon>frmAddModifySalidaDeProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddModifySalidaDeProducto.aspx.designer.cs">
+      <DependentUpon>frmAddModifySalidaDeProducto.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddMovBancos.aspx.cs">
+      <DependentUpon>frmAddMovBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddMovBancos.aspx.designer.cs">
+      <DependentUpon>frmAddMovBancos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddMovCajaChica.aspx.cs">
+      <DependentUpon>frmAddMovCajaChica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddMovCajaChica.aspx.designer.cs">
+      <DependentUpon>frmAddMovCajaChica.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddNotasCompras.aspx.cs">
+      <DependentUpon>frmAddNotasCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddNotasCompras.aspx.designer.cs">
+      <DependentUpon>frmAddNotasCompras.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddNotasDeVenta.aspx.cs">
+      <DependentUpon>frmAddNotasDeVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddNotasDeVenta.aspx.designer.cs">
+      <DependentUpon>frmAddNotasDeVenta.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddQuickClienteVenta.aspx.cs">
+      <DependentUpon>frmAddQuickClienteVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddQuickClienteVenta.aspx.designer.cs">
+      <DependentUpon>frmAddQuickClienteVenta.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddQuickProductor.aspx.cs">
+      <DependentUpon>frmAddQuickProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddQuickProductor.aspx.designer.cs">
+      <DependentUpon>frmAddQuickProductor.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddSolicitud2010.aspx.cs">
+      <DependentUpon>frmAddSolicitud2010.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAddSolicitud2010.aspx.designer.cs">
+      <DependentUpon>frmAddSolicitud2010.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAjustesCheques.aspx.cs">
+      <DependentUpon>frmAjustesCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAjustesCheques.aspx.designer.cs">
+      <DependentUpon>frmAjustesCheques.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAsignaranticiposaLiq.aspx.cs">
+      <DependentUpon>frmAsignaranticiposaLiq.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAsignaranticiposaLiq.aspx.designer.cs">
+      <DependentUpon>frmAsignaranticiposaLiq.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAtGlance.aspx.cs">
+      <DependentUpon>frmAtGlance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmAtGlance.aspx.designer.cs">
+      <DependentUpon>frmAtGlance.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBancosSaldosMensuales.aspx.cs">
+      <DependentUpon>frmBancosSaldosMensuales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBancosSaldosMensuales.aspx.designer.cs">
+      <DependentUpon>frmBancosSaldosMensuales.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBoletaManagement.aspx.cs">
+      <DependentUpon>frmBoletaManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBoletaManagement.aspx.designer.cs">
+      <DependentUpon>frmBoletaManagement.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBoletaNewQuick.aspx.cs">
+      <DependentUpon>frmBoletaNewQuick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBoletaNewQuick.aspx.designer.cs">
+      <DependentUpon>frmBoletaNewQuick.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBoletasdeFacturaCV.aspx.cs">
+      <DependentUpon>frmBoletasdeFacturaCV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBoletasdeFacturaCV.aspx.designer.cs">
+      <DependentUpon>frmBoletasdeFacturaCV.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBusquedaGeneral.aspx.cs">
+      <DependentUpon>frmBusquedaGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmBusquedaGeneral.aspx.designer.cs">
+      <DependentUpon>frmBusquedaGeneral.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCajaChicaReport.aspx.cs">
+      <DependentUpon>frmCajaChicaReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCajaChicaReport.aspx.designer.cs">
+      <DependentUpon>frmCajaChicaReport.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCajaChicaSaldosMensuales.aspx.cs">
+      <DependentUpon>frmCajaChicaSaldosMensuales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCajaChicaSaldosMensuales.aspx.designer.cs">
+      <DependentUpon>frmCajaChicaSaldosMensuales.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCatalogos.aspx.cs">
+      <DependentUpon>frmCatalogos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCatalogos.aspx.designer.cs">
+      <DependentUpon>frmCatalogos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCertificadoAddQuick.aspx.cs">
+      <DependentUpon>frmCertificadoAddQuick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCertificadoAddQuick.aspx.designer.cs">
+      <DependentUpon>frmCertificadoAddQuick.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCertificadosLista.aspx.cs">
+      <DependentUpon>frmCertificadosLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCertificadosLista.aspx.designer.cs">
+      <DependentUpon>frmCertificadosLista.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCiclos.aspx.cs">
+      <DependentUpon>frmCiclos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCiclos.aspx.designer.cs">
+      <DependentUpon>frmCiclos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmClientesVentas.aspx.cs">
+      <DependentUpon>frmClientesVentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmClientesVentas.aspx.designer.cs">
+      <DependentUpon>frmClientesVentas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConcentradoProductosdeBoletas.aspx.cs">
+      <DependentUpon>frmConcentradoProductosdeBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConcentradoProductosdeBoletas.aspx.designer.cs">
+      <DependentUpon>frmConcentradoProductosdeBoletas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConceptosMovCajaChica.aspx.cs">
+      <DependentUpon>frmConceptosMovCajaChica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConceptosMovCajaChica.aspx.designer.cs">
+      <DependentUpon>frmConceptosMovCajaChica.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConciliacionBancos.aspx.cs">
+      <DependentUpon>frmConciliacionBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConciliacionBancos.aspx.designer.cs">
+      <DependentUpon>frmConciliacionBancos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConfigParameterPage.aspx.cs">
+      <DependentUpon>frmConfigParameterPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConfigParameterPage.aspx.designer.cs">
+      <DependentUpon>frmConfigParameterPage.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConverProductos.aspx.cs">
+      <DependentUpon>frmConverProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmConverProductos.aspx.designer.cs">
+      <DependentUpon>frmConverProductos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCreditoFinancieroAdd.aspx.cs">
+      <DependentUpon>frmCreditoFinancieroAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCreditoFinancieroAdd.aspx.designer.cs">
+      <DependentUpon>frmCreditoFinancieroAdd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCreditosFinancieros.aspx.cs">
+      <DependentUpon>frmCreditosFinancieros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCreditosFinancieros.aspx.designer.cs">
+      <DependentUpon>frmCreditosFinancieros.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCuentasdeBanco.aspx.cs">
+      <DependentUpon>frmCuentasdeBanco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmCuentasdeBanco.aspx.designer.cs">
+      <DependentUpon>frmCuentasdeBanco.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmDescargar.aspx.cs">
+      <DependentUpon>frmDescargar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmDescargar.aspx.designer.cs">
+      <DependentUpon>frmDescargar.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmDescargaTmpFile.aspx.cs">
+      <DependentUpon>frmDescargaTmpFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmDescargaTmpFile.aspx.designer.cs">
+      <DependentUpon>frmDescargaTmpFile.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmDocsProductor.aspx.cs">
+      <DependentUpon>frmDocsProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmDocsProductor.aspx.designer.cs">
+      <DependentUpon>frmDocsProductor.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmDownLoadPage.aspx.cs">
+      <DependentUpon>frmDownLoadPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmDownLoadPage.aspx.designer.cs">
+      <DependentUpon>frmDownLoadPage.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEdoCuentaGanadero.aspx.cs">
+      <DependentUpon>frmEdoCuentaGanadero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEdoCuentaGanadero.aspx.designer.cs">
+      <DependentUpon>frmEdoCuentaGanadero.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEntradaProductoProveedor.aspx.cs">
+      <DependentUpon>frmEntradaProductoProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEntradaProductoProveedor.aspx.designer.cs">
+      <DependentUpon>frmEntradaProductoProveedor.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEntradasSalidasBoletasxDia.aspx.cs">
+      <DependentUpon>frmEntradasSalidasBoletasxDia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEntradasSalidasBoletasxDia.aspx.designer.cs">
+      <DependentUpon>frmEntradasSalidasBoletasxDia.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEstadoDeCuentaClienteDeVenta.aspx.cs">
+      <DependentUpon>frmEstadoDeCuentaClienteDeVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEstadoDeCuentaClienteDeVenta.aspx.designer.cs">
+      <DependentUpon>frmEstadoDeCuentaClienteDeVenta.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEstadodeCuentaCredito.aspx.cs">
+      <DependentUpon>frmEstadodeCuentaCredito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEstadodeCuentaCredito.aspx.designer.cs">
+      <DependentUpon>frmEstadodeCuentaCredito.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEstadodeCuentaCreditoPrint.aspx.cs">
+      <DependentUpon>frmEstadodeCuentaCreditoPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmEstadodeCuentaCreditoPrint.aspx.designer.cs">
+      <DependentUpon>frmEstadodeCuentaCreditoPrint.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmExcelToPdf.aspx.cs">
+      <DependentUpon>frmExcelToPdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmExcelToPdf.aspx.designer.cs">
+      <DependentUpon>frmExcelToPdf.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmExistencias.aspx.cs">
+      <DependentUpon>frmExistencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmExistencias.aspx.designer.cs">
+      <DependentUpon>frmExistencias.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaDiesel.aspx.cs">
+      <DependentUpon>frmFacturaDiesel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaDiesel.aspx.designer.cs">
+      <DependentUpon>frmFacturaDiesel.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaGanado.aspx.cs">
+      <DependentUpon>frmFacturaGanado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaGanado.aspx.designer.cs">
+      <DependentUpon>frmFacturaGanado.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaGanadoPrint.aspx.cs">
+      <DependentUpon>frmFacturaGanadoPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaGanadoPrint.aspx.designer.cs">
+      <DependentUpon>frmFacturaGanadoPrint.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaPrint.aspx.cs">
+      <DependentUpon>frmFacturaPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaPrint.aspx.designer.cs">
+      <DependentUpon>frmFacturaPrint.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturasDeCompra.aspx.cs">
+      <DependentUpon>frmFacturasDeCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturasDeCompra.aspx.designer.cs">
+      <DependentUpon>frmFacturasDeCompra.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaVentaClientes.aspx.cs">
+      <DependentUpon>frmFacturaVentaClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmFacturaVentaClientes.aspx.designer.cs">
+      <DependentUpon>frmFacturaVentaClientes.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmGanProveedores.aspx.cs">
+      <DependentUpon>frmGanProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmGanProveedores.aspx.designer.cs">
+      <DependentUpon>frmGanProveedores.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmGruposCatalogos.aspx.cs">
+      <DependentUpon>frmGruposCatalogos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmGruposCatalogos.aspx.designer.cs">
+      <DependentUpon>frmGruposCatalogos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmHojaDeEvaluacionPrint.aspx.cs">
+      <DependentUpon>frmHojaDeEvaluacionPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmHojaDeEvaluacionPrint.aspx.designer.cs">
+      <DependentUpon>frmHojaDeEvaluacionPrint.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacion2010.aspx.cs">
+      <DependentUpon>frmLiquidacion2010.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacion2010.aspx.designer.cs">
+      <DependentUpon>frmLiquidacion2010.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionAdd.aspx.cs">
+      <DependentUpon>frmLiquidacionAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionAdd.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionAdd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionesLista.aspx.cs">
+      <DependentUpon>frmLiquidacionesLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionesLista.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionesLista.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionEsqueleto.aspx.cs">
+      <DependentUpon>frmLiquidacionEsqueleto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionEsqueleto.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionEsqueleto.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionTemplate.aspx.cs">
+      <DependentUpon>frmLiquidacionTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionTemplate.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionTemplate.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionTransportista.aspx.cs">
+      <DependentUpon>frmLiquidacionTransportista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmLiquidacionTransportista.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionTransportista.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaAnticipos.aspx.cs">
+      <DependentUpon>frmListaAnticipos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaAnticipos.aspx.designer.cs">
+      <DependentUpon>frmListaAnticipos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaConversionesProducto.aspx.cs">
+      <DependentUpon>frmListaConversionesProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaConversionesProducto.aspx.designer.cs">
+      <DependentUpon>frmListaConversionesProducto.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaFacturasDeGanado.aspx.cs">
+      <DependentUpon>frmListaFacturasDeGanado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaFacturasDeGanado.aspx.designer.cs">
+      <DependentUpon>frmListaFacturasDeGanado.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaFacturasDiesel.aspx.cs">
+      <DependentUpon>frmListaFacturasDiesel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaFacturasDiesel.aspx.designer.cs">
+      <DependentUpon>frmListaFacturasDiesel.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaFacturasProveedores.aspx.cs">
+      <DependentUpon>frmListaFacturasProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaFacturasProveedores.aspx.designer.cs">
+      <DependentUpon>frmListaFacturasProveedores.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaFacturaVentaaClientes.aspx.cs">
+      <DependentUpon>frmListaFacturaVentaaClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaFacturaVentaaClientes.aspx.designer.cs">
+      <DependentUpon>frmListaFacturaVentaaClientes.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaLiqTransportistas.aspx.cs">
+      <DependentUpon>frmListaLiqTransportistas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaLiqTransportistas.aspx.designer.cs">
+      <DependentUpon>frmListaLiqTransportistas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaNotasDeCompraFormato.aspx.cs">
+      <DependentUpon>frmListaNotasDeCompraFormato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListaNotasDeCompraFormato.aspx.designer.cs">
+      <DependentUpon>frmListaNotasDeCompraFormato.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListBoletas.aspx.cs">
+      <DependentUpon>frmListBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListBoletas.aspx.designer.cs">
+      <DependentUpon>frmListBoletas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListCheques.aspx.cs">
+      <DependentUpon>frmListCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListCheques.aspx.designer.cs">
+      <DependentUpon>frmListCheques.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListChequesProductor.aspx.cs">
+      <DependentUpon>frmListChequesProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListChequesProductor.aspx.designer.cs">
+      <DependentUpon>frmListChequesProductor.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListDeleteCheques.aspx.cs">
+      <DependentUpon>frmListDeleteCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListDeleteCheques.aspx.designer.cs">
+      <DependentUpon>frmListDeleteCheques.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListDeleteMovBancos.aspx.cs">
+      <DependentUpon>frmListDeleteMovBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListDeleteMovBancos.aspx.designer.cs">
+      <DependentUpon>frmListDeleteMovBancos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListDeletePredios.aspx.cs">
+      <DependentUpon>frmListDeletePredios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListDeletePredios.aspx.designer.cs">
+      <DependentUpon>frmListDeletePredios.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListDeleteProductores.aspx.cs">
+      <DependentUpon>frmListDeleteProductores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListDeleteProductores.aspx.designer.cs">
+      <DependentUpon>frmListDeleteProductores.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListEntradaProductos.aspx.cs">
+      <DependentUpon>frmListEntradaProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListEntradaProductos.aspx.designer.cs">
+      <DependentUpon>frmListEntradaProductos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListLogMessage.aspx.cs">
+      <DependentUpon>frmListLogMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListLogMessage.aspx.designer.cs">
+      <DependentUpon>frmListLogMessage.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListMovCajaChica.aspx.cs">
+      <DependentUpon>frmListMovCajaChica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListMovCajaChica.aspx.designer.cs">
+      <DependentUpon>frmListMovCajaChica.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListNotasCompras.aspx.cs">
+      <DependentUpon>frmListNotasCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListNotasCompras.aspx.designer.cs">
+      <DependentUpon>frmListNotasCompras.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListNotasDeVenta.aspx.cs">
+      <DependentUpon>frmListNotasDeVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListNotasDeVenta.aspx.designer.cs">
+      <DependentUpon>frmListNotasDeVenta.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListofCreditos.aspx.cs">
+      <DependentUpon>frmListofCreditos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListofCreditos.aspx.designer.cs">
+      <DependentUpon>frmListofCreditos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListOrdenEntradasProveedores.aspx.cs">
+      <DependentUpon>frmListOrdenEntradasProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListOrdenEntradasProveedores.aspx.designer.cs">
+      <DependentUpon>frmListOrdenEntradasProveedores.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListPerCreditoFinanciero.aspx.cs">
+      <DependentUpon>frmListPerCreditoFinanciero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListPerCreditoFinanciero.aspx.designer.cs">
+      <DependentUpon>frmListPerCreditoFinanciero.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListPrestamos.aspx.cs">
+      <DependentUpon>frmListPrestamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListPrestamos.aspx.designer.cs">
+      <DependentUpon>frmListPrestamos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListSalidaDeProducto.aspx.cs">
+      <DependentUpon>frmListSalidaDeProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListSalidaDeProducto.aspx.designer.cs">
+      <DependentUpon>frmListSalidaDeProducto.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListSolicitudes.aspx.cs">
+      <DependentUpon>frmListSolicitudes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListSolicitudes.aspx.designer.cs">
+      <DependentUpon>frmListSolicitudes.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListTarjetasDiesel.aspx.cs">
+      <DependentUpon>frmListTarjetasDiesel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmListTarjetasDiesel.aspx.designer.cs">
+      <DependentUpon>frmListTarjetasDiesel.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMissingCheques.aspx.cs">
+      <DependentUpon>frmMissingCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMissingCheques.aspx.designer.cs">
+      <DependentUpon>frmMissingCheques.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMovBancoAddQuick.aspx.cs">
+      <DependentUpon>frmMovBancoAddQuick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMovBancoAddQuick.aspx.designer.cs">
+      <DependentUpon>frmMovBancoAddQuick.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMovBancoDetails.aspx.cs">
+      <DependentUpon>frmMovBancoDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMovBancoDetails.aspx.designer.cs">
+      <DependentUpon>frmMovBancoDetails.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMovBancos.aspx.cs">
+      <DependentUpon>frmMovBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMovBancos.aspx.designer.cs">
+      <DependentUpon>frmMovBancos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMovCajaChicaAddQuick.aspx.cs">
+      <DependentUpon>frmMovCajaChicaAddQuick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMovCajaChicaAddQuick.aspx.designer.cs">
+      <DependentUpon>frmMovCajaChicaAddQuick.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMyData.aspx.cs">
+      <DependentUpon>frmMyData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmMyData.aspx.designer.cs">
+      <DependentUpon>frmMyData.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmNoRights.aspx.cs">
+      <DependentUpon>frmNoRights.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmNoRights.aspx.designer.cs">
+      <DependentUpon>frmNoRights.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmNotadeVentaAddNew.aspx.cs">
+      <DependentUpon>frmNotadeVentaAddNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmNotadeVentaAddNew.aspx.designer.cs">
+      <DependentUpon>frmNotadeVentaAddNew.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmOnlyPrintCheque.aspx.cs">
+      <DependentUpon>frmOnlyPrintCheque.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmOnlyPrintCheque.aspx.designer.cs">
+      <DependentUpon>frmOnlyPrintCheque.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmOrdenCompraFormato.aspx.cs">
+      <DependentUpon>frmOrdenCompraFormato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmOrdenCompraFormato.aspx.designer.cs">
+      <DependentUpon>frmOrdenCompraFormato.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmOrdendeCargaAdd.aspx.cs">
+      <DependentUpon>frmOrdendeCargaAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmOrdendeCargaAdd.aspx.designer.cs">
+      <DependentUpon>frmOrdendeCargaAdd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmOrdendeCargaList.aspx.cs">
+      <DependentUpon>frmOrdendeCargaList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmOrdendeCargaList.aspx.designer.cs">
+      <DependentUpon>frmOrdendeCargaList.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagoAFacturas.aspx.cs">
+      <DependentUpon>frmPagoAFacturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagoAFacturas.aspx.designer.cs">
+      <DependentUpon>frmPagoAFacturas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagoAFacturasDeVentaNew.aspx.cs">
+      <DependentUpon>frmPagoAFacturasDeVentaNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagoAFacturasDeVentaNew.aspx.designer.cs">
+      <DependentUpon>frmPagoAFacturasDeVentaNew.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagoANotasDeVenta.aspx.cs">
+      <DependentUpon>frmPagoANotasDeVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagoANotasDeVenta.aspx.designer.cs">
+      <DependentUpon>frmPagoANotasDeVenta.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagosAFacturasDeGanado.aspx.cs">
+      <DependentUpon>frmPagosAFacturasDeGanado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagosAFacturasDeGanado.aspx.designer.cs">
+      <DependentUpon>frmPagosAFacturasDeGanado.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagosAProveedores.aspx.cs">
+      <DependentUpon>frmPagosAProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagosAProveedores.aspx.designer.cs">
+      <DependentUpon>frmPagosAProveedores.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagosCreditosAdd.aspx.cs">
+      <DependentUpon>frmPagosCreditosAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagosCreditosAdd.aspx.designer.cs">
+      <DependentUpon>frmPagosCreditosAdd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagosFacturasLista.aspx.cs">
+      <DependentUpon>frmPagosFacturasLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPagosFacturasLista.aspx.designer.cs">
+      <DependentUpon>frmPagosFacturasLista.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPresentaciones.aspx.cs">
+      <DependentUpon>frmPresentaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPresentaciones.aspx.designer.cs">
+      <DependentUpon>frmPresentaciones.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintCheque.aspx.cs">
+      <DependentUpon>frmPrintCheque.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintCheque.aspx.designer.cs">
+      <DependentUpon>frmPrintCheque.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintEstadodeCuentaCredito.aspx.cs">
+      <DependentUpon>frmPrintEstadodeCuentaCredito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintEstadodeCuentaCredito.aspx.designer.cs">
+      <DependentUpon>frmPrintEstadodeCuentaCredito.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintNotaVenta.aspx.cs">
+      <DependentUpon>frmPrintNotaVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintNotaVenta.aspx.designer.cs">
+      <DependentUpon>frmPrintNotaVenta.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintNotaVenta2010.aspx.cs">
+      <DependentUpon>frmPrintNotaVenta2010.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintNotaVenta2010.aspx.designer.cs">
+      <DependentUpon>frmPrintNotaVenta2010.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintPaqueteFormatos.aspx.cs">
+      <DependentUpon>frmPrintPaqueteFormatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPrintPaqueteFormatos.aspx.designer.cs">
+      <DependentUpon>frmPrintPaqueteFormatos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmProductos.aspx.cs">
+      <DependentUpon>frmProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmProductos.aspx.designer.cs">
+      <DependentUpon>frmProductos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmProveedores.aspx.cs">
+      <DependentUpon>frmProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmProveedores.aspx.designer.cs">
+      <DependentUpon>frmProveedores.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmProveedoresEstadodeCuenta.aspx.cs">
+      <DependentUpon>frmProveedoresEstadodeCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmProveedoresEstadodeCuenta.aspx.designer.cs">
+      <DependentUpon>frmProveedoresEstadodeCuenta.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPublishUpdates.aspx.cs">
+      <DependentUpon>frmPublishUpdates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmPublishUpdates.aspx.designer.cs">
+      <DependentUpon>frmPublishUpdates.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryClienteData.aspx.cs">
+      <DependentUpon>frmQueryClienteData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryClienteData.aspx.designer.cs">
+      <DependentUpon>frmQueryClienteData.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryExistencias.aspx.cs">
+      <DependentUpon>frmQueryExistencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryExistencias.aspx.designer.cs">
+      <DependentUpon>frmQueryExistencias.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryPrecio.aspx.cs">
+      <DependentUpon>frmQueryPrecio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryPrecio.aspx.designer.cs">
+      <DependentUpon>frmQueryPrecio.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryProd.aspx.cs">
+      <DependentUpon>frmQueryProd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryProd.aspx.designer.cs">
+      <DependentUpon>frmQueryProd.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryProductorData.aspx.cs">
+      <DependentUpon>frmQueryProductorData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmQueryProductorData.aspx.designer.cs">
+      <DependentUpon>frmQueryProductorData.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmRecoverPassword.aspx.cs">
+      <DependentUpon>frmRecoverPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmRecoverPassword.aspx.designer.cs">
+      <DependentUpon>frmRecoverPassword.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteBoletasDeSalida.aspx.cs">
+      <DependentUpon>frmReporteBoletasDeSalida.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteBoletasDeSalida.aspx.designer.cs">
+      <DependentUpon>frmReporteBoletasDeSalida.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteCertificados.aspx.cs">
+      <DependentUpon>frmReporteCertificados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteCertificados.aspx.designer.cs">
+      <DependentUpon>frmReporteCertificados.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteConcentradoLiquidaciones.aspx.cs">
+      <DependentUpon>frmReporteConcentradoLiquidaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteConcentradoLiquidaciones.aspx.designer.cs">
+      <DependentUpon>frmReporteConcentradoLiquidaciones.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteConcentradoLiquidacionesPorProductor.aspx.cs">
+      <DependentUpon>frmReporteConcentradoLiquidacionesPorProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteConcentradoLiquidacionesPorProductor.aspx.designer.cs">
+      <DependentUpon>frmReporteConcentradoLiquidacionesPorProductor.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx.cs">
+      <DependentUpon>frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx.designer.cs">
+      <DependentUpon>frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGanXMonth.aspx.cs">
+      <DependentUpon>frmReporteGanXMonth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGanXMonth.aspx.designer.cs">
+      <DependentUpon>frmReporteGanXMonth.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGarantiasSolicitudes.aspx.cs">
+      <DependentUpon>frmReporteGarantiasSolicitudes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGarantiasSolicitudes.aspx.designer.cs">
+      <DependentUpon>frmReporteGarantiasSolicitudes.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGeneralCreditos.aspx.cs">
+      <DependentUpon>frmReporteGeneralCreditos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGeneralCreditos.aspx.designer.cs">
+      <DependentUpon>frmReporteGeneralCreditos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGeneralLiquidaciones.aspx.cs">
+      <DependentUpon>frmReporteGeneralLiquidaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGeneralLiquidaciones.aspx.designer.cs">
+      <DependentUpon>frmReporteGeneralLiquidaciones.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGralPorCatalogo.aspx.cs">
+      <DependentUpon>frmReporteGralPorCatalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteGralPorCatalogo.aspx.designer.cs">
+      <DependentUpon>frmReporteGralPorCatalogo.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteLiquidacionconNotas.aspx.cs">
+      <DependentUpon>frmReporteLiquidacionconNotas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteLiquidacionconNotas.aspx.designer.cs">
+      <DependentUpon>frmReporteLiquidacionconNotas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteLiqXProductorXProductos.aspx.cs">
+      <DependentUpon>frmReporteLiqXProductorXProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteLiqXProductorXProductos.aspx.designer.cs">
+      <DependentUpon>frmReporteLiqXProductorXProductos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteMovBancosporCatalogo.aspx.cs">
+      <DependentUpon>frmReporteMovBancosporCatalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteMovBancosporCatalogo.aspx.designer.cs">
+      <DependentUpon>frmReporteMovBancosporCatalogo.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteporCatalogo.aspx.cs">
+      <DependentUpon>frmReporteporCatalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteporCatalogo.aspx.designer.cs">
+      <DependentUpon>frmReporteporCatalogo.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReportePreciosVenta.aspx.cs">
+      <DependentUpon>frmReportePreciosVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReportePreciosVenta.aspx.designer.cs">
+      <DependentUpon>frmReportePreciosVenta.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteProductoBoletas.aspx.cs">
+      <DependentUpon>frmReporteProductoBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteProductoBoletas.aspx.designer.cs">
+      <DependentUpon>frmReporteProductoBoletas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteSeguros.aspx.cs">
+      <DependentUpon>frmReporteSeguros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteSeguros.aspx.designer.cs">
+      <DependentUpon>frmReporteSeguros.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteSegurosProAgro.aspx.cs">
+      <DependentUpon>frmReporteSegurosProAgro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteSegurosProAgro.aspx.designer.cs">
+      <DependentUpon>frmReporteSegurosProAgro.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteSubCatalogoMovBancos.aspx.cs">
+      <DependentUpon>frmReporteSubCatalogoMovBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmReporteSubCatalogoMovBancos.aspx.designer.cs">
+      <DependentUpon>frmReporteSubCatalogoMovBancos.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmSegurosAgricolas.aspx.cs">
+      <DependentUpon>frmSegurosAgricolas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmSegurosAgricolas.aspx.designer.cs">
+      <DependentUpon>frmSegurosAgricolas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmSituacionAddUpdate.aspx.cs">
+      <DependentUpon>frmSituacionAddUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmSituacionAddUpdate.aspx.designer.cs">
+      <DependentUpon>frmSituacionAddUpdate.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmSituacionesLista.aspx.cs">
+      <DependentUpon>frmSituacionesLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmSituacionesLista.aspx.designer.cs">
+      <DependentUpon>frmSituacionesLista.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmTemp.aspx.cs">
+      <DependentUpon>frmTemp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmTemp.aspx.designer.cs">
+      <DependentUpon>frmTemp.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmTransportistas.aspx.cs">
+      <DependentUpon>frmTransportistas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmTransportistas.aspx.designer.cs">
+      <DependentUpon>frmTransportistas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUnauthorizedAccess.aspx.cs">
+      <DependentUpon>frmUnauthorizedAccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUnauthorizedAccess.aspx.designer.cs">
+      <DependentUpon>frmUnauthorizedAccess.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUploadBoletas.aspx.cs">
+      <DependentUpon>frmUploadBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUploadBoletas.aspx.designer.cs">
+      <DependentUpon>frmUploadBoletas.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUserLogActions.aspx.cs">
+      <DependentUpon>frmUserLogActions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUserLogActions.aspx.designer.cs">
+      <DependentUpon>frmUserLogActions.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUsersManual.aspx.cs">
+      <DependentUpon>frmUsersManual.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUsersManual.aspx.designer.cs">
+      <DependentUpon>frmUsersManual.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUsuarios.aspx.cs">
+      <DependentUpon>frmUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\frmUsuarios.aspx.designer.cs">
+      <DependentUpon>frmUsuarios.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\JSUtils.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\Logger.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\Messages.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\myConfig.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\PdfCreator.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\Properties\AssemblyInfo.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\Properties\Settings.Designer.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx.cs">
+      <DependentUpon>ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx.designer.cs">
+      <DependentUpon>ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\Garibay\SessionData.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\TimeCounter.cs" />
+    <Compile Include="OldSystem\Garibay\Garibay\Utils.cs" />
+    <Compile Include="OldSystem\Garibay\WSGaribay\CompressUtils.cs" />
+    <Compile Include="OldSystem\Garibay\WSGaribay\Properties\AssemblyInfo.cs" />
+    <Compile Include="OldSystem\Garibay\WSGaribay\Servicios.asmx.cs">
+      <DependentUpon>Servicios.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="OldSystem\Garibay\WSGaribay\WSCCryptorEngine.cs" />
+    <Compile Include="OldSystem\Garibay\WSGaribay\WSUtils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\Azure.txt" />
+    <Content Include="Documentation\DB.txt" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\BasculaDAL.csproj" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\BasculaDAL.dll" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\BasculaDAL.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.ServiceLocation.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.Unity.dll" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.Unity.Interception.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\bin\Debug\Microsoft.Practices.Unity.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\obj\Debug\BasculaDAL.csproj.FileListAbsolute.txt" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\obj\Debug\BasculaDAL.dll" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\obj\Debug\BasculaDAL.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaDAL\obj\Debug\Refactor\BasculaDAL.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\BasculaGaribay.csproj" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\BasculaDAL.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\BasculaDAL.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\BasculaGaribay.exe" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\BasculaGaribay.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\BasculaGaribay.vshost.exe" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Garibay.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.SqlCe.xml" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.ServiceLocation.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.Unity.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.Unity.Interception.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\Microsoft.Practices.Unity.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\bin\Release\Garibay.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OldSystem\Garibay\BasculaGaribay\dlls\WeifenLuo.WinFormsUI.Docking.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\Garibay.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.csproj.FileListAbsolute.txt" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.exe" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.pdb" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\TempPE\DBGaribay.designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\TempPE\GaribayCache.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\TempPE\Web References.WSGaribay.Reference.cs.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\TempPE\WSGaribayDataSet.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\Resources\Config.png" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\Resources\LogoIPROJALMedium.jpg" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.Boletas.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.ClientesVentas.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.ClienteVenta_Boletas.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.gan_Proveedores.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.gan_Proveedores_Boletas.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.Productores.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.Productos.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.SecurityLevels.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLScripts\BoletasDBCache.dbo.Users.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.Boletas.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.ClientesVentas.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.ClienteVenta_Boletas.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.gan_Proveedores.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.gan_Proveedores_Boletas.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.Productores.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.Productos.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.SecurityLevels.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\SQLUndoScripts\BoletasDBCache.dbo.Users.undo.sql" />
+    <Content Include="OldSystem\Garibay\BasculaGaribay\Web References\WSGaribay\Servicios.disco" />
+    <Content Include="OldSystem\Garibay\BasculaSetup\BasculaSetup.vdproj" />
+    <Content Include="OldSystem\Garibay\datos garibay.txt" />
+    <Content Include="OldSystem\Garibay\Garibay.sln" />
+    <Content Include="OldSystem\Garibay\GaribayInstaller\GaribayInstaller.vdproj" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\AjaxControlToolkit.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\ar\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\cs\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\de\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\es-MX\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\fr\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\he\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\hi\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\it\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\ja\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\ko\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\nl\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\pt\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\ru\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\tr-TR\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\zh-CHS\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AjaxToolKit\zh-CHT\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\AppOffline.htm" />
+    <Content Include="OldSystem\Garibay\Garibay\App_Data\StoredProcedures.sql" />
+    <Content Include="OldSystem\Garibay\Garibay\App_Themes\skinrojo\basicStyle.css" />
+    <Content Include="OldSystem\Garibay\Garibay\App_Themes\skinverde\basicStyle2.css" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\AjaxControlToolkit.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\ar\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\cs\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\de\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\es-MX\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\fr\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\Garibay.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\Garibay.pdb" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\he\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\hi\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\itextsharp.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\it\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\ja\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\ko\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\nl\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\NPOI.DDF.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\NPOI.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\NPOI.HPSF.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\NPOI.HSSF.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\NPOI.POIFS.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\NPOI.Util.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\pt\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\RJS.Web.WebControl.PopCalendar.Net.2008.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\ru\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\tr-TR\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\zh-CHS\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\bin\zh-CHT\AjaxControlToolkit.resources.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\components\RJS.Web.WebControl.PopCalendar.Net.2008.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\Default.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\itextsharp.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\NPOI.DDF.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\NPOI.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\NPOI.HPSF.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\NPOI.HSSF.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\NPOI.POIFS.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\dlls\NPOI.Util.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAcceptDenySolicitud.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifyAnticipo.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifyBoletas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifyCheques.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifyCreditos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifyEntradaProductos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifyPredios.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifyPrestamo.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifyProductores.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddModifySalidaDeProducto.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddMovBancos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddMovCajaChica.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddNotasCompras.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddNotasDeVenta.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddQuickClienteVenta.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddQuickProductor.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAddSolicitud2010.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAjustesCheques.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAsignaranticiposaLiq.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmAtGlance.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmBancosSaldosMensuales.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmBoletaManagement.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmBoletaNewQuick.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmBoletasdeFacturaCV.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmBusquedaGeneral.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCajaChicaReport.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCajaChicaSaldosMensuales.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCatalogos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCertificadoAddQuick.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCertificadosLista.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCiclos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmClientesVentas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmConcentradoProductosdeBoletas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmConceptosMovCajaChica.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmConciliacionBancos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmConfigParameterPage.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmConverProductos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCreditoFinancieroAdd.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCreditosFinancieros.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmCuentasdeBanco.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmDescargar.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmDescargaTmpFile.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmDocsProductor.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmDownLoadPage.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmEdoCuentaGanadero.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmEntradaProductoProveedor.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmEntradasSalidasBoletasxDia.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmEstadoDeCuentaClienteDeVenta.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmEstadodeCuentaCredito.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmEstadodeCuentaCreditoPrint.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmExcelToPdf.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmExistencias.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmFacturaDiesel.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmFacturaGanado.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmFacturaGanadoPrint.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmFacturaPrint.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmFacturasDeCompra.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmFacturaVentaClientes.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmGanProveedores.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmGruposCatalogos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmHojaDeEvaluacionPrint.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmLiquidacion2010.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmLiquidacionAdd.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmLiquidacionesLista.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmLiquidacionEsqueleto.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmLiquidacionTemplate.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmLiquidacionTransportista.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListaAnticipos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListaConversionesProducto.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListaFacturasDeGanado.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListaFacturasDiesel.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListaFacturasProveedores.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListaFacturaVentaaClientes.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListaLiqTransportistas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListaNotasDeCompraFormato.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListBoletas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListCheques.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListChequesProductor.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListDeleteCheques.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListDeleteMovBancos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListDeletePredios.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListDeleteProductores.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListEntradaProductos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListLogMessage.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListMovCajaChica.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListNotasCompras.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListNotasDeVenta.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListofCreditos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListOrdenEntradasProveedores.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListPerCreditoFinanciero.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListPrestamos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListSalidaDeProducto.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListSolicitudes.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmListTarjetasDiesel.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmMissingCheques.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmMovBancoAddQuick.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmMovBancoDetails.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmMovBancos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmMovCajaChicaAddQuick.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmMyData.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmNoRights.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmNotadeVentaAddNew.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmOnlyPrintCheque.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmOrdenCompraFormato.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmOrdendeCargaAdd.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmOrdendeCargaList.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPagoAFacturas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPagoAFacturasDeVentaNew.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPagoANotasDeVenta.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPagosAFacturasDeGanado.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPagosAProveedores.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPagosCreditosAdd.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPagosFacturasLista.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPresentaciones.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPrintCheque.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPrintEstadodeCuentaCredito.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPrintNotaVenta.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPrintNotaVenta2010.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPrintPaqueteFormatos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmProductos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmProveedores.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmProveedoresEstadodeCuenta.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmPublishUpdates.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmQueryClienteData.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmQueryExistencias.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmQueryPrecio.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmQueryProd.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmQueryProductorData.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmRecoverPassword.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteBoletasDeSalida.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteCertificados.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteConcentradoLiquidaciones.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteConcentradoLiquidacionesPorProductor.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteGanXMonth.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteGarantiasSolicitudes.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteGeneralCreditos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteGeneralLiquidaciones.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteGralPorCatalogo.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteLiquidacionconNotas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteLiqXProductorXProductos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteMovBancosporCatalogo.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteporCatalogo.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReportePreciosVenta.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteProductoBoletas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteSeguros.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteSegurosProAgro.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmReporteSubCatalogoMovBancos.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmSegurosAgricolas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmSituacionAddUpdate.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmSituacionesLista.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmTemp.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmTransportistas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmUnauthorizedAccess.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmUploadBoletas.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmUserLogActions.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmUsersManual.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\frmUsuarios.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\Garibay.csproj" />
+    <Content Include="OldSystem\Garibay\Garibay\Garibay.csproj.user" />
+    <Content Include="OldSystem\Garibay\Garibay\Garibay.Publish.xml" />
+    <Content Include="OldSystem\Garibay\Garibay\Global.asax" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\cargando.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\Garibay.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\IPROJALmedium.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\IPROJALsmall.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\LogoGaribay124x90.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\LogoIPROJALMedium.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\LogoIPROJALMediumHalf.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\LogoMargaritas133x153.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\LogoMargaritas655x153.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\LogoMargaritasMedium.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\LogoMargaritasSmall.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\Nuevo.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\palomita.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\imagenes\tache.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\Imagenes_Manual\ciclo_compras.png" />
+    <Content Include="OldSystem\Garibay\Garibay\Imagenes_Manual\login.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\Imagenes_Manual\ProductoresAdd.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\Imagenes_Manual\productoresmenu.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\Imagenes_Manual\prodvalidar.jpg" />
+    <Content Include="OldSystem\Garibay\Garibay\logout.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\changelog.txt" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\css\superfish-navbar.css" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\css\superfish-vertical.css" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\css\superfish.css" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\example.html" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\images\arrows-ffffff.png" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\images\shadow.png" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\images\superfish-navbar.css" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\images\superfish-vertical.css" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\images\superfish.css" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\js\hoverIntent.js" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\js\jquery-1.2.6.min.js" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\js\jquery.bgiframe.min.js" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\js\superfish.js" />
+    <Content Include="OldSystem\Garibay\Garibay\Menu\SuperFish\js\supersubs.js" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\Garibay.csproj.FileListAbsolute.txt" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\Garibay.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\Garibay.pdb" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsBoletas.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsEstadodeCuenta.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsFacturaDeProveedor.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsFacturasClientes.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsLiquidacion.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsMovBanco.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsMovCajaChica.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsNCdatos.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsNCdetalle.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\dsNV.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Debug\TempPE\Messages.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\Garibay.csproj.FileListAbsolute.txt" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\Garibay.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\Garibay.pdb" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsBoletas.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsEstadodeCuenta.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsFacturaDeProveedor.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsFacturasClientes.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsLiquidacion.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsMovBanco.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsMovCajaChica.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsNCdatos.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsNCdetalle.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\dsNV.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\obj\Release\TempPE\Messages.Designer.cs.dll" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\Calendar.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic.css" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\baddate.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\close.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\closedown.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\down.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\drop1.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\drop2.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\left1.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\left2.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\right1.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\right2.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\special.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Classic_Images\up.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern.css" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\baddate.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\baddatex.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\close.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\closedown.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\down.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\drop1.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\drop2.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\left1.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\left2.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\right1.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\right2.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\special.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Modern_Images\up.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Small.css" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\DisableCalendar.gif" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\PopCalendarAjaxNet.js" />
+    <Content Include="OldSystem\Garibay\Garibay\PopCalendar2008\PopCalendarFunctionsAjaxNet.js" />
+    <Content Include="OldSystem\Garibay\Garibay\ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx" />
+    <Content Include="OldSystem\Garibay\Garibay\scripts\AjaxErrHandler.js" />
+    <Content Include="OldSystem\Garibay\Garibay\scripts\ddaccordion.js" />
+    <Content Include="OldSystem\Garibay\Garibay\scripts\divFunctions.js" />
+    <Content Include="OldSystem\Garibay\Garibay\scripts\jquery-1.3.2.min.js" />
+    <Content Include="OldSystem\Garibay\Garibay\scripts\prototype.js" />
+    <Content Include="OldSystem\Garibay\WebServGaribay.sln" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\BasculaDAL.dll" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\BasculaDAL.pdb" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.EnterpriseLibrary.Common.pdb" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.EnterpriseLibrary.Common.xml" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.EnterpriseLibrary.Data.pdb" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.EnterpriseLibrary.Data.xml" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.ServiceLocation.pdb" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.Unity.dll" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.Unity.Interception.pdb" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\Microsoft.Practices.Unity.pdb" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\WSGaribay.dll" />
+    <Content Include="OldSystem\Garibay\WSGaribay\bin\WSGaribay.pdb" />
+    <Content Include="OldSystem\Garibay\WSGaribay\obj\Debug\WSGaribay.csproj.FileListAbsolute.txt" />
+    <Content Include="OldSystem\Garibay\WSGaribay\obj\Debug\WSGaribay.dll" />
+    <Content Include="OldSystem\Garibay\WSGaribay\obj\Debug\WSGaribay.pdb" />
+    <Content Include="OldSystem\Garibay\WSGaribay\Servicios.asmx" />
+    <Content Include="OldSystem\Garibay\WSGaribay\WSGaribay.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documentation\COTIZACION - SISTEMA DE BASCULA CON GAFETTES.docx" />
+    <None Include="Documentation\COTIZACION - SISTEMA DE BASCULA CON GAFETTES.pdf" />
+    <None Include="Documentation\COTIZACION - SISTEMA DE CONTROL DE PARAFINANCIERA CON DATOS EN LA NUBE.docx" />
+    <None Include="Documentation\COTIZACION - SISTEMA DE CONTROL DE PARAFINANCIERA CON DATOS EN LA NUBE.pdf" />
+    <None Include="OldSystem\Garibay\BasculaDAL\App_Data\App.config" />
+    <None Include="OldSystem\Garibay\BasculaDAL\bin\Debug\BasculaDAL.dll.config" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\app.config" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\BasculaGaribay.exe.config" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\BasculaGaribay.vshost.exe.config" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\BasculaGaribay.vshost.exe.manifest" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\bin\Debug\CacheData.bin" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\DBGaribay.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DBGaribay.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OldSystem\Garibay\BasculaGaribay\GaribayCache.sync" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.csproj.GenerateResource.Cache" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\ResolveAssemblyReference.cache" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\Properties\DataSources\Estados.datasource" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\Properties\Settings.settings" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\Web References\WSGaribay\Reference.map" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\Web References\WSGaribay\Servicios.wsdl" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\WSGaribayDataSet.xsc">
+      <DependentUpon>WSGaribayDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\BasculaGaribay\WSGaribayDataSet.xsd" />
+    <None Include="OldSystem\Garibay\BasculaGaribay\WSGaribayDataSet.xss">
+      <DependentUpon>WSGaribayDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\App_Data\App.config" />
+    <None Include="OldSystem\Garibay\Garibay\App_Themes\skinrojo\skinrojo.skin" />
+    <None Include="OldSystem\Garibay\Garibay\App_Themes\skinverde\skinverde.skin" />
+    <None Include="OldSystem\Garibay\Garibay\bin\Garibay.dll.config" />
+    <None Include="OldSystem\Garibay\Garibay\dsBoletas.xsc">
+      <DependentUpon>dsBoletas.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsBoletas.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsBoletas.xss">
+      <DependentUpon>dsBoletas.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsEstadodeCuenta.xsc">
+      <DependentUpon>dsEstadodeCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsEstadodeCuenta.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsEstadodeCuenta.xss">
+      <DependentUpon>dsEstadodeCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsFacturaDeProveedor.xsc">
+      <DependentUpon>dsFacturaDeProveedor.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsFacturaDeProveedor.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsFacturaDeProveedor.xss">
+      <DependentUpon>dsFacturaDeProveedor.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsFacturasClientes.xsc">
+      <DependentUpon>dsFacturasClientes.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsFacturasClientes.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsFacturasClientes.xss">
+      <DependentUpon>dsFacturasClientes.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsLiquidacion.xsc">
+      <DependentUpon>dsLiquidacion.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsLiquidacion.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsLiquidacion.xss">
+      <DependentUpon>dsLiquidacion.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsMovBanco.xsc">
+      <DependentUpon>dsMovBanco.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsMovBanco.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsMovBanco.xss">
+      <DependentUpon>dsMovBanco.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsMovCajaChica.xsc">
+      <DependentUpon>dsMovCajaChica.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsMovCajaChica.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsMovCajaChica.xss">
+      <DependentUpon>dsMovCajaChica.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsNCdatos.xsc">
+      <DependentUpon>dsNCdatos.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsNCdatos.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsNCdatos.xss">
+      <DependentUpon>dsNCdatos.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsNCdetalle.xsc">
+      <DependentUpon>dsNCdetalle.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsNCdetalle.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsNCdetalle.xss">
+      <DependentUpon>dsNCdetalle.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsNV.xsc">
+      <DependentUpon>dsNV.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\dsNV.xsd" />
+    <None Include="OldSystem\Garibay\Garibay\dsNV.xss">
+      <DependentUpon>dsNV.xsd</DependentUpon>
+    </None>
+    <None Include="OldSystem\Garibay\Garibay\Empty.Master" />
+    <None Include="OldSystem\Garibay\Garibay\FormatoBuroGaribay.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\FormatoBuroGaribay.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\boletas.xls" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\EVALUACION_PARAMETRICA_NUEVO_FORMATO_ 1%28PAGARE AND CARATULA SEPARADOS%29.xls" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoAutorizacionCredito.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoAutorizacionCreditoSOLO.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoBuroGaribay.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoBuroGaribay.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAndPagare.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAndPagare.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAnexa.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAnexa2010.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAnexa2010.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAnexa2010Bajio.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAnexa2010Bajio.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAnexaLast.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCaratulaAnexaLast.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCartaCompromiso.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoCartaCompromiso.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoContrato.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoContrato.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoHojaEvaluacion.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoHojaEvaluacion.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoHojaEvaluacion1.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoHojaEvaluacion1.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoHojaEvaluacion2.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoHojaEvaluacion2.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoHojaEvaluacion3.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoHojaEvaluacion3.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoOrdendeCarga.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoOrdendeCarga.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoPagare.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoPagareBajio.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoPagareBajio.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoPagareBajioConTabla.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoPagareBajioConTabla.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoPagareLast.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoPagareLast.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSeguro.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSeguro.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSeguro.xlsx" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSeguroFrente.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSeguroFrente.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSeguroReverso.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSeguroReverso.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitud.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitud.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitud.xlsx" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitud2.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitud2010CONAUTORIZACION.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitud2010CONAUTORIZACION.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitud2010SOLO.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitud2010SOLO.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitudNuevo.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FormatoSolicitudNuevo.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FORMATOTABLAAMORTIZACION.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\FORMATOTABLAAMORTIZACION.xlsx" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\ORDEN_DE_COMPRA_FORMATO.pdf" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\ORDEN_DE_COMPRA_FORMATO.pfl" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\PARAMETRICA MAIZ_AMECA 2010.xlsm" />
+    <None Include="OldSystem\Garibay\Garibay\Formatos\PARAMETRICA_MAIZ_AMECA_2010.xls" />
+    <None Include="OldSystem\Garibay\Garibay\MasterPage.Master" />
+    <None Include="OldSystem\Garibay\Garibay\obj\Debug\Garibay.csproj.GenerateResource.Cache" />
+    <None Include="OldSystem\Garibay\Garibay\obj\Debug\ResolveAssemblyReference.cache" />
+    <None Include="OldSystem\Garibay\Garibay\obj\Release\Garibay.csproj.GenerateResource.Cache" />
+    <None Include="OldSystem\Garibay\Garibay\Properties\Settings.settings" />
+    <None Include="OldSystem\Garibay\Garibay\scripts\database.rar" />
+    <None Include="OldSystem\Garibay\Garibay\Web.config" />
+    <None Include="OldSystem\Garibay\WSGaribay\Web.config" />
+    <None Include="Tracking\Tracking.xlsx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OldSystem\Garibay\BasculaGaribay\DBGaribay.dbml.layout">
+      <DependentUpon>DBGaribay.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\FormListaBoletasSinSalir.resx">
+      <DependentUpon>FormListaBoletasSinSalir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmAddBoletas.resx">
+      <DependentUpon>frmAddBoletas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmAddProductor.resx">
+      <DependentUpon>frmAddProductor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmBoletasListFromDS.resx">
+      <DependentUpon>frmBoletasListFromDS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmBoletasPendientesToolBox.resx">
+      <DependentUpon>frmBoletasPendientesToolBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmLecturaBascula.resx">
+      <DependentUpon>frmLecturaBascula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmListBoletas.resx">
+      <DependentUpon>frmListBoletas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmListProductores.resx">
+      <DependentUpon>frmListProductores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmMessageBox.resx">
+      <DependentUpon>frmMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmProveedor.resx">
+      <DependentUpon>frmProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\frmProveedores.resx">
+      <DependentUpon>frmProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.FormBoletasSinSalir.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmAddBoletas.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmAddProductor.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmBoletasListFromDS.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmBoletasPendientesToolBox.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmConfiguracion.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmLecturaBascula.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmListBoletas.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmListProductores.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmLogin.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmMessageBox.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmProveedor.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.frmProveedores.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.Login.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.Principal.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\obj\Debug\BasculaGaribay.Properties.Resources.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldSystem\Garibay\BasculaGaribay\Properties\Resources.resx" />
+    <EmbeddedResource Include="OldSystem\Garibay\Garibay\Messages.resx" />
+    <EmbeddedResource Include="OldSystem\Garibay\Garibay\obj\Debug\Garibay.Messages.resources" />
+    <EmbeddedResource Include="OldSystem\Garibay\Garibay\obj\Release\Garibay.Messages.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OldSystem\Garibay\BasculaDAL\obj\Debug\TempPE\" />
+    <Folder Include="OldSystem\Garibay\BasculaSetup\Debug\" />
+    <Folder Include="OldSystem\Garibay\BasculaSetup\Release\" />
+    <Folder Include="OldSystem\Garibay\Garibay\Fonts\" />
+    <Folder Include="OldSystem\Garibay\Garibay\obj\Debug\Refactor\" />
+    <Folder Include="OldSystem\Garibay\Garibay\PopCalendar2008\CSS\Small_Images\" />
+    <Folder Include="OldSystem\Garibay\WSGaribay\App_Data\" />
+    <Folder Include="OldSystem\Garibay\WSGaribay\obj\Debug\Refactor\" />
+    <Folder Include="OldSystem\Garibay\WSGaribay\obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

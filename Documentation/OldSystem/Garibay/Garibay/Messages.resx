@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AUTHFAILED" xml:space="preserve">
+    <value>AUTENTICACIÓN FALLIDA</value>
+  </data>
+  <data name="CHANGEDATAEXECUTEFAILED" xml:space="preserve">
+    <value>EL USUARIO NO PUDO MODIFICAR SUS DATOS, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="CHANGEDATAMODIFIEDEXITO" xml:space="preserve">
+    <value>EL USUARIO {0} HA MODIFICADO SUS DATOS SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CHANGEDATAMODIFIEDFAILED" xml:space="preserve">
+    <value>EL USUARIO {0} NO  HA PODIDO MODIFICAR SUS DATOS.</value>
+  </data>
+  <data name="CHANGEPASSEXECUTEFAILED" xml:space="preserve">
+    <value>EL PASSWORD NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="CHANGEPASSMODIFIEDEXITO" xml:space="preserve">
+    <value>EL USUARIO {0} MODIFICÓ SU PASSWORD SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CHANGEPASSMODIFIEDFAILED" xml:space="preserve">
+    <value>EL USUARIO {0} NO PUDO MODIFICAR SU PASSWORD.</value>
+  </data>
+  <data name="CHEQUEADDEDEXITO" xml:space="preserve">
+    <value>EL CHEQUE NÚMERO: {0} HA SIDO AGREGADO EXITOSAMENTE</value>
+  </data>
+  <data name="CHEQUEADDEDFAILED" xml:space="preserve">
+    <value>EL CHEQUE NÚMERO: {0} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="CHEQUEDELETEDEXITO" xml:space="preserve">
+    <value>EL CHEQUE NÚMERO: {0} HA SIDO ELIMINADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CHEQUEDELETEDFAILED" xml:space="preserve">
+    <value>EL CHEQUE NÚMERO: {0} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="CHEQUEEXECUTEFAILED" xml:space="preserve">
+    <value>EL CHEQUE NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="CHEQUEMODIFIEDEXITO" xml:space="preserve">
+    <value>EL CHEQUE NÚMERO: {0} HA SIDO MODIFICADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CHEQUEMODIFIEDFAILED" xml:space="preserve">
+    <value>EL CHEQUE NÚMERO: {0} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+  <data name="CICLOADDEDEXITO" xml:space="preserve">
+    <value>EL CICLO {0} HA SIDO AGREGADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CICLOADDEDFAILED" xml:space="preserve">
+    <value>EL CICLO {0} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="CICLODELETEDEXITO" xml:space="preserve">
+    <value>EL CICLO {0} HA SIDO ELIMINADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CICLODELETEDFAILED" xml:space="preserve">
+    <value>EL CICLO {0} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="CICLOEXECUTEFAILED" xml:space="preserve">
+    <value>EL CICLO NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="CICLOMODIFIEDEXITO" xml:space="preserve">
+    <value>EL CICLO {0} HA SIDO MODIFICADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CICLOMODIFIEDFAILED" xml:space="preserve">
+    <value>EL CICLO {0} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+  <data name="CONCEPTOADDEDEXITO" xml:space="preserve">
+    <value>EL CONCEPTO DE MOVIMIENTO DE CAJA {0} HA SIDO AGREGADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CONCEPTOADDEDFAILED" xml:space="preserve">
+    <value>EL CONCEPTO DE MOVIMIENTO DE CAJA {0} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="CONCEPTODELETEDEXITO" xml:space="preserve">
+    <value>EL CONCEPTO DE MOVIMIENTO DE CAJA {0} SE HA ELIMINADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CONCEPTODELETEDFAILED" xml:space="preserve">
+    <value>EL CONCEPTO DE MOVIMIENTO DE CAJA {0} NO  HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="CONCEPTOMODIFIEDEXITO" xml:space="preserve">
+    <value>EL CONCEPTO DE MOVIMIENTO DE CAJA {0} SE HA MODIFICADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CONCEPTOMODIFIEDFAILED" xml:space="preserve">
+    <value>EL CONCEPTO DE MOVIMIENTO DE CAJA {0} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+  <data name="CONCEPTOSEXECUTEFAILED" xml:space="preserve">
+    <value>EL CONCEPTO NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="CREDITOADDEDEXITO" xml:space="preserve">
+    <value>EL CREDITO NÚMERO {0}  HA SIDO AGREGADO EXITOSAMENTE.</value>
+  </data>
+  <data name="CREDITOADDEDFAILED" xml:space="preserve">
+    <value>EL CRÉDITO NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="CREDITODELETEDEXITO" xml:space="preserve">
+    <value>ELCREDITO {0} SE ELIMINO CORRECTAMENTE.</value>
+  </data>
+  <data name="CREDITODELETEDFAILED" xml:space="preserve">
+    <value>ELCREDITO {0} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="CREDITOEXECUTEFAILED" xml:space="preserve">
+    <value>EL CREDITO NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="CREDITOMODIFIEDEXITO" xml:space="preserve">
+    <value>EL CRÉDITO NÚMERO: {0} HA SIDO MODIFICADO EXITOSAMENTE.</value>
+  </data>
+  <data name="CREDITOMODIFIEDFAILED" xml:space="preserve">
+    <value>EL CRÉDITO NÚMERO: {0} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+  <data name="CUENTABANCOSEXECUTEFAILED" xml:space="preserve">
+    <value>LA CUENTA DE BANCO NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="CUENTADEBANCOADDEDEXITO" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} HA SIDO AGREGADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CUENTADEBANCOADDEDFAILED" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="CUENTADEBANCODELETEDEXITO" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} HA SIDO ELIMINADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CUENTADEBANCODELETEDFAILED" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="CUENTADEBANCOMODIFIEDEXITO" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} HA SIDO MODIFICADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CUENTADEBANCOMODIFIEDFAILED" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} NO HA PODIDO SER MODIFICADA.</value>
+  </data>
+  <data name="CUENTAPROVEEDORADDEDEXITO" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} DEL PROVEEDOR {1} HA SI DO AGREGADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CUENTAPROVEEDORADDEDFAILED" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} DEL PROVEEDOR {1} NO HA PODIDO SER AGREGADA.</value>
+  </data>
+  <data name="CUENTAPROVEEDORDELETEDEXITO" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} DEL PROVEEDOR {1} HA SI DO ELIMINADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CUENTAPROVEEDORDELETEDFAILED" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} DEL PROVEEDOR {1} NO HA PODIDO SER ELIMINADA.</value>
+  </data>
+  <data name="CUENTAPROVEEDOREXECUTEFAILED" xml:space="preserve">
+    <value>LA CUENTA DE BANCO DEL PROVEEDOR NO PUDO SER {0} , DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="CUENTAPROVEEDORMODIFIEDEXITO" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} DEL PROVEEDOR {1} HA SI DO MODIFICADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="CUENTAPROVEEDORMODIFIEDFAILED" xml:space="preserve">
+    <value>LA CUENTA DE BANCO {0} DEL PROVEEDOR {1} NO HA PODIDO SER MODIFICADA.</value>
+  </data>
+  <data name="ENTRADAPRODUCTOSADDEDEXITO" xml:space="preserve">
+    <value>LA ENTRADA DEL PRODUCTO {0} HA SIDO AGREGADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="ENTRADAPRODUCTOSADDEDFAILED" xml:space="preserve">
+    <value>LA ENTRADA DEL PRODUCTO {0} NO HA PODIDO SER AGREGADA.</value>
+  </data>
+  <data name="ENTRADAPRODUCTOSDELETEDEXITO" xml:space="preserve">
+    <value>LA ENTRADA DEL PRODUCTO {0} HA SIDO ELIMINADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="ENTRADAPRODUCTOSDELETEDFAILED" xml:space="preserve">
+    <value>LA ENTRADA DEL PRODUCTO {0} NO HA PODIDO SER ELIMINADA.</value>
+  </data>
+  <data name="ENTRADAPRODUCTOSEXECUTEFAILED" xml:space="preserve">
+    <value>LA ENTRADA DEL PRODUCTO {0} NO PUDO SER {1}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="ENTRADAPRODUCTOSMODIFIEDEXITO" xml:space="preserve">
+    <value>LA ENTRADA DEL PRODUCTO {0} HA SIDO MODIFICADA SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="ENTRADAPRODUCTOSMODIFIEDFAILED" xml:space="preserve">
+    <value>LA ENTRADA DEL PRODUCTO {0} NO HA PODIDO SER MODIFICADA.</value>
+  </data>
+  <data name="EXITO" xml:space="preserve">
+    <value>ÉXITO.</value>
+  </data>
+  <data name="FALLO" xml:space="preserve">
+    <value>FALLO.</value>
+  </data>
+  <data name="FALLOCARGARMODIFICAR" xml:space="preserve">
+    <value>HA OCURRIDO UN ERROR MIENTRAS SE CARGABAN LOS DATOS.</value>
+  </data>
+  <data name="FALLOCONEXION" xml:space="preserve">
+    <value>HA OCURRIDO UNA FALLA EN LA CONEXIÓN CON EL SERVIDOR.</value>
+  </data>
+  <data name="FALLOGENERAL" xml:space="preserve">
+    <value>UN ERROR INESPERADO HA OCURRIDO.</value>
+  </data>
+  <data name="LOGGERACTIONFAILED" xml:space="preserve">
+    <value>NO HA SIDO POSIBLE LOGGEAR UNA ACCIÓN EN LA BASE DE DATOS.</value>
+  </data>
+  <data name="LOGONERR" xml:space="preserve">
+    <value>ERROR EN EL NOMBRE DE USUARIO O CONTRASEÑA, REVISELOS E INTENTE DE NUEVO.</value>
+  </data>
+  <data name="MOVCAJAADDEDEXITO" xml:space="preserve">
+    <value>EL MOVIMIENTO DE CAJA CHICA NÚMERO {0} FUE AGREGADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="MOVCAJAADDEDFAILED" xml:space="preserve">
+    <value>EL MOVIMIENTO DE CAJA CHICA NÚMERO {0} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="MOVCAJADELETEDEXITO" xml:space="preserve">
+    <value>EL MOVIMIENTO DE CAJA CHICA NÚMERO {0} FUE ELIMINADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="MOVCAJADELETEDFAILED" xml:space="preserve">
+    <value>EL MOVIMIENTO DE CAJA CHICA NÚMERO {0} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="MOVCAJAEXECUTEFAILED" xml:space="preserve">
+    <value>EL MOVIMIENTO DE CAJA NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="MOVCAJAMODIFIEDEXITO" xml:space="preserve">
+    <value>EL MOVIMIENTO DE CAJA CHICA NÚMERO {0} FUE MODIFICADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="MOVCAJAMODIFIEDFAILED" xml:space="preserve">
+    <value>EL MOVIMIENTO DE CAJA CHICA NÚMERO {0} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+  <data name="MOVCUENTASADDEDEXITO" xml:space="preserve">
+    <value>EL {0} POR LA CANTIDAD :  $ {1} DE LA CUENTA DE BANCO {2} HA SIDO AGREGADO SATISFACTORIAMENTE CON EL NUMERO DE MOVIMIENTO : {3}</value>
+  </data>
+  <data name="MOVCUENTASADDEDFAILED" xml:space="preserve">
+    <value>EL {0} POR LA CANTIDAD :  $ {1} DE LA CUENTA DE BANCO {2} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="MOVCUENTASDELETEDEXITO" xml:space="preserve">
+    <value>EL {0} POR LA CANTIDAD :  $ {1} DE LA CUENTA DE BANCO {2} HA SIDO ELIMINADO SATISFACTORIAMENTE. SU NÚMERO DE MOVIMIENTO ERA: {3}.</value>
+  </data>
+  <data name="MOVCUENTASDELETEDFAILED" xml:space="preserve">
+    <value>EL {0} POR LA CANTIDAD :  $ {1} DE LA CUENTA DE BANCO {2} NO HA PODIDO SER ELIMINADO. </value>
+  </data>
+  <data name="MOVCUENTASMODIFIEDEXITO" xml:space="preserve">
+    <value>EL MOVIMIENTO {0} DE LA CUENTA {1} HA SIDO MODIFICADO EXITOSAMENTE</value>
+  </data>
+  <data name="MOVCUENTASMODIFIEDFAILED" xml:space="preserve">
+    <value>ELMOVIMIENTO {0} DE LA CUENTA {1} NO HA PODIDO SER MODIFICADO</value>
+  </data>
+  <data name="MOVIMIENTOCUENTAEXECUTEFAILED" xml:space="preserve">
+    <value>EL MOVIMIENTO DE LA CUENTA NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="OPERACIONINVALIDA" xml:space="preserve">
+    <value>SE HA PRODUCIDO UNA OPERACIÓN INVÁLIDA.</value>
+  </data>
+  <data name="PRODUCTOADDEDEXITO" xml:space="preserve">
+    <value>EL PRODUCTO {0} HA SIDO AGREGADO SATISFACTORIAMENTE</value>
+  </data>
+  <data name="PRODUCTOADDEDFAILED" xml:space="preserve">
+    <value>EL PRODUCTO {0} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="PRODUCTODELETEDEXITO" xml:space="preserve">
+    <value>EL PRODUCTO {0} HA SIDO ELIMINADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="PRODUCTODELETEDFAILED" xml:space="preserve">
+    <value>EL PRODUCTO {0} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="PRODUCTOEXECUTEFAILED" xml:space="preserve">
+    <value>EL PRODUCTO NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="PRODUCTOMODIFIEDEXITO" xml:space="preserve">
+    <value>EL PRODUCTO {0} HA SIDO MODIFICADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="PRODUCTOMODIFIEDFAILED" xml:space="preserve">
+    <value>EL PRODUCTO {0} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+  <data name="PRODUCTORADDEDEXITO" xml:space="preserve">
+    <value>EL PRODUCTOR {0} {1} {2} HA SIDO AGREGADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="PRODUCTORADDEDFAILED" xml:space="preserve">
+    <value>EL PRODUCTOR {0} {1} {2} NO HA PODIDO SER AGREGAD.</value>
+  </data>
+  <data name="PRODUCTORDELETEDEXITO" xml:space="preserve">
+    <value>EL PRODUCTOR {0} {1} {2} HA SIDO ELIMINADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="PRODUCTORDELETEDFAILED" xml:space="preserve">
+    <value>EL PRODUCTOR {0} {1} {2} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="PRODUCTOREXECUTEFAILED" xml:space="preserve">
+    <value>EL PRODUCTOR NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="PRODUCTORMODIFIEDEXITO" xml:space="preserve">
+    <value>EL PRODUCTOR {0} {1} {2} HA SIDO MODIFICADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="PRODUCTORMODIFIEDFAILED" xml:space="preserve">
+    <value>EL PRODUCTOR {0} {1} {2} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+  <data name="PROVEEDORADDEDEXITO" xml:space="preserve">
+    <value>EL PROVEEDOR {0} HA SIDO AGREGADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="PROVEEDORADDEDFAILED" xml:space="preserve">
+    <value>EL PROVEEDOR {0} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="PROVEEDORDELETEDEXITO" xml:space="preserve">
+    <value>EL PROVEEDOR {0} HA SIDO ELIMINADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="PROVEEDORDELETEDFAILED" xml:space="preserve">
+    <value>EL PROVEEDOR {0} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="PROVEEDOREXECUTEFAILED" xml:space="preserve">
+    <value>EL PROVEEDOR NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="PROVEEDORMODIFIEDEXITO" xml:space="preserve">
+    <value>EL PROVEEDOR {0} HA SIDO MODIFICADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="PROVEEDORMODIFIEDFAILED" xml:space="preserve">
+    <value>EL PROVEEDOR {0} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+  <data name="SEGUROEXECUTEFAILED" xml:space="preserve">
+    <value>EL SEGURO NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="SOLICITUDDELETEDEXITO" xml:space="preserve">
+    <value>LA SOLICITUD {0} SE ELIMINO CORRECTAMENTE.</value>
+  </data>
+  <data name="SOLICITUDDELETEDFAILED" xml:space="preserve">
+    <value>LA SOLICITUD {0} NO HA PODIDO SER ELIMINADA.</value>
+  </data>
+  <data name="SOLICITUDEXECUTEFAILED" xml:space="preserve">
+    <value>LA SOLICITUD NO PUDO SER {0} DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="USERBLOCKED" xml:space="preserve">
+    <value>EL USUARIO {0} HA SIDO BLOQUEADO POR HABER EXCEDIDO EL NÚMERO DE INTENTOS PERMITIDOS PARA INGRESAR. POR FAVOR ESPERE {1} MINUTOS CON {2} SEGUNDOS PARA VOLVER A INTENTARLO.</value>
+  </data>
+  <data name="USUARIOADDEDEXITO" xml:space="preserve">
+    <value>EL USUARIO {0} HA SIDO AGREGADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="USUARIOADDEDFAILED" xml:space="preserve">
+    <value>EL USUARIO {0} NO HA PODIDO SER AGREGADO.</value>
+  </data>
+  <data name="USUARIODELETEDEXITO" xml:space="preserve">
+    <value>EL USUARIO {0} HA SIDO ELIMINADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="USUARIODELETEDFAILED" xml:space="preserve">
+    <value>EL USUARIO {0} NO HA PODIDO SER ELIMINADO.</value>
+  </data>
+  <data name="USUARIOEXECUTEFAILED" xml:space="preserve">
+    <value>EL USUARIO NO PUDO SER {0}, DADO QUE LA FUNCION A LA BASE DE DATOS REGRESO QUE SE {1} {2} REGISTROS.</value>
+  </data>
+  <data name="USUARIOMODIFIEDEXITO" xml:space="preserve">
+    <value>EL USUARIO {0} HA SIDO MODIFICADO SATISFACTORIAMENTE.</value>
+  </data>
+  <data name="USUARIOMODIFIEDFAILED" xml:space="preserve">
+    <value>EL USUARIO {0} NO HA PODIDO SER MODIFICADO.</value>
+  </data>
+</root>

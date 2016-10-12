@@ -1,0 +1,1460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ws.disic.com.mx" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.ws.disic.com.mx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.ws.disic.com.mx">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="validaSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idSession" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="validaSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="validaSessionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensajeError" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyLastError">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMyLastErrorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMyLastErrorResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoginResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="idSession" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sUsuario" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestDB">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestDBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestDBResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idsession" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogOutResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="Query">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sQueryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fields" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="idsession" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCiclos">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCiclosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCiclosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCiclosBoletas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCiclosBoletasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCiclosBoletasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectBoletas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectBoletasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SelectBoletasResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="datos1" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectBoletasAsDataTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SelectBoletasAsDataTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SelectBoletasAsDataTableResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="datos1" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductorBoletas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProductorBoletasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductorBoletasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductos">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProductosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientesVentas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientesVentasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientesVentasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProveedoresDeGanado">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProveedoresDeGanadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProveedoresDeGanadoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProveedores">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProveedoresResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProveedoresResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientesVentasWithTODOS">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientesVentasWithTODOSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientesVentasWithTODOSResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductosBoletas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProductosBoletasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductosBoletasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBodegas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBodegasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBodegasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBodegasBoletas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBodegasBoletasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBodegasBoletasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryBoletasPendientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryBoletasPendientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryBoletasPendientesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRegimenes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetRegimenesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetRegimenesResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dtRegimenes">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEstadoCiviles">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEstadoCivilesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetEstadoCivilesResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dtEstadosCiviles">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductorescmb">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProductorescmbResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductorescmbResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEstados">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetEstadosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEstadosResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="datos" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertProResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertProResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="exc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertBoleta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="datos" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertBoletaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertBoletaResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="exc" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="newID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBoleta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="datos" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateBoletaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateBoletaResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="exc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyPro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="datos" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyProResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModifyProResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="exc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deletePro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="productor" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteProResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteProResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteBol">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteBolResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteBolResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteProv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="pID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteProvResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteProvResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WorkWithProveedor">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WorkWithProveedorResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WorkWithProveedorResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductorWS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iSessionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductorWSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetProductorWSResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="datos1" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="validaSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:validaSession" />
+  </wsdl:message>
+  <wsdl:message name="validaSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:validaSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMyLastErrorSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMyLastError" />
+  </wsdl:message>
+  <wsdl:message name="GetMyLastErrorSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMyLastErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestDBSoapIn">
+    <wsdl:part name="parameters" element="tns:TestDB" />
+  </wsdl:message>
+  <wsdl:message name="TestDBSoapOut">
+    <wsdl:part name="parameters" element="tns:TestDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogOutSoapIn">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="LogOutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="QuerySoapIn">
+    <wsdl:part name="parameters" element="tns:Query" />
+  </wsdl:message>
+  <wsdl:message name="QuerySoapOut">
+    <wsdl:part name="parameters" element="tns:QueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCiclosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCiclos" />
+  </wsdl:message>
+  <wsdl:message name="GetCiclosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCiclosResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCiclosBoletasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCiclosBoletas" />
+  </wsdl:message>
+  <wsdl:message name="GetCiclosBoletasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCiclosBoletasResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectBoletasSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectBoletas" />
+  </wsdl:message>
+  <wsdl:message name="SelectBoletasSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectBoletasResponse" />
+  </wsdl:message>
+  <wsdl:message name="SelectBoletasAsDataTableSoapIn">
+    <wsdl:part name="parameters" element="tns:SelectBoletasAsDataTable" />
+  </wsdl:message>
+  <wsdl:message name="SelectBoletasAsDataTableSoapOut">
+    <wsdl:part name="parameters" element="tns:SelectBoletasAsDataTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductorBoletasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductorBoletas" />
+  </wsdl:message>
+  <wsdl:message name="GetProductorBoletasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductorBoletasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductos" />
+  </wsdl:message>
+  <wsdl:message name="GetProductosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductosResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientesVentasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientesVentas" />
+  </wsdl:message>
+  <wsdl:message name="GetClientesVentasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientesVentasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProveedoresDeGanadoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProveedoresDeGanado" />
+  </wsdl:message>
+  <wsdl:message name="GetProveedoresDeGanadoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProveedoresDeGanadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProveedoresSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProveedores" />
+  </wsdl:message>
+  <wsdl:message name="GetProveedoresSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProveedoresResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientesVentasWithTODOSSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientesVentasWithTODOS" />
+  </wsdl:message>
+  <wsdl:message name="GetClientesVentasWithTODOSSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientesVentasWithTODOSResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductosBoletasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductosBoletas" />
+  </wsdl:message>
+  <wsdl:message name="GetProductosBoletasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductosBoletasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBodegasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBodegas" />
+  </wsdl:message>
+  <wsdl:message name="GetBodegasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBodegasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBodegasBoletasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBodegasBoletas" />
+  </wsdl:message>
+  <wsdl:message name="GetBodegasBoletasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBodegasBoletasResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryBoletasPendientesSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryBoletasPendientes" />
+  </wsdl:message>
+  <wsdl:message name="QueryBoletasPendientesSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryBoletasPendientesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRegimenesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRegimenes" />
+  </wsdl:message>
+  <wsdl:message name="GetRegimenesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRegimenesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEstadoCivilesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEstadoCiviles" />
+  </wsdl:message>
+  <wsdl:message name="GetEstadoCivilesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEstadoCivilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductorescmbSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductorescmb" />
+  </wsdl:message>
+  <wsdl:message name="GetProductorescmbSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductorescmbResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEstadosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEstados" />
+  </wsdl:message>
+  <wsdl:message name="GetEstadosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEstadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertProSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPro" />
+  </wsdl:message>
+  <wsdl:message name="InsertProSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertProResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertBoletaSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertBoleta" />
+  </wsdl:message>
+  <wsdl:message name="InsertBoletaSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertBoletaResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBoletaSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateBoleta" />
+  </wsdl:message>
+  <wsdl:message name="UpdateBoletaSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateBoletaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModifyProSoapIn">
+    <wsdl:part name="parameters" element="tns:ModifyPro" />
+  </wsdl:message>
+  <wsdl:message name="ModifyProSoapOut">
+    <wsdl:part name="parameters" element="tns:ModifyProResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteProSoapIn">
+    <wsdl:part name="parameters" element="tns:deletePro" />
+  </wsdl:message>
+  <wsdl:message name="deleteProSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteProResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteBolSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteBol" />
+  </wsdl:message>
+  <wsdl:message name="deleteBolSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteBolResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteProvSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteProv" />
+  </wsdl:message>
+  <wsdl:message name="deleteProvSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteProvResponse" />
+  </wsdl:message>
+  <wsdl:message name="WorkWithProveedorSoapIn">
+    <wsdl:part name="parameters" element="tns:WorkWithProveedor" />
+  </wsdl:message>
+  <wsdl:message name="WorkWithProveedorSoapOut">
+    <wsdl:part name="parameters" element="tns:WorkWithProveedorResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductorWSSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductorWS" />
+  </wsdl:message>
+  <wsdl:message name="GetProductorWSSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductorWSResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiciosSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Hello World Function :-)</wsdl:documentation>
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="validaSession">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validá la sessión</wsdl:documentation>
+      <wsdl:input message="tns:validaSessionSoapIn" />
+      <wsdl:output message="tns:validaSessionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyLastError">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the last error :-(</wsdl:documentation>
+      <wsdl:input message="tns:GetMyLastErrorSoapIn" />
+      <wsdl:output message="tns:GetMyLastErrorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Function to login into the Web service</wsdl:documentation>
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestDB">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Test DB Connection</wsdl:documentation>
+      <wsdl:input message="tns:TestDBSoapIn" />
+      <wsdl:output message="tns:TestDBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">obvious ¬¬</wsdl:documentation>
+      <wsdl:input message="tns:LogOutSoapIn" />
+      <wsdl:output message="tns:LogOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Query Data from DB</wsdl:documentation>
+      <wsdl:input message="tns:QuerySoapIn" />
+      <wsdl:output message="tns:QuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCiclos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Ciclos</wsdl:documentation>
+      <wsdl:input message="tns:GetCiclosSoapIn" />
+      <wsdl:output message="tns:GetCiclosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCiclosBoletas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Ciclos</wsdl:documentation>
+      <wsdl:input message="tns:GetCiclosBoletasSoapIn" />
+      <wsdl:output message="tns:GetCiclosBoletasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectBoletas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Select a Boleta</wsdl:documentation>
+      <wsdl:input message="tns:SelectBoletasSoapIn" />
+      <wsdl:output message="tns:SelectBoletasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SelectBoletasAsDataTable">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Select a Boleta</wsdl:documentation>
+      <wsdl:input message="tns:SelectBoletasAsDataTableSoapIn" />
+      <wsdl:output message="tns:SelectBoletasAsDataTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorBoletas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get productores para cmb filtros</wsdl:documentation>
+      <wsdl:input message="tns:GetProductorBoletasSoapIn" />
+      <wsdl:output message="tns:GetProductorBoletasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductos">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Productos</wsdl:documentation>
+      <wsdl:input message="tns:GetProductosSoapIn" />
+      <wsdl:output message="tns:GetProductosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientesVentas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get  Clientes de venta</wsdl:documentation>
+      <wsdl:input message="tns:GetClientesVentasSoapIn" />
+      <wsdl:output message="tns:GetClientesVentasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProveedoresDeGanado">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Proveedores de Ganado</wsdl:documentation>
+      <wsdl:input message="tns:GetProveedoresDeGanadoSoapIn" />
+      <wsdl:output message="tns:GetProveedoresDeGanadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProveedores">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Proveedores</wsdl:documentation>
+      <wsdl:input message="tns:GetProveedoresSoapIn" />
+      <wsdl:output message="tns:GetProveedoresSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientesVentasWithTODOS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get  Clientes de venta</wsdl:documentation>
+      <wsdl:input message="tns:GetClientesVentasWithTODOSSoapIn" />
+      <wsdl:output message="tns:GetClientesVentasWithTODOSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductosBoletas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Productos</wsdl:documentation>
+      <wsdl:input message="tns:GetProductosBoletasSoapIn" />
+      <wsdl:output message="tns:GetProductosBoletasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBodegas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Bodegas</wsdl:documentation>
+      <wsdl:input message="tns:GetBodegasSoapIn" />
+      <wsdl:output message="tns:GetBodegasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBodegasBoletas">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Bodegas for cmb filters</wsdl:documentation>
+      <wsdl:input message="tns:GetBodegasBoletasSoapIn" />
+      <wsdl:output message="tns:GetBodegasBoletasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryBoletasPendientes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Query Boletas Pendientes from DB</wsdl:documentation>
+      <wsdl:input message="tns:QueryBoletasPendientesSoapIn" />
+      <wsdl:output message="tns:QueryBoletasPendientesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegimenes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Régimenes</wsdl:documentation>
+      <wsdl:input message="tns:GetRegimenesSoapIn" />
+      <wsdl:output message="tns:GetRegimenesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEstadoCiviles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Estados Civiles</wsdl:documentation>
+      <wsdl:input message="tns:GetEstadoCivilesSoapIn" />
+      <wsdl:output message="tns:GetEstadoCivilesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorescmb">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get productores para cmb</wsdl:documentation>
+      <wsdl:input message="tns:GetProductorescmbSoapIn" />
+      <wsdl:output message="tns:GetProductorescmbSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEstados">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Estados </wsdl:documentation>
+      <wsdl:input message="tns:GetEstadosSoapIn" />
+      <wsdl:output message="tns:GetEstadosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPro">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert Productor</wsdl:documentation>
+      <wsdl:input message="tns:InsertProSoapIn" />
+      <wsdl:output message="tns:InsertProSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertBoleta">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Insert Boleta</wsdl:documentation>
+      <wsdl:input message="tns:InsertBoletaSoapIn" />
+      <wsdl:output message="tns:InsertBoletaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBoleta">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update Boleta</wsdl:documentation>
+      <wsdl:input message="tns:UpdateBoletaSoapIn" />
+      <wsdl:output message="tns:UpdateBoletaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyPro">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">update Productor</wsdl:documentation>
+      <wsdl:input message="tns:ModifyProSoapIn" />
+      <wsdl:output message="tns:ModifyProSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deletePro">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete Productor</wsdl:documentation>
+      <wsdl:input message="tns:deleteProSoapIn" />
+      <wsdl:output message="tns:deleteProSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteBol">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete Boleta</wsdl:documentation>
+      <wsdl:input message="tns:deleteBolSoapIn" />
+      <wsdl:output message="tns:deleteBolSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteProv">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete Proveedor</wsdl:documentation>
+      <wsdl:input message="tns:deleteProvSoapIn" />
+      <wsdl:output message="tns:deleteProvSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WorkWithProveedor">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add/Update Proveedor</wsdl:documentation>
+      <wsdl:input message="tns:WorkWithProveedorSoapIn" />
+      <wsdl:output message="tns:WorkWithProveedorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorWS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get info Productor </wsdl:documentation>
+      <wsdl:input message="tns:GetProductorWSSoapIn" />
+      <wsdl:output message="tns:GetProductorWSSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiciosSoap" type="tns:ServiciosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validaSession">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/validaSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyLastError">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetMyLastError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestDB">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/TestDB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/LogOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/Query" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCiclos">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetCiclos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCiclosBoletas">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetCiclosBoletas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectBoletas">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/SelectBoletas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectBoletasAsDataTable">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/SelectBoletasAsDataTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorBoletas">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetProductorBoletas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductos">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetProductos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientesVentas">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetClientesVentas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProveedoresDeGanado">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetProveedoresDeGanado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProveedores">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetProveedores" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientesVentasWithTODOS">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetClientesVentasWithTODOS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductosBoletas">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetProductosBoletas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBodegas">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetBodegas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBodegasBoletas">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetBodegasBoletas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryBoletasPendientes">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/QueryBoletasPendientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegimenes">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetRegimenes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEstadoCiviles">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetEstadoCiviles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorescmb">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetProductorescmb" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEstados">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetEstados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPro">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/InsertPro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBoleta">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/InsertBoleta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBoleta">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/UpdateBoleta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyPro">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/ModifyPro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePro">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/deletePro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBol">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/deleteBol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProv">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/deleteProv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WorkWithProveedor">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/WorkWithProveedor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorWS">
+      <soap:operation soapAction="http://www.ws.disic.com.mx/GetProductorWS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiciosSoap12" type="tns:ServiciosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validaSession">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/validaSession" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyLastError">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetMyLastError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestDB">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/TestDB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/LogOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/Query" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCiclos">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetCiclos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCiclosBoletas">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetCiclosBoletas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectBoletas">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/SelectBoletas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SelectBoletasAsDataTable">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/SelectBoletasAsDataTable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorBoletas">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetProductorBoletas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductos">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetProductos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientesVentas">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetClientesVentas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProveedoresDeGanado">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetProveedoresDeGanado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProveedores">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetProveedores" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientesVentasWithTODOS">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetClientesVentasWithTODOS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductosBoletas">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetProductosBoletas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBodegas">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetBodegas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBodegasBoletas">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetBodegasBoletas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryBoletasPendientes">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/QueryBoletasPendientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegimenes">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetRegimenes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEstadoCiviles">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetEstadoCiviles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorescmb">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetProductorescmb" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEstados">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetEstados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPro">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/InsertPro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertBoleta">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/InsertBoleta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBoleta">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/UpdateBoleta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyPro">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/ModifyPro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePro">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/deletePro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBol">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/deleteBol" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProv">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/deleteProv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WorkWithProveedor">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/WorkWithProveedor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductorWS">
+      <soap12:operation soapAction="http://www.ws.disic.com.mx/GetProductorWS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Servicios">
+    <wsdl:port name="ServiciosSoap" binding="tns:ServiciosSoap">
+      <soap:address location="http://www.ws.cheliskis.com/Servicios.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiciosSoap12" binding="tns:ServiciosSoap12">
+      <soap12:address location="http://www.ws.cheliskis.com/Servicios.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

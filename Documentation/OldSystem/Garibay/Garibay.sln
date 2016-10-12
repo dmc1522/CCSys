@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garibay", "Garibay\Garibay.csproj", "{08747AD4-0553-446B-A4DD-3C0CC2D3E412}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08747AD4-0553-446B-A4DD-3C0CC2D3E412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08747AD4-0553-446B-A4DD-3C0CC2D3E412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08747AD4-0553-446B-A4DD-3C0CC2D3E412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08747AD4-0553-446B-A4DD-3C0CC2D3E412}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_UseGlobalSettings = False
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_AssemblyInfoFilename = 
+		BuildVersion_ConfigurationName = Release
+		BuildVersion_BuildVersioningStyle = None.None.Increment.DeltaBaseDate
+		BuildVersion_StartDate = 2010/1/1
+		BuildVersion_UpdateFileVersion = True
+	EndGlobalSection
+EndGlobal

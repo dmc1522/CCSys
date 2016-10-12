@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSGaribay", "WSGaribay\WSGaribay.csproj", "{48FA64C8-9ACA-450D-BF1D-4D0F3E5462E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasculaGaribay", "BasculaGaribay\BasculaGaribay.csproj", "{59A30BD6-7D9A-41EB-B6D1-46D2701C2368}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "BasculaSetup", "BasculaSetup\BasculaSetup.vdproj", "{BAD2D55A-BB08-4C7A-BA09-3B19E094B1E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasculaDAL", "BasculaDAL\BasculaDAL.csproj", "{700376A7-C463-45D9-B18B-0039F51CACBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48FA64C8-9ACA-450D-BF1D-4D0F3E5462E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48FA64C8-9ACA-450D-BF1D-4D0F3E5462E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48FA64C8-9ACA-450D-BF1D-4D0F3E5462E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48FA64C8-9ACA-450D-BF1D-4D0F3E5462E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A30BD6-7D9A-41EB-B6D1-46D2701C2368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A30BD6-7D9A-41EB-B6D1-46D2701C2368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A30BD6-7D9A-41EB-B6D1-46D2701C2368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A30BD6-7D9A-41EB-B6D1-46D2701C2368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAD2D55A-BB08-4C7A-BA09-3B19E094B1E8}.Debug|Any CPU.ActiveCfg = Debug
+		{BAD2D55A-BB08-4C7A-BA09-3B19E094B1E8}.Release|Any CPU.ActiveCfg = Release
+		{700376A7-C463-45D9-B18B-0039F51CACBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{700376A7-C463-45D9-B18B-0039F51CACBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{700376A7-C463-45D9-B18B-0039F51CACBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{700376A7-C463-45D9-B18B-0039F51CACBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

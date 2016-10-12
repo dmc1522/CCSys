@@ -1,0 +1,1102 @@
+﻿<%@ Master Language="C#" EnableTheming = "true" AutoEventWireup="true" CodeBehind="MasterPage.Master.cs" Inherits="Garibay.Site1"  %>
+
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<link href="basicStyle.css" rel="app_themes/basicStyle.css" type="text/css">
+<head runat="server">
+    <title>Untitled Page</title>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="scripts/ddaccordion.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/scripts/divFunctions.js"></script>
+    <style type="text/css">
+        .style2
+        {
+            width: 130px;
+            height: 346px;
+        }
+    </style>
+    <style type="text/css">
+        div.AlertStyle{
+        position: absolute; width: 90%; top: 0%;
+        visibility: hidden; z-index: 99; background-color: #ffff99;
+        font-size: larger;  font-family: Tahoma; 
+        border-right: navy thin solid; border-top: navy thin solid; 
+        border-left: navy thin solid; border-bottom: navy thin solid;    
+        }
+	        </style>
+
+    <script type="text/javascript">
+
+        ddaccordion.init({
+            headerclass: "headerbar", //Shared CSS class name of headers group
+            contentclass: "submenu", //Shared CSS class name of contents group
+            revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+            mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+            collapseprev: true, //Collapse previous content (so only one open at any time)? true/false
+            defaultexpanded: [], //index of content(s) open by default [index1, index2, etc] [] denotes no content
+            onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+            animatedefault: false, //Should contents open by default be animated into view?
+            persiststate: false, //persist state of opened contents within browser session?
+            toggleclass: ["", "selected"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+            togglehtml: ["", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+            animatespeed: "normal", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+            oninit: function(headers, expandedindices) { //custom code to run when headers have initalized
+                //do nothing
+            },
+            onopenclose: function(header, index, state, isuseractivated) { //custom code to run whenever a header is opened or closed
+                //do nothing
+            }
+        })
+
+    </script>
+
+    <style type="text/css">
+
+    .urbangreymenu{
+    width: 210px; /*width of menu*/
+    }
+
+    .urbangreymenu .headerbar{
+    font: bold 13px Verdana;
+    color: #339933;
+    background: #FFFBD6 no-repeat 8px 6px; /*last 2 values are the x and y coordinates of bullet image*/
+    margin-bottom: 0; /*bottom spacing between header and rest of content*/
+    text-transform: uppercase;
+    padding: 0px 0 0px 5px; /*31px is left indentation of header text*/
+    }
+
+    .urbangreymenu .headerbar a{
+    text-decoration: none;
+    color: #339933;
+    display: block;
+    padding-bottom: 0px;
+    }
+
+    .urbangreymenu ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 0px; /*bottom spacing between each UL and rest of content*/
+    margin-top: 0px;
+    }
+
+    .urbangreymenu ul li{
+    padding-bottom: 0px; /*bottom spacing between menu items*/
+    padding-top : 0px;
+    padding-left: 2px;
+    }
+
+    .urbangreymenu ul li a{
+    font: normal 12px Arial;
+    color: #339933;
+    background: #FFFBD6;
+    display: block;
+    /*padding: 8px 0;*/
+    line-height: 17px;
+    padding-left: 13px; /*link text is indented 8px*/
+    text-decoration: none;
+    padding-top : 1px;
+    padding-bottom: 0px;
+    }
+
+    .urbangreymenu ul li a:visited{
+    color: #339933;
+    }
+
+    .urbangreymenu ul li a:hover{ /*hover state CSS*/
+    color: #FFF999;
+    background: #339933;
+    }
+
+    </style>
+    
+    
+    
+    
+    
+        
+        <link rel="stylesheet" type="text/css" media="screen" href="Menu/SuperFish/css/superfish.css" /> 
+         
+        
+        <script type="text/javascript" src="Menu/SuperFish/js/hoverIntent.js"></script> 
+        <script type="text/javascript" src="Menu/SuperFish/js/superfish.js"></script> 
+        <script type="text/javascript" src="Menu/SuperFish/js/supersubs.js"></script> 
+         
+        
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                $("ul.sf-menu").supersubs({
+                    minWidth: 12,   // minimum width of sub-menus in em units 
+                    maxWidth: 27,   // maximum width of sub-menus in em units 
+                    extraWidth: 1     // extra width can ensure lines don't sometimes turn over 
+                    // due to slight rounding differences and font-family 
+                }).superfish();  // call supersubs first, then superfish, so that subs are 
+                // not display:none when measuring. Call before initialising 
+                // containing tabs for same reason. 
+            }); 
+         
+        </script>
+        <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body style="basicStyle.css">
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="True" ScriptMode="Release" EnablePageMethods="true">
+        <Scripts>
+            <asp:ScriptReference Path="/scripts/AjaxErrHandler.js" />
+        </Scripts>
+    </asp:ScriptManager>
+    <table width = "100%">
+        <tr>
+            <td align="left" valign="top" >
+                
+                    <asp:Image ID="Image1" runat="server" SkinID="imagen" />
+            </td>
+            <td>                
+                Tema:<asp:DropDownList ID="DDLTEMA" runat="server" >
+                    <asp:ListItem Value="skinverde">skinverde</asp:ListItem>
+                </asp:DropDownList>
+                
+                    <asp:LinkButton ID="lblApplyTheme" runat="server" 
+                        CausesValidation="False" onclick="lblApplyTheme_Click">Aplicar tema</asp:LinkButton>                
+                <br />
+            </td>
+            <td nowrap="nowrap">                
+                <asp:Label ID="Label1" runat="server" CssClass="TableHeader" 
+                    Text="Versión : 1.0"></asp:Label>
+                
+            </td>
+            <td align="right">
+            <div id="AlertDiv" class="AlertStyle" 
+                    style="" >
+                <div id="AlertMessage" >
+                    Ha habido un problema procesando la solicitud
+                </div>
+                <div id="AlertLinks" >
+                    <a title="Hide this alert." href="#" onclick="ClearErrorState()">Cerrar</a> 
+                </div>
+            </div>
+
+
+                <a href="http://webmail.corporativogaribay.com/mewebmail/HooDoo/lang/EN/login.aspx">Revisar Correo Electronico</a>
+                Usuario Actual:
+                <asp:Label ID="lblInfoUser" runat="server" 
+                    Text="lblInfoUser" Font-Size="X-Large" ForeColor="#333300"></asp:Label></td>
+        </tr> 
+        <tr>
+            <td align="left" valign="top" >
+                
+                Menu:<asp:DropDownList ID="cmbMenu" runat="server">
+                    <asp:ListItem Value="Menu 1">Menu 1</asp:ListItem>
+                    <asp:ListItem Value="Menu 2">Menu 2</asp:ListItem>
+                    <asp:ListItem>Menu 3</asp:ListItem>
+                    <asp:ListItem Selected="True">MenuSS</asp:ListItem>
+                </asp:DropDownList><br />
+                <asp:LinkButton ID="lnkMenu" runat="server" onclick="lnkMenu_Click" 
+                    CausesValidation="False">Aplicar menu</asp:LinkButton>
+            </td>
+            <td colspan="3">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <asp:TextBox ID="txtSearch" runat="server" Height="22px" Width="236px"></asp:TextBox><asp:Button
+                            ID="btnSearch" runat="server" Text="Buscar" CausesValidation="False" 
+                            onclick="btnSearch_Click" />
+                        </td>
+                            <td align="right">
+                            <asp:Button ID="btnAddSituacion" runat="server" CausesValidation="False" 
+                            Text="Reportar Situacion" />
+                            <asp:LinkButton ID="lbSalir" runat="server" onclick="LinkButton1_Click" 
+                            CausesValidation="False">Salir del sistema</asp:LinkButton>
+                            </td>
+                        </tr>
+                </table>
+                
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td align="left" valign="top" colspan="4" >
+                <!--  NEW MENU -->
+                <asp:Panel runat="Server" id="pnlSuperFish" Visible="true">
+                    <ul id="sf-menu" class="sf-menu sf-js-enabled sf-shadow">
+                        <li class="current">
+						    <a href="#" >Inicio<span > »</span></a>	
+						    <ul>
+                    	        <li><a href="frmAtGlance.aspx">Pagina inicial</a> </li>
+                    	        <li><a href="frmUsersManual.aspx">Manual de Usuario <img src="/imagenes/Nuevo.gif" /> </a> </li>
+                    	        <li><a href="">CONFIGURACIÓN<br />        Y <br />ADMINISTRACIÓN<span > »</span></a>
+                                    <ul>
+                                        <li><a href="frmMyData.aspx">Mis datos</a></li>
+                                        <li><a href="frmConceptosMovCajaChica.aspx">Conceptos (caja chica)</a></li>
+                                        <li><a href="frmGruposCatalogos.aspx">Grupos catálogos</a></li>
+                                        <li><a href="frmCatalogos.aspx">Catálogos y subcatálogos</a></li>
+                                        <li><a href="frmConfigParameterPage.aspx">Configuración global</a></li>
+                                        <li><a href="frmPresentaciones.aspx">Presentaciones de Productos.</a></li> 
+                                        <li><a href="frmUserLogActions.aspx">Historial de usuarios</a></li> 
+                                        <li><a href="frmListLogMessage.aspx">Log Messages</a></li>
+                                        <li><a href="frmPublishUpdates.aspx">Publicaciones</a></li> 
+                                        <li><a href="frmSituacionesLista.aspx">Situaciones</a></li>  
+                                    </ul> 
+                                </li>
+                            </ul>			        
+					    </li>
+					    <li>
+					        <a href="#" class="sf-with-ul">Caja Chica<span > »</span></a> 
+						        <ul >
+                                    <li><a href="frmAddMovCajaChica.aspx" >Agregar movimiento caja chica.</a></li>
+                                    <li><a href="frmListMovCajaChica.aspx">Lista de movimientos caja chica</a></li>
+                                    <li><a href="frmCajaChicaSaldosMensuales.aspx">Saldos Mensuales caja chica</a></li>
+                                    <li>
+                                        <a href="#">DIESEL<span > »</span></a>
+                                        <ul>
+                                            <li><a href="frmFacturaDiesel.aspx" >Nueva factura de gasolinera</a></li>
+                                            <li><a href="frmListaFacturasDiesel.aspx" >Lista de facturas de gasolinera</a></li> 
+                                            <li><a href="frmListTarjetasDiesel.aspx" >Lista de tarjetas diesel</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+						</li>
+						<li>
+					        <a href="#" class="sf-with-ul">Bancos<span > »</span></a> 
+						        <ul >
+                                    <li><a href="frmMovBancos.aspx">Movimientos de Bancos</a></li>
+                                    <li><a href="frmBancosSaldosMensuales.aspx">Saldos Mensuales (Banco)</a> </li>
+                                    <li><a href="frmCuentasdeBanco.aspx">Cuentas de Banco</a></li>
+                                    <li><a href="#">Creditos y Habilitacion<span > »</span></a>
+                                        <ul>
+                                            <li><a href="frmCreditosFinancieros.aspx" >Lista de créditos financieros</a></li>
+                                            <li><a href="frmCreditoFinancieroAdd.aspx">Agregar crédito financiero</a></li>
+                                            <li><a href="frmListPerCreditoFinanciero.aspx">Mov. por crédito financiero</a></li>
+                                            <li><a href="frmReporteCertificados.aspx">Reporte de certificados</a></li>
+                                            <li><a href="frmCertificadoAddQuick.aspx">Agregar certificado rápido</a></li>
+                                            <li><a href="frmCertificadosLista.aspx">Lista de certificados</a></li>		
+                                        </ul>
+                                    </li>
+                                </ul>
+						</li>
+						<li>
+					        <a href="#" class="sf-with-ul">Ventas<span > »</span></a> 
+						        <ul>
+                                    <li>
+                                        <a href="#">Maiz<span > »</span></a>
+                                        <ul>
+                                            <li><a href="frmEstadoDeCuentaClienteDeVenta.aspx">Edo. cuenta Cliente de venta</a></li>
+                                            <li><a href="frmFacturaVentaClientes.aspx">Nueva Factura de venta</a> </li>
+                                            <li><a href="frmListaFacturaVentaaClientes.aspx">Lista de facturas de venta</a></li>
+                                            <li><a href="frmClientesVentas.aspx" >Lista de clientes de venta </a></li> 
+                                            <li><a href="frmPagoAFacturas.aspx"> Pagos de Clientes de Venta</a></li> 
+                                            <li><a href="frmTransportistas.aspx">Transportistas</a> </li>
+                                            <li><a href="frmLiquidacionTransportista.aspx">Nueva liquidacion a Transportista</a> </li>
+                                            <li><a href="frmListaLiqTransportistas.aspx">Lista de liquidaciones a Transportista</a> </li>
+                                            <li><a href="#"> Estado de cuenta de transportista</a></li>
+                                            <li><a href="#"> Concentrado de estados de cuenta de transportistas</a> </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Fertilizante e insumos<span > »</span></a> 
+                                        <ul>
+                                            <li><a href="frmNotadeVentaAddNew.aspx">Agregar nota de venta</a></li>
+                                            <li><a href="frmListNotasDeVenta.aspx" >Lista de notas de venta</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+						</li>
+						<li>
+					        <a href="#" class="sf-with-ul">Compras<span > »</span></a> 
+						        <ul>
+                                    <li>
+                                        <a href="#">Maiz<span > »</span></a>
+                                        <ul>
+                                            <li><a href="frmLiquidacionesLista.aspx" >Liquidaciones</a></li>
+                                            <li><a href="frmLiquidacion2010.aspx">Realizar liquidación </a></li>
+                                            <li><a href="frmListaAnticipos.aspx">Lista de anticipos</a></li>
+                                            <li><a href="frmAsignaranticiposaLiq.aspx">Asignar anticipo a una liquidación</a></li>
+                                            <li><a href="frmAddModifyBoletas.aspx">Agregar boleta</a></li>
+                                            <li><a href="frmListBoletas.aspx">Lista de boletas</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Fertilizante e insumos<span > »</span></a> 
+                                        <ul>
+                                            <li><a href="frmAddNotasCompras.aspx" >Agregar nota de compra </a></li>
+                                            <li><a href="frmListNotasCompras.aspx">Lista de notas de compra</a> </li>
+                                            <li><a href="frmFacturasDeCompra.aspx">Agregar factura de compra </a></li>
+                                            <li><a href="frmListaFacturasProveedores.aspx">Lista de facturas de compra</a></li>
+                                            <li><a href="frmConverProductos.aspx" >Conversión de productos</a></li> 
+                                            <li><a href="frmListaConversionesProducto.aspx" >Lista de Conversión de Productos</a></li> 
+                                            <li><a href="frmProveedores.aspx" >Proveedores</a></li>
+                                            <li><a href="frmEntradaProductoProveedor.aspx" >Entrada de Producto por Proveedor</a></li>                                          
+                                            <li><a href="frmListOrdenEntradasProveedores.aspx" >Lista de Entradas de Productos por Proveedor</a></li>  
+                                            <li><a href="frmPagosAProveedores.aspx" >Pagos a Proveedores</a></li>
+                                            <li><a href="frmProveedoresEstadodeCuenta.aspx" >Estado de cuenta proveedores</a></li>
+                                            <li><a href="frmListaNotasDeCompraFormato.aspx" >Lista de Formatos de Ordenes de Compra</a></li>
+                                            <li><a href="frmOrdenCompraFormato.aspx">Formato de Orden de Compra</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+				                        <a href="#" class="sf-with-ul">Ganado<span > »</span></a> 
+				                        <ul>
+                                            <li><a href="frmGanProveedores.aspx">Proveedores</a></li>
+                                            <li><a href="frmFacturaGanado.aspx">Factura de Ganado</a></li>
+                                            <li><a href="frmListaFacturasDeGanado.aspx" >Lista de Facturas</a></li>
+                                            <li><a href="frmEdoCuentaGanadero.aspx" >Edo. de cuenta ganadero</a></li>
+                                            <li><a href="frmPagosAFacturasDeGanado.aspx" >Pagos a Facturas</a></li>
+                                        </ul>
+					                </li>
+                                </ul>
+						</li>
+						<li>
+					        <a href="#" class="sf-with-ul">Productores<span > »</span></a> 
+						        <ul >
+                                    <li><a href="#">Creditos<span > »</span></a>
+                                        <ul>
+                                            <li><a href="frmListofCreditos.aspx" >Lista de créditos </a></li>
+                                            <li><a href="frmAddModifyCreditos.aspx">Nuevo crédito </a></li>
+                                            <li><a href="frmPagosCreditosAdd.aspx">Pagos a créditos</a></li>
+                                            <li><a href="frmAddModifyPrestamo.aspx">Agregar préstamo </a></li>
+                                            <li><a href="frmListPrestamos.aspx">Lista de préstamos</a></li>
+                                            <li><a href="frmEstadodeCuentaCredito.aspx">Estado de cuenta de crédito</a></li>
+                                            <li><a href="frmListSolicitudes.aspx">Lista de solicitudes</a></li>
+                                            <li><a href="frmAddSolicitud2010.aspx"> Nueva solicitud</a></li>
+                                            <li><a href="frmAcceptDenySolicitud.aspx" >Aceptar / Negar Solicitud </a></li>
+                                            <li><a href="frmSegurosAgricolas.aspx">Seguros agrícolas </a></li> 
+                                            <li><a href="frmReporteGarantiasSolicitudes.aspx"> Reporte de garantias sobre créditos</a></li>  
+                                            <li><a href="frmReporteGeneralCreditos.aspx"> Reporte global de créditos</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="frmAddModifyProductores.aspx" >Agregar productor </a></li>
+                                    <li><a href="frmListDeleteProductores.aspx">Lista de productores</a> </li>
+                                    <li><a href="frmDocsProductor.aspx">Documentos</a></li>
+                                    <li><a href="#">Predios<span > »</span></a>
+                                        <ul>
+                                            <li><a href="frmAddModifyPredios.aspx" >Agregar predios</a></li>
+                                            <li><a href="frmListDeletePredios.aspx" >Lista de predios</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+						</li>
+						<li>
+						    <a href="#" class="sf-with-ul">Otros<span > »</span></a>
+						    <ul>
+						        <li><a href="#">E/S DE PRODUCTOS<span > »</span></a>
+                                    <ul>
+                                        <li><a href="frmListEntradaProductos.aspx" >Lista de entradas </a></li>
+                                        <li><a href="frmAddModifyEntradaProductos.aspx">Nueva entrada</a> </li>
+                                        <li><a href="frmListSalidaDeProducto.aspx">Lista de salidas </a></li>
+                                        <li><a href="frmAddModifySalidaDeProducto.aspx" >Nueva Salida</a></li>
+                                    </ul> 
+                                </li>
+                                <li>
+                                    <a href="#">REPORTES<span > »</span></a>
+                                    <ul>
+                                        <li><a href="frmReporteMovBancosporCatalogo.aspx">Bancos Reporte por catálogo</a></li>
+                                        <li><a href="frmReporteSubCatalogoMovBancos.aspx">Bancos Reporte por sub-catálogo</a></li>
+                                        <li><a href="frmCajaChicaReport.aspx">Caja chica concentrado </a></li>
+                                        <li><a href="frmReporteBoletasDeSalida.aspx">Boletas de Salida</a></li>
+                                        <li><a href="frmReporteProductoBoletas.aspx">Boletas por producto</a></li>
+                                        <li><a href="frmConcentradoProductosdeBoletas.aspx">Concentrado de boletas</a></li>
+                                        <li><a href="frmReporteGeneralLiquidaciones.aspx">Reporte general liquidaciones</a></li>
+                                        <li><a href="frmReporteLiquidacionconNotas.aspx">Reporte liquidaciones con notas</a></li>
+                                        <li><a href="frmReporteConcentradoLiquidaciones.aspx">Reporte Desglosado por liquidación</a></li>
+                                        <li><a href="frmReporteConcentradoLiquidacionesPorProductor.aspx">Reporte Desglosado por liquidación por productor</a></li>
+                                        <li><a href="frmReporteporCatalogo.aspx">Reporte por catálogo</a></li>
+                                        <li><a href="frmReportePreciosVenta.aspx">Reporte de precios de venta</a></li>
+                                    </ul>
+                                </li>
+						    </ul>
+						</li>
+                    </ul>
+                </asp:Panel>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">
+                <asp:Panel runat="Server" id="pnlSideMenu">
+                <table>
+                    <tr>
+                        <td align="left" valign="top">
+
+                            <asp:Menu ID="Menu2" runat="server" onmenuitemclick="Menu1_MenuItemClick">
+                                <DynamicMenuStyle CssClass="EstilomenuforIE" />
+                                <Items>
+                                    <asp:MenuItem NavigateUrl="~/frmAtGlance.aspx" Text="Inicio" Value="Inicio">
+                                    </asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmCiclos.aspx" Text="Ciclos" Value="Ciclos">
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Bancos" Value="Bancos">
+                                        <asp:MenuItem NavigateUrl="~/frmMovBancos.aspx" Text="Movimientos" 
+                                            Value="New Item"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmBancosSaldosMensuales.aspx" 
+                                            Text="Saldos Mensuales" Value="Saldos Mensuales"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCuentasdeBanco.aspx" Text="Cuentas de banco" 
+                                            Value="Cuentas de banco"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCreditosFinancieros.aspx" 
+                                            Text="Créditos financieros" Value="Créditos financieros">
+                                            <asp:MenuItem NavigateUrl="~/frmCreditosFinancieros.aspx" Text="Lista" 
+                                                Value="Lista"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmCreditoFinancieroAdd.aspx" Text="Agregar" 
+                                                Value="Agregar"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListPerCreditoFinanciero.aspx" 
+                                                Text="Movimientos por crédito" Value="Movimientos por crédito">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmReporteCertificados.aspx" 
+                                                Text="Reportes de certificados" Value="Reportes de certificados">
+                                            </asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmConciliacionBancos.aspx" Text="Conciliación" 
+                                            Value="Conciliación"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Caja Chica" 
+                                        Value="Caja Chica" NavigateUrl="~/frmListMovCajaChica.aspx">
+                                        <asp:MenuItem NavigateUrl="~/frmAddMovCajaChica.aspx" Text="Agregar movimiento" 
+                                            Value="Agregar movimiento"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListMovCajaChica.aspx" 
+                                            Text="Lista de movimientos" Value="Lista de movimientos"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCajaChicaSaldosMensuales.aspx" 
+                                            Text="Saldos Mensuales" Value="Saldos Mensuales"></asp:MenuItem>
+                        	            <asp:MenuItem NavigateUrl="~/frmListTarjetasDiesel.aspx" 
+								            Text="Lista de Tarjetas de Diesel" Value="Lista de Tarjetas de Diesel">
+							            </asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Personas" 
+                                        Value="Personas">
+                                        <asp:MenuItem NavigateUrl="~/frmListDeleteProductores.aspx" Text="Productores" 
+                                            Value="Productores">
+                                            <asp:MenuItem NavigateUrl="~/frmAddModifyProductores.aspx" Text="Agregar" 
+                                                Value="Agregar"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListDeleteProductores.aspx" Text="Lista" 
+                                                Value="Lista"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmDocsProductor.aspx" Text="Documentos" 
+                                                Value="Documentos"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmEstadodeCuentadeProductor.aspx" 
+                                                Text="Edo de cuenta" Value="Edo de cuenta"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmProveedores.aspx" Text="Proveedores" 
+                                            Value="Proveedores"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmGanProveedores.aspx" 
+                                            Text="Proveedores de ganado" Value="Proveedores de ganado"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmClientesVentas.aspx" Text="Clientes" 
+                                            Value="Clientes"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Atención a productores" Value="Atención a productores">
+                                        <asp:MenuItem NavigateUrl="~/frmListBoletas.aspx" Text="Boletas" 
+                                            Value="Boletas">
+                                            <asp:MenuItem NavigateUrl="~/frmAddModifyBoletas.aspx" Text="Agregar" 
+                                                Value="Agregar"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListBoletas.aspx" Text="Lista" Value="Lista">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmUploadBoletas.aspx" Text="Cargar desde archivo" 
+                                                Value="Cargar desde archivo"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListofCreditos.aspx" Text="Créditos" 
+                                            Value="Créditos">
+                                            <asp:MenuItem NavigateUrl="~/frmAddModifyCreditos.aspx" Text="Agregar" 
+                                                Value="Agregar"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListofCreditos.aspx" Text="Lista" Value="Lista">
+                                            </asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmLiquidacionesLista.aspx" Text="Liquidaciones" 
+                                            Value="Liquidaciones">
+                                            <asp:MenuItem NavigateUrl="~/frmLiquidacion2010.aspx" 
+                                                Text="Realizar liquidación" Value="Realizar liquidación"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmLiquidacionesLista.aspx" Text="Lista" 
+                                                Value="Lista"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmAsignaranticiposaLiq.aspx" 
+                                                Text="Asignar anticipo a liquidación" Value="Asignar anticipo a liquidación">
+                                            </asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListDeletePredios.aspx" Text="Predios" 
+                                            Value="Predios">
+                                            <asp:MenuItem NavigateUrl="~/frmAddModifyPredios.aspx" Text="Agregar" 
+                                                Value="Agregar"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListDeletePredios.aspx" Text="Lista" 
+                                                Value="Lista"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListSolicitudes.aspx" Text="Solicitudes" 
+                                            Value="Solicitudes">
+                                            <asp:MenuItem NavigateUrl="~/frmAddSolicitud2010.aspx" Text="Agregar" 
+                                                Value="Agregar"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListSolicitudes.aspx" Text="Lista" 
+                                                Value="Lista"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListaAnticipos.aspx" Text="Lista de Anticipos" 
+                                            Value="Lista de Anticipos"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Productos" Value="Compras" 
+                                        NavigateUrl="~/frmProductos.aspx">
+                                        <asp:MenuItem NavigateUrl="~/frmProductos.aspx" Text="Lista" Value="Lista">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmExistencias.aspx" Text="Existencia" 
+                                            Value="Existencia"></asp:MenuItem>
+                                        <asp:MenuItem Text="Compras" Value="Compras">
+                                            <asp:MenuItem NavigateUrl="~/frmListNotasCompras.aspx" Text="Notas de compra" 
+                                                Value="Notas de compra">
+                                                <asp:MenuItem NavigateUrl="~/frmAddNotasCompras.aspx" Text="Agregar" 
+                                                    Value="Agregar"></asp:MenuItem>
+                                                <asp:MenuItem NavigateUrl="~/frmListNotasCompras.aspx" Text="Lista" 
+                                                    Value="Lista"></asp:MenuItem>
+                                            </asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Ventas" Value="Ventas">
+                                            <asp:MenuItem NavigateUrl="~/frmListNotasDeVenta.aspx" Text="Notas de venta" 
+                                                Value="Notas de venta">
+                                                <asp:MenuItem NavigateUrl="~/frmNotadeVentaAddNew.aspx" Text="Agregar" 
+                                                    Value="Agregar"></asp:MenuItem>
+                                                <asp:MenuItem NavigateUrl="~/frmListNotasDeVenta.aspx" Text="Lista" 
+                                                    Value="Lista"></asp:MenuItem>
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListaFacturaVentaaClientes.aspx" 
+                                                Text="Facturas de venta" Value="Facturas de venta">
+                                                <asp:MenuItem NavigateUrl="~/frmFacturaVentaClientes.aspx" Text="Agregar" 
+                                                    Value="Agregar"></asp:MenuItem>
+                                                <asp:MenuItem NavigateUrl="~/frmListaFacturaVentaaClientes.aspx" Text="Lista" 
+                                                    Value="Lista"></asp:MenuItem>
+                                            </asp:MenuItem>
+                                        </asp:MenuItem>
+                        	            <asp:MenuItem NavigateUrl="~/frmConverProductos.aspx" 
+								            Text="Conversión de Productos" Value="Conversión de Productos">
+							            </asp:MenuItem>
+							            <asp:MenuItem NavigateUrl="~/frmListaConversionesProducto.aspx" 
+								            Text="Lista de Conversión de Productos" Value="Lista de Conversión de Productos">
+							            </asp:MenuItem>
+                        	            <asp:MenuItem NavigateUrl="~/frmAddModifyEntradaProductos.aspx" 
+								            Text="Entrada de Producto" Value="Entrada de Producto"></asp:MenuItem>
+							            <asp:MenuItem NavigateUrl="~/frmAddModifySalidaDeProducto.aspx" 
+								            Text="Salida de Producto" Value="Salida de Producto"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Formatos" Value="Formatos">
+                                        <asp:MenuItem NavigateUrl="~/frmOnlyPrintCheque.aspx" Text="Cheque" 
+                                            Value="Cheque"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem 
+                                        Text="Reportes" Value="Reportes">
+                                        <asp:MenuItem NavigateUrl="~/frmReporteMovBancosporCatalogo.aspx" 
+                                            Text="Bancos Reporte por catálogo" Value="Bancos Reporte por catálogo">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCajaChicaReport.aspx" 
+                                            Text="Caja Chica concentrado" Value="Caja Chica concentrado"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmConcentradoProductosdeBoletas.aspx" 
+                                            Text="Reporte de boletas por producto" Value="Reporte de boletas por producto">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteProductoBoletas.aspx" 
+                                            Text="Concentrado de boletas" Value="Concentrado de boletas"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteGeneralLiquidaciones.aspx" 
+                                            Text="Reporte General de Liquidaciones" 
+                                            Value="Reporte General de Liquidaciones"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteLiquidacionconNotas.aspx" 
+                                            Text="Reporte Liquidaciones con notas" Value="Reporte Liquidaciones con notas">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteConcentradoLiquidaciones.aspx" 
+                                            Text="Reporte Desglosado por Liquidación" 
+                                            Value="Reporte Desglosado por Liquidación"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteConcentradoLiquidacionesPorProductor.aspx" 
+                                            Text="Reporte Desglosado por Liquidaciñon agrupado por Productor" 
+                                            Value="Reporte Desglosado por Liquidaciñon agrupado por Productor">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteporCatalogo.aspx" 
+                                            Text="Reporte por Catálogo" Value="Reporte por Catálogo"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReportePreciosVenta.aspx" 
+                                            Text="Reporte de precios de venta" Value="Reporte de precios de venta">
+                                        </asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Almacenadora" 
+                                        Value="Almacenadora">
+                                        <asp:MenuItem NavigateUrl="~/frmCertificadoAddQuick.aspx" 
+                                            Text=" Agregar certificado rápido" 
+                                            Value=" Agregar certificado rápido"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCertificadosLista.aspx" 
+                                            Text="Lista de certificados" Value="Lista de certificados"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Configuración" Value="Configuración">
+                                        <asp:MenuItem NavigateUrl="~/frmMyData.aspx" Text="Mis datos" Value="Mis datos">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmConceptosMovCajaChica.aspx" 
+                                            Text="Conceptos de caja chica" Value="Conceptos de caja chica">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCatalogos.aspx" 
+                                            Text="Catálogos y Subcatálogos de cuenta" 
+                                            Value="Catálogos y Subcatálogos de cuenta"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmConfigParameterPage.aspx" 
+                                            Text="Configuración global" Value="Configuración global"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Sistema" Value="Sistema">
+                                        <asp:MenuItem Text="Administración" Value="Administración">
+                                            <asp:MenuItem NavigateUrl="~/frmUsuarios.aspx" Text="Usuarios" Value="Usuarios">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmUserLogActions.aspx" 
+                                                Text="Historial de usuarios" Value="Historial de usuarios"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListLogMessage.aspx" Text="Log Messages" 
+                                                Value="Log Messages"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmPublishUpdates.aspx" Text="Publicaciones" 
+                                            Value="Publicaciones"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmSituacionesLista.aspx" Text="Situaciones" 
+                                            Value="Situaciones"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmListPrestamos.aspx" Text="Préstamos" 
+                                        Value="Préstamos">
+                                        <asp:MenuItem NavigateUrl="~/frmListPrestamos.aspx" Text="Lista de Préstamos" 
+                                            Value="Lista de Préstamos"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmAddModifyPrestamo.aspx" Text="Agregar Préstamo" 
+                                            Value="Agregar Préstamo"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                </Items>
+                            </asp:Menu>
+                            <asp:Menu ID="Menu1" runat="server" onmenuitemclick="Menu1_MenuItemClick">
+                                <DynamicMenuStyle CssClass="EstilomenuforIE" />
+                                <Items>
+                                    <asp:MenuItem NavigateUrl="~/frmAtGlance.aspx" Text="Inicio" Value="Inicio">
+                                    </asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmUsuarios.aspx" Text="Usuarios" Value="Usuarios">
+                                    </asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmCiclos.aspx" Text="Ciclos" Value="Ciclos">
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Bancos" 
+                                        Value="Bancos">
+                                        <asp:MenuItem NavigateUrl="~/frmMovBancos.aspx" Text="Movimientos" 
+                                            Value="Movimientos"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmBancosSaldosMensuales.aspx" 
+                                            Text="Saldos Mensuales" Value="Saldos Mensuales"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCuentasdeBanco.aspx" Text="Cuentas de banco" 
+                                            Value="Cuentas de banco"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmConciliacionBancos.aspx" Text="Conciliación" 
+                                            Value="Conciliación"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Crédito y habilitación" Value="Crédito y habilitación">
+                                        <asp:MenuItem NavigateUrl="~/frmCreditosFinancieros.aspx" Text="Creditos Financieros" 
+                                            Value="Creditos Financieros">
+                                            <asp:MenuItem NavigateUrl="~/frmCreditosFinancieros.aspx" 
+                                                Text="Lista de Creditos Financieros" Value="Lista de Creditos Financieros">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmCreditoFinancieroAdd.aspx" Text="Agregar" 
+                                                Value="Agregar"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListPerCreditoFinanciero.aspx" 
+                                                Text="Movimientos por credito" Value="Movimientos por credito">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmReporteCertificados.aspx" 
+                                                Text="Reportes de Certificados" Value="Reportes de Certificados">
+                                            </asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem Text="Almacenadora" 
+                                            Value="Almacenadora">
+                                            <asp:MenuItem NavigateUrl="~/frmCertificadoAddQuick.aspx" 
+                                                Text="**** Agregar Certificado rápido" Value="add quick temp">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmCertificadosLista.aspx" 
+                                                Text="Lista de certificados" Value="Lista de certificados"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Caja chica" 
+                                        Value="Movimientos de caja chica" NavigateUrl="~/frmListMovCajaChica.aspx">
+                                        <asp:MenuItem NavigateUrl="~/frmAddMovCajaChica.aspx" 
+                                            Text="Agregar movimiento " Value="Agregar movimiento "></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListMovCajaChica.aspx" 
+                                            Text="Lista de movimientos " Value="Lista de movimientos "></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCajaChicaSaldosMensuales.aspx" 
+                                            Text="Saldos Mensuales" Value="Saldos Mensuales"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Productores (datos)" Value="Productores" 
+                                        NavigateUrl="~/frmListDeleteProductores.aspx">
+                                        <asp:MenuItem NavigateUrl="~/frmAddModifyProductores.aspx" 
+                                            Text="Agregar Productor" Value="Agregar Productor"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListDeleteProductores.aspx" 
+                                            Text="Lista de productores" Value="Lista de productores"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmDocsProductor.aspx" Text="Documentos" 
+                                            Value="Documentos"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListaAnticipos.aspx" Text="Lista de Anticipos" 
+                                            Value="Lista de Anticipos"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListDeletePredios.aspx" Text="Predios" 
+                                            Value="Predios">
+                                            <asp:MenuItem NavigateUrl="~/frmAddModifyPredios.aspx" Text="Agregar predio" 
+                                                Value="Agregar predio"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListDeletePredios.aspx" Text="Lista de Predios" 
+                                                Value="Lista de Predios"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Fertilizante" 
+                                        Value="Fertilizante">
+                                        <asp:MenuItem NavigateUrl="~/frmEstadodeCuentadeProductor.aspx" 
+                                            Text="Edo. de cuenta" Value="Estado de cuenta del cliente"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListNotasDeVenta.aspx" 
+                                            Text="Notas de venta" Value="Notas de venta">
+                                            <asp:MenuItem NavigateUrl="~/frmListNotasDeVenta.aspx" 
+                                                Text="Lista de notas de venta" Value="Lista de notas de venta">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmNotadeVentaAddNew.aspx" 
+                                                Text="Agregar nota de venta" Value="Agregar nota de venta"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListNotasCompras.aspx" 
+                                            Text="Notas de compra" Value="Notas de compra">
+                                            <asp:MenuItem NavigateUrl="~/frmListNotasCompras.aspx" 
+                                                Text="Lista de notas de compra" Value="Lista de notas de compra">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmAddNotasCompras.aspx" 
+                                                Text="Agregar nota de compra" Value="Agregar nota de venta"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmProductos.aspx" Text="Productos" 
+                                            Value="Productos">
+                                            <asp:MenuItem NavigateUrl="~/frmProductos.aspx" Text="Lista de Productos" 
+                                                Value="Lista de Productos"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmExistencias.aspx" 
+                                                Text="Existencias de productos" Value="Existencias de productos">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmConverProductos.aspx" 
+                                                Text="Conversión de Productos" Value="Conversión de Productos">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListaConversionesProducto.aspx" 
+								            Text="Lista de Conversión de Productos" Value="Lista de Conversión de Productos">
+							            </asp:MenuItem>
+                                        </asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmProveedores.aspx" 
+                                        Text="Proveedores" Value="Proveedores"></asp:MenuItem>
+                                    <asp:MenuItem Text="Maíz" 
+                                        Value="Maíz">
+                                        <asp:MenuItem NavigateUrl="~/frmFacturaVentaClientes.aspx" Text="Ventas a clientes" 
+                                            Value="Facturas de Venta a Clientes">
+                                            <asp:MenuItem NavigateUrl="~/frmClientesVentas.aspx" Text="Lista de clientes" 
+                                                Value="Lista de clientes"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmFacturaVentaClientes.aspx" Text="Nueva Factura" 
+                                                Value="Facturas a clientes"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListaFacturaVentaaClientes.aspx" 
+                                                Text="Lista de Facturas" Value="Lista de Facturas"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmFacturaDiesel.aspx" 
+                                            Text="Facturas de Gasolinera" Value="Facturas de Gasolinera">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListTarjetasDiesel.aspx" 
+                                            Text="Lista de Tarjetas Diesel" Value="Lista de Tarjetas Diesel">
+                                        </asp:MenuItem>
+                        	            <asp:MenuItem NavigateUrl="~/frmListaFacturasDiesel.aspx" 
+								            Text="Lista de Facturas de Gasolinera" Value="Lista de Facturas de Gasolinera">
+							            </asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Entrada de producto" Value="Entrada de producto">
+                                        <asp:MenuItem NavigateUrl="~/frmListEntradaProductos.aspx" 
+                                            Text="Lista de entradas" Value="Lista de entradas"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmAddModifyEntradaProductos.aspx" 
+                                            Text="Agregar entrada" Value="Agregar entrada"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmListSalidaDeProducto.aspx" 
+                                        Text="Salida de producto" Value="Salida de producto">
+                                        <asp:MenuItem NavigateUrl="~/frmListSalidaDeProducto.aspx" 
+                                            Text="Lista de salidas" Value="Lista de salidas"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmAddModifySalidaDeProducto.aspx" 
+                                            Text="Agregar salida" Value="Agregar salida"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Créditos/Solicitudes" Value="Créditos">
+                                        <asp:MenuItem Text="Créditos" 
+                                            Value="Créditos">
+                                            <asp:MenuItem NavigateUrl="~/frmAddModifyCreditos.aspx" Text="Agregar crédito" 
+                                                Value="Agregar crédito"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListofCreditos.aspx" Text="Lista de créditos" 
+                                                Value="Lista de créditos"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListSolicitudes.aspx" Text="Solicitudes" 
+                                            Value="Solicitudes">
+                                            <asp:MenuItem NavigateUrl="~/frmAddSolicitud2010.aspx" Text="Agregar solicitud" 
+                                                Value="Agregar solicitud"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListSolicitudes.aspx" 
+                                                Text="Lista de solicitudes" Value="Lista de solicitudes"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmAcceptDenySolicitud.aspx" 
+                                                Text="Aceptar/Negar solicitud" Value="Aceptar/Negar solicitud">
+                                            </asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmSegurosAgricolas.aspx" Text="Seguros Agrícolas" 
+                                                Value="Seguros Agrícolas"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmPagosCreditosAdd.aspx" Text="Pagos créditos" 
+                                            Value="Pagos créditos"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Liquidaciones/Boletas" Value="Liquidaciones">
+                                        <asp:MenuItem Text="Liquidaciones" Value="Liquidaciones">
+                                            <asp:MenuItem NavigateUrl="~/frmLiquidacionesLista.aspx" Text="Liquidaciones" 
+                                                Value="Liquidaciones"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmLiquidacion2010.aspx" 
+                                                Text="Realizar Liquidación" Value="Realizar Liquidación"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmAsignaranticiposaLiq.aspx" 
+                                                Text="Asignar anticipo a liquidación" Value="Agregar anticipo a liquidación">
+                                            </asp:MenuItem>
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListBoletas.aspx" Text="Boletas" 
+                                            Value="Boletas">
+                                            <asp:MenuItem NavigateUrl="~/frmAddModifyBoletas.aspx" Text="Agregar Boletas" 
+                                                Value="Agregar Boletas"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmListBoletas.aspx" Text="Lista Boletas" 
+                                                Value="Lista Boletas"></asp:MenuItem>
+                                            <asp:MenuItem NavigateUrl="~/frmUploadBoletas.aspx" Text="Cargar boletas" 
+                                                Value="Cargar boletas"></asp:MenuItem>
+                                        </asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Formatos" Value="Formatos">
+                                        <asp:MenuItem NavigateUrl="~/frmOnlyPrintCheque.aspx" Text="Cheque" 
+                                            Value="Cheque"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem Text="Reportes" 
+                                        Value="Reportes">
+                                        <asp:MenuItem NavigateUrl="~/frmReporteMovBancosporCatalogo.aspx" 
+                                            Text="Bancos Reporte por catálogo" Value="Reporte por catálogo">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCajaChicaReport.aspx" 
+                                            Text="Caja Chica concentrado" Value="Reporte concentrado"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmConcentradoProductosdeBoletas.aspx" 
+                                            Text="Reporte de boletas por producto" Value="Reporte de boletas por producto">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteProductoBoletas.aspx" 
+                                            Text="Concentrado de boletas" Value="Concentrado de boletas"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteGeneralLiquidaciones.aspx" 
+                                            Text="Reporte General de Liquidaciones" 
+                                            Value="Reporte General de Liquidaciones"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteLiquidacionconNotas.aspx" 
+                                            Text="Reporte Liquidaciones con notas" Value="Reporte Liquidaciones con notas">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteConcentradoLiquidaciones.aspx" 
+                                            Text="Reporte Desglosado por Liquidación" 
+                                            Value="Reporte Desglosado por Liquidación"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteConcentradoLiquidacionesPorProductor.aspx" 
+                                            Text="Reporte Desglosado por Liquidación  Agrupado por Productor" 
+                                            Value="Reporte Desglosado por Liquidación  Agrupado por Productor">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReporteporCatalogo.aspx" 
+                                            Text="Reporte por Catalogo" Value="Reporte por Catalogo"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmReportePreciosVenta.aspx" 
+                                            Text="Reporte de precios de venta" Value="Reporte de Precios de venta">
+                                        </asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmGanProveedores.aspx" Text="Ganado - Proveedores" 
+                                        Value="Ganado - Proveedores"></asp:MenuItem>
+                                    <asp:MenuItem Text="Configuración" 
+                                        Value="Configuración">
+                                        <asp:MenuItem NavigateUrl="~/frmMyData.aspx" Text="Mis Datos" Value="Mis Datos">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmConceptosMovCajaChica.aspx" 
+                                            Text="Conceptos (caja chica)" Value="Conceptos de mov. de caja chica">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmCatalogos.aspx" Text="Catalogo de cuentas y Subcatálogos de cuenta" 
+                                            Value="Catalogo de cuentas"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmConfigParameterPage.aspx" 
+                                            Text="Configuracion Global" Value="Configuracion Global"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem 
+                                        Text="Administración" Value="Administración">
+                                        <asp:MenuItem NavigateUrl="~/frmUserLogActions.aspx" 
+                                            Text="Historial de Usuarios" Value="Historial de Usuarios">
+                                        </asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmListLogMessage.aspx" Text="Log Messages" 
+                                            Value="Log Messages"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmPublishUpdates.aspx" Text="Publicaciones" 
+                                        Value="Publicaciones"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmSituacionesLista.aspx" Text="Situaciones" 
+                                        Value="Situaciones"></asp:MenuItem>
+                                    <asp:MenuItem NavigateUrl="~/frmListPrestamos.aspx" Text="Préstamos" 
+                                        Value="Préstamos">
+                                        <asp:MenuItem NavigateUrl="~/frmListPrestamos.aspx" Text="Lista de Préstamos" 
+                                            Value="Lista de Préstamos"></asp:MenuItem>
+                                        <asp:MenuItem NavigateUrl="~/frmAddModifyPrestamo.aspx" Text="Agregar Préstamo" 
+                                            Value="Agregar Préstamo"></asp:MenuItem>
+                                    </asp:MenuItem>
+                                </Items>
+                            </asp:Menu>
+                            <asp:Panel runat="Server" id="pnlDivMenu3">
+                                <div id="divMenu3" class="urbangreymenu">
+                                    <h3 class="headerbar"><a href="">INICIO</a></h3>
+                                    <ul class="submenu">
+                    	                <li><a href="frmAtGlance.aspx">Pagina inicial</a> </li>
+                    	                <li><a href="frmUsersManual.aspx">Manual de Usuario <img src="/imagenes/Nuevo.gif" /> </a> </li>
+                                    </ul>
+                                    <h3 class="headerbar"><a href="">BANCOS Y CAJA CHICA</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmMovBancos.aspx">Movimientos de Bancos</a></li>
+                                            <li><a href="frmBancosSaldosMensuales.aspx">Saldos Mensuales (Banco)</a> </li>
+                                            <li><a href="frmCuentasdeBanco.aspx">Cuentas de Banco</a></li>
+                                            <li><a href="frmAddMovCajaChica.aspx" >Agregar movimiento caja chica.</a></li>
+                                            <li><a href="frmListMovCajaChica.aspx">Lista de movimientos caja chica</a></li>
+                                            <li><a href="frmCajaChicaSaldosMensuales.aspx">Saldos Mensuales caja chica</a></li>
+                                            <li><a href="frmPagoAFacturas.aspx">Mensuales caja chica</a></li>
+                                       </ul>
+                                    <h3 class="headerbar"><a href="">CRÉDITO Y HABILITACIÓN</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmCreditosFinancieros.aspx" >Lista de créditos financieros</a></li>
+                                            <li><a href="frmCreditoFinancieroAdd.aspx">Agregar crédito financiero</a></li>
+                                            <li><a href="frmListPerCreditoFinanciero.aspx">Mov. por crédito financiero</a></li>
+                                            <li><a href="frmReporteCertificados.aspx">Reporte de certificados</a></li>
+                                            <li><a href="frmCertificadoAddQuick.aspx">Agregar certificado rápido</a></li>
+                                            <li><a href="frmCertificadosLista.aspx">Lista de certificados</a></li>		
+                                        </ul>
+                                    <h3 class="headerbar"><a href="">PRODUCTORES (DATOS)</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmAddModifyProductores.aspx" >Agregar productor </a></li>
+                                            <li><a href="frmListDeleteProductores.aspx">Lista de productores</a> </li>
+                                            <li><a href="frmDocsProductor.aspx">Documentos</a></li>
+                                            <li><a href="frmAddModifyPredios.aspx" >Agregar predios</a></li>
+                                            <li><a href="frmListDeletePredios.aspx" >Lista de predios</a></li>                  
+                                            <li><a href="frmListChequesProductor.aspx" >Cheques Recibidos de productores</a></li>
+                                        </ul> 
+                                    <h3 class="headerbar"><a href="">FERTILIZANTE</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmAddNotasCompras.aspx" >Agregar nota de compra </a></li>
+                                            <li><a href="frmListNotasCompras.aspx">Lista de notas de compra</a> </li>
+                                            <li><a href="frmNotadeVentaAddNew.aspx">Agregar nota de venta</a></li>
+                                            <li><a href="frmListNotasDeVenta.aspx" >Lista de notas de venta</a></li>
+                                            <li><a href="frmProductos.aspx" >Productos</a></li> 
+                                            <li><a href="frmExistencias.aspx" >Existencias de productos</a></li>
+                                            <li><a href="frmConverProductos.aspx" >Conversión de productos</a></li> 
+                                            <li><a href="frmListaConversionesProducto.aspx" >Lista de Conversión de Productos</a></li> 
+							            </asp:MenuItem>
+                                            <li><a href="frmProveedores.aspx" >Proveedores</a></li>
+                                            <li><a href="frmEntradaProductoProveedor.aspx" >Entrada de Producto por Proveedor</a></li>                                          
+                                             <li><a href="frmListOrdenEntradasProveedores.aspx" >Lista de Entradas de Productos por Proveedor</a></li>  
+                                             <li><a href="frmPagosAProveedores.aspx" >Pagos a Proveedores</a></li>
+                                             <li><a href="frmProveedoresEstadodeCuenta.aspx" >Estado de cuenta proveedores</a></li>
+                                             <li><a href="frmListaNotasDeCompraFormato.aspx" >Lista de Formatos de Ordenes de Compra</a></li>
+                                             <li><a href="frmOrdenCompraFormato.aspx">Formato de Orden de Compra</a></li>
+                                             <li><a href="frmOrdendeCargaAdd.aspx">Formato de Orden de Carga</a></li>
+                                             <li><a href="frmOrdendeCargaList.aspx">Lista de órdenes de carga</a></li>
+                                             <li><a href="frmFacturasDeCompra.aspx" >Agregar factura de compra</a></li>                                          
+                                            
+                                        </ul>   
+                                    <h3 class="headerbar"><a href="">MAIZ</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmTransportistas.aspx">Transportistas</a> </li>
+                                            <li><a href="frmListaLiqTransportistas">Liquidacion a Transportista</a> </li>
+                                            <li><a href="frmLiquidacionTransportista.aspx.aspx">Estado de cuenta de transportistas</a> </li>
+                                            <li>Concentrado de estados de cuenta de transportistas</li>
+                                            <li><a href="frmFacturaVentaClientes.aspx">Nueva Factura de venta</a> </li>
+                                            <li><a href="frmListaFacturaVentaaClientes.aspx">Lista de facturas de venta</a></li>
+                                            <li><a href="frmClientesVentas.aspx" >Lista de clientes p / venta </a></li>                                 
+                                        </ul>   
+                                    <h3 class="headerbar"><a href="">ENTRADA/SALIDA DE PRODUCTOS</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmListEntradaProductos.aspx" >Lista de entradas </a></li>
+                                            <li><a href="frmAddModifyEntradaProductos.aspx">Nueva entrada</a> </li>
+                                            <li><a href="frmListSalidaDeProducto.aspx"> Lista de salidas </a></li>
+                                            <li><a href="frmAddModifySalidaDeProducto.aspx" > Nueva Salida</a></li>
+                                        </ul> 
+                                    <h3 class="headerbar"><a href="">CRÉDITOS Y SOLICITUDES</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmListofCreditos.aspx" >Lista de créditos </a></li>
+                                            <li><a href="frmAddModifyCreditos.aspx">Nuevo crédito </a></li>
+                                            <li><a href="frmPagosCreditosAdd.aspx">Pagos a créditos</a></li>
+                                            <li><a href="frmAddModifyPrestamo.aspx">Agregar préstamo </a></li>
+                                            <li><a href="frmListPrestamos.aspx">Lista de préstamos</a></li>
+                                            <li><a href="frmEstadodeCuentaCredito.aspx">Estado de cuenta de crédito</a></li>
+                                            <li><a href="frmListSolicitudes.aspx">Lista de solicitudes</a></li>
+                                            <li><a href="frmAddSolicitud2010.aspx"> Nueva solicitud</a></li>
+                                            <li><a href="frmAcceptDenySolicitud.aspx" >Aceptar / Negar Solicitud </a></li>
+                                            <li><a href="frmSegurosAgricolas.aspx">Seguros agrícolas </a></li> 
+                                            <li><a href="frmReporteGarantiasSolicitudes.aspx"> Reporte de garantias sobre créditos</a></li>  
+                                            <li><a href="frmReporteGeneralCreditos.aspx"> Reporte global de créditos</a></li>                    
+                                        </ul> 
+                                    <h3 class="headerbar"><a href="">LIQUIDACIONES Y BOLETAS</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmLiquidacionesLista.aspx" >Liquidaciones</a></li>
+                                            <li><a href="frmLiquidacion2010.aspx">Realizar liquidación </a></li>
+                                            <li><a href="frmListaAnticipos.aspx">Lista de anticipos</a></li>
+                                            <li><a href="frmAsignaranticiposaLiq.aspx">Asignar anticipo a una liquidación</a></li>
+                                            <li><a href="frmAddModifyBoletas.aspx">Agregar boleta</a></li>
+                                            <li><a href="frmListBoletas.aspx">Lista de boletas</a></li>
+                                            <li><a href="frmUploadBoletas.aspx">Cargar boletas</a></li>
+                                        </ul> 
+                                    <h3 class="headerbar"><a href="">DIESEL</a></h3>
+                                    <ul class="submenu">
+                                    <li><a href="frmFacturaDiesel.aspx" >Nueva factura de gasolinera</a></li>
+                                    <li><a href="frmListaFacturasDiesel.aspx" >Lista de facturas de gasolinera</a></li> 
+                                    <li><a href="frmListTarjetasDiesel.aspx" >Lista de tarjetas diesel</a></li>
+                                    </ul>
+                                    <h3 class="headerbar"><a href="">GANADO</a></h3>
+                                    <ul class="submenu">
+                                    <li><a href="frmGanProveedores.aspx">Proveedores</a></li>
+                                    <li><a href="frmFacturaGanado.aspx">Factura de Ganado</a></li>
+                                    <li><a href="frmListaFacturasDeGanado.aspx" >Lista de Facturas</a></li>
+                                     </ul> 
+                                    <h3 class="headerbar"><a href="">REPORTES</a></h3>
+                                    <ul class="submenu">
+                                    <li><a href="frmReporteMovBancosporCatalogo.aspx">Bancos Reporte por catálogo</a></li>
+                                    <li><a href="frmReporteSubCatalogoMovBancos.aspx">Bancos Reporte por sub-catálogo</a></li>
+                                    <li><a href="frmCajaChicaReport.aspx">Caja chica concentrado </a></li>
+                                    <li><a href="frmReporteBoletasDeSalida.aspx">Boletas de Salida</a></li>
+                                    <li><a href="frmReporteProductoBoletas.aspx">Boletas por producto</a></li>
+                                    <li><a href="frmConcentradoProductosdeBoletas.aspx">Concentrado de boletas</a></li>
+                                    <li><a href="frmReporteGeneralLiquidaciones.aspx">Reporte general liquidaciones</a></li>
+                                    <li><a href="frmReporteLiquidacionconNotas.aspx">Reporte liquidaciones con notas</a></li>
+                                    <li><a href="frmReporteConcentradoLiquidaciones.aspx">Reporte Desglosado por liquidación</a></li>
+                                    <li><a href="frmReporteConcentradoLiquidacionesPorProductor.aspx">Reporte Desglosado por liquidación por productor</a></li>
+                                    <li><a href="frmReporteporCatalogo.aspx">Reporte por catálogo</a></li>
+                                    <li><a href="frmReportePreciosVenta.aspx">Reporte de precios de venta</a></li>
+                                    </ul>
+                                    
+                                    <h3 class="headerbar"><a href="">CONFIGURACIÓN Y ADMINISTRACIÓN</a></h3>
+                                    <ul class="submenu">
+                                    <li><a href="frmMyData.aspx">Mis datos</a></li>
+                                    <li><a href="frmConceptosMovCajaChica.aspx">Conceptos (caja chica)</a></li>
+                                    <li><a href="frmGruposCatalogos.aspx">Grupos catálogos</a></li>
+                                    <li><a href="frmCatalogos.aspx">Catálogos y subcatálogos</a></li>
+                                    <li><a href="frmPresentaciones.aspx">Presentaciones de Productos.</a></li> 
+                                    <li><a href="frmConfigParameterPage.aspx">Configuración global</a></li>
+                                    <li><a href="frmUserLogActions.aspx">Historial de usuarios</a></li> 
+                                    <li><a href="frmListLogMessage.aspx">Log Messages</a></li>
+                                    <li><a href="frmPublishUpdates.aspx">Publicaciones</a></li> 
+                                    <li><a href="frmSituacionesLista.aspx">Situaciones</a></li>  
+                                    </ul>   
+                                </div>
+                            </asp:Panel>
+                            <asp:Panel ID="pnlMenuBanco" runat="Server">
+                                <div id="divMenu3" class="urbangreymenu">
+                                    <h3 class="headerbar"><a href="">INICIO</a></h3>
+                                    <ul class="submenu">
+                    	                <li><a href="frmAtGlance.aspx">Pagina inicial</a> </li>
+                                    </ul>
+                                    <h3 class="headerbar"><a href="">PRODUCTORES (DATOS)</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmAddModifyProductores.aspx" >Agregar productor </a></li>
+                                            <li><a href="frmListDeleteProductores.aspx">Lista de productores</a> </li>
+                                            <li><a href="frmDocsProductor.aspx">Documentos</a></li>
+                                        </ul> 
+                                     <h3 class="headerbar"><a href="">CRÉDITOS Y SOLICITUDES</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmAddSolicitud2010.aspx">Agregar solicitud</a></li>
+                                            <li><a href="frmListSolicitudes.aspx">Lista de solicitudes</a></li>
+                                            <li><a href="frmEstadodeCuentaCredito.aspx">Estado de cuenta de crédito</a></li>
+                                            <li><a href="frmReporteGeneralCreditos.aspx"> Reporte global de créditos</a></li>   
+                                        </ul>     
+                                        
+                                    <h3 class="headerbar"><a href="">NOTAS DE VENTA</a></h3>
+                                        <ul class="submenu">
+                                            <li><a href="frmNotadeVentaAddNew.aspx">Nueva nota de venta</a></li>
+                                            <li><a href="frmListNotasDeVenta.aspx" >Lista de notas de venta</a></li>
+                                        </ul>   
+                                   
+                                </div>
+                            </asp:Panel>
+                            <br />
+                        </td>
+                    </tr>
+                </table>
+                </asp:Panel>
+             </td>
+            <td colspan="3" align = "left" valign = "top" rowspan="2">
+            
+           
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+         
+        </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" valign="top">
+                &nbsp;</td>
+        </tr>
+    </table>
+    </form>
+    
+</body>
+
+
+</html>
+

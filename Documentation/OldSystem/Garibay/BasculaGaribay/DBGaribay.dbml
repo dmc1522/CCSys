@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Garibay" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo_Boletas" Member="Dbo_Boletas">
+    <Type Name="Dbo_Boletas">
+      <Column Name="boletaID" Member="BoletaID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="cicloID" Member="CicloID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userID" Member="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="productorID" Member="ProductorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="humedad" Member="Humedad" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dctoHumedad" Member="DctoHumedad" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="impurezas" Member="Impurezas" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="totaldescuentos" Member="Totaldescuentos" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="pesonetoapagar" Member="Pesonetoapagar" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="precioapagar" Member="Precioapagar" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="importe" Member="Importe" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="placas" Member="Placas" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="chofer" Member="Chofer" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="pagada" Member="Pagada" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="storeTS" Member="StoreTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="updateTS" Member="UpdateTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="productoID" Member="ProductoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NumeroBoleta" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Ticket" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="codigoClienteProvArchivo" Member="CodigoClienteProvArchivo" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="NombreProductor" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FechaEntrada" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PesadorEntrada" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PesoDeEntrada" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BasculaEntrada" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FechaSalida" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PesoDeSalida" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PesadorSalida" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BasculaSalida" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="pesonetoentrada" Member="Pesonetoentrada" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="pesonetosalida" Member="Pesonetosalida" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="dctoImpurezas" Member="DctoImpurezas" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="dctoSecado" Member="DctoSecado" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="totalapagar" Member="Totalapagar" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="bodegaID" Member="BodegaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="applyHumedad" Member="ApplyHumedad" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="applyImpurezas" Member="ApplyImpurezas" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="applySecado" Member="ApplySecado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="FolioDestino" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="PesoDestino" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Merma" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Flete" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ImporteFlete" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PrecioNetoDestino" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dctoGranoChico" Member="DctoGranoChico" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dctoGranoDanado" Member="DctoGranoDanado" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dctoGranoQuebrado" Member="DctoGranoQuebrado" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dctoGranoEstrellado" Member="DctoGranoEstrellado" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="transportistaID" Member="TransportistaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cabezasDeGanado" Member="CabezasDeGanado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="llevaFlete" Member="LlevaFlete" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="deGranjaACorrales" Member="DeGranjaACorrales" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="clienteventaID" Member="ClienteventaID" Storage="_clienteventaID" Type="System.Int32" DbType="Int NULL" CanBeNull="true" />
+      <Column Name="ganProveedorID" Member="GanProveedorID" Storage="_ganProveedorID" AutoSync="Never" Type="System.Int32" DbType="Int NULL" IsDbGenerated="true" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo_ClientesVentas" Member="Dbo_ClientesVentas">
+    <Type Name="Dbo_ClientesVentas">
+      <Column Name="clienteventaID" Member="ClienteventaID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Member="Nombre" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="domicilio" Member="Domicilio" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ciudad" Member="Ciudad" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="telefono" Member="Telefono" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="estadoID" Member="EstadoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RFC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="userID" Member="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="storeTS" Member="StoreTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="colonia" Member="Colonia" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo_ClienteVenta_Boletas" Member="Dbo_ClienteVenta_Boletas">
+    <Type Name="Dbo_ClienteVenta_Boletas">
+      <Column Name="clienteBoletaID" Member="ClienteBoletaID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="clienteventaID" Member="ClienteventaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BoletaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo_gan_Proveedores" Member="Dbo_gan_Proveedores">
+    <Type Name="Dbo_gan_Proveedores">
+      <Column Name="ganProveedorID" Member="GanProveedorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="direccion" Member="Direccion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ciudad" Member="Ciudad" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="estadoID" Member="EstadoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="userID" Member="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RFC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo_gan_Proveedores_Boletas" Member="Dbo_gan_Proveedores_Boletas">
+    <Type Name="Dbo_gan_Proveedores_Boletas">
+      <Column Name="ganProveedorID" Member="GanProveedorID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="boletaID" Member="BoletaID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo_Productores" Member="Dbo_Productores">
+    <Type Name="Dbo_Productores">
+      <Column Name="productorID" Member="ProductorID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="apaterno" Member="Apaterno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="amaterno" Member="Amaterno" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="nombre" Member="Nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fechanacimiento" Member="Fechanacimiento" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IFE" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CURP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="domicilio" Member="Domicilio" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="poblacion" Member="Poblacion" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="municipio" Member="Municipio" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="estadoID" Member="EstadoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RFC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sexoID" Member="SexoID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="telefono" Member="Telefono" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="telefonotrabajo" Member="Telefonotrabajo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="celular" Member="Celular" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fax" Member="Fax" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="email" Member="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="estadocivilID" Member="EstadocivilID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="regimenID" Member="RegimenID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="codigoBoletasFile" Member="CodigoBoletasFile" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="storeTS" Member="StoreTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="updateTS" Member="UpdateTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="colonia" Member="Colonia" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="conyugue" Member="Conyugue" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo_Productos" Member="Dbo_Productos">
+    <Type Name="Dbo_Productos">
+      <Column Name="productoID" Member="ProductoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="codigo" Member="Codigo" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="descripcion" Member="Descripcion" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="precio1" Member="Precio1" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="precio2" Member="Precio2" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="precio3" Member="Precio3" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="precio4" Member="Precio4" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="storeTS" Member="StoreTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="updateTS" Member="UpdateTS" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="unidadID" Member="UnidadID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="presentacionID" Member="PresentacionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="codigoBascula" Member="CodigoBascula" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="productoGrupoID" Member="ProductoGrupoID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="casaagricolaID" Member="CasaagricolaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo_SecurityLevels" Member="Dbo_SecurityLevels">
+    <Type Name="Dbo_SecurityLevels">
+      <Column Name="securitylevelID" Member="SecuritylevelID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="securitylevel" Member="Securitylevel" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo_Users" Member="Dbo_Users">
+    <Type Name="Dbo_Users">
+      <Column Name="userID" Member="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Member="Username" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Member="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="securitylevelID" Member="SecuritylevelID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enabled" Member="Enabled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="email" Member="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastEditDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,1823 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{08747AD4-0553-446B-A4DD-3C0CC2D3E412}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Garibay</RootNamespace>
+    <AssemblyName>Garibay</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.0.30930.28736, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>AjaxToolKit\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Microsoft.Practices.EnterpriseLibrary.Data.Configuration.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=1.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL" />
+    <Reference Include="NPOI.HSSF, Version=1.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL" />
+    <Reference Include="NPOI.POIFS, Version=1.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL" />
+    <Reference Include="RJS.Web.WebControl.PopCalendar.Net.2008, Version=8.1.3125.36581, Culture=neutral, PublicKeyToken=5bac9568331177db, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>components\RJS.Web.WebControl.PopCalendar.Net.2008.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Data\Bodegas.cs" />
+    <Compile Include="App_Data\Bodegas_GENERATED.cs" />
+    <Compile Include="App_Data\BoletaProveedor.cs" />
+    <Compile Include="App_Data\BoletaProveedor_GENERATED.cs" />
+    <Compile Include="App_Data\Boletas.cs" />
+    <Compile Include="App_Data\Boletas_GENERATED.cs" />
+    <Compile Include="App_Data\Ciclos.cs" />
+    <Compile Include="App_Data\Ciclos_GENERATED.cs" />
+    <Compile Include="App_Data\ClientesVentas.cs" />
+    <Compile Include="App_Data\ClientesVentas_GENERATED.cs" />
+    <Compile Include="App_Data\ClienteVentaBoletas.cs" />
+    <Compile Include="App_Data\ClienteVentaBoletas_GENERATED.cs" />
+    <Compile Include="App_Data\EntradaDeProductos.cs" />
+    <Compile Include="App_Data\EntradaDeProductos_GENERATED.cs" />
+    <Compile Include="App_Data\FacturaDeProveedor.cs" />
+    <Compile Include="App_Data\FacturaDeProveedorDetalle.cs" />
+    <Compile Include="App_Data\FacturaDeProveedorDetalle_GENERATED.cs" />
+    <Compile Include="App_Data\FacturaDeProveedor_GENERATED.cs" />
+    <Compile Include="App_Data\NotasDeCompra.cs" />
+    <Compile Include="App_Data\NotasDeCompraDetalle.cs" />
+    <Compile Include="App_Data\NotasDeCompraDetalle_GENERATED.cs" />
+    <Compile Include="App_Data\NotasDeCompra_GENERATED.cs" />
+    <Compile Include="App_Data\Presentaciones.cs" />
+    <Compile Include="App_Data\Presentaciones_GENERATED.cs" />
+    <Compile Include="App_Data\Proveedores.cs" />
+    <Compile Include="App_Data\Proveedores_GENERATED.cs" />
+    <Compile Include="App_Data\Solicitudes.cs" />
+    <Compile Include="App_Data\SolicitudesSisBancos.cs" />
+    <Compile Include="App_Data\SolicitudesSisBancosSeguroAgricola.cs" />
+    <Compile Include="App_Data\SolicitudesSisBancosSeguroAgricola_GENERATED.cs" />
+    <Compile Include="App_Data\SolicitudesSisBancos_GENERATED.cs" />
+    <Compile Include="App_Data\Solicitudes_GENERATED.cs" />
+    <Compile Include="App_Data\Transportistas.cs" />
+    <Compile Include="App_Data\Transportistas_GENERATED.cs" />
+    <Compile Include="App_Data\Users.cs" />
+    <Compile Include="App_Data\Users_GENERATED.cs" />
+    <Compile Include="BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CalculoIntereses.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CCryptorEngine.cs" />
+    <Compile Include="dsFacturaDeProveedor.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFacturaDeProveedor.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddModifyPrestamo.aspx.designer.cs">
+      <DependentUpon>frmAddModifyPrestamo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddNotasCompras.aspx.designer.cs">
+      <DependentUpon>frmAddNotasCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAtGlance.aspx.designer.cs">
+      <DependentUpon>frmAtGlance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmBoletaManagement.aspx.cs">
+      <DependentUpon>frmBoletaManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBoletaManagement.aspx.designer.cs">
+      <DependentUpon>frmBoletaManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmEdoCuentaGanadero.aspx.cs">
+      <DependentUpon>frmEdoCuentaGanadero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEdoCuentaGanadero.aspx.designer.cs">
+      <DependentUpon>frmEdoCuentaGanadero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmEntradasSalidasBoletasxDia.aspx.cs">
+      <DependentUpon>frmEntradasSalidasBoletasxDia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEntradasSalidasBoletasxDia.aspx.designer.cs">
+      <DependentUpon>frmEntradasSalidasBoletasxDia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmEstadoDeCuentaClienteDeVenta.aspx.cs">
+      <DependentUpon>frmEstadoDeCuentaClienteDeVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEstadoDeCuentaClienteDeVenta.aspx.designer.cs">
+      <DependentUpon>frmEstadoDeCuentaClienteDeVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacturaDiesel.aspx.designer.cs">
+      <DependentUpon>frmFacturaDiesel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacturaGanado.aspx.designer.cs">
+      <DependentUpon>frmFacturaGanado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacturaGanadoPrint.aspx.cs">
+      <DependentUpon>frmFacturaGanadoPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEstadodeCuentaCreditoPrint.aspx.cs">
+      <DependentUpon>frmEstadodeCuentaCreditoPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEstadodeCuentaCreditoPrint.aspx.designer.cs">
+      <DependentUpon>frmEstadodeCuentaCreditoPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddSolicitud2010.aspx.designer.cs">
+      <DependentUpon>frmAddSolicitud2010.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDownLoadPage.aspx.cs">
+      <DependentUpon>frmDownLoadPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDownLoadPage.aspx.designer.cs">
+      <DependentUpon>frmDownLoadPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacturaGanado.aspx.cs">
+      <DependentUpon>frmFacturaGanado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmFacturaGanadoPrint.aspx.designer.cs">
+      <DependentUpon>frmFacturaGanadoPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacturasDeCompra.aspx.cs">
+      <DependentUpon>frmFacturasDeCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmFacturasDeCompra.aspx.designer.cs">
+      <DependentUpon>frmFacturasDeCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacturaVentaClientes.aspx.designer.cs">
+      <DependentUpon>frmFacturaVentaClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmGruposCatalogos.aspx.cs">
+      <DependentUpon>frmGruposCatalogos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmGruposCatalogos.aspx.designer.cs">
+      <DependentUpon>frmGruposCatalogos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmHojaDeEvaluacionPrint.aspx.cs">
+      <DependentUpon>frmHojaDeEvaluacionPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmHojaDeEvaluacionPrint.aspx.designer.cs">
+      <DependentUpon>frmHojaDeEvaluacionPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLiquidacion2010.aspx.cs">
+      <DependentUpon>frmLiquidacion2010.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLiquidacion2010.aspx.designer.cs">
+      <DependentUpon>frmLiquidacion2010.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLiquidacionAdd.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLiquidacionTransportista.aspx.cs">
+      <DependentUpon>frmLiquidacionTransportista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLiquidacionTransportista.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionTransportista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaConversionesProducto.aspx.cs">
+      <DependentUpon>frmListaConversionesProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListaConversionesProducto.aspx.designer.cs">
+      <DependentUpon>frmListaConversionesProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaFacturasDeGanado.aspx.cs">
+      <DependentUpon>frmListaFacturasDeGanado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListaFacturasDeGanado.aspx.designer.cs">
+      <DependentUpon>frmListaFacturasDeGanado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaFacturasDiesel.aspx.designer.cs">
+      <DependentUpon>frmListaFacturasDiesel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaFacturasProveedores.aspx.cs">
+      <DependentUpon>frmListaFacturasProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListaFacturasProveedores.aspx.designer.cs">
+      <DependentUpon>frmListaFacturasProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaLiqTransportistas.aspx.cs">
+      <DependentUpon>frmListaLiqTransportistas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListaLiqTransportistas.aspx.designer.cs">
+      <DependentUpon>frmListaLiqTransportistas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListSolicitudes.aspx.designer.cs">
+      <DependentUpon>frmListSolicitudes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovBancos.aspx.designer.cs">
+      <DependentUpon>frmMovBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmNotadeVentaAddNew.aspx.cs">
+      <DependentUpon>frmNotadeVentaAddNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddSolicitud2010.aspx.cs">
+      <DependentUpon>frmAddSolicitud2010.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmNotadeVentaAddNew.aspx.designer.cs">
+      <DependentUpon>frmNotadeVentaAddNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagoAFacturas.aspx.cs">
+      <DependentUpon>frmPagoAFacturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPagoAFacturas.aspx.designer.cs">
+      <DependentUpon>frmPagoAFacturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagoAFacturasDeVentaNew.aspx.cs">
+      <DependentUpon>frmPagoAFacturasDeVentaNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPagoAFacturasDeVentaNew.aspx.designer.cs">
+      <DependentUpon>frmPagoAFacturasDeVentaNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagoANotasDeVenta.aspx.cs">
+      <DependentUpon>frmPagoANotasDeVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPagoANotasDeVenta.aspx.designer.cs">
+      <DependentUpon>frmPagoANotasDeVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagosAFacturasDeGanado.aspx.cs">
+      <DependentUpon>frmPagosAFacturasDeGanado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPagosAFacturasDeGanado.aspx.designer.cs">
+      <DependentUpon>frmPagosAFacturasDeGanado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagosFacturasLista.aspx.cs">
+      <DependentUpon>frmPagosFacturasLista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPagosFacturasLista.aspx.designer.cs">
+      <DependentUpon>frmPagosFacturasLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPresentaciones.aspx.cs">
+      <DependentUpon>frmPresentaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPresentaciones.aspx.designer.cs">
+      <DependentUpon>frmPresentaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrintNotaVenta2010.aspx.cs">
+      <DependentUpon>frmPrintNotaVenta2010.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPrintNotaVenta2010.aspx.designer.cs">
+      <DependentUpon>frmPrintNotaVenta2010.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteBoletasDeSalida.aspx.cs">
+      <DependentUpon>frmReporteBoletasDeSalida.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteBoletasDeSalida.aspx.designer.cs">
+      <DependentUpon>frmReporteBoletasDeSalida.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteGanXMonth.aspx.cs">
+      <DependentUpon>frmReporteGanXMonth.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteGanXMonth.aspx.designer.cs">
+      <DependentUpon>frmReporteGanXMonth.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteGarantiasSolicitudes.aspx.cs">
+      <DependentUpon>frmReporteGarantiasSolicitudes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteGarantiasSolicitudes.aspx.designer.cs">
+      <DependentUpon>frmReporteGarantiasSolicitudes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteGeneralCreditos.aspx.cs">
+      <DependentUpon>frmReporteGeneralCreditos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteGeneralCreditos.aspx.designer.cs">
+      <DependentUpon>frmReporteGeneralCreditos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteLiqXProductorXProductos.aspx.designer.cs">
+      <DependentUpon>frmReporteLiqXProductorXProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteSeguros.aspx.cs">
+      <DependentUpon>frmReporteSeguros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteSeguros.aspx.designer.cs">
+      <DependentUpon>frmReporteSeguros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddNotasDeVenta.aspx.designer.cs">
+      <DependentUpon>frmAddNotasDeVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCuentasdeBanco.aspx.designer.cs">
+      <DependentUpon>frmCuentasdeBanco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaNotasDeCompraFormato.aspx.cs">
+      <DependentUpon>frmListaNotasDeCompraFormato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListaNotasDeCompraFormato.aspx.designer.cs">
+      <DependentUpon>frmListaNotasDeCompraFormato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListOrdenEntradasProveedores.aspx.cs">
+      <DependentUpon>frmListOrdenEntradasProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListOrdenEntradasProveedores.aspx.designer.cs">
+      <DependentUpon>frmListOrdenEntradasProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmEntradaProductoProveedor.aspx.cs">
+      <DependentUpon>frmEntradaProductoProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEntradaProductoProveedor.aspx.designer.cs">
+      <DependentUpon>frmEntradaProductoProveedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListChequesProductor.aspx.cs">
+      <DependentUpon>frmListChequesProductor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListChequesProductor.aspx.designer.cs">
+      <DependentUpon>frmListChequesProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrdenCompraFormato.aspx.cs">
+      <DependentUpon>frmOrdenCompraFormato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmOrdenCompraFormato.aspx.designer.cs">
+      <DependentUpon>frmOrdenCompraFormato.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrdendeCargaAdd.aspx.cs">
+      <DependentUpon>frmOrdendeCargaAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmOrdendeCargaAdd.aspx.designer.cs">
+      <DependentUpon>frmOrdendeCargaAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrdendeCargaList.aspx.cs">
+      <DependentUpon>frmOrdendeCargaList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmOrdendeCargaList.aspx.designer.cs">
+      <DependentUpon>frmOrdendeCargaList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagosAProveedores.aspx.cs">
+      <DependentUpon>frmPagosAProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPagosAProveedores.aspx.designer.cs">
+      <DependentUpon>frmPagosAProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrintEstadodeCuentaCredito.aspx.cs">
+      <DependentUpon>frmPrintEstadodeCuentaCredito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPrintEstadodeCuentaCredito.aspx.designer.cs">
+      <DependentUpon>frmPrintEstadodeCuentaCredito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DateDifference.cs" />
+    <Compile Include="dsEstadodeCuenta.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEstadodeCuenta.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Empty.Master.cs">
+      <DependentUpon>Empty.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Empty.Master.designer.cs">
+      <DependentUpon>Empty.Master</DependentUpon>
+    </Compile>
+    <Compile Include="frmBusquedaGeneral.aspx.cs">
+      <DependentUpon>frmBusquedaGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBusquedaGeneral.aspx.designer.cs">
+      <DependentUpon>frmBusquedaGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaFacturasDiesel.aspx.cs">
+      <DependentUpon>frmListaFacturasDiesel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmFacturaDiesel.aspx.cs">
+      <DependentUpon>frmFacturaDiesel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyPrestamo.aspx.cs">
+      <DependentUpon>frmAddModifyPrestamo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListPrestamos.aspx.cs">
+      <DependentUpon>frmListPrestamos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListPrestamos.aspx.designer.cs">
+      <DependentUpon>frmListPrestamos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListTarjetasDiesel.aspx.cs">
+      <DependentUpon>frmListTarjetasDiesel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListTarjetasDiesel.aspx.designer.cs">
+      <DependentUpon>frmListTarjetasDiesel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmConverProductos.aspx.cs">
+      <DependentUpon>frmConverProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmConverProductos.aspx.designer.cs">
+      <DependentUpon>frmConverProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaAnticipos.aspx.cs">
+      <DependentUpon>frmListaAnticipos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListaAnticipos.aspx.designer.cs">
+      <DependentUpon>frmListaAnticipos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPagosCreditosAdd.aspx.cs">
+      <DependentUpon>frmPagosCreditosAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPagosCreditosAdd.aspx.designer.cs">
+      <DependentUpon>frmPagosCreditosAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrintNotaVenta.aspx.cs">
+      <DependentUpon>frmPrintNotaVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPrintNotaVenta.aspx.designer.cs">
+      <DependentUpon>frmPrintNotaVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrintPaqueteFormatos.aspx.cs">
+      <DependentUpon>frmPrintPaqueteFormatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPrintPaqueteFormatos.aspx.designer.cs">
+      <DependentUpon>frmPrintPaqueteFormatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmProveedoresEstadodeCuenta.aspx.cs">
+      <DependentUpon>frmProveedoresEstadodeCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmProveedoresEstadodeCuenta.aspx.designer.cs">
+      <DependentUpon>frmProveedoresEstadodeCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmQueryPrecio.aspx.cs">
+      <DependentUpon>frmQueryPrecio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmQueryPrecio.aspx.designer.cs">
+      <DependentUpon>frmQueryPrecio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteLiqXProductorXProductos.aspx.cs">
+      <DependentUpon>frmReporteLiqXProductorXProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteSegurosProAgro.aspx.cs">
+      <DependentUpon>frmReporteSegurosProAgro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteSegurosProAgro.aspx.designer.cs">
+      <DependentUpon>frmReporteSegurosProAgro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteSubCatalogoMovBancos.aspx.cs">
+      <DependentUpon>frmReporteSubCatalogoMovBancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteSubCatalogoMovBancos.aspx.designer.cs">
+      <DependentUpon>frmReporteSubCatalogoMovBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSegurosAgricolas.aspx.cs">
+      <DependentUpon>frmSegurosAgricolas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSegurosAgricolas.aspx.designer.cs">
+      <DependentUpon>frmSegurosAgricolas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCertificadoAddQuick.aspx.cs">
+      <DependentUpon>frmCertificadoAddQuick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCertificadoAddQuick.aspx.designer.cs">
+      <DependentUpon>frmCertificadoAddQuick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCertificadosLista.aspx.cs">
+      <DependentUpon>frmCertificadosLista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCertificadosLista.aspx.designer.cs">
+      <DependentUpon>frmCertificadosLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmEstadodeCuentaCredito.aspx.cs">
+      <DependentUpon>frmEstadodeCuentaCredito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEstadodeCuentaCredito.aspx.designer.cs">
+      <DependentUpon>frmEstadodeCuentaCredito.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmExistencias.aspx.cs">
+      <DependentUpon>frmExistencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmExistencias.aspx.designer.cs">
+      <DependentUpon>frmExistencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacturaPrint.aspx.cs">
+      <DependentUpon>frmFacturaPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmFacturaPrint.aspx.designer.cs">
+      <DependentUpon>frmFacturaPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovCajaChicaAddQuick.aspx.cs">
+      <DependentUpon>frmMovCajaChicaAddQuick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMovCajaChicaAddQuick.aspx.designer.cs">
+      <DependentUpon>frmMovCajaChicaAddQuick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmQueryProductorData.aspx.cs">
+      <DependentUpon>frmQueryProductorData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmQueryProductorData.aspx.designer.cs">
+      <DependentUpon>frmQueryProductorData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteCertificados.aspx.cs">
+      <DependentUpon>frmReporteCertificados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteCertificados.aspx.designer.cs">
+      <DependentUpon>frmReporteCertificados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteConcentradoLiquidacionesPorProductor.aspx.cs">
+      <DependentUpon>frmReporteConcentradoLiquidacionesPorProductor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteConcentradoLiquidacionesPorProductor.aspx.designer.cs">
+      <DependentUpon>frmReporteConcentradoLiquidacionesPorProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dbFunctions.cs" />
+    <Compile Include="dsBoletas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBoletas.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsFacturasClientes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsFacturasClientes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsLiquidacion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLiquidacion.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsMovBanco.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMovBanco.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsMovCajaChica.cs">
+      <DependentUpon>dsMovCajaChica.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="dsMovCajaChica.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMovCajaChica.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsNCdatos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsNCdatos.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsNCdetalle.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsNCdetalle.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsNV.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsNV.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EMailUtils.cs" />
+    <Compile Include="ExcelFileReader.cs" />
+    <Compile Include="FormatosPdf.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyAnticipo.aspx.cs">
+      <DependentUpon>frmAddModifyAnticipo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyAnticipo.aspx.designer.cs">
+      <DependentUpon>frmAddModifyAnticipo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddModifyCheques.aspx.cs">
+      <DependentUpon>frmAddModifyCheques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyCheques.aspx.designer.cs">
+      <DependentUpon>frmAddModifyCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddModifyCreditos.aspx.cs">
+      <DependentUpon>frmAddModifyCreditos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyCreditos.aspx.designer.cs">
+      <DependentUpon>frmAddModifyCreditos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddQuickClienteVenta.aspx.cs">
+      <DependentUpon>frmAddQuickClienteVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddQuickClienteVenta.aspx.designer.cs">
+      <DependentUpon>frmAddQuickClienteVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddQuickProductor.aspx.cs">
+      <DependentUpon>frmAddQuickProductor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddQuickProductor.aspx.designer.cs">
+      <DependentUpon>frmAddQuickProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAjustesCheques.aspx.cs">
+      <DependentUpon>frmAjustesCheques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAjustesCheques.aspx.designer.cs">
+      <DependentUpon>frmAjustesCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAsignaranticiposaLiq.aspx.cs">
+      <DependentUpon>frmAsignaranticiposaLiq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAsignaranticiposaLiq.aspx.designer.cs">
+      <DependentUpon>frmAsignaranticiposaLiq.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAtGlance.aspx.cs">
+      <DependentUpon>frmAtGlance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBancosSaldosMensuales.aspx.cs">
+      <DependentUpon>frmBancosSaldosMensuales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBancosSaldosMensuales.aspx.designer.cs">
+      <DependentUpon>frmBancosSaldosMensuales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmBoletaNewQuick.aspx.cs">
+      <DependentUpon>frmBoletaNewQuick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBoletaNewQuick.aspx.designer.cs">
+      <DependentUpon>frmBoletaNewQuick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmBoletasdeFacturaCV.aspx.cs">
+      <DependentUpon>frmBoletasdeFacturaCV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBoletasdeFacturaCV.aspx.designer.cs">
+      <DependentUpon>frmBoletasdeFacturaCV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCajaChicaReport.aspx.cs">
+      <DependentUpon>frmCajaChicaReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCajaChicaReport.aspx.designer.cs">
+      <DependentUpon>frmCajaChicaReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCajaChicaSaldosMensuales.aspx.cs">
+      <DependentUpon>frmCajaChicaSaldosMensuales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCajaChicaSaldosMensuales.aspx.designer.cs">
+      <DependentUpon>frmCajaChicaSaldosMensuales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmClientesVentas.aspx.cs">
+      <DependentUpon>frmClientesVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmClientesVentas.aspx.designer.cs">
+      <DependentUpon>frmClientesVentas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmConcentradoProductosdeBoletas.aspx.cs">
+      <DependentUpon>frmConcentradoProductosdeBoletas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmConcentradoProductosdeBoletas.aspx.designer.cs">
+      <DependentUpon>frmConcentradoProductosdeBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmConciliacionBancos.aspx.cs">
+      <DependentUpon>frmConciliacionBancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmConciliacionBancos.aspx.designer.cs">
+      <DependentUpon>frmConciliacionBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmConfigParameterPage.aspx.cs">
+      <DependentUpon>frmConfigParameterPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmConfigParameterPage.aspx.designer.cs">
+      <DependentUpon>frmConfigParameterPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreditoFinancieroAdd.aspx.cs">
+      <DependentUpon>frmCreditoFinancieroAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCreditoFinancieroAdd.aspx.designer.cs">
+      <DependentUpon>frmCreditoFinancieroAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreditosFinancieros.aspx.cs">
+      <DependentUpon>frmCreditosFinancieros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCreditosFinancieros.aspx.designer.cs">
+      <DependentUpon>frmCreditosFinancieros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDescargar.aspx.cs">
+      <DependentUpon>frmDescargar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDescargar.aspx.designer.cs">
+      <DependentUpon>frmDescargar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDescargaTmpFile.aspx.cs">
+      <DependentUpon>frmDescargaTmpFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDescargaTmpFile.aspx.designer.cs">
+      <DependentUpon>frmDescargaTmpFile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocsProductor.aspx.cs">
+      <DependentUpon>frmDocsProductor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDocsProductor.aspx.designer.cs">
+      <DependentUpon>frmDocsProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmExcelToPdf.aspx.cs">
+      <DependentUpon>frmExcelToPdf.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmExcelToPdf.aspx.designer.cs">
+      <DependentUpon>frmExcelToPdf.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmFacturaVentaClientes.aspx.cs">
+      <DependentUpon>frmFacturaVentaClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmGanProveedores.aspx.cs">
+      <DependentUpon>frmGanProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmGanProveedores.aspx.designer.cs">
+      <DependentUpon>frmGanProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLiquidacionAdd.aspx.cs">
+      <DependentUpon>frmLiquidacionAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLiquidacionesLista.aspx.cs">
+      <DependentUpon>frmLiquidacionesLista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLiquidacionesLista.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionesLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLiquidacionEsqueleto.aspx.cs">
+      <DependentUpon>frmLiquidacionEsqueleto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLiquidacionEsqueleto.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionEsqueleto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLiquidacionTemplate.aspx.cs">
+      <DependentUpon>frmLiquidacionTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLiquidacionTemplate.aspx.designer.cs">
+      <DependentUpon>frmLiquidacionTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaFacturaVentaaClientes.aspx.cs">
+      <DependentUpon>frmListaFacturaVentaaClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListaFacturaVentaaClientes.aspx.designer.cs">
+      <DependentUpon>frmListaFacturaVentaaClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListCheques.aspx.cs">
+      <DependentUpon>frmListCheques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListCheques.aspx.designer.cs">
+      <DependentUpon>frmListCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListPerCreditoFinanciero.aspx.cs">
+      <DependentUpon>frmListPerCreditoFinanciero.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListPerCreditoFinanciero.aspx.designer.cs">
+      <DependentUpon>frmListPerCreditoFinanciero.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMissingCheques.aspx.cs">
+      <DependentUpon>frmMissingCheques.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMissingCheques.aspx.designer.cs">
+      <DependentUpon>frmMissingCheques.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovBancoAddQuick.aspx.cs">
+      <DependentUpon>frmMovBancoAddQuick.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMovBancoAddQuick.aspx.designer.cs">
+      <DependentUpon>frmMovBancoAddQuick.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovBancos.aspx.cs">
+      <DependentUpon>frmMovBancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMyData.aspx.cs">
+      <DependentUpon>frmMyData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMyData.aspx.designer.cs">
+      <DependentUpon>frmMyData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmNoRights.aspx.cs">
+      <DependentUpon>frmNoRights.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmNoRights.aspx.designer.cs">
+      <DependentUpon>frmNoRights.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmOnlyPrintCheque.aspx.cs">
+      <DependentUpon>frmOnlyPrintCheque.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmOnlyPrintCheque.aspx.designer.cs">
+      <DependentUpon>frmOnlyPrintCheque.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPrintCheque.aspx.cs">
+      <DependentUpon>frmPrintCheque.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPrintCheque.aspx.designer.cs">
+      <DependentUpon>frmPrintCheque.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPublishUpdates.aspx.cs">
+      <DependentUpon>frmPublishUpdates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPublishUpdates.aspx.designer.cs">
+      <DependentUpon>frmPublishUpdates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmQueryClienteData.aspx.cs">
+      <DependentUpon>frmQueryClienteData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmQueryClienteData.aspx.designer.cs">
+      <DependentUpon>frmQueryClienteData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmQueryExistencias.aspx.cs">
+      <DependentUpon>frmQueryExistencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmQueryExistencias.aspx.designer.cs">
+      <DependentUpon>frmQueryExistencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmQueryProd.aspx.cs">
+      <DependentUpon>frmQueryProd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmQueryProd.aspx.designer.cs">
+      <DependentUpon>frmQueryProd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecoverPassword.aspx.cs">
+      <DependentUpon>frmRecoverPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmRecoverPassword.aspx.designer.cs">
+      <DependentUpon>frmRecoverPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteConcentradoLiquidaciones.aspx.cs">
+      <DependentUpon>frmReporteConcentradoLiquidaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteConcentradoLiquidaciones.aspx.designer.cs">
+      <DependentUpon>frmReporteConcentradoLiquidaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx.cs">
+      <DependentUpon>frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx.designer.cs">
+      <DependentUpon>frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteGeneralLiquidaciones.aspx.cs">
+      <DependentUpon>frmReporteGeneralLiquidaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteGeneralLiquidaciones.aspx.designer.cs">
+      <DependentUpon>frmReporteGeneralLiquidaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteGralPorCatalogo.aspx.cs">
+      <DependentUpon>frmReporteGralPorCatalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteGralPorCatalogo.aspx.designer.cs">
+      <DependentUpon>frmReporteGralPorCatalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteLiquidacionconNotas.aspx.cs">
+      <DependentUpon>frmReporteLiquidacionconNotas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteLiquidacionconNotas.aspx.designer.cs">
+      <DependentUpon>frmReporteLiquidacionconNotas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteMovBancosporCatalogo.aspx.cs">
+      <DependentUpon>frmReporteMovBancosporCatalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteMovBancosporCatalogo.aspx.designer.cs">
+      <DependentUpon>frmReporteMovBancosporCatalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteporCatalogo.aspx.cs">
+      <DependentUpon>frmReporteporCatalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteporCatalogo.aspx.designer.cs">
+      <DependentUpon>frmReporteporCatalogo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportePreciosVenta.aspx.cs">
+      <DependentUpon>frmReportePreciosVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReportePreciosVenta.aspx.designer.cs">
+      <DependentUpon>frmReportePreciosVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmReporteProductoBoletas.aspx.cs">
+      <DependentUpon>frmReporteProductoBoletas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmReporteProductoBoletas.aspx.designer.cs">
+      <DependentUpon>frmReporteProductoBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSituacionesLista.aspx.cs">
+      <DependentUpon>frmSituacionesLista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSituacionesLista.aspx.designer.cs">
+      <DependentUpon>frmSituacionesLista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSituacionAddUpdate.aspx.cs">
+      <DependentUpon>frmSituacionAddUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSituacionAddUpdate.aspx.designer.cs">
+      <DependentUpon>frmSituacionAddUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTemp.aspx.cs">
+      <DependentUpon>frmTemp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTemp.aspx.designer.cs">
+      <DependentUpon>frmTemp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmTransportistas.aspx.cs">
+      <DependentUpon>frmTransportistas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTransportistas.aspx.designer.cs">
+      <DependentUpon>frmTransportistas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnauthorizedAccess.aspx.cs">
+      <DependentUpon>frmUnauthorizedAccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUnauthorizedAccess.aspx.designer.cs">
+      <DependentUpon>frmUnauthorizedAccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserLogActions.aspx.cs">
+      <DependentUpon>frmUserLogActions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUserLogActions.aspx.designer.cs">
+      <DependentUpon>frmUserLogActions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListofCreditos.aspx.cs">
+      <DependentUpon>frmListofCreditos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListofCreditos.aspx.designer.cs">
+      <DependentUpon>frmListofCreditos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsersManual.aspx.cs">
+      <DependentUpon>frmUsersManual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUsersManual.aspx.designer.cs">
+      <DependentUpon>frmUsersManual.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="JSUtils.cs" />
+    <Compile Include="Logger.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAcceptDenySolicitud.aspx.cs">
+      <DependentUpon>frmAcceptDenySolicitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAcceptDenySolicitud.aspx.designer.cs">
+      <DependentUpon>frmAcceptDenySolicitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddModifyPredios.aspx.cs">
+      <DependentUpon>frmAddModifyPredios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyPredios.aspx.designer.cs">
+      <DependentUpon>frmAddModifyPredios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddModifySalidaDeProducto.aspx.cs">
+      <DependentUpon>frmAddModifySalidaDeProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifySalidaDeProducto.aspx.designer.cs">
+      <DependentUpon>frmAddModifySalidaDeProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddMovBancos.aspx.cs">
+      <DependentUpon>frmAddMovBancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddMovBancos.aspx.designer.cs">
+      <DependentUpon>frmAddMovBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCiclos.aspx.cs">
+      <DependentUpon>frmCiclos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCiclos.aspx.designer.cs">
+      <DependentUpon>frmCiclos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddModifyProductores.aspx.cs">
+      <DependentUpon>frmAddModifyProductores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyProductores.aspx.designer.cs">
+      <DependentUpon>frmAddModifyProductores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCuentasdeBanco.aspx.cs">
+      <DependentUpon>frmCuentasdeBanco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListDeletePredios.aspx.cs">
+      <DependentUpon>frmListDeletePredios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListDeletePredios.aspx.designer.cs">
+      <DependentUpon>frmListDeletePredios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListDeleteProductores.aspx.cs">
+      <DependentUpon>frmListDeleteProductores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListDeleteProductores.aspx.designer.cs">
+      <DependentUpon>frmListDeleteProductores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListDeleteMovBancos.aspx.cs">
+      <DependentUpon>frmListDeleteMovBancos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListDeleteMovBancos.aspx.designer.cs">
+      <DependentUpon>frmListDeleteMovBancos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddNotasDeVenta.aspx.cs">
+      <DependentUpon>frmAddNotasDeVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListNotasDeVenta.aspx.cs">
+      <DependentUpon>frmListNotasDeVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListNotasDeVenta.aspx.designer.cs">
+      <DependentUpon>frmListNotasDeVenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListSalidaDeProducto.aspx.cs">
+      <DependentUpon>frmListSalidaDeProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListSalidaDeProducto.aspx.designer.cs">
+      <DependentUpon>frmListSalidaDeProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListSolicitudes.aspx.cs">
+      <DependentUpon>frmListSolicitudes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmProductos.aspx.cs">
+      <DependentUpon>frmProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmProductos.aspx.designer.cs">
+      <DependentUpon>frmProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMovBancoDetails.aspx.cs">
+      <DependentUpon>frmMovBancoDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMovBancoDetails.aspx.designer.cs">
+      <DependentUpon>frmMovBancoDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myConfig.cs" />
+    <Compile Include="PdfCreator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuarios.aspx.cs">
+      <DependentUpon>frmUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUsuarios.aspx.designer.cs">
+      <DependentUpon>frmUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListMovCajaChica.aspx.cs">
+      <DependentUpon>frmListMovCajaChica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListMovCajaChica.aspx.designer.cs">
+      <DependentUpon>frmListMovCajaChica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmConceptosMovCajaChica.aspx.cs">
+      <DependentUpon>frmConceptosMovCajaChica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmConceptosMovCajaChica.aspx.designer.cs">
+      <DependentUpon>frmConceptosMovCajaChica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddMovCajaChica.aspx.cs">
+      <DependentUpon>frmAddMovCajaChica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddMovCajaChica.aspx.designer.cs">
+      <DependentUpon>frmAddMovCajaChica.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmProveedores.aspx.cs">
+      <DependentUpon>frmProveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmProveedores.aspx.designer.cs">
+      <DependentUpon>frmProveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListEntradaProductos.aspx.cs">
+      <DependentUpon>frmListEntradaProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListEntradaProductos.aspx.designer.cs">
+      <DependentUpon>frmListEntradaProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddModifyEntradaProductos.aspx.cs">
+      <DependentUpon>frmAddModifyEntradaProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyEntradaProductos.aspx.designer.cs">
+      <DependentUpon>frmAddModifyEntradaProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddNotasCompras.aspx.cs">
+      <DependentUpon>frmAddNotasCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListNotasCompras.aspx.cs">
+      <DependentUpon>frmListNotasCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListNotasCompras.aspx.designer.cs">
+      <DependentUpon>frmListNotasCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmListBoletas.aspx.cs">
+      <DependentUpon>frmListBoletas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListBoletas.aspx.designer.cs">
+      <DependentUpon>frmListBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddModifyBoletas.aspx.cs">
+      <DependentUpon>frmAddModifyBoletas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAddModifyBoletas.aspx.designer.cs">
+      <DependentUpon>frmAddModifyBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmUploadBoletas.aspx.cs">
+      <DependentUpon>frmUploadBoletas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUploadBoletas.aspx.designer.cs">
+      <DependentUpon>frmUploadBoletas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx.cs">
+      <DependentUpon>ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx.designer.cs">
+      <DependentUpon>ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionData.cs" />
+    <Compile Include="TimeCounter.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="frmListLogMessage.aspx.cs">
+      <DependentUpon>frmListLogMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmListLogMessage.aspx.designer.cs">
+      <DependentUpon>frmListLogMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCatalogos.aspx.cs">
+      <DependentUpon>frmCatalogos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCatalogos.aspx.designer.cs">
+      <DependentUpon>frmCatalogos.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="components\RJS.Web.WebControl.PopCalendar.Net.2008.dll" />
+    <Content Include="frmAddModifyPredios.aspx" />
+    <Content Include="frmAddModifySalidaDeProducto.aspx" />
+    <Content Include="frmAddMovBancos.aspx" />
+    <Content Include="frmCiclos.aspx" />
+    <Content Include="frmAddModifyProductores.aspx" />
+    <Content Include="frmCuentasdeBanco.aspx" />
+    <Content Include="frmListDeletePredios.aspx" />
+    <Content Include="frmListDeleteProductores.aspx" />
+    <Content Include="frmListDeleteMovBancos.aspx" />
+    <Content Include="frmAddNotasDeVenta.aspx" />
+    <Content Include="frmListNotasDeVenta.aspx" />
+    <Content Include="frmListSalidaDeProducto.aspx" />
+    <Content Include="frmProductos.aspx" />
+    <Content Include="imagenes\LogoGaribay124x90.jpg" />
+    <Content Include="imagenes\LogoMargaritas133x153.jpg" />
+    <Content Include="imagenes\LogoMargaritas655x153.jpg" />
+    <Content Include="imagenes\LogoMargaritasMedium.jpg" />
+    <Content Include="imagenes\LogoMargaritasSmall.jpg" />
+    <Content Include="logout.aspx" />
+    <Content Include="MasterPage.Master" />
+    <Content Include="frmUsuarios.aspx" />
+    <Content Include="PopCalendar2008\Calendar.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic.css" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\baddate.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\close.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\closedown.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\down.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\drop1.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\drop2.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\left1.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\left2.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\right1.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\right2.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\special.gif" />
+    <Content Include="PopCalendar2008\CSS\Classic_Images\up.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern.css" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\baddate.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\baddatex.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\close.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\closedown.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\down.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\drop1.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\drop2.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\left1.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\left2.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\right1.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\right2.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\special.gif" />
+    <Content Include="PopCalendar2008\CSS\Modern_Images\up.gif" />
+    <Content Include="PopCalendar2008\CSS\Small.css" />
+    <Content Include="PopCalendar2008\DisableCalendar.gif" />
+    <Content Include="PopCalendar2008\PopCalendarAjaxNet.js" />
+    <Content Include="PopCalendar2008\PopCalendarFunctionsAjaxNet.js" />
+    <Content Include="frmListMovCajaChica.aspx" />
+    <Content Include="frmConceptosMovCajaChica.aspx" />
+    <Content Include="frmAddMovCajaChica.aspx" />
+    <Content Include="frmProveedores.aspx" />
+    <Content Include="frmListEntradaProductos.aspx" />
+    <Content Include="frmAddModifyEntradaProductos.aspx" />
+    <Content Include="frmAddNotasCompras.aspx" />
+    <Content Include="frmListNotasCompras.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\skinrojo\skinrojo.skin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\skinrojo\basicStyle.css" />
+    <Content Include="App_Themes\skinverde\basicStyle2.css" />
+    <Content Include="dlls\NPOI.DDF.dll" />
+    <Content Include="dlls\NPOI.dll" />
+    <Content Include="dlls\NPOI.HPSF.dll" />
+    <Content Include="dlls\NPOI.HSSF.dll" />
+    <Content Include="dlls\NPOI.POIFS.dll" />
+    <Content Include="dlls\NPOI.Util.dll" />
+    <Content Include="frmAcceptDenySolicitud.aspx" />
+    <Content Include="frmAddModifyAnticipo.aspx" />
+    <Content Include="frmAddModifyCheques.aspx" />
+    <Content Include="frmAddModifyCreditos.aspx" />
+    <Content Include="frmAjustesCheques.aspx" />
+    <Content Include="frmAsignaranticiposaLiq.aspx" />
+    <Content Include="frmAtGlance.aspx" />
+    <Content Include="frmBancosSaldosMensuales.aspx" />
+    <Content Include="frmCajaChicaReport.aspx" />
+    <Content Include="frmCajaChicaSaldosMensuales.aspx" />
+    <Content Include="frmConcentradoProductosdeBoletas.aspx" />
+    <Content Include="frmConfigParameterPage.aspx" />
+    <Content Include="frmCreditosFinancieros.aspx" />
+    <Content Include="frmDescargar.aspx" />
+    <Content Include="frmDescargaTmpFile.aspx" />
+    <Content Include="frmDocsProductor.aspx" />
+    <Content Include="frmExcelToPdf.aspx" />
+    <Content Include="frmLiquidacionAdd.aspx" />
+    <Content Include="frmLiquidacionesLista.aspx" />
+    <Content Include="frmLiquidacionEsqueleto.aspx" />
+    <Content Include="frmLiquidacionTemplate.aspx" />
+    <Content Include="frmListCheques.aspx" />
+    <Content Include="frmListPerCreditoFinanciero.aspx" />
+    <Content Include="frmListSolicitudes.aspx" />
+    <Content Include="frmListBoletas.aspx" />
+    <Content Include="frmAddModifyBoletas.aspx" />
+    <Content Include="frmMissingCheques.aspx" />
+    <Content Include="frmMovBancos.aspx" />
+    <Content Include="frmMyData.aspx" />
+    <Content Include="frmNoRights.aspx" />
+    <Content Include="frmRecoverPassword.aspx" />
+    <Content Include="frmUploadBoletas.aspx" />
+    <Content Include="frmUserLogActions.aspx" />
+    <Content Include="imagenes\cargando.gif" />
+    <Content Include="imagenes\palomita.jpg" />
+    <Content Include="imagenes\tache.jpg" />
+    <Content Include="frmListLogMessage.aspx" />
+    <Content Include="frmListofCreditos.aspx" />
+    <Content Include="scripts\divFunctions.js" />
+    <Content Include="frmCatalogos.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppOffline.htm" />
+    <Content Include="App_Themes\skinverde\skinverde.skin" />
+    <Content Include="frmBoletaManagement.aspx" />
+    <Content Include="frmEdoCuentaGanadero.aspx" />
+    <Content Include="frmEntradasSalidasBoletasxDia.aspx" />
+    <Content Include="frmEstadoDeCuentaClienteDeVenta.aspx" />
+    <Content Include="frmFacturaGanadoPrint.aspx" />
+    <Content Include="frmEstadodeCuentaCreditoPrint.aspx" />
+    <Content Include="frmDownLoadPage.aspx" />
+    <Content Include="frmFacturaGanado.aspx" />
+    <Content Include="frmFacturasDeCompra.aspx" />
+    <Content Include="frmGruposCatalogos.aspx" />
+    <Content Include="frmHojaDeEvaluacionPrint.aspx" />
+    <Content Include="frmLiquidacion2010.aspx" />
+    <Content Include="frmLiquidacionTransportista.aspx" />
+    <Content Include="frmListaConversionesProducto.aspx" />
+    <Content Include="frmListaFacturasDeGanado.aspx" />
+    <Content Include="frmListaFacturasProveedores.aspx" />
+    <Content Include="frmListaLiqTransportistas.aspx" />
+    <Content Include="frmNotadeVentaAddNew.aspx" />
+    <Content Include="frmAddSolicitud2010.aspx" />
+    <Content Include="frmPagoAFacturas.aspx" />
+    <Content Include="frmPagoAFacturasDeVentaNew.aspx" />
+    <Content Include="frmPagoANotasDeVenta.aspx" />
+    <Content Include="frmPagosAFacturasDeGanado.aspx" />
+    <Content Include="frmPagosFacturasLista.aspx" />
+    <Content Include="frmPresentaciones.aspx" />
+    <Content Include="frmPrintNotaVenta2010.aspx" />
+    <Content Include="frmReporteBoletasDeSalida.aspx" />
+    <Content Include="frmReporteGanXMonth.aspx" />
+    <Content Include="frmReporteGarantiasSolicitudes.aspx" />
+    <Content Include="frmReporteGeneralCreditos.aspx" />
+    <Content Include="frmReporteSeguros.aspx" />
+    <Content Include="frmListaNotasDeCompraFormato.aspx" />
+    <Content Include="frmListOrdenEntradasProveedores.aspx" />
+    <Content Include="frmEntradaProductoProveedor.aspx" />
+    <Content Include="frmListChequesProductor.aspx" />
+    <Content Include="frmOrdenCompraFormato.aspx" />
+    <Content Include="frmOrdendeCargaAdd.aspx" />
+    <Content Include="frmOrdendeCargaList.aspx" />
+    <Content Include="frmPagosAProveedores.aspx" />
+    <Content Include="frmPrintEstadodeCuentaCredito.aspx" />
+    <Content Include="frmBusquedaGeneral.aspx" />
+    <Content Include="frmListaFacturasDiesel.aspx" />
+    <Content Include="frmFacturaDiesel.aspx" />
+    <Content Include="frmAddModifyPrestamo.aspx" />
+    <Content Include="frmListPrestamos.aspx" />
+    <Content Include="frmListTarjetasDiesel.aspx" />
+    <Content Include="frmConverProductos.aspx" />
+    <Content Include="frmListaAnticipos.aspx" />
+    <Content Include="frmPagosCreditosAdd.aspx" />
+    <Content Include="frmPrintNotaVenta.aspx" />
+    <Content Include="frmPrintPaqueteFormatos.aspx" />
+    <Content Include="frmProveedoresEstadodeCuenta.aspx" />
+    <Content Include="frmQueryPrecio.aspx" />
+    <Content Include="frmReporteLiqXProductorXProductos.aspx" />
+    <Content Include="frmReporteSegurosProAgro.aspx" />
+    <Content Include="frmReporteSubCatalogoMovBancos.aspx" />
+    <Content Include="frmSegurosAgricolas.aspx" />
+    <Content Include="frmCertificadoAddQuick.aspx" />
+    <Content Include="frmCertificadosLista.aspx" />
+    <Content Include="frmEstadodeCuentaCredito.aspx" />
+    <Content Include="frmExistencias.aspx" />
+    <Content Include="frmFacturaPrint.aspx" />
+    <Content Include="frmMovCajaChicaAddQuick.aspx" />
+    <Content Include="frmQueryProductorData.aspx" />
+    <Content Include="frmReporteCertificados.aspx" />
+    <Content Include="frmReporteConcentradoLiquidacionesPorProductor.aspx" />
+    <Content Include="frmAddQuickClienteVenta.aspx" />
+    <Content Include="frmAddQuickProductor.aspx" />
+    <Content Include="frmBoletaNewQuick.aspx" />
+    <Content Include="frmBoletasdeFacturaCV.aspx" />
+    <Content Include="frmClientesVentas.aspx" />
+    <Content Include="frmConciliacionBancos.aspx" />
+    <Content Include="frmCreditoFinancieroAdd.aspx" />
+    <Content Include="frmFacturaVentaClientes.aspx" />
+    <Content Include="frmGanProveedores.aspx" />
+    <Content Include="frmListaFacturaVentaaClientes.aspx" />
+    <Content Include="frmMovBancoAddQuick.aspx" />
+    <Content Include="frmOnlyPrintCheque.aspx" />
+    <Content Include="frmPrintCheque.aspx" />
+    <Content Include="frmPublishUpdates.aspx" />
+    <Content Include="frmQueryClienteData.aspx" />
+    <Content Include="frmQueryExistencias.aspx" />
+    <Content Include="frmQueryProd.aspx" />
+    <Content Include="frmReporteConcentradoLiquidaciones.aspx" />
+    <Content Include="frmReporteDesglosadoLiquidacionesconDetalleProductor.aspx" />
+    <Content Include="frmReporteGeneralLiquidaciones.aspx" />
+    <Content Include="frmReporteGralPorCatalogo.aspx" />
+    <Content Include="frmReporteLiquidacionconNotas.aspx" />
+    <Content Include="frmReporteMovBancosporCatalogo.aspx" />
+    <Content Include="frmReporteporCatalogo.aspx" />
+    <Content Include="frmReportePreciosVenta.aspx" />
+    <Content Include="frmReporteProductoBoletas.aspx" />
+    <Content Include="frmSituacionesLista.aspx" />
+    <Content Include="frmSituacionAddUpdate.aspx" />
+    <Content Include="frmTemp.aspx" />
+    <Content Include="frmTransportistas.aspx" />
+    <Content Include="frmUnauthorizedAccess.aspx" />
+    <Content Include="frmUsersManual.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="imagenes\Garibay.gif" />
+    <Content Include="imagenes\IPROJALmedium.jpg" />
+    <Content Include="imagenes\IPROJALsmall.jpg" />
+    <Content Include="imagenes\LogoIPROJALMedium.jpg" />
+    <Content Include="imagenes\LogoIPROJALMediumHalf.jpg" />
+    <Content Include="frmMovBancoDetails.aspx" />
+    <Content Include="imagenes\Nuevo.gif" />
+    <Content Include="Imagenes_Manual\ciclo_compras.png" />
+    <Content Include="Imagenes_Manual\login.jpg" />
+    <Content Include="Imagenes_Manual\ProductoresAdd.jpg" />
+    <Content Include="Imagenes_Manual\productoresmenu.jpg" />
+    <Content Include="Imagenes_Manual\prodvalidar.jpg" />
+    <Content Include="Menu\SuperFish\changelog.txt" />
+    <Content Include="Menu\SuperFish\css\superfish-navbar.css" />
+    <Content Include="Menu\SuperFish\css\superfish-vertical.css" />
+    <Content Include="Menu\SuperFish\css\superfish.css" />
+    <Content Include="Menu\SuperFish\example.html" />
+    <Content Include="Menu\SuperFish\images\arrows-ffffff.png" />
+    <Content Include="Menu\SuperFish\images\shadow.png" />
+    <Content Include="Menu\SuperFish\images\superfish-navbar.css" />
+    <Content Include="Menu\SuperFish\images\superfish-vertical.css" />
+    <Content Include="Menu\SuperFish\images\superfish.css" />
+    <Content Include="Menu\SuperFish\js\hoverIntent.js" />
+    <Content Include="Menu\SuperFish\js\jquery-1.2.6.min.js" />
+    <Content Include="Menu\SuperFish\js\jquery.bgiframe.min.js" />
+    <Content Include="Menu\SuperFish\js\superfish.js" />
+    <Content Include="Menu\SuperFish\js\supersubs.js" />
+    <Content Include="ReporteGeneralBoletasLiquidadasYFacturadasConcentradasPorProducto.aspx" />
+    <Content Include="scripts\AjaxErrHandler.js" />
+    <Content Include="scripts\ddaccordion.js" />
+    <Content Include="scripts\jquery-1.3.2.min.js" />
+    <Content Include="scripts\prototype.js" />
+    <Content Include="App_Data\App.config" />
+    <None Include="App_Data\StoredProcedures.sql" />
+    <None Include="dsFacturaDeProveedor.xsc">
+      <DependentUpon>dsFacturaDeProveedor.xsd</DependentUpon>
+    </None>
+    <None Include="dsFacturaDeProveedor.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFacturaDeProveedor.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsFacturaDeProveedor.xss">
+      <DependentUpon>dsFacturaDeProveedor.xsd</DependentUpon>
+    </None>
+    <None Include="dsBoletas.xsc">
+      <DependentUpon>dsBoletas.xsd</DependentUpon>
+    </None>
+    <None Include="dsBoletas.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBoletas.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsBoletas.xss">
+      <DependentUpon>dsBoletas.xsd</DependentUpon>
+    </None>
+    <None Include="dsEstadodeCuenta.xsc">
+      <DependentUpon>dsEstadodeCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="dsEstadodeCuenta.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEstadodeCuenta.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsEstadodeCuenta.xss">
+      <DependentUpon>dsEstadodeCuenta.xsd</DependentUpon>
+    </None>
+    <None Include="dsFacturasClientes.xsc">
+      <DependentUpon>dsFacturasClientes.xsd</DependentUpon>
+    </None>
+    <None Include="dsFacturasClientes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsFacturasClientes.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsFacturasClientes.xss">
+      <DependentUpon>dsFacturasClientes.xsd</DependentUpon>
+    </None>
+    <None Include="dsLiquidacion.xsc">
+      <DependentUpon>dsLiquidacion.xsd</DependentUpon>
+    </None>
+    <None Include="dsLiquidacion.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLiquidacion.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsLiquidacion.xss">
+      <DependentUpon>dsLiquidacion.xsd</DependentUpon>
+    </None>
+    <None Include="dsMovBanco.xsc">
+      <DependentUpon>dsMovBanco.xsd</DependentUpon>
+    </None>
+    <None Include="dsMovBanco.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMovBanco.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsMovBanco.xss">
+      <DependentUpon>dsMovBanco.xsd</DependentUpon>
+    </None>
+    <None Include="dsMovCajaChica.xsc">
+      <DependentUpon>dsMovCajaChica.xsd</DependentUpon>
+    </None>
+    <None Include="dsMovCajaChica.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMovCajaChica.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsMovCajaChica.xss">
+      <DependentUpon>dsMovCajaChica.xsd</DependentUpon>
+    </None>
+    <None Include="dsNCdatos.xsc">
+      <DependentUpon>dsNCdatos.xsd</DependentUpon>
+    </None>
+    <None Include="dsNCdatos.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsNCdatos.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsNCdatos.xss">
+      <DependentUpon>dsNCdatos.xsd</DependentUpon>
+    </None>
+    <None Include="dsNCdetalle.xsc">
+      <DependentUpon>dsNCdetalle.xsd</DependentUpon>
+    </None>
+    <None Include="dsNCdetalle.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsNCdetalle.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsNCdetalle.xss">
+      <DependentUpon>dsNCdetalle.xsd</DependentUpon>
+    </None>
+    <None Include="dsNV.xsc">
+      <DependentUpon>dsNV.xsd</DependentUpon>
+    </None>
+    <None Include="dsNV.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsNV.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsNV.xss">
+      <DependentUpon>dsNV.xsd</DependentUpon>
+    </None>
+    <Content Include="Empty.Master" />
+    <None Include="FormatoBuroGaribay.pdf" />
+    <None Include="FormatoBuroGaribay.pfl" />
+    <None Include="Formatos\boletas.xls" />
+    <None Include="Formatos\EVALUACION_PARAMETRICA_NUEVO_FORMATO_ 1%28PAGARE AND CARATULA SEPARADOS%29.xls" />
+    <None Include="Formatos\FormatoAutorizacionCredito.pdf" />
+    <None Include="Formatos\FormatoAutorizacionCreditoSOLO.pfl" />
+    <None Include="Formatos\FormatoBuroGaribay.pdf" />
+    <None Include="Formatos\FormatoBuroGaribay.pfl" />
+    <None Include="Formatos\FormatoCaratulaAndPagare.pdf" />
+    <None Include="Formatos\FormatoCaratulaAndPagare.pfl" />
+    <None Include="Formatos\FormatoCaratulaAnexa.pdf" />
+    <None Include="Formatos\FormatoCaratulaAnexa2010.pdf" />
+    <None Include="Formatos\FormatoCaratulaAnexa2010.pfl" />
+    <None Include="Formatos\FormatoCaratulaAnexa2010Bajio.pdf" />
+    <None Include="Formatos\FormatoCaratulaAnexa2010Bajio.pfl" />
+    <None Include="Formatos\FormatoCaratulaAnexaLast.pdf" />
+    <None Include="Formatos\FormatoCaratulaAnexaLast.pfl" />
+    <None Include="Formatos\FormatoCartaCompromiso.pdf" />
+    <None Include="Formatos\FormatoCartaCompromiso.pfl" />
+    <None Include="Formatos\FormatoContrato.pfl" />
+    <None Include="Formatos\FormatoHojaEvaluacion.pdf" />
+    <None Include="Formatos\FormatoHojaEvaluacion.pfl" />
+    <None Include="Formatos\FormatoHojaEvaluacion1.pdf" />
+    <None Include="Formatos\FormatoHojaEvaluacion1.pfl" />
+    <None Include="Formatos\FormatoHojaEvaluacion2.pdf" />
+    <None Include="Formatos\FormatoHojaEvaluacion2.pfl" />
+    <None Include="Formatos\FormatoHojaEvaluacion3.pdf" />
+    <None Include="Formatos\FormatoHojaEvaluacion3.pfl" />
+    <None Include="Formatos\FormatoOrdendeCarga.pdf" />
+    <None Include="Formatos\FormatoOrdendeCarga.pfl" />
+    <None Include="Formatos\FormatoPagare.pdf" />
+    <None Include="Formatos\FormatoPagareBajio.pdf" />
+    <None Include="Formatos\FormatoPagareBajio.pfl" />
+    <None Include="Formatos\FormatoPagareBajioConTabla.pdf" />
+    <None Include="Formatos\FormatoPagareBajioConTabla.pfl" />
+    <None Include="Formatos\FormatoPagareLast.pdf" />
+    <None Include="Formatos\FormatoPagareLast.pfl" />
+    <None Include="Formatos\FormatoSeguro.pdf" />
+    <None Include="Formatos\FormatoSeguro.pfl" />
+    <None Include="Formatos\FormatoSeguro.xlsx" />
+    <None Include="Formatos\FormatoSeguroFrente.pdf" />
+    <None Include="Formatos\FormatoSeguroFrente.pfl" />
+    <None Include="Formatos\FormatoSeguroReverso.pdf" />
+    <None Include="Formatos\FormatoSeguroReverso.pfl" />
+    <None Include="Formatos\FormatoSolicitud.pfl" />
+    <None Include="Formatos\FormatoContrato.pdf" />
+    <None Include="Formatos\FormatoSolicitud.pdf" />
+    <None Include="Formatos\FormatoSolicitud.xlsx" />
+    <None Include="Formatos\FormatoSolicitud2.pdf" />
+    <None Include="Formatos\FormatoSolicitud2010CONAUTORIZACION.pdf" />
+    <None Include="Formatos\FormatoSolicitud2010CONAUTORIZACION.pfl" />
+    <None Include="Formatos\FormatoSolicitud2010SOLO.pdf" />
+    <None Include="Formatos\FormatoSolicitud2010SOLO.pfl" />
+    <None Include="Formatos\FormatoSolicitudNuevo.pdf" />
+    <None Include="Formatos\FormatoSolicitudNuevo.pfl" />
+    <None Include="Formatos\FORMATOTABLAAMORTIZACION.pdf" />
+    <None Include="Formatos\FORMATOTABLAAMORTIZACION.xlsx" />
+    <None Include="Formatos\ORDEN_DE_COMPRA_FORMATO.pdf" />
+    <None Include="Formatos\ORDEN_DE_COMPRA_FORMATO.pfl" />
+    <None Include="Formatos\PARAMETRICA_MAIZ_AMECA_2010.xls" />
+    <None Include="Formatos\PARAMETRICA MAIZ_AMECA 2010.xlsm" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="scripts\database.rar" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\" />
+    <Folder Include="PopCalendar2008\CSS\Small_Images\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50622</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Garibay</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_ConfigurationName="Release" BuildVersion_BuildVersioningStyle="None.None.Increment.DeltaBaseDate" BuildVersion_StartDate="2010/1/5" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="False" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

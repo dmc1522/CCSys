@@ -1,0 +1,22 @@
+FTP.Cheliskis.con
+9021
+manuel / M4nu3l#1
+
+
+
+75.126.164.59
+
+   <add name="GaribayConnectionString" connectionString="Data Source=75.126.164.59;Initial Catalog=garibay_iprojal;Persist Security Info=True;User ID=iprojal;Password=hg4274yr;Max Pool Size=400;" providerName="System.Data.SqlClient"/>
+
+
+SITE
+
+user  melvin/M4nu3l#1
+
+
+http://cheliskis.com:9001/Default.aspx?pid=Login&ReturnUrl=%2f
+
+
+http://167.114.211.10:8880/login_up.php3?success_redirect_url=http%3A%2F%2F167.114.211.10%3A8880%2F
+
+  	 	
