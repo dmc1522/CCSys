@@ -47,7 +47,7 @@ namespace LasMargaritas.Controllers
             return response;
         }
       
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [Route("")]
         public IHttpActionResult Get()
         {
@@ -55,7 +55,7 @@ namespace LasMargaritas.Controllers
             List<WeightTicket> tickets = weightTicketsBL.GetWeightTicket(); ;
             response.WeightTickets = tickets;
             response.Success = true;
-            return Ok(weightTicketsBL.GetWeightTicket());
+            return Ok(tickets);
         }
 
         #endregion

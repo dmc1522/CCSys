@@ -19,23 +19,25 @@ namespace LasMargaritas.WebAPI.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-
-            using (AuthRepository _repo = new AuthRepository())
+            IList<string> roles;
+            using (AuthRepository authRepository = new AuthRepository())
             {
-                IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
-
+                IdentityUser user = await authRepository.FindUser(context.UserName, context.Password);
                 if (user == null)
                 {
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
+                roles = await authRepository.UserRoles(user.Id);
             }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
+            foreach (string role in roles)
+            {
+                identity.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
             context.Validated(identity);
         }
     }

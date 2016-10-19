@@ -5,19 +5,20 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace LasMargaritas.DL.EF
 {
     public class AuthRepository : IDisposable
     {
-        private AuthContext _ctx;
+        private AuthContext context;
 
-        private UserManager<IdentityUser> _userManager;
+        private UserManager<IdentityUser> userManager;
 
         public AuthRepository()
         {
-            _ctx = new AuthContext();
-            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
+            context = new AuthContext();
+            userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
         }
 
         public async Task<IdentityResult> RegisterUser(User user)
@@ -27,22 +28,29 @@ namespace LasMargaritas.DL.EF
                 UserName = user.UserName
             };
 
-            var result = await _userManager.CreateAsync(identityUser, user.Password);
-
+            var result = await userManager.CreateAsync(identityUser, user.Password);
+            identityUser = await userManager.FindAsync(user.UserName, user.Password);
+            userManager.AddToRole(identityUser.Id, "Admin");
+            //TODO: change this once we have role assignment
             return result;
         }
 
         public async Task<IdentityUser> FindUser(string userName, string password)
         {
-            IdentityUser user = await _userManager.FindAsync(userName, password);
+            IdentityUser user = await userManager.FindAsync(userName, password);
 
             return user;
         }
+        public async Task<IList<string>> UserRoles(string userId)
+        {
+            IList<string> roles = await userManager.GetRolesAsync(userId);
 
+            return roles;
+        }
         public void Dispose()
         {
-            _ctx.Dispose();
-            _userManager.Dispose();
+            context.Dispose();
+            userManager.Dispose();
 
         }
     }
