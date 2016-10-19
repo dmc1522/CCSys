@@ -1191,6 +1191,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClassCreator.sql" />
     <Content Include="Documentation\Azure.txt" />
     <Content Include="Documentation\DB.txt" />
     <Content Include="OldSystem\Garibay\BasculaDAL\BasculaDAL.csproj" />

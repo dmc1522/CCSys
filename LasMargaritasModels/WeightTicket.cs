@@ -1,11 +1,84 @@
-﻿namespace LasMargaritas.Models
+﻿using System;
+
+namespace LasMargaritas.Models
 {
     public class WeightTicket
     {
         public int Id { get; set; }
+
         public string Number { get; set; }
-        public double EntranceWeightKg { get; set; }
-        public double ExitWeightKg { get; set; }
+
+        public float EntranceWeightKg { get; set; }
+
+        public float ExitWeightKg { get; set; }
+
         public int CicleId { get; set; }
+
+        public string UserId { get; set; }
+
+        public float Humidity { get; set; }
+
+        public float HumidityDiscount { get; set; }
+
+        public float Impurities { get; set; }
+
+        public float ImpuritiesDiscount { get; set; }
+
+        public float TotalDiscount { get; set; }
+
+        public float NetWeight { get; set; }
+
+        public decimal Price { get; set; }
+
+        public decimal Amount { get; set; }
+
+        public string Plate { get; set; }
+
+        public string Driver { get; set; }
+
+        public bool Paid { get; set; }
+
+        public DateTime? StoreTs { get; set; }
+
+        public DateTime UpdateTS { get; set; }
+
+        public int ProductId { get; set; }
+
+        public DateTime? EntranceDate { get; set; }
+
+        public string EntranceWeigher { get; set; }
+
+        public DateTime? ExitDate { get; set; }
+
+        public string ExitWeigher { get; set; }
+
+        public float EntranceNetWeight { get; set; }
+
+        public float ExitNetWeight { get; set; }
+
+        public float DryingDiscount { get; set; }
+
+        public float TotalToPay { get; set; }
+
+        public int WarehouseId { get; set; }
+
+        public bool ApplyHumidity { get; set; }
+
+        public bool ApplyImpurities { get; set; }
+
+        public bool ApplyDrying { get; set; }
+
+        public float SmallGrainDiscount { get; set; }
+
+        public float DamagedGrainDiscount { get; set; }
+
+        public float BrokenGrainDiscount { get; set; }
+
+        public float CrashedGrainDiscount { get; set; }
+
+        public string Folio { get; set; }
+
+        public int ProducerId { get; set; }
+
     }
 }
