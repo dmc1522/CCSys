@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataReaderMapper.cs" />
     <Compile Include="EF\AuthRepository.cs" />
     <Compile Include="EF\AuthContext.cs" />
     <Compile Include="WeightTicketDL.cs" />

@@ -1191,6 +1191,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CrudCreator.sql" />
     <Content Include="ClassCreator.sql" />
     <Content Include="Documentation\Azure.txt" />
     <Content Include="Documentation\DB.txt" />

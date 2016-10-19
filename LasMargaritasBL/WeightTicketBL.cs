@@ -21,10 +21,10 @@ namespace LasMargaritas.BL
             return weightTicketsDL.InsertWeightTicket(weightTicket);
         }
 
-        public List<WeightTicket> GetWeightTicket()
+        public List<WeightTicket> GetWeightTicket(int? id = null)
         {
             //Add validations here!
-            return weightTicketsDL.GetWeightTicket();
+            return weightTicketsDL.GetWeightTicket(id);
         }
 
     }
