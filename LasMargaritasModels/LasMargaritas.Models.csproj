@@ -86,11 +86,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetWeightTicketResponse.cs" />
+    <Compile Include="IdModel.cs" />
+    <Compile Include="Token.cs" />
     <Compile Include="WeightTicketException.cs" />
     <Compile Include="WeightTicketError.cs" />
     <Compile Include="WeightTicket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="WeightTicketResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

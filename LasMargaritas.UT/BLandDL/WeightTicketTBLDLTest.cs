@@ -8,10 +8,10 @@ using System.Linq;
 namespace LasMargaritas.ULT
 {
     [TestClass]
-    public class WeightTicketTest
+    public class WeightTicketBLDLTest
     {
         private string connectionString;
-        public WeightTicketTest()
+        public WeightTicketBLDLTest()
         {
             connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDB;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             if (ConfigurationManager.ConnectionStrings["LasMargaritasDb"] != null)
@@ -80,7 +80,7 @@ namespace LasMargaritas.ULT
             weightTicket = weightTicketBL.UpdateWeightTicket(weightTicket);
             savedTickets = weightTicketBL.GetWeightTicket(weightTicket.Id);
             Assert.IsTrue(savedTickets != null && savedTickets.Count() == 1);
-            savedTicket = savedTickets[0];
+            savedTicket = savedTickets[0];            
             Assert.IsTrue(savedTicket.Amount == 20);
             Assert.IsTrue(!savedTicket.ApplyDrying);
             //Test delete

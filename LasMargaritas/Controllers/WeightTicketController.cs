@@ -28,37 +28,142 @@ namespace LasMargaritas.Controllers
 
         #region Post Methods
         [HttpPost]
-        public AddWeightTicketResponse AddWeightTicket(WeightTicket weightTicket)
+        [Route("Add")]
+        [Authorize(Roles = "Admin")]
+        public IHttpActionResult Add(WeightTicket weightTicket)
         {
-            AddWeightTicketResponse response = new AddWeightTicketResponse();
+            WeightTicketResponse response = new WeightTicketResponse();
             try
             {
-                WeightTicket WeightTicketSaved =  weightTicketsBL.InsertWeightTicket(weightTicket);
-                response.WeightTicket = WeightTicketSaved;
-                response.Success = true;
-                response.Message = "WeightTicket agregada exitosamente";
+                WeightTicket weightTicketSaved =  weightTicketsBL.InsertWeightTicket(weightTicket);
+                response.WeightTicket = weightTicketSaved;
+                response.Success = true;                
             }
-            catch(Exception ex)
+            catch (WeightTicketException ex)
             {
-                response.Message = "Error. " + ex.Message;
+                response.ErrorCode = ex.Error;
+                response.ErrorMessage = "Error. " + ex.Error.ToString();
                 response.WeightTicket = null;
                 response.Success = false;
             }
-            return response;
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.WeightTicket = null;
+                response.Success = false;
+            }
+            return Ok(response);
         }
-      
+
+        [HttpPost]
+        [Route("Update")]
         [Authorize(Roles = "Admin")]
-        [Route("")]
-        public IHttpActionResult Get()
+        public IHttpActionResult Update(WeightTicket weightTicket)
         {
-            GetWeightTicketResponse response = new GetWeightTicketResponse();
-            List<WeightTicket> tickets = weightTicketsBL.GetWeightTicket(); ;
-            response.WeightTickets = tickets;
-            response.Success = true;
-            return Ok(tickets);
+            WeightTicketResponse response = new WeightTicketResponse();
+            try
+            {
+                WeightTicket weightTicketSaved = weightTicketsBL.UpdateWeightTicket(weightTicket);
+                response.WeightTicket = weightTicketSaved;
+                response.Success = true;                
+            }
+            catch (WeightTicketException ex)
+            {
+                response.ErrorCode = ex.Error;
+                response.ErrorMessage = "Error. " + ex.Error.ToString();
+                response.WeightTicket = null;
+                response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.WeightTicket = null;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("Delete")]
+        [Authorize(Roles = "Admin")]
+        public IHttpActionResult Delete(IdModel id)
+        {
+            WeightTicketResponse response = new WeightTicketResponse();
+            try
+            {
+                bool success = weightTicketsBL.DeleteWeightTicket(id.Id);                
+                response.Success = success;                
+            }
+            catch (WeightTicketException ex)
+            {
+                response.ErrorCode = ex.Error;
+                response.ErrorMessage = "Error. " + ex.Error.ToString();
+                response.WeightTicket = null;
+                response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.WeightTicket = null;
+                response.Success = false;
+            }
+            return Ok(response);
         }
 
         #endregion
 
+        #region Get Methods
+        [Authorize(Roles = "Admin")]
+        [Route("GetAll")]
+        [HttpGet]
+        public IHttpActionResult GetAll()
+        {
+            GetWeightTicketResponse response = new GetWeightTicketResponse();
+            try
+            {
+                List<WeightTicket> tickets = weightTicketsBL.GetWeightTicket();
+                response.WeightTickets = tickets;
+                response.Success = true;
+            }
+            catch (WeightTicketException ex)
+            {
+                response.ErrorCode = ex.Error;
+                response.ErrorMessage = "Error. " + ex.Error.ToString();                
+                response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;               
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [Route("GetById")]
+        [HttpGet]
+        public IHttpActionResult GetById(int id)
+        {
+            GetWeightTicketResponse response = new GetWeightTicketResponse();
+            try
+            {
+                List<WeightTicket> tickets = weightTicketsBL.GetWeightTicket(id);
+                response.WeightTickets = tickets;
+                response.Success = true;
+            }
+            catch (WeightTicketException ex)
+            {
+                response.ErrorCode = ex.Error;
+                response.ErrorMessage = "Error. " + ex.Error.ToString();
+                response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+        #endregion
     }
 }

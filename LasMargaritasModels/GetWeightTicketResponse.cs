@@ -8,7 +8,8 @@ namespace LasMargaritas.Models
         {
             WeightTickets = new List<WeightTicket>();
         }
-        public string Message { get; set; }
+        public WeightTicketError ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
         public bool Success { get; set; }
         public List<WeightTicket> WeightTickets { get; set; }
     }

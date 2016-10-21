@@ -9,9 +9,9 @@ using System.Configuration;
 namespace LasMargaritas.ULT
 {
     [TestClass]
-    public class TestAuthRepository
+    public class AuthRepositoryTest
     {
-        public TestAuthRepository()
+        public AuthRepositoryTest()
         {
         }
         [TestMethod]

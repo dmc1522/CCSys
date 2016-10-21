@@ -1,8 +1,9 @@
 ﻿namespace LasMargaritas.Models
 {
-    public class AddWeightTicketResponse
+    public class WeightTicketResponse
     {
-        public string Message { get; set; }
+        public WeightTicketError ErrorCode { get; set; }
+        public string ErrorMessage { get; set; }
         public bool Success { get; set; }
         public WeightTicket WeightTicket { get; set; }
     }
