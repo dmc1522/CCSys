@@ -14,12 +14,20 @@ namespace LasMargaritas.DL
         {
             ConnectionString = connectionString;
             excludedPropertiesInInsert = new List<string>();
+            excludedPropertiesInUpdate = new List<string>();
+            //excluding these while inserting
             excludedPropertiesInInsert.Add("Id");
             excludedPropertiesInInsert.Add("StoreTs");
             excludedPropertiesInInsert.Add("UpdateTs");
+            //exluding these while updating
+            excludedPropertiesInUpdate.Add("StoreTs");
+            excludedPropertiesInUpdate.Add("UpdateTs");
+
         }
 
         private List<string> excludedPropertiesInInsert;
+
+        private List<string> excludedPropertiesInUpdate;
 
         public WeightTicket InsertWeightTicket(WeightTicket weightTicket)
         {
@@ -33,6 +41,29 @@ namespace LasMargaritas.DL
                     command.CommandType = CommandType.StoredProcedure;
                     foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())
                     {                     
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
+                    }
+                    connection.Open();
+                    object weightTicketId = command.ExecuteScalar();
+                    weightTicket.Id = int.Parse(weightTicketId.ToString());
+                    connection.Close();
+                }
+                return weightTicket;
+            }
+        }
+
+        public WeightTicket UpdateWeightTicket(WeightTicket weightTicket)
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spUpsertWeightTicket";
+                    command.CommandType = CommandType.StoredProcedure;
+                    foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInUpdate.Contains(x.Name) select x).ToArray())
+                    {
                         command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
                     }
                     connection.Open();
@@ -63,6 +94,26 @@ namespace LasMargaritas.DL
                     connection.Close();
                 }
                 return tickets;
+            }
+        }
+
+        public bool DeleteWeightTicket(int id)
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spDeleteWeightTicket";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                    connection.Open();
+                    object rowsAffected = command.ExecuteScalar();
+                    connection.Close();
+                    return (int.Parse(rowsAffected.ToString()) == 1);                 
+                }
+              
             }
         }
     }

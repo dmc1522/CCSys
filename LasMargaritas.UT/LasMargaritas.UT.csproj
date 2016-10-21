@@ -98,7 +98,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="TestAuthRepository.cs" />
-    <Compile Include="TestWeightTicket.cs" />
+    <Compile Include="WeightTicketTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

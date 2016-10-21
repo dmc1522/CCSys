@@ -18,7 +18,7 @@ Things you should know:
     @ViewName.
 
 The Upsert Procedure:
-    If ID (Primary Key) is supplied it will perform an Update. Otherwise it 
+    If ID (Primary Key) is supplied it will perform an Update. Otherwise it
     will perform an Insert. This generator is hard-coded to avoid inserting
     or updating these particular fields:
                                         Created
