@@ -106,7 +106,8 @@
   <ItemGroup>
     <Compile Include="API\WeightTicketApiTest.cs" />
     <Compile Include="BLandDL\AuthRepositoryTest.cs" />
-    <Compile Include="BLandDL\WeightTicketTBLDLTest.cs" />
+    <Compile Include="BLandDL\WeightTicketBLDLTest.cs" />
+    <Compile Include="Helpers\WeightTicketHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
