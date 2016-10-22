@@ -8,7 +8,7 @@
         Title="MainWindow" Height="1080" Width="1920">
     <Grid>
 
-        <StackPanel Loaded="MainPage_Loaded" Name="MainPage" Orientation="Horizontal" Background="Black" Visibility="Collapsed">
+        <StackPanel Loaded="MainPage_Loaded" Name="MainView" Orientation="Horizontal" Background="Black" Visibility="Collapsed">
             <Border Name="ProductsBorder" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="143 260  71 0" VerticalAlignment="Top" MouseLeftButtonDown="ProductsBorder_MouseLeftButtonDown" >
                 <StackPanel Orientation="Vertical">
                     <Image Name="ProductsImage" Source="Images\menu-products.png" Width="450" Height="450" VerticalAlignment="Top">
@@ -39,12 +39,12 @@
                 </StackPanel>
             </Border>
         </StackPanel>
-        <StackPanel Name="WeightTicketsMain" Visibility="Visible" Background="Black" Orientation="Vertical">
+        <StackPanel Name="WeightTicketsMainView" Visibility="Collapsed" Background="Black" Orientation="Vertical">
             <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="80">
                                     Boletas
             </TextBlock>
             <StackPanel Name="WeightTicketsCrudOptions" Visibility="Visible" Background="Black" Orientation="Horizontal">
-                <Border Name="WeightTicketsCreate" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="300 100 185 0" VerticalAlignment="Top">
+                <Border Name="WeightTicketsCreateBorder" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="300 100 185 0" VerticalAlignment="Top" MouseLeftButtonDown="WeightTicketsCreateBorder_MouseLeftButtonDown">
                     <StackPanel Orientation="Vertical">
                         <Image Name="CreateWeightTicketImage" Source="Images\menu-weighttickets-create.png" Width="450" Height="450" VerticalAlignment="Top">
                         </Image>
@@ -53,7 +53,7 @@
                         </TextBlock>
                     </StackPanel>
                 </Border>
-                <Border Name="WeightTicketsView" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="200 100  0 0" VerticalAlignment="Top">
+                <Border Name="WeightTicketsViewBorder" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="200 100  0 0" VerticalAlignment="Top">
                     <StackPanel Orientation="Vertical">
                         <Image Name="ViewWeightTicketImage" Source="Images\menu-weighttickets-view.png" Width="450" Height="450" VerticalAlignment="Top">
                         </Image>
@@ -62,13 +62,14 @@
                         </TextBlock>
                     </StackPanel>
                 </Border>
-            
+
             </StackPanel>
-            <Border Name="BorderWeightTicketsMainGoBack" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="0 50 0 0" VerticalAlignment="Top" HorizontalAlignment="Center" MouseLeftButtonDown="BorderWeightTicketsMainGoBack_MouseLeftButtonDown">
+
+            <Border Name="GoBackFromWeightTicketsMainBorder" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="0 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Center" MouseLeftButtonDown="GoBackFromWeightTicketsMainBorder_MouseLeftButtonDown">
                 <StackPanel Orientation="Vertical">
-                    <Image Name="GoBackImage" Source="Images\go-back-arrow.png" Width="100" Height="100" VerticalAlignment="Top">
+                    <Image Name="GoBackFromWeightTicketsMainImage" Source="Images\go-back-arrow.png" Width="100" Height="100" VerticalAlignment="Top">
                     </Image>
-                    <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="60">
+                    <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="40">
                                     Regresar
                     </TextBlock>
                 </StackPanel>
@@ -76,5 +77,54 @@
 
 
         </StackPanel>
+        <StackPanel Name="WeighTicketsCreateStep1View" Visibility="Visible" Background="Black" Orientation="Vertical" Margin="0,-23,0,23">
+            <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="80">
+                                    Datos del productor
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="20">
+                                        Pase el gaffete por el lector, teclee el ID o Nombre del productor y presione enter:
+                </TextBlock>
+                <TextBox Margin="20 10 10 0" FontSize="30" Name="TextBoxProducerId" Width="1000" KeyDown="TextBoxProducerId_KeyDown">
+
+                </TextBox>
+            </StackPanel>
+            <Grid Name="GridProducerData" Margin="10 30 0 10" Visibility="Hidden">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="20">Nombre:</TextBlock>
+                        <Label FontSize="30" Width="1700" Name="LabelProducerName" Foreground="LimeGreen" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="20">Apellido:</TextBlock>
+                        <Label FontSize="30" Width="1700" Name="LabelProducerLastName" Foreground="LimeGreen" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="20">Direccion:</TextBlock>
+                        <Label FontSize="30" Width="1700" Name="LabelProducerAddress" Foreground="LimeGreen" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="20">Ciudad:</TextBlock>
+                        <Label FontSize="30" Width="1700" Name="LabelProducerCity" Foreground="LimeGreen" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="20">Foto:</TextBlock>                        
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid>
+                <Border Name="GoBackFromWeightTicketCreateStep1Border" CornerRadius="6" BorderBrush="White" Margin="0 350 0 0" BorderThickness="2"  VerticalAlignment="Bottom" HorizontalAlignment="Center" MouseLeftButtonDown="GoBackFromWeightTicketCreateStep1Border_MouseLeftButtonDown">
+                    <StackPanel Orientation="Vertical">
+                        <Image Name="GoBackFromWeightTicketCreateStep1Image" Source="Images\go-back-arrow.png" Width="100" Height="100" VerticalAlignment="Bottom">
+                        </Image>
+                        <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="40">
+                                    Regresar
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+        </StackPanel>
+       
     </Grid>
 </Window>
