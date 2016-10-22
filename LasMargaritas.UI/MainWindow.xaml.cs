@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace LasMargaritas.UI
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void ProductsBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void WeightTicketsBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(() => 
+            {
+                SetView(View.WeighTicketsMain);
+            }));
+        }
+        private enum View
+        {
+            Main,
+            WeighTicketsMain
+        }
+        private void SetView(View view)
+        {
+            switch(view)
+            {
+                case View.Main:
+                    MainPage.Visibility = Visibility.Visible;
+                    WeightTicketsMain.Visibility = Visibility.Collapsed;
+                    break;
+                case View.WeighTicketsMain:
+                    MainPage.Visibility = Visibility.Collapsed;
+                    WeightTicketsMain.Visibility = Visibility.Visible;                   
+                    break;
+            }
+
+        }
+
+        private void BorderWeightTicketsMainGoBack_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                SetView(View.Main);
+            }));
+        }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                SetView(View.Main);
+            }));
+        }
+    }
+}

@@ -1,0 +1,80 @@
+﻿<Window x:Class="LasMargaritas.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LasMargaritas.UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="1080" Width="1920">
+    <Grid>
+
+        <StackPanel Loaded="MainPage_Loaded" Name="MainPage" Orientation="Horizontal" Background="Black" Visibility="Collapsed">
+            <Border Name="ProductsBorder" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="143 260  71 0" VerticalAlignment="Top" MouseLeftButtonDown="ProductsBorder_MouseLeftButtonDown" >
+                <StackPanel Orientation="Vertical">
+                    <Image Name="ProductsImage" Source="Images\menu-products.png" Width="450" Height="450" VerticalAlignment="Top">
+                    </Image>
+                    <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="40">
+                                    Productos
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Name="ProducersBorder" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="71 260  85 0" VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical">
+                    <Image Name="ProducerImage" Source="Images\menu-producers.png" Width="450" Height="450" VerticalAlignment="Top">
+                    </Image>
+                    <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="40">
+                                    Productores
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Name="WeightTicketsBorder" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="71 260  142 0" VerticalAlignment="Top" MouseLeftButtonDown="WeightTicketsBorder_MouseLeftButtonDown">
+                <StackPanel Orientation="Vertical">
+                    <Image Name="WeightTicketImage" Source="Images\menu-weighttickets.png" Width="450" Height="450" VerticalAlignment="Top">
+                    </Image>
+                    <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="40">
+                                            Boletas
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <StackPanel Name="WeightTicketsMain" Visibility="Visible" Background="Black" Orientation="Vertical">
+            <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="80">
+                                    Boletas
+            </TextBlock>
+            <StackPanel Name="WeightTicketsCrudOptions" Visibility="Visible" Background="Black" Orientation="Horizontal">
+                <Border Name="WeightTicketsCreate" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="300 100 185 0" VerticalAlignment="Top">
+                    <StackPanel Orientation="Vertical">
+                        <Image Name="CreateWeightTicketImage" Source="Images\menu-weighttickets-create.png" Width="450" Height="450" VerticalAlignment="Top">
+                        </Image>
+                        <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="60">
+                                    Agregar
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+                <Border Name="WeightTicketsView" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="200 100  0 0" VerticalAlignment="Top">
+                    <StackPanel Orientation="Vertical">
+                        <Image Name="ViewWeightTicketImage" Source="Images\menu-weighttickets-view.png" Width="450" Height="450" VerticalAlignment="Top">
+                        </Image>
+                        <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="60">
+                                    Ver lista
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+            
+            </StackPanel>
+            <Border Name="BorderWeightTicketsMainGoBack" CornerRadius="6" BorderBrush="White" BorderThickness="2" Margin="0 50 0 0" VerticalAlignment="Top" HorizontalAlignment="Center" MouseLeftButtonDown="BorderWeightTicketsMainGoBack_MouseLeftButtonDown">
+                <StackPanel Orientation="Vertical">
+                    <Image Name="GoBackImage" Source="Images\go-back-arrow.png" Width="100" Height="100" VerticalAlignment="Top">
+                    </Image>
+                    <TextBlock Margin="10" Foreground="White" HorizontalAlignment="Center" FontSize="60">
+                                    Regresar
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+
+        </StackPanel>
+    </Grid>
+</Window>
