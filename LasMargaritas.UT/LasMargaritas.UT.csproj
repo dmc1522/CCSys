@@ -104,6 +104,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="API\ProducerApiTest.cs" />
+    <Compile Include="API\ProductApiTest.cs" />
     <Compile Include="API\WeightTicketApiTest.cs" />
     <Compile Include="BLandDL\AuthRepositoryTest.cs" />
     <Compile Include="BLandDL\WeightTicketBLDLTest.cs" />

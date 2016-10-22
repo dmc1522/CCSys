@@ -11,6 +11,6 @@ namespace LasMargaritas.Models
         InvalidFolio = 4,
         InvalidProducer = 8,
         InvalidProduct = 16,
-        InvalidId = 16
+        InvalidId = 32
     }
 }

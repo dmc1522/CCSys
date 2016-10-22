@@ -61,6 +61,8 @@
     <Compile Include="DataReaderMapper.cs" />
     <Compile Include="EF\AuthRepository.cs" />
     <Compile Include="EF\AuthContext.cs" />
+    <Compile Include="ProducerDL.cs" />
+    <Compile Include="ProductDL.cs" />
     <Compile Include="WeightTicketDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

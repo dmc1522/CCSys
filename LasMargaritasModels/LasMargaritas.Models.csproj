@@ -86,8 +86,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddProductResponse.cs" />
+    <Compile Include="GetProducerResponse.cs" />
+    <Compile Include="GetProductResponse.cs" />
+    <Compile Include="ProductResponse.cs" />
     <Compile Include="GetWeightTicketResponse.cs" />
     <Compile Include="IdModel.cs" />
+    <Compile Include="Producer.cs" />
+    <Compile Include="ProducerError.cs" />
+    <Compile Include="ProducerException.cs" />
+    <Compile Include="ProducerResponse.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="ProductError.cs" />
+    <Compile Include="ProductException.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="WeightTicketException.cs" />
     <Compile Include="WeightTicketError.cs" />
