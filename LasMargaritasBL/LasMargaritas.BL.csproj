@@ -85,6 +85,7 @@
     <Compile Include="BadgePrinterHelper.cs" />
     <Compile Include="TokenHelper.cs" />
     <Compile Include="UserBL.cs" />
+    <Compile Include="WareHouseBL.cs" />
     <Compile Include="WeightTicketBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

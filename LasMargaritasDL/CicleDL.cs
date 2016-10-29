@@ -5,31 +5,30 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
+using System.Threading.Tasks;
+
 namespace LasMargaritas.DL
 {
-    public class ProducerDL
+    public class CicleDL
     {
         public string ConnectionString { get; set; }
-        public ProducerDL(string connectionString)
+        public CicleDL(string connectionString)
         {
             ConnectionString = connectionString;
             excludedPropertiesInInsert = new List<string>();
             excludedPropertiesInUpdate = new List<string>();
-         
+
             //excluding these while inserting
             excludedPropertiesInInsert.Add("Id");
-            excludedPropertiesInInsert.Add("StoreTS");
-            excludedPropertiesInInsert.Add("UpdateTS");
+   
             //exluding these while updating
-            excludedPropertiesInUpdate.Add("StoreTS");
-            excludedPropertiesInUpdate.Add("UpdateTS");
         }
 
         private List<string> excludedPropertiesInInsert;
 
         private List<string> excludedPropertiesInUpdate;
 
-        public Producer InsertProducer(Producer producer)
+        public Cicle InsertCicle(Cicle cicle)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -37,22 +36,22 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spUpsertProducer";
+                    command.CommandText = "spUpsertCicle";
                     command.CommandType = CommandType.StoredProcedure;
-                    foreach (PropertyInfo prop in (from x in producer.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())
+                    foreach (PropertyInfo prop in (from x in cicle.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())
                     {
-                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(producer));
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(cicle));
                     }
                     connection.Open();
-                    object producerId = command.ExecuteScalar();
-                    producer.Id = int.Parse(producerId.ToString());
+                    object cicleId = command.ExecuteScalar();
+                    cicle.Id = int.Parse(cicleId.ToString());
                     connection.Close();
                 }
-                return producer;
+                return cicle;
             }
         }
 
-        public Producer UpdateProducer(Producer producer)
+        public Cicle UpdateCicle(Cicle cicle)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -60,36 +59,36 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spUpsertProducer";
+                    command.CommandText = "spUpsertCicle";
                     command.CommandType = CommandType.StoredProcedure;
-                    foreach (PropertyInfo prop in (from x in producer.GetType().GetProperties() where !excludedPropertiesInUpdate.Contains(x.Name) select x).ToArray())
+                    foreach (PropertyInfo prop in (from x in cicle.GetType().GetProperties() where !excludedPropertiesInUpdate.Contains(x.Name) select x).ToArray())
                     {
-                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(producer));
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(cicle));
                     }
                     connection.Open();
-                    object producerId = command.ExecuteScalar();
-                    producer.Id = int.Parse(producerId.ToString());
+                    object cicleId = command.ExecuteScalar();
+                    cicle.Id = int.Parse(cicleId.ToString());
                     connection.Close();
                 }
-                return producer;
+                return cicle;
             }
         }
 
-        public List<Producer> GetProducer(int? id = null)
+        public List<Cicle> GetCicle(int? id = null)
         {
-            List<Producer> producers = new List<Producer>();
+            List<Cicle> producers = new List<Cicle>();
             using (SqlCommand command = new SqlCommand())
             {
                 using (SqlConnection connection = new SqlConnection())
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spGetProducer";
+                    command.CommandText = "spGetCicle";
                     command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    producers = DataReaderMapper.Map<Producer>(reader);
+                    producers = DataReaderMapper.Map<Cicle>(reader);
                     reader.Close();
                     connection.Close();
                 }
@@ -97,7 +96,7 @@ namespace LasMargaritas.DL
             }
         }
 
-        public bool DeleteProducer(int id)
+        public bool DeleteCicle(int id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -105,7 +104,7 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spDeleteProducer";
+                    command.CommandText = "spDeleteCicle";
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
                     connection.Open();
@@ -116,6 +115,4 @@ namespace LasMargaritas.DL
             }
         }
     }
-
-  
 }
