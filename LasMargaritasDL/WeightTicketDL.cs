@@ -2,7 +2,8 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
-
+using System.Reflection;
+using System.Linq;
 namespace LasMargaritas.DL
 {
     public class WeightTicketsDL
@@ -12,7 +13,21 @@ namespace LasMargaritas.DL
         public WeightTicketsDL(string connectionString)
         {
             ConnectionString = connectionString;
+            excludedPropertiesInInsert = new List<string>();
+            excludedPropertiesInUpdate = new List<string>();
+            //excluding these while inserting
+            excludedPropertiesInInsert.Add("Id");
+            excludedPropertiesInInsert.Add("StoreTS");
+            excludedPropertiesInInsert.Add("UpdateTS");
+            //exluding these while updating
+            excludedPropertiesInUpdate.Add("StoreTS");
+            excludedPropertiesInUpdate.Add("UpdateTS");
+
         }
+
+        private List<string> excludedPropertiesInInsert;
+
+        private List<string> excludedPropertiesInUpdate;
 
         public WeightTicket InsertWeightTicket(WeightTicket weightTicket)
         {
@@ -22,12 +37,12 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spInsertWeightTicket";
+                    command.CommandText = "spUpsertWeightTicket";
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add("@Number", SqlDbType.VarChar).Value = weightTicket.Number;
-                    command.Parameters.Add("@EntranceWeightKg", SqlDbType.Float).Value = weightTicket.EntranceWeightKg;
-                    command.Parameters.Add("@ExitWeightKg", SqlDbType.Float).Value = weightTicket.ExitWeightKg;
-                    command.Parameters.Add("@CicleId", SqlDbType.Int).Value = weightTicket.CicleId;
+                    foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())
+                    {                     
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
+                    }
                     connection.Open();
                     object weightTicketId = command.ExecuteScalar();
                     weightTicket.Id = int.Parse(weightTicketId.ToString());
@@ -37,7 +52,30 @@ namespace LasMargaritas.DL
             }
         }
 
-        public List<WeightTicket> GetWeightTicket()
+        public WeightTicket UpdateWeightTicket(WeightTicket weightTicket)
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spUpsertWeightTicket";
+                    command.CommandType = CommandType.StoredProcedure;
+                    foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInUpdate.Contains(x.Name) select x).ToArray())
+                    {
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
+                    }
+                    connection.Open();
+                    object weightTicketId = command.ExecuteScalar();
+                    weightTicket.Id = int.Parse(weightTicketId.ToString());
+                    connection.Close();
+                }
+                return weightTicket;
+            }
+        }
+
+        public List<WeightTicket> GetWeightTicket(int? id = null)
         {
             List<WeightTicket> tickets = new List<WeightTicket>();
             using (SqlCommand command = new SqlCommand())
@@ -47,24 +85,35 @@ namespace LasMargaritas.DL
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
                     command.CommandText = "spGetWeightTicket";
-                    //TODO ADD FILTERS
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    while(reader.Read())
-                    {
-                        WeightTicket ticket = new WeightTicket();
-                        ticket.Id = int.Parse(reader["Id"].ToString());
-                        ticket.CicleId = int.Parse(reader["CicleId"].ToString());
-                        ticket.EntranceWeightKg = float.Parse(reader["EntranceWeightKg"].ToString());
-                        ticket.ExitWeightKg = float.Parse(reader["ExitWeightKg"].ToString());
-                        ticket.Number = reader["Number"].ToString();
-                        tickets.Add(ticket);                
-                    }
+                    tickets = DataReaderMapper.Map<WeightTicket>(reader);   
                     reader.Close();
                     connection.Close();
                 }
                 return tickets;
+            }
+        }
+
+        public bool DeleteWeightTicket(int id)
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spDeleteWeightTicket";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                    connection.Open();
+                    object rowsAffected = command.ExecuteScalar();
+                    connection.Close();
+                    return (int.Parse(rowsAffected.ToString()) == 1);                 
+                }
+              
             }
         }
     }
