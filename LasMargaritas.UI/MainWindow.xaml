@@ -6,206 +6,216 @@
         xmlns:local="clr-namespace:LasMargaritas.UI"
         xmlns:controls="clr-namespace:LasMargaritas.UI.UserControls"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
+       
         Style="{StaticResource MainWindow}"
-        Title="Las Margaritas" Width="1000" Height="500" >
+        Title="Las Margaritas" Width="1920" Height="1080" >
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="800" />
-        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Button Height="20" Width="150" x:Name="buttonViewWeightTickets" Click="buttonViewWeightTickets_Click">Ver boletas</Button>
+                <Button Height="20" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click">Ver Productores</Button>
+            </StackPanel>
+            <controls:ProducerList x:Name="producerList" Visibility="Visible">
 
-        <Grid Style="{StaticResource TicketsListGrid}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="35" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="25" />
-                <RowDefinition Height="175" />
-            </Grid.RowDefinitions>
-            <Label  Grid.Row="0" Content="Buscar Boletas:"  Style="{StaticResource Title1}" />
-            <TextBox Grid.Row="1" x:Name="txbSearhcTicket" Text="" Style="{StaticResource TextBox1}" />
-            <Grid Grid.Row="2">
+            </controls:ProducerList>
+            <Grid x:Name="GridWeightTickets" Visibility="Hidden">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
-                    <ColumnDefinition Width="100" />
-                </Grid.ColumnDefinitions>
-                <CheckBox  Grid.Column ="0" x:Name="cbPending" Content="Pendientes" Style="{StaticResource CheckBox1}"/>
-                <Button  Grid.Column ="1"  x:Name="btnSearchingTicket" Content="Buscar" Style="{StaticResource RectangleButton1}" Click="btnSearchingTicket_Click" />
-            </Grid>
-            <Button   Grid.Row="3"  x:Name="btnNewTicket" Content="Nueva Boleta" Style="{StaticResource RectangleButton1}" Margin="10,0" Width="Auto" />
-            <ListBox  Grid.Row="4" x:Name="lbTickets" Style="{StaticResource ListBox1}" Margin="5,5,5,-172"/>
-        </Grid>
-        <Grid  Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="380" />
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0" HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="800" />
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="0" x:Name="gFolio" >
+                <Grid Style="{StaticResource TicketsListGrid}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="35" />
                         <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="175" />
                     </Grid.RowDefinitions>
-                    <Button Grid.Row="0"  x:Name="btnStart" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10" Content="#Folio"/>
-                    <Label Grid.Row="1"  Content="Nueva Boleta" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Label  Grid.Row="0" Content="Buscar Boletas:"  Style="{StaticResource Title1}" />
+                    <TextBox Grid.Row="1" x:Name="txbSearhcTicket" Text="" Style="{StaticResource TextBox1}" />
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox  Grid.Column ="0" x:Name="cbPending" Content="Pendientes" Style="{StaticResource CheckBox1}"/>
+                        <Button  Grid.Column ="1"  x:Name="btnSearchingTicket" Content="Buscar" Style="{StaticResource RectangleButton1}" Click="btnSearchingTicket_Click" />
+                    </Grid>
+                    <Button   Grid.Row="3"  x:Name="btnNewTicket" Content="Nueva Boleta" Style="{StaticResource RectangleButton1}" Margin="10,0" Width="Auto" />
+                    <ListBox  Grid.Row="4" x:Name="lbTickets" Style="{StaticResource ListBox1}" Margin="5,5,5,-172"/>
                 </Grid>
-
-                <Grid Grid.Column="1" x:Name="gCicle" >
+                <Grid  Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="380" />
                     </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" x:Name="btnCicle" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/calendar.png" Height="25" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1" Content="Ciclo" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Grid Grid.Row="0" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                            <ColumnDefinition Width="70*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" x:Name="gFolio" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0"  x:Name="btnStart" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10" Content="#Folio"/>
+                            <Label Grid.Row="1"  Content="Nueva Boleta" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="1" x:Name="gCicle" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" x:Name="btnCicle" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/calendar.png" Height="25" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1" Content="Ciclo" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="2"  x:Name="gIdentify">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" x:Name="btnIdentify" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/loadingProducer.png" Height="30" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1"  Content="Identificar" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="3" x:Name="gTransport">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" x:Name="btnTransport" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/truck.png" Height="30" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1" Content="Transporte" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="4"  x:Name="gWarehouse">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" x:Name="btnWarehouse" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/shop.png" Height="30" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1" Content="Almacen" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="5" x:Name="gCattle">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" x:Name="btnCattle" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/cow.png" Height="30" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1" Content="Ganado" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="6"  x:Name="gWeighing1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" x:Name="btnWeighing1" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/weighingProduct.png" Height="30" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1" Content="P. Entrada" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="7" x:Name="gTest">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" x:Name="btnTest" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/Lab.png" Height="30" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1" Grid.Column="6"  Content="Muestras" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="8" x:Name="gWeighing2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" Grid.Column="7" x:Name="btnWeighing2" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/weighingProduct.png" Height="30" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1" Grid.Column="7"  Content="P. Salida" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Column="9" x:Name="gInfo">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="70" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            <Button  Grid.Row="0" Grid.Column="8" x:Name="btnInfo" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+                                <Image Source="/Resources/Img/ticket.png" Height="30" Width="30"/>
+                            </Button >
+                            <Label Grid.Row="1" Grid.Column="8"  Content="Resumen" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="70" />
+                        </Grid.ColumnDefinitions>
+
+
+
+                        <Grid Width="200" Height="200" >
+                            <Label  Content="Folio:" Style="{StaticResource Text2}" />
+                            <TextBox x:Name="txtFolio" Text="" Style="{StaticResource TextBox1}" />
+                        </Grid>
+
+                        <Grid Width="200" Height="200" >
+                            <Label  Content="Ciclo" Style="{StaticResource Text2}" />
+                            <ComboBox x:Name="cbCyclo" />
+                        </Grid>
+
+
+
+
+                        <Grid></Grid>
+
+                    </Grid>
                 </Grid>
 
-                <Grid Grid.Column="2"  x:Name="gIdentify">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" x:Name="btnIdentify" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/loadingProducer.png" Height="30" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1"  Content="Identificar" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-
-                <Grid Grid.Column="3" x:Name="gTransport">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" x:Name="btnTransport" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/truck.png" Height="30" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1" Content="Transporte" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-
-                <Grid Grid.Column="4"  x:Name="gWarehouse">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" x:Name="btnWarehouse" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/shop.png" Height="30" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1" Content="Almacen" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-
-                <Grid Grid.Column="5" x:Name="gCattle">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" x:Name="btnCattle" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/cow.png" Height="30" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1" Content="Ganado" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-
-                <Grid Grid.Column="6"  x:Name="gWeighing1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" x:Name="btnWeighing1" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/weighingProduct.png" Height="30" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1" Content="P. Entrada" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-
-                <Grid Grid.Column="7" x:Name="gTest">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" x:Name="btnTest" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/Lab.png" Height="30" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1" Grid.Column="6"  Content="Muestras" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-
-                <Grid Grid.Column="8" x:Name="gWeighing2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" Grid.Column="7" x:Name="btnWeighing2" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/weighingProduct.png" Height="30" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1" Grid.Column="7"  Content="P. Salida" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-
-                <Grid Grid.Column="9" x:Name="gInfo">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Button  Grid.Row="0" Grid.Column="8" x:Name="btnInfo" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
-                        <Image Source="/Resources/Img/ticket.png" Height="30" Width="30"/>
-                    </Button >
-                    <Label Grid.Row="1" Grid.Column="8"  Content="Resumen" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                    <ColumnDefinition Width="70" />
-                </Grid.ColumnDefinitions>
-                
-                
-                
-                <Grid Width="200" Height="200" >
-                    <Label  Content="Folio:" Style="{StaticResource Text2}" />
-                    <TextBox x:Name="txtFolio" Text="" Style="{StaticResource TextBox1}" />
-                </Grid>
-
-                <Grid Width="200" Height="200" >
-                    <Label  Content="Ciclo" Style="{StaticResource Text2}" />
-                    <ComboBox x:Name="cbCyclo" />
-                </Grid>
 
 
 
-
-                <Grid></Grid>
-                
-            </Grid>
-        </Grid>
-        
-
-        
-
-        <!--<Grid.RowDefinitions>
+                <!--<Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="900" />
             <RowDefinition Height="100" />
@@ -232,6 +242,9 @@
         </Grid>
 
         <Grid Style="{StaticResource Footer}" Height="100" Width="1920" Grid.Row="2"></Grid>-->
+            </Grid>
+        </StackPanel>
     </Grid>
+        
 
 </Window>

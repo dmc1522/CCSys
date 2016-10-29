@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Web.Http;
 using LasMargaritas.Models;
-using LasMargaritas.BL;
-using System.Configuration;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using LasMargaritas.DL.EF;
-using System.Net;
 
 namespace LasMargaritas.Controllers
 {

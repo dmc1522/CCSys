@@ -1,7 +1,6 @@
 ﻿using LasMargaritas.BL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
-using System.IO;
 
 namespace LasMargaritas.UT
 {

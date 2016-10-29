@@ -1,6 +1,4 @@
 ﻿using LasMargaritas.Models;
-using System.Data.SqlClient;
-using System.Data;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using Microsoft.AspNet.Identity;

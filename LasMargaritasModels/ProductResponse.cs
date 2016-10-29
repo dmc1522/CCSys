@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-
-
-namespace LasMargaritas.Models
+﻿namespace LasMargaritas.Models
 {
     public class ProductResponse
     {

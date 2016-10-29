@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LasMargaritas.Models
+﻿namespace LasMargaritas.Models
 {
     public class IdModel
     {

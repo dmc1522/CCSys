@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 
-using System.Threading.Tasks;
-
 namespace LasMargaritas.DL
 {
     public class CicleDL

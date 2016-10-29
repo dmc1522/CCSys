@@ -1,10 +1,7 @@
-﻿using LasMargaritas.BL;
-using LasMargaritas.DL.EF;
+﻿using LasMargaritas.DL.EF;
 using LasMargaritas.Models;
-using Microsoft.AspNet.Identity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Configuration;
 
 namespace LasMargaritas.ULT
 {
