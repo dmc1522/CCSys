@@ -79,6 +79,7 @@ namespace LasMargaritas.UI
                     MainView.Visibility = Visibility.Collapsed;
                     WeightTicketsMainView.Visibility = Visibility.Collapsed;
                     WeighTicketsCreateStep1View.Visibility = Visibility.Visible;
+                    TextBoxProducerId.Focus();
                     break;
             }
 
@@ -128,22 +129,28 @@ namespace LasMargaritas.UI
             if (e.Key == Key.Enter)
             {                
                 Token token = TokenHelper.GetToken(baseUrl, "Melvin3", "MelvinPass3");
-                string getByIdUrl = string.Format("{0}?id={1}", getByIdAction, TextBoxProducerId.Text);
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.access_token);
-                HttpResponseMessage response = client.GetAsync(getByIdUrl).Result;
-                if (response.IsSuccessStatusCode)
-                {                 
-                    GetProducerResponse getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>().Result;
-                    if (getProducerResponse.Producers.Count == 1)
-                    {
-                        GridProducerData.Visibility = Visibility.Visible;
-                        LabelProducerName.Content = getProducerResponse.Producers[0].Name;
-                        LabelProducerLastName.Content = getProducerResponse.Producers[0].LastName;
-                        LabelProducerAddress.Content = getProducerResponse.Producers[0].Address;
-                        LabelProducerCity.Content = getProducerResponse.Producers[0].City;
+                int id = -1;
+                if (int.TryParse(TextBoxProducerId.Text, out id))
+                {
+                    string getByIdUrl = string.Format("{0}?id={1}", getByIdAction, id.ToString());
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(baseUrl);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.access_token);
+                    HttpResponseMessage response = client.GetAsync(getByIdUrl).Result;
+                    if (response.IsSuccessStatusCode)
+                    {                        
+                        GetProducerResponse getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>().Result;
+                        if (getProducerResponse.Producers.Count == 1)
+                        {
+                            TextBoxProducerId.Text = "";
+
+                            GridProducerData.Visibility = Visibility.Visible;
+                            LabelProducerName.Content = getProducerResponse.Producers[0].Name;
+                            LabelProducerLastName.Content = getProducerResponse.Producers[0].LastName;
+                            LabelProducerAddress.Content = getProducerResponse.Producers[0].Address;
+                            LabelProducerCity.Content = getProducerResponse.Producers[0].City;
+                        }
                     }
                 }
             }
@@ -151,6 +158,11 @@ namespace LasMargaritas.UI
             {
                 GridProducerData.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void ProducersBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
