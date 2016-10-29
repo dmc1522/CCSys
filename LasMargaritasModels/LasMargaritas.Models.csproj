@@ -87,8 +87,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddProductResponse.cs" />
+    <Compile Include="Cicle.cs" />
+    <Compile Include="CicleError.cs" />
+    <Compile Include="CicleException.cs" />
+    <Compile Include="CicleResponse.cs" />
+    <Compile Include="GetCicleResponse.cs" />
     <Compile Include="GetProducerResponse.cs" />
     <Compile Include="GetProductResponse.cs" />
+    <Compile Include="GetWareHouseResponse.cs" />
     <Compile Include="ProductResponse.cs" />
     <Compile Include="GetWeightTicketResponse.cs" />
     <Compile Include="IdModel.cs" />
@@ -100,6 +106,10 @@
     <Compile Include="ProductError.cs" />
     <Compile Include="ProductException.cs" />
     <Compile Include="Token.cs" />
+    <Compile Include="WareHouse.cs" />
+    <Compile Include="WareHouseError.cs" />
+    <Compile Include="WareHouseException.cs" />
+    <Compile Include="WareHouseResponse.cs" />
     <Compile Include="WeightTicketException.cs" />
     <Compile Include="WeightTicketError.cs" />
     <Compile Include="WeightTicket.cs" />

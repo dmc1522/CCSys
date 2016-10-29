@@ -7,29 +7,24 @@ using System.Linq;
 
 namespace LasMargaritas.DL
 {
-    public class ProducerDL
+    public class WareHouseDL
     {
         public string ConnectionString { get; set; }
-        public ProducerDL(string connectionString)
+        public WareHouseDL(string connectionString)
         {
             ConnectionString = connectionString;
             excludedPropertiesInInsert = new List<string>();
             excludedPropertiesInUpdate = new List<string>();
-         
+
             //excluding these while inserting
             excludedPropertiesInInsert.Add("Id");
-            excludedPropertiesInInsert.Add("StoreTS");
-            excludedPropertiesInInsert.Add("UpdateTS");
-            //exluding these while updating
-            excludedPropertiesInUpdate.Add("StoreTS");
-            excludedPropertiesInUpdate.Add("UpdateTS");
         }
 
         private List<string> excludedPropertiesInInsert;
 
         private List<string> excludedPropertiesInUpdate;
 
-        public Producer InsertProducer(Producer producer)
+        public WareHouse InsertWareHouse(WareHouse wareHouse)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -37,22 +32,22 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spUpsertProducer";
+                    command.CommandText = "spUpsertWareHouse";
                     command.CommandType = CommandType.StoredProcedure;
-                    foreach (PropertyInfo prop in (from x in producer.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())
+                    foreach (PropertyInfo prop in (from x in wareHouse.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())
                     {
-                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(producer));
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(wareHouse));
                     }
                     connection.Open();
-                    object producerId = command.ExecuteScalar();
-                    producer.Id = int.Parse(producerId.ToString());
+                    object wareHouseId = command.ExecuteScalar();
+                    wareHouse.Id = int.Parse(wareHouseId.ToString());
                     connection.Close();
                 }
-                return producer;
+                return wareHouse;
             }
         }
 
-        public Producer UpdateProducer(Producer producer)
+        public WareHouse UpdateWareHouse(WareHouse wareHouse)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -60,44 +55,44 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spUpsertProducer";
+                    command.CommandText = "spUpsertWareHouse";
                     command.CommandType = CommandType.StoredProcedure;
-                    foreach (PropertyInfo prop in (from x in producer.GetType().GetProperties() where !excludedPropertiesInUpdate.Contains(x.Name) select x).ToArray())
+                    foreach (PropertyInfo prop in (from x in wareHouse.GetType().GetProperties() where !excludedPropertiesInUpdate.Contains(x.Name) select x).ToArray())
                     {
-                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(producer));
+                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(wareHouse));
                     }
                     connection.Open();
-                    object producerId = command.ExecuteScalar();
-                    producer.Id = int.Parse(producerId.ToString());
+                    object wareHouseId = command.ExecuteScalar();
+                    wareHouse.Id = int.Parse(wareHouseId.ToString());
                     connection.Close();
                 }
-                return producer;
+                return wareHouse;
             }
         }
 
-        public List<Producer> GetProducer(int? id = null)
+        public List<WareHouse> GetWareHouse(int? id = null)
         {
-            List<Producer> producers = new List<Producer>();
+            List<WareHouse> wareHouses = new List<WareHouse>();
             using (SqlCommand command = new SqlCommand())
             {
                 using (SqlConnection connection = new SqlConnection())
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spGetProducer";
+                    command.CommandText = "spWareHouse";
                     command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    producers = DataReaderMapper.Map<Producer>(reader);
+                    wareHouses = DataReaderMapper.Map<WareHouse>(reader);
                     reader.Close();
                     connection.Close();
                 }
-                return producers;
+                return wareHouses;
             }
         }
 
-        public bool DeleteProducer(int id)
+        public bool DeleteWareHouse(int id)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -105,7 +100,7 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spDeleteProducer";
+                    command.CommandText = "spDeleteWareHouse";
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
                     connection.Open();
@@ -116,6 +111,4 @@ namespace LasMargaritas.DL
             }
         }
     }
-
-  
 }

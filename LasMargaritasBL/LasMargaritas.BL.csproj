@@ -74,10 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CicleBL.cs" />
     <Compile Include="ProducerBL.cs" />
     <Compile Include="ProductBL.cs" />
     <Compile Include="TokenHelper.cs" />
     <Compile Include="UserBL.cs" />
+    <Compile Include="WareHouseBL.cs" />
     <Compile Include="WeightTicketBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
