@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="LasMargaritas.UI.UserControls.MainMenue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LasMargaritas.UI.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="360" d:DesignWidth="450">
+    <Grid Height="360" Width="450">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="150" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="150"  />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+        <Button  Grid.Column="0" Grid.Row="0" x:Name="btnProducers" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+            <Image  Source="/Resources/Img/user.png" Height="70" Width="65"/>
+        </Button >
+
+        <Label Grid.Column="0" Grid.Row="1"  Content="Productores" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Button  Grid.Column="1" Grid.Row="0" x:Name="btnCycles" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+            <Image Source="/Resources/Img/calendar.png" Height="70" Width="65"/>
+        </Button >
+
+        <Label Grid.Column="1" Grid.Row="1"  Content="Ciclos" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Button  Grid.Column="2" Grid.Row="0" x:Name="btnProducts" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+            <Image Source="/Resources/Img/shop.png" Height="70" Width="65"/>
+        </Button >
+
+        <Label Grid.Column="2" Grid.Row="1"  Content="Productos" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Button  Grid.Column="0" Grid.Row="2" x:Name="btnTikets" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+            <Image   Grid.RowSpan="3" Source="/Resources/Img/tickets.png" Height="70" Width="65"/>
+        </Button >
+
+        <Label Grid.Column="0" Grid.Row="3"  Content="Boletas" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Button  Grid.Column="1"  Grid.Row="2" x:Name="btnNewTicket" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+            <Image  Source="/Resources/Img/truck.png" Height="70" Width="65"/>
+        </Button >
+
+        <Label Grid.Column="1" Grid.Row="3" Content="Nueva Boleta" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        <Button  Grid.Column="2"  Grid.Row="2" x:Name="btnReLogin" Style="{StaticResource CircleButton}"  Height="Auto" Width="Auto" Margin="10">
+            <Image  Source="/Resources/Img/loging.png" Height="70" Width="65"/>
+        </Button >
+
+        <Label Grid.Column="3" Grid.Row="3"  Content="Cerrar Session" Style="{StaticResource Text2}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+    </Grid>
+</UserControl>
