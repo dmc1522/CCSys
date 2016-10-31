@@ -52,6 +52,8 @@ namespace LasMargaritas.Models
 
         public string BarCode { get; set; }
 
+        public string Spouse { get; set; }
+
     }
 
 }

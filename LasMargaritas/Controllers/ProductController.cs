@@ -23,6 +23,7 @@ namespace LasMargaritas.Controllers
             productBL = new ProductBL(connectionString);
         }
         #endregion
+
         #region Post Methods
         [HttpPost]
         [Route("Add")]
@@ -145,6 +146,32 @@ namespace LasMargaritas.Controllers
             try
             {
                 List<Product> products = productBL.GetProduct(id);
+                response.Products = products;
+                response.Success = true;
+            }
+            catch (ProductException ex)
+            {
+                response.ErrorCode = ex.Error;
+                response.ErrorMessage = "Error. " + ex.Error.ToString();
+                response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [Route("GetWeightTicketProducts")]
+        [HttpGet]
+        public IHttpActionResult GetWeightTicketProducts()
+        {
+            GetProductResponse response = new GetProductResponse();
+            try
+            {
+                List<Product> products = productBL.GetWeightTicketProducts();
                 response.Products = products;
                 response.Success = true;
             }

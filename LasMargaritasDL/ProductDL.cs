@@ -11,6 +11,7 @@ namespace LasMargaritas.DL
     {
         public string ConnectionString { get; set; }
 
+     
         public ProductDL(string connectionString)
         {
             ConnectionString = connectionString;
@@ -84,6 +85,28 @@ namespace LasMargaritas.DL
                     command.Connection = connection;
                     command.CommandText = "spGetProduct";
                     command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    products = DataReaderMapper.Map<Product>(reader);
+                    reader.Close();
+                    connection.Close();
+                }
+                return products;
+            }
+        }
+
+        public List<Product> GetProductByProductGroupId(int productGroupId)
+        {
+            List<Product> products = new List<Product>();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetProductByProductGroupId";
+                    command.Parameters.Add("@ProductGroupId", SqlDbType.Int).Value = productGroupId;
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();

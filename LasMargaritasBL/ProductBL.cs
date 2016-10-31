@@ -8,7 +8,7 @@ namespace LasMargaritas.BL
     public class ProductBL
     {
         private ProductDL productDL;
-
+        private const int WeightTicketProductGroupId = 3;
         public ProductBL(string connectionString)
         {
             productDL = new ProductDL(connectionString);
@@ -21,9 +21,7 @@ namespace LasMargaritas.BL
             if (string.IsNullOrEmpty(product.Name))
                 result |= ProductError.InvalidName;
             if (product.UnitId<= 0)
-                result |= ProductError.InvalidUnit;
-            if (string.IsNullOrEmpty(product.ScaleCode))
-                result |= ProductError.InvalidScaleCode;
+                result |= ProductError.InvalidUnit;         
             if (product.ProductGroupId <= 0)
                 result |= ProductError.InvalidProductGroup;
             if (product.AgriculturalBrandId <= 0)
@@ -65,6 +63,12 @@ namespace LasMargaritas.BL
                 throw new ProductException(result);
             else
                 return productDL.GetProduct(id);
+        }
+
+        public List<Product> GetWeightTicketProducts()
+        {
+            //Add validations here!           
+            return productDL.GetProductByProductGroupId(WeightTicketProductGroupId);
         }
 
         public bool DeleteProduct(int id)
