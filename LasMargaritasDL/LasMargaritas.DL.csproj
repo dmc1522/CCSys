@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LastModificationDL.cs" />
     <Compile Include="CicleDL.cs" />
     <Compile Include="DataReaderMapper.cs" />
     <Compile Include="EF\AuthRepository.cs" />

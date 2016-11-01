@@ -7,22 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="1920">
     <Grid>
-        <ListView Margin="10" Name="ProducerListView">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Nombre" Width="550" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Apellido" Width="550" DisplayMemberBinding="{Binding LastName}" />
-                    <GridViewColumn Header="Gaffete" Width="150">
-                        <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Name="PrintGaffete" Content="Imprimir gafette" Click="PrintGaffete_Click"  CommandParameter="{Binding}"/>
-                        </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel Orientation="Horizontal">
+            <ListView Margin="10" Name="ProducerListView" Width="600" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>                           
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                            <TextBlock Text=" " />                            
+                            <TextBlock Text="{Binding Last Name}" FontWeight="Bold" />                            
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -10,6 +10,8 @@ namespace LasMargaritas.DL
     public class ProducerDL
     {
         public string ConnectionString { get; set; }
+
+        
         public ProducerDL(string connectionString)
         {
             ConnectionString = connectionString;

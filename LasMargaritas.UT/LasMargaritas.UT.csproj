@@ -105,15 +105,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="API\LastModificationApiTest.cs" />
     <Compile Include="API\ProducerApiTest.cs" />
     <Compile Include="API\ProductApiTest.cs" />
     <Compile Include="API\WeightTicketApiTest.cs" />
     <Compile Include="BLandDL\AuthRepositoryTest.cs" />
+    <Compile Include="BLandDL\LastModificationBLDLTest.cs" />
     <Compile Include="BLandDL\ProductBLDLTest.cs" />
     <Compile Include="BLandDL\ProducerBLDLTest.cs" />
     <Compile Include="BLandDL\WeightTicketBLDLTest.cs" />
     <Compile Include="Helpers\WeightTicketHelper.cs" />
     <Compile Include="BadgePrinterHelperTest.cs" />
+    <Compile Include="Presenter\ProducerPresenterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +137,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
