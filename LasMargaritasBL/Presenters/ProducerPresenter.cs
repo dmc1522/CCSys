@@ -1,19 +1,20 @@
-﻿using LasMargaritas.BL.Views;
+﻿using LasMargaritas.BL.Cache;
+using LasMargaritas.BL.Views;
 using LasMargaritas.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace LasMargaritas.BL.Presenters
 {
     public class ProducerPresenter
     {
+        #region Private variables
+        private Cacher<Producer> cacher;
         private string baseUrl;
         private string insertAction;
         private string updateAction;
@@ -21,6 +22,12 @@ namespace LasMargaritas.BL.Presenters
         private string getAllAction;
         private string getByIdAction;
         private string getLastModification;
+        private List<Producer> filterProducers;
+        private List<Producer> originalProducers;
+        IProducerView producerView;
+        #endregion
+
+        #region Constructor
         public ProducerPresenter(IProducerView view)
         {            
             baseUrl = @"http://lasmargaritas.azurewebsites.net/";
@@ -30,72 +37,128 @@ namespace LasMargaritas.BL.Presenters
             getAllAction = "Producer/GetAll";
             getByIdAction = "GetLastModification/GetById";
             getLastModification = "LastModification/GetLastModification";
+            producerView = view;
+            cacher = new Cacher<Producer>("producers.json");
 
         }
+        #endregion
 
-        public bool IsDataFromCache { get; set; }
-        
+        #region Public properties       
         public Token Token { get; set; }
 
-        List<Producer> Producers { get; set; }
-        
-        DateTime? LastSynchronizationTimeStamp { get; set; }
+        public DateTime? LastSynchronizationTimeStamp { get; set; }
 
-        DateTime? LastRemoteModificationTimeStamp { get; set; }
+        public DateTime? LastRemoteModificationTimeStamp { get; set; }
+        #endregion
 
+        #region Private Properties
+
+        #endregion
+
+        #region Public methods
         public void LoadProducers()
         {
-            if (Token == null)
-                throw new InvalidOperationException("Login first");
-            //Get last remote modification
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-            string url = string.Format("{0}?module={1}", getLastModification, (int)Module.Producers); //Producers
-            HttpResponseMessage response = client.GetAsync(url).Result;
-            if (response.IsSuccessStatusCode)
+            try
             {
-                GetLastModificationResponse getLastModificationResponse = response.Content.ReadAsAsync<GetLastModificationResponse>().Result;
-                if(getLastModificationResponse.LastModifications.Count == 1)
-                    LastRemoteModificationTimeStamp = getLastModificationResponse.LastModifications.ElementAt(0).Timestamp;
-            }
-
-            if (LastRemoteModificationTimeStamp.HasValue)
-            {
-                //Get local remote 
-                if (File.Exists("lastModificationProducers.json"))
+                if (Token == null)
+                    throw new InvalidOperationException("Login first");
+                //Get last remote modification
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                string url = string.Format("{0}?module={1}", getLastModification, (int)Models.Module.Producers); //Producers
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    string json = File.ReadAllText("lastModificationProducers.json");
-                    LastSynchronizationTimeStamp = JsonConvert.DeserializeObject<DateTime>(json);
+                    GetLastModificationResponse getLastModificationResponse = response.Content.ReadAsAsync<GetLastModificationResponse>().Result;
+                    if (getLastModificationResponse.LastModifications.Count == 1)
+                        LastRemoteModificationTimeStamp = getLastModificationResponse.LastModifications.ElementAt(0).Timestamp;
                 }
-                if (!LastSynchronizationTimeStamp.HasValue || (!LastRemoteModificationTimeStamp.Value.Equals(LastSynchronizationTimeStamp)))
+                //No log here ...                     
+                if (LastRemoteModificationTimeStamp.HasValue)
                 {
-                    client = new HttpClient();
-                    client.BaseAddress = new Uri(baseUrl);
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);                  
-                    response = client.GetAsync(getAllAction).Result;
-                    if (response.IsSuccessStatusCode)
+                    //Check cached version
+                    CachedModel<Producer> cachedProducers = cacher.LoadFromCache();
+                    if (null != cachedProducers && LastRemoteModificationTimeStamp.Equals(cachedProducers.CachedDate))
                     {
-                        GetProducerResponse getProducersResponse = response.Content.ReadAsAsync<GetProducerResponse>().Result;
-                        Producers = getProducersResponse.Producers;
-                        string json = JsonConvert.SerializeObject(Producers.ToArray());
-                        //write string to file
-                        System.IO.File.WriteAllText("producers.json", json);
-                        json = JsonConvert.SerializeObject(LastRemoteModificationTimeStamp);
-                        System.IO.File.WriteAllText("lastModificationProducers.json", json);
-                        IsDataFromCache = false;
+                        //cached version is the same
+                        originalProducers = cachedProducers.Models;
+                        LastSynchronizationTimeStamp = cacher.CachedDate;
+                    }
+                    else
+                    {
+                        GetProducersFromApi();
+                        SaveProducersToCache();
+                        LastSynchronizationTimeStamp = cacher.CachedDate;
                     }
                 }
                 else
                 {
-                    string json = File.ReadAllText("producers.json");
-                    //write string to file
-                    Producers = JsonConvert.DeserializeObject<List<Producer>>(json);
-                    IsDataFromCache = true;
+                    LastRemoteModificationTimeStamp = DateTime.Now; //nothing to do here
+                    GetProducersFromApi();
+                    SaveProducersToCache();
+                    LastSynchronizationTimeStamp = cacher.CachedDate;
                 }
-            }            
+                producerView.Producers = originalProducers;
+            }
+            catch(Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();            
+                //Log error here
+                producerView.HandleException(ex, currentMethodName.Name, errorId);
+            }
+            
         }
+
+        public void SaveProducer()
+        {
+
+        }
+
+        public void FilterProducerList()
+        {
+        }
+
+        #endregion
+
+        #region Private methods
+        private void SaveProducersToCache()
+        {
+            CachedModel<Producer> cachedVersion = new CachedModel<Producer>();
+            cachedVersion.Models = originalProducers;
+            cachedVersion.CachedDate = LastRemoteModificationTimeStamp.Value;
+            cacher.SaveToCache(cachedVersion);
+        }
+
+        private void GetProducersFromApi()
+        {
+            //get all 
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            HttpResponseMessage response = client.GetAsync(getAllAction).Result;           
+            if (response.IsSuccessStatusCode)
+            {
+                GetProducerResponse getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>().Result;
+                if (getProducerResponse.Success)
+                {
+                    originalProducers = getProducerResponse.Producers;
+                }
+                else
+                {
+                    throw new ProducerException(getProducerResponse.ErrorCode, getProducerResponse.ErrorMessage);
+                }
+            }
+            else
+            {
+                throw new ProducerException(ProducerError.ApiCommunicationError);
+            }
+        }
+        #endregion
     }
 }

@@ -9,9 +9,11 @@ namespace LasMargaritas.BL.Views
 {
     public interface IProducerView
     {
-        List<Producer> Producer { get; set; }
+        List<Producer> Producers { get; set; }
 
         Producer CurrentProducer { get; set; }
+
+        void HandleException(Exception ex, string method, Guid errorId);
         
     }
 }
