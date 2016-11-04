@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Reflection;
 
@@ -29,7 +30,7 @@ namespace LasMargaritas.BL.Presenters
 
         #region Constructor
         public ProducerPresenter(IProducerView view)
-        {            
+        {
             baseUrl = @"http://lasmargaritas.azurewebsites.net/";
             insertAction = "Producer/Add";
             updateAction = "Producer/Update";
@@ -116,7 +117,38 @@ namespace LasMargaritas.BL.Presenters
 
         public void SaveProducer()
         {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);            
+            string action = string.Empty;
+            if (producerView.CurrentProducer.Id == 0)
+            {
+                //insert
+                action = insertAction;
 
+            }
+            else
+            {
+                action = updateAction;
+            }            
+            //update
+            MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
+            HttpResponseMessage response = client.PostAsync(action, producerView.CurrentProducer, bsonFormatter).Result;
+            response.EnsureSuccessStatusCode();
+            MediaTypeFormatter[] formatters = new MediaTypeFormatter[] { bsonFormatter};
+            GetProducerResponse getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>(formatters).Result;
+            if (getProducerResponse.Success)
+            {
+                if (getProducerResponse.Producers.Count == 1)
+                {
+                    //Saved!
+                }
+            }
+            else
+            {
+                throw new ProducerException(getProducerResponse.ErrorCode, getProducerResponse.ErrorMessage);
+            }
         }
 
         public void FilterProducerList()

@@ -4,6 +4,7 @@ using System.Data;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using System.IO;
 
 namespace LasMargaritas.DL
 {
@@ -25,6 +26,7 @@ namespace LasMargaritas.DL
             //exluding these while updating
             excludedPropertiesInUpdate.Add("StoreTS");
             excludedPropertiesInUpdate.Add("UpdateTS");
+            //excludedPropertiesInUpdate.Add("Photo");
         }
 
         private List<string> excludedPropertiesInInsert;
@@ -45,6 +47,14 @@ namespace LasMargaritas.DL
                     {
                         command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(producer));
                     }
+                    /* if (producer.Photo != null)
+                    {
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            producer.Photo.Save(stream, producer.Photo.RawFormat);
+                            command.Parameters.Add(new SqlParameter("@Photo", SqlDbType.Image)).Value = stream.GetBuffer();
+                        }
+                    }*/
                     connection.Open();
                     object producerId = command.ExecuteScalar();
                     producer.Id = int.Parse(producerId.ToString());

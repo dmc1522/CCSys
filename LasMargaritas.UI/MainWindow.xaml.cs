@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LasMargaritas.BL;
+using LasMargaritas.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,9 +12,15 @@ namespace LasMargaritas.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Token token;
+
+        private string baseUrl;
         public MainWindow()
         {
+            baseUrl = @"http://lasmargaritas.azurewebsites.net/";
+            token = TokenHelper.GetToken(baseUrl, "Melvin3", "MelvinPass3");
             InitializeComponent();
+            producerList.Token = token;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -30,13 +38,14 @@ namespace LasMargaritas.UI
         private void buttonViewWeightTickets_Click(object sender, RoutedEventArgs e)
         {
             GridWeightTickets.Visibility = Visibility.Visible;
-            producerList.Visibility = Visibility.Hidden;
+            producerList.Visibility = Visibility.Collapsed;
         }
 
         private void buttonViewProducers_Click(object sender, RoutedEventArgs e)
         {
-            GridWeightTickets.Visibility = Visibility.Hidden;
+            GridWeightTickets.Visibility = Visibility.Collapsed;
             producerList.Visibility = Visibility.Visible;
         }
-    }
+
+    }       
 }

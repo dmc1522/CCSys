@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:LasMargaritas.UI"
         xmlns:controls="clr-namespace:LasMargaritas.UI.UserControls"
         mc:Ignorable="d"
+        WindowState="Maximized"
        
         Style="{StaticResource MainWindow}"
         Title="Las Margaritas" Width="1920" Height="1080" >
@@ -16,10 +17,10 @@
                 <Button Height="20" Width="150" x:Name="buttonViewWeightTickets" Click="buttonViewWeightTickets_Click">Ver boletas</Button>
                 <Button Height="20" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click">Ver Productores</Button>
             </StackPanel>
-            <controls:ProducerList x:Name="producerList" Visibility="Visible">
+            <controls:ProducerList x:Name="producerList" Visibility="Visible" >
 
             </controls:ProducerList>
-            <Grid x:Name="GridWeightTickets" Visibility="Hidden">
+            <Grid x:Name="GridWeightTickets" Visibility="Collapsed">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="800" />
