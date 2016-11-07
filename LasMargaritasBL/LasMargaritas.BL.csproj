@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CicleBL.cs" />
     <Compile Include="ImageScaler.cs" />
     <Compile Include="ProducerBL.cs" />
     <Compile Include="ProductBL.cs" />

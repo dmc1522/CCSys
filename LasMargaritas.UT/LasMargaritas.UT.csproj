@@ -105,13 +105,20 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="API\CicleApiTest.cs" />
     <Compile Include="API\ProducerApiTest.cs" />
     <Compile Include="API\ProductApiTest.cs" />
+    <Compile Include="API\WareHouseApiTest.cs" />
     <Compile Include="API\WeightTicketApiTest.cs" />
     <Compile Include="BLandDL\AuthRepositoryTest.cs" />
+    <Compile Include="BLandDL\CicleBLDLTest.cs" />
     <Compile Include="BLandDL\ProductBLDLTest.cs" />
     <Compile Include="BLandDL\ProducerBLDLTest.cs" />
+    <Compile Include="BLandDL\WareHouseBLDLTest.cs" />
     <Compile Include="BLandDL\WeightTicketBLDLTest.cs" />
+    <Compile Include="Helpers\CicleHelper.cs" />
+    <Compile Include="Helpers\ProducerHelper.cs" />
+    <Compile Include="Helpers\WareHouseHelper.cs" />
     <Compile Include="Helpers\WeightTicketHelper.cs" />
     <Compile Include="BadgePrinterHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
