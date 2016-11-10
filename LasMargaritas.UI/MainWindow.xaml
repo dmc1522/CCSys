@@ -6,14 +6,13 @@
         xmlns:local="clr-namespace:LasMargaritas.UI"
         xmlns:controls="clr-namespace:LasMargaritas.UI.UserControls"
         mc:Ignorable="d"
-        WindowState="Maximized"
-       
+        WindowState="Maximized" 
         Style="{StaticResource MainWindow}"
         Title="Las Margaritas" Width="1920" Height="1080" >
-    <Grid  Width="1920" Height="1080">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="1060" />
+            <RowDefinition Height="1060*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
@@ -22,9 +21,9 @@
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="1">
-            <controls:ProducerList x:Name="producerList" Visibility="Hidden"></controls:ProducerList>
+            <controls:ProducerList x:Name="producerList" Visibility="Visible"></controls:ProducerList>
 
-            <controls:Tickets x:Name="tickets" Visibility="Visible" ></controls:Tickets>
+            <controls:Tickets x:Name="tickets" Visibility="Hidden" ></controls:Tickets>
         </Grid>
     </Grid>
 </Window>
