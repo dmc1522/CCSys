@@ -2,6 +2,7 @@
 using System.Net.Http.Formatting;
 using Newtonsoft.Json.Serialization;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace LasMargaritas
 {
@@ -19,6 +20,9 @@ namespace LasMargaritas
             );
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            config.Formatters.Add(new BsonMediaTypeFormatter());
+
+           
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }        
     }

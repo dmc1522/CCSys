@@ -47,13 +47,19 @@
     <Content Include="CrudCreator.sql" />
     <Content Include="ClassCreator.sql" />
     <Content Include="Documentation\Azure.txt" />
+    <Content Include="Documentation\AzureDB.txt" />
+    <Content Include="Documentation\DB - Copy.txt" />
     <Content Include="Documentation\DB.txt" />
+    <Content Include="Documentation\plesk.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Documentation\COTIZACION - IMPRESION Y PERSONALIZACION DE TARJETAS.docx" />
     <None Include="Documentation\COTIZACION - SISTEMA DE BASCULA CON GAFETTES.docx" />
     <None Include="Documentation\COTIZACION - SISTEMA DE BASCULA CON GAFETTES.pdf" />
     <None Include="Documentation\COTIZACION - SISTEMA DE CONTROL DE PARAFINANCIERA CON DATOS EN LA NUBE.docx" />
     <None Include="Documentation\COTIZACION - SISTEMA DE CONTROL DE PARAFINANCIERA CON DATOS EN LA NUBE.pdf" />
+    <None Include="Documentation\Cotizacion 160111 GRUPO GARIBAY - ZXP3.pdf" />
+    <None Include="Documentation\Cotizacion 160111 GRUPO GARIBAY- ZXP1.pdf" />
     <None Include="Tracking\Tracking.xlsx" />
   </ItemGroup>
   <ItemGroup>

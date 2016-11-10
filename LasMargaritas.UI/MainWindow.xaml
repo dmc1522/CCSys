@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:LasMargaritas.UI"
         xmlns:controls="clr-namespace:LasMargaritas.UI.UserControls"
         mc:Ignorable="d"
+        WindowState="Maximized"
+       
         Style="{StaticResource MainWindow}"
         Title="Las Margaritas" Width="1920" Height="1080" >
     <Grid  Width="1920" Height="1080">

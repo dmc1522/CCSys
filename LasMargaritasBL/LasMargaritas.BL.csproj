@@ -83,6 +83,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\Cacher.cs" />
     <Compile Include="LastModificationBL.cs" />
     <Compile Include="CicleBL.cs" />
     <Compile Include="ImageScaler.cs" />
