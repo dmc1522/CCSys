@@ -11,27 +11,27 @@
 
     <Grid x:Name="GridProducersControl" Visibility="Visible" Margin="5" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="600*" MinWidth="200" />
+            <ColumnDefinition Width="600*" MinWidth="300" />
             <ColumnDefinition Width="1300*" MinWidth="500" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
-            <Grid Style="{StaticResource TicketsListGrid}">
+        <Grid Grid.Column="0" TextBlock.TextAlignment="Center">
+            <Grid Background="#BDBDBD" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="35" />
-                    <RowDefinition Height="35" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition MinHeight="180" Height="*"/>
                 </Grid.RowDefinitions>
-                <Label  Grid.Row="0" Content="Administrador de Cuentas:"  Style="{StaticResource Title1}" />
+                <TextBlock VerticalAlignment="Center" Grid.Row="0" Text="Administrador de Cuentas:"  Style="{StaticResource HeaderTextBlockStyle}"  />
                 <Grid Grid.Row="1" Margin="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="90" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label  Grid.Column="0" Content="Tipo Cuenta:"  Style="{StaticResource Title1}" />
+                    <TextBlock VerticalAlignment="Center" Grid.Column="0" Text="Tipo Cuenta:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
                     <ComboBox Grid.Column ="1" x:Name="cbTicketType" Margin="5,2" SelectedIndex="0" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Content" >
                         <ComboBoxItem Content="Productor" Tag="producer" />
                         <ComboBoxItem Content="Proveedor" Tag="supplier"/>
@@ -39,19 +39,19 @@
                         <ComboBoxItem Content="Ganadero" Tag="rancher"/>
                     </ComboBox>
                 </Grid>
-                <Button  Grid.Row="2"  x:Name="ButtonAddProducer" Content="Nuevo Productor" Style="{StaticResource RectangleButton1}" Width="Auto" />
-                <Grid Grid.Row="3" Margin="2">
+                <Button Grid.Row="2"  x:Name="ButtonAddProducer" Content="Nuevo Productor"  Width="180" Height="30" />
+                <Grid Grid.Row="3" Margin="2" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label  Grid.Column="0" Content="Buscar:"  Style="{StaticResource Title1}" />
-                    <TextBox Grid.Column="1" x:Name="TextBoxSearchProducers" Text="" Style="{StaticResource TextBox1}" />
+                    <TextBlock VerticalAlignment="Center"  Grid.Column="0" Text="Buscar:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                    <TextBox Grid.Column="1" x:Name="TextBoxSearchProducers" Height="30" Width="190"  />
                 </Grid>
 
-                <Button  Grid.Row="4"  x:Name="ButtonSearchProducer" Content="Buscar" Style="{StaticResource RectangleButton1}" Width="Auto" />
+                <Button  Grid.Row="4"  x:Name="ButtonSearchProducer" Content="Buscar" Height="30" Width="180" />
 
-                <ListBox  Grid.Row="5" x:Name="ListBoxProducers" Style="{StaticResource ListBox1}" Margin="5"  >
+                <ListBox  Grid.Row="5" x:Name="ListBoxProducers"  Margin="15,20"  >
 
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -92,11 +92,11 @@
 
                     <Grid Grid.Row="0" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="200"  />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="100"  />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" FontSize="30" HorizontalAlignment="Right" Margin="0">ID:</TextBlock>
-                        <TextBox Grid.Column="1" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Id}" x:Name="TextBoxId" IsEnabled="False" Foreground="Brown" FontSize="30" HorizontalAlignment="Right" Margin="10 0 10 0" ></TextBox>
+                        <TextBlock Grid.Column="0"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}">ID:</TextBlock>
+                        <TextBox Grid.Column="1" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Id}" x:Name="TextBoxId" IsEnabled="False" Foreground="Brown" VerticalAlignment="Center" ></TextBox>
                     </Grid>
 
                     <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
@@ -110,7 +110,7 @@
                         <Button Grid.Row="0" x:Name="ButtonCaptureImage" Background="Transparent" Click="ButtonGetImage_Click">
                             <Image  Margin="0" x:Name="ImageProducer" Source="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Photo }"></Image>
                         </Button>
-                        <Label Grid.Row="1" x:Name="TextBoxImageInstructions" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource Title1}">Click para CAPTURAR foto</Label>
+                        <TextBlock Grid.Row="1" x:Name="TextBoxImageInstructions" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}">Click para CAPTURAR foto</TextBlock>
                     </Grid>
 
                     <Grid Grid.Row="2" Margin="30,5"  VerticalAlignment="Center">
@@ -120,10 +120,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5"  Content="Nombre(s):"  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="1"  FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Name}" x:Name="TextBoxLastName"  />
-                        <Label Grid.Column="2" Margin="5"  Content="Apellidos:"  Style="{StaticResource Title1}" Width="100" />
-                        <TextBox Grid.Column="3"  FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.LastName}" x:Name="textBoxApellidos" />
+                        <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Name}" x:Name="TextBoxLastName"  />
+                        <TextBlock Grid.Column="2" Margin="5"  Text="Apellidos:"  Style="{StaticResource SubHeaderTextBlockStyle}" Width="100" />
+                        <TextBox Grid.Column="3"    Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.LastName}" x:Name="textBoxApellidos" />
                     </Grid>
 
                     <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">
@@ -133,10 +133,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" Content="Fecha de Nac:"  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.BirthDate}" x:Name="TextBoxBirthDate"   />
-                        <Label Grid.Column="2" Margin="5" Content="RFC:"  Style="{StaticResource Title1}" />
-                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.RFC}" x:Name="TextBoxRFC"  />
+                        <TextBlock Grid.Column="0" Margin="5" Text="Fecha de Nac:"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.BirthDate}" x:Name="TextBoxBirthDate"   />
+                        <TextBlock Grid.Column="2" Margin="5" Text="RFC:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.RFC}" x:Name="TextBoxRFC"  />
                     </Grid>
 
                     <Grid Grid.Row="4" Margin="30,5"  VerticalAlignment="Center">
@@ -146,10 +146,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0"  Content="INE: " Margin="5"  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.INE}" x:Name="TextBoxIne"   />
-                        <Label Grid.Column="2" Content="CURP:" Margin="5"  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.CURP}" x:Name="TextBoxCurp"  />
+                        <TextBlock Grid.Column="0"  Text="INE: " Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.INE}" x:Name="TextBoxIne"   />
+                        <TextBlock Grid.Column="2" Text="CURP:" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.CURP}" x:Name="TextBoxCurp"  />
                     </Grid>
 
                     <Grid Grid.Row="5" Margin="30,5"  >
@@ -157,8 +157,8 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="400"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5"  Content="Domicilio:"  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Address}" TextWrapping="Wrap" AcceptsReturn="True" x:Name="TextBoxAddress"  />
+                        <TextBlock Grid.Column="0" Margin="5"  Text="Domicilio:"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Address}" TextWrapping="Wrap" AcceptsReturn="True" x:Name="TextBoxAddress"  />
                     </Grid>
 
                     <Grid Grid.Row="6" Margin="30,5"  >
@@ -168,10 +168,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" Content="Colonia: "  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.DistrinctOrColony}" x:Name="TextBoxColony"  />
-                        <Label Grid.Column="2" Margin="5" Content="Ciudad:"  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.City}" x:Name="TextBoxCity"   />
+                        <TextBlock Grid.Column="0" Margin="5" Text="Colonia: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.DistrinctOrColony}" x:Name="TextBoxColony"  />
+                        <TextBlock Grid.Column="2" Margin="5" Text="Ciudad:"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.City}" x:Name="TextBoxCity"   />
                     </Grid>
 
                     <Grid Grid.Row="7" Margin="30,5"  >
@@ -181,10 +181,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" Content="C. Postal: "  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.ZipCode}" x:Name="TextBoxZipCode"  />
-                        <Label Grid.Column="2" Margin="5" Content="Estado:"  Style="{StaticResource Title1}" />
-                        <ComboBox Grid.Column="3" HorizontalContentAlignment="Center" FontSize="25" SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.StateId}" x:Name="ComboBoxState">
+                        <TextBlock Grid.Column="0" Margin="5" Text="C. Postal: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.ZipCode}" x:Name="TextBoxZipCode"  />
+                        <TextBlock Grid.Column="2" Margin="5" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <ComboBox Grid.Column="3" HorizontalContentAlignment="Center"   SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.StateId}" x:Name="ComboBoxState">
                             <ComboBoxItem  Name="State">JALISCO</ComboBoxItem>
                         </ComboBox>
                     </Grid>
@@ -196,12 +196,12 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" Content="Sexo:"  Style="{StaticResource Title1}" />
-                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.SexId}" x:Name="TextBoxSex" >
+                        <TextBlock Grid.Column="0" Margin="5" Text="Sexo:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center"   SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.SexId}" x:Name="TextBoxSex" >
                             <ComboBoxItem  Name="cbi1">Masculino</ComboBoxItem>
                         </ComboBox>
-                        <Label Grid.Column="2" Margin="5" Content="Telefono: "  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.PhoneNumber}" x:Name="TextBoxPhoneNumber" />
+                        <TextBlock Grid.Column="2" Margin="5" Text="Telefono: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.PhoneNumber}" x:Name="TextBoxPhoneNumber" />
                     </Grid>
 
                     <Grid Grid.Row="9" Margin="30,5"  >
@@ -211,10 +211,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" Content="T. Trabajo: "  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.WorkPhoneNumber}" x:Name="TextBoxWorkPhoneNumber" />
-                        <Label Grid.Column="2" Margin="5" Content="Fax: "  Style="{StaticResource Title1}" />
-                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Fax}" x:Name="TextBoxFax" />
+                        <TextBlock Grid.Column="0" Margin="5" Text="T. Trabajo: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.WorkPhoneNumber}" x:Name="TextBoxWorkPhoneNumber" />
+                        <TextBlock Grid.Column="2" Margin="5" Text="Fax: "  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Fax}" x:Name="TextBoxFax" />
                     </Grid>
 
                     <Grid Grid.Row="10" Margin="30,5"  >
@@ -224,10 +224,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" Content="Email: "  Style="{StaticResource Title1}" />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Email}" x:Name="TextBoxEmail"  />
-                        <Label Grid.Column="2" Margin="5"  Content="Estado Civil: "  Style="{StaticResource Title1}"  />
-                        <ComboBox Grid.Column="3" HorizontalContentAlignment="Center" FontSize="25" SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.CivilStatusId}" x:Name="ComboBoxCivilStatus" >
+                        <TextBlock Grid.Column="0" Margin="5" Text="Email: "  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Email}" x:Name="TextBoxEmail"  />
+                        <TextBlock Grid.Column="2" Margin="5"  Text="Estado Civil: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <ComboBox Grid.Column="3" HorizontalContentAlignment="Center"   SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.CivilStatusId}" x:Name="ComboBoxCivilStatus" >
                             <ComboBoxItem  Name="Civil">SOLTERO</ComboBoxItem>
                         </ComboBox>
                     </Grid>
@@ -239,12 +239,12 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5" Content="Régimen: "  Style="{StaticResource Title1}"  />
-                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.RegimeId}" x:Name="ComboBoxRegime"  >
+                        <TextBlock Grid.Column="0" Margin="5" Text="Régimen: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.RegimeId}" x:Name="ComboBoxRegime"  >
                             <ComboBoxItem  Name="Regimen">NO APLICA</ComboBoxItem>
                         </ComboBox>
-                        <Label Grid.Column="2" Margin="5" Content="Cónyuge: "  Style="{StaticResource Title1}"  />
-                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Spouse}" x:Name="TextBoxSpouse"  />
+                        <TextBlock Grid.Column="2" Margin="5" Text="Cónyuge: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Spouse}" x:Name="TextBoxSpouse"  />
                     </Grid>
 
                     <Grid Grid.Row="12" Margin="30,5"  >
@@ -256,8 +256,8 @@
                             <ColumnDefinition Width="100"  />
                             <ColumnDefinition Width="100"  />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Margin="5"  Content="Cód. de barras: "  Style="{StaticResource Title1}" Width="100" />
-                        <TextBox Grid.Column="1" IsEnabled="False" Margin="2" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.BarCode}" x:Name="TextBoxBarCode" />
+                        <TextBlock Grid.Column="0" Margin="5"  Text="Cód. de barras: "  Style="{StaticResource SubHeaderTextBlockStyle}" Width="100" />
+                        <TextBox Grid.Column="1" IsEnabled="False" Margin="2"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.BarCode}" x:Name="TextBoxBarCode" />
                         <Button Grid.Column="3" x:Name="ButtonSave" Click="ButtonSave_Click">Guardar</Button>
                         <Button  Grid.Column="4" x:Name="ButtonDelete">Eliminar</Button>
                         <Button Grid.Column="5" x:Name="ButtonPrintGaffete" Click="ButtonPrintGaffete_Click">Imprimir Gafette</Button>

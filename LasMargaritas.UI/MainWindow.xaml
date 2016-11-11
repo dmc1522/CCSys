@@ -11,13 +11,13 @@
         Title="Las Margaritas" Width="1920" Height="1080" >
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="1060*" />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <Button Height="20" Width="150" x:Name="buttonViewWeightTickets" Click="buttonViewWeightTickets_Click">Ver boletas</Button>
-                <Button Height="20" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click">Ver Productores</Button>
+                <Button Height="40" Width="150" x:Name="buttonViewWeightTickets" Click="buttonViewWeightTickets_Click" >Ver boletas</Button>
+                <Button Height="40" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click" >Ver Productores</Button>
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="1">
