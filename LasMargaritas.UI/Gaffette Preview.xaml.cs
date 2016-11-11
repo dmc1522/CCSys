@@ -77,14 +77,14 @@ namespace LasMargaritas.UI
             qrCode.Save("test2.bmp");
             byte[] photo = Encoding.ASCII.GetBytes("test.bmp");
             byte[] barCode = Encoding.ASCII.GetBytes("test2.bmp");
-            byte[] businessData = Encoding.ASCII.GetBytes("Grupo Garibay. " + Environment.NewLine + "Avenida Patria No 10 " + Environment.NewLine + "Ameca, Jalisco.");
+            byte[] businessData = Encoding.ASCII.GetBytes("Grupo Garibay. Avenida Patria No 10 Ameca, Jalisco.");
             int result = ZBRGDIInitGraphics(printerName, ref handle, ref error);
             result = ZBRGDIDrawImageRect(backGround, 10, 10, 1054, 654, ref error);
-            result = ZBRGDIDrawImageRect(photo, 675, 30, 300, 300, ref error);
-            result = ZBRGDIDrawImageRect(barCode, 800, 400, 200, 200, ref error);
-            result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
-            result = ZBRGDIDrawText(50, 50, myText, myFont, 12, 1, 16777215, ref error);
-            result = ZBRGDIDrawText(40, 200, businessData, myFont, 9, 1, 12388103, ref error);
+            result = ZBRGDIDrawImageRect(photo, 400, 82, 300, 300, ref error);
+            result = ZBRGDIDrawImageRect(barCode, 50, 380, 260, 260, ref error);
+            //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
+            result = ZBRGDIDrawText(335, 410, myText, myFont, 10, 1, 1, ref error);
+            result = ZBRGDIDrawText(315, 580, businessData, myFont, 6, 1, 8024182, ref error);
           
             HwndSource hwndSource = PresentationSource.FromVisual(Gafette) as HwndSource;
 
