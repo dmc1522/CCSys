@@ -135,7 +135,7 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5" Text="F. de Nacimeinto:" FontSize="11"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBlock Grid.Column="0" Margin="5" Text="F. de Nacimiento:" FontSize="11"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
                         <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.BirthDate}" x:Name="TextBoxBirthDate"   />
                         <TextBlock Grid.Column="3" Margin="5" Text="RFC:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
                         <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.RFC}" x:Name="TextBoxRFC"  />

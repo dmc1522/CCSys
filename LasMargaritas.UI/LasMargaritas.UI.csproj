@@ -232,6 +232,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="References\ZBRGraphics.dll_64" />
+    <None Include="References\ZBRPrinter.dll_64" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -302,7 +304,10 @@
     <Content Include="dll\System.Windows.Controls.Input.Toolkit.dll" />
     <Content Include="dll\System.Windows.Controls.Layout.Toolkit.dll" />
     <Content Include="dll\WPFToolkit.dll" />
+    <Resource Include="References\back.jpg" />
     <Content Include="References\WebEye.Controls.Wpf.WebCameraControl.dll" />
+    <Content Include="References\ZBRGraphics.dll" />
+    <Content Include="References\ZBRPrinter.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
