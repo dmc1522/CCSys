@@ -2,6 +2,7 @@
 using LasMargaritas.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -21,7 +22,11 @@ namespace LasMargaritas.ULT
         private string getSelectableModelsAction;
         public ProducerApiTest()
         {
-            baseUrl = @"http://lasmargaritas.azurewebsites.net/";
+            baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
+            if (ConfigurationManager.AppSettings["baseUrl"] != null)
+            {
+                baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+            }
             insertAction = "Producer/Add";
             updateAction = "Producer/Update";
             deleteAction = "Producer/Delete";

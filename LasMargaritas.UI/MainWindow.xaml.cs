@@ -1,6 +1,7 @@
 ﻿using LasMargaritas.BL;
 using LasMargaritas.Models;
 using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,7 +18,11 @@ namespace LasMargaritas.UI
         private string baseUrl;
         public MainWindow()
         {
-            baseUrl = @"http://lasmargaritas.azurewebsites.net/";
+            baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
+            if (ConfigurationManager.AppSettings["baseUrl"] != null)
+            {
+                baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+            }
             token = TokenHelper.GetToken(baseUrl, "Melvin3", "MelvinPass3");
             InitializeComponent();
             producerList.Token = token;

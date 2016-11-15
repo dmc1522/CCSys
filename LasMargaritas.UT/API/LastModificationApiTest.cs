@@ -20,7 +20,11 @@ namespace LasMargaritas.UT.API
         private string getLastModification;
         public LastModificationApiTest()
         {
-            baseUrl = @"http://lasmargaritas.azurewebsites.net/";
+            baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
+            if (ConfigurationManager.AppSettings["baseUrl"] != null)
+            {
+                baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+            }
             getLastModification = "LastModification/GetLastModification";            
         }
 
@@ -47,7 +51,7 @@ namespace LasMargaritas.UT.API
 
         private void InsertDummyData()
         {
-            string connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDB;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDBDev;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             if (ConfigurationManager.ConnectionStrings["LasMargaritasDb"] != null)
             {
                 connectionString = ConfigurationManager.ConnectionStrings["LasMargaritasDb"].ConnectionString;

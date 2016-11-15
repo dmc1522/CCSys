@@ -16,7 +16,7 @@ namespace LasMargaritas.Migration.OldSystem
             List<Producer> producers = new List<Producer>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Productores where apaterno = 'RANCHO EL AHUILOTE' "))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Productores"))
                 {
                     command.Connection = connection;
                     connection.Open();

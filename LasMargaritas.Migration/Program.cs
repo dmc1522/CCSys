@@ -14,12 +14,12 @@ namespace LasMargaritas.Migration
         static void Main(string[] args)
         {
             MigrateProducts();
-
+            MigrateProducers();
         }
         private static void MigrateProducts()
         {
             List<string> exceptions = new List<string>();
-            string connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDB;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDBDevDev;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             List<Product> products = ProductOld.GetProducts();
             ProductBL bl = new ProductBL(connectionString);
             foreach (Product product in products)
@@ -43,7 +43,7 @@ namespace LasMargaritas.Migration
         private static void MigrateProducers()
         {
             List<string> exceptions = new List<string>();
-            string connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDB;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDBDevDev;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             List<Producer> producers = ProducerOld.GetProducers();
             ProducerBL bl = new ProducerBL(connectionString);
             foreach (Producer producer in producers)

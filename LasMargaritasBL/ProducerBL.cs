@@ -31,6 +31,9 @@ namespace LasMargaritas.BL
             {
                 producer = producerDL.InsertProducer(producer);
                 lastModificationBL.SetLastModification(new LastModification() { Module = Module.Producers });
+                //update barcode, biz rule
+                producer.BarCode = producer.Id.ToString();
+                UpdateProducer(producer);
                 return producer;
             }
         }

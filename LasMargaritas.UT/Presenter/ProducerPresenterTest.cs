@@ -45,7 +45,11 @@ namespace LasMargaritas.UT.Presenter
         string baseUrl;
         public ProducerPresenterTest()
         {
-            baseUrl = @"http://lasmargaritas.azurewebsites.net/";
+            baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
+            if (ConfigurationManager.AppSettings["baseUrl"] != null)
+            {
+                baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+            }
         }    
     }
 }

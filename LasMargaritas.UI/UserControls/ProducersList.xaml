@@ -17,40 +17,25 @@
 
         <Grid Grid.Column="0" TextBlock.TextAlignment="Center">
             <Grid Background="#BDBDBD" >
-                <Grid.RowDefinitions>                    
-                    <RowDefinition Height="35" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="35"/>
+                <Grid.RowDefinitions>                                      
+                    <RowDefinition Height="40" />                    
                     <RowDefinition Height="40"/>
                     <RowDefinition MinHeight="180" Height="*"/>
                 </Grid.RowDefinitions>                
+               
                 <Grid Grid.Row="0" Margin="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Center" Grid.Column="0" Text="Tipo Cuenta:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                    <ComboBox Grid.Column ="1" x:Name="cbTicketType" Margin="15,2" SelectedIndex="0" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Content" >
-                        <ComboBoxItem Content="Productor" Tag="producer" />
-                        <ComboBoxItem Content="Proveedor" Tag="supplier"/>
-                        <ComboBoxItem Content="Cliente de Ventas" Tag="costumer"/>
-                        <ComboBoxItem Content="Ganadero" Tag="rancher"/>
-                    </ComboBox>
-                </Grid>
-               
-                <Grid Grid.Row="1" Margin="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
                     <TextBlock VerticalAlignment="Center"  Grid.Column="0" Text="Buscar:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                    <TextBox Grid.Column="1" x:Name="TextBoxSearchProducers"  Margin="15,2"  />
+                    <TextBox Grid.Column="1" x:Name="TextBoxSearchProducers"  Margin="15,2" TextChanged="TextBoxSearchProducers_TextChanged"  />
                 </Grid>
 
-                <Button  Grid.Row="2"  x:Name="ButtonSearchProducer" Content="Buscar" Margin="15,2" />
-                <Button Grid.Row="3"  x:Name="ButtonAddProducer" Content="Nuevo Productor"  Margin="15,2" Click="ButtonAddProducer_Click" />
+                
+                <Button Grid.Row="1"  x:Name="ButtonAddProducer" Content="Nuevo Productor"  Margin="15,2" Click="ButtonAddProducer_Click" />
 
-                <ListBox  Grid.Row="4" x:Name="ListBoxProducers"  Margin="15,20" SelectionChanged="ListBoxProducers_SelectionChanged"  >
+                <ListBox  Grid.Row="2" x:Name="ListBoxProducers"  Margin="15,20" SelectionChanged="ListBoxProducers_SelectionChanged"  >
                     <ListBox.Resources>
                         <cnv:CaseConverter x:Key="caseConverter" />
                     </ListBox.Resources>
@@ -263,8 +248,9 @@
                         <TextBlock Grid.Column="0" Margin="5"  Text="Cód. de barras: "  Style="{StaticResource SubHeaderTextBlockStyle}" />
                         <TextBox Grid.Column="1" IsEnabled="False" Margin="2"   CharacterCasing="Upper" Text="{Binding BarCode}" x:Name="TextBoxBarCode"  />
                         <Button Grid.Column="2" x:Name="ButtonSave" Click="ButtonSave_Click" Width="100" >Guardar</Button>
-                        <Button  Grid.Column="3" x:Name="ButtonDelete" Width="100">Eliminar</Button>
-                        <Button Grid.Column="4" x:Name="ButtonPrintGaffete" Click="ButtonPrintGaffete_Click" Width="130">Imprimir Gafette</Button>
+                        <Button  Grid.Column="3" x:Name="ButtonDelete" Width="100" IsEnabled="{Binding ElementName=ListBoxProducers, Path=SelectedItems.Count}" Click="ButtonDelete_Click">Eliminar                         
+                        </Button>
+                        <Button Grid.Column="4" x:Name="ButtonPrintGaffete" IsEnabled="{Binding ElementName=ListBoxProducers, Path=SelectedItems.Count}" Click="ButtonPrintGaffete_Click" Width="130">Imprimir Gafette</Button>
                     </Grid>
                 </Grid>
             </ScrollViewer>

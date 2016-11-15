@@ -2,6 +2,7 @@
 using LasMargaritas.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -20,7 +21,11 @@ namespace LasMargaritas.ULT
         private string getByIdAction;
         public WeightTicketApiTest()
         {
-            baseUrl = @"http://lasmargaritas.azurewebsites.net/";
+            baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
+            if (ConfigurationManager.AppSettings["baseUrl"] != null)
+            {
+                baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+            }
             insertAction = "WeightTicket/Add";
             updateAction = "WeightTicket/Update";
             deleteAction = "WeightTicket/Delete";

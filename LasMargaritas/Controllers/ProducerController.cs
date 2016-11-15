@@ -16,7 +16,7 @@ namespace LasMargaritas.Controllers
         #region Constructor & Properties
         public ProducerController()
         {
-            string connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDB;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            string connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDBDev;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             if (ConfigurationManager.ConnectionStrings["LasMargaritasDb"] != null)
             {
                 connectionString = ConfigurationManager.ConnectionStrings["LasMargaritasDb"].ConnectionString;

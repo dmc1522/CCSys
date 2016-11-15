@@ -4,6 +4,7 @@ using LasMargaritas.BL.Views;
 using LasMargaritas.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -37,7 +38,12 @@ namespace LasMargaritas.BL.Presenters
         #region Constructor
         public ProducerPresenter(IProducerView view)
         {
-            baseUrl = @"http://lasmargaritas.azurewebsites.net/";
+            baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
+            if (ConfigurationManager.AppSettings["baseUrl"] != null)
+            {
+                baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+            }
+     
             insertAction = "Producer/Add";
             updateAction = "Producer/Update";
             deleteAction = "Producer/Delete";
@@ -188,6 +194,28 @@ namespace LasMargaritas.BL.Presenters
             GetCatalogs();
             LoadProducers();
         }
+
+        public void DeleteProducer()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            HttpResponseMessage response = client.PostAsJsonAsync(deleteAction, new IdModel(producerView.SelectedId)).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                ProducerResponse producerResponse = response.Content.ReadAsAsync<ProducerResponse>().Result;
+                if(producerResponse.Success)
+                {
+                    //Deleted!
+                    LoadProducers();
+                    PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
+                    producerView.CurrentProducer.RaiseUpdateProperties();
+                    producerView.SelectedId = -1;
+                }
+            }
+           
+        }
         public void NewProducer()
         {
             PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
@@ -231,7 +259,7 @@ namespace LasMargaritas.BL.Presenters
             {
                 //insert
                 action = insertAction;
-                reLoadList = true;
+                reLoadList = true;                
             }
             else
             {
