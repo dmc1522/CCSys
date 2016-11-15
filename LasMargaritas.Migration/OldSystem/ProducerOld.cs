@@ -36,7 +36,7 @@ namespace LasMargaritas.Migration.OldSystem
                             producer.StateId = int.Parse(reader["estadoID"].ToString());
                             producer.ZipCode = reader["CP"].ToString();
                             producer.RFC = reader["RFC"].ToString();
-                            producer.SexId = int.Parse(reader["sexoID"].ToString());
+                            producer.GenderId = int.Parse(reader["sexoID"].ToString());
                             producer.PhoneNumber = reader["telefono"].ToString();
                             producer.WorkPhoneNumber = reader["telefonotrabajo"].ToString();
                             producer.MobilePhoneNumber = reader["celular"].ToString();

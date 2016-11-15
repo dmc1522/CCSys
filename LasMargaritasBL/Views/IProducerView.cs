@@ -10,7 +10,7 @@ namespace LasMargaritas.BL.Views
     public interface IProducerView
     {
         List<SelectableModel> Producers { get; set; }
-        int SelectedId { get; }
+        int SelectedId { get; set; }
         Producer CurrentProducer { get; set; }
         void HandleException(Exception ex, string method, Guid errorId);
         List<SelectableModel> States { get; set; }

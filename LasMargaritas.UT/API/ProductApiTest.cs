@@ -86,7 +86,7 @@ namespace LasMargaritas.ULT
             //test update 
             producer.Id = producerResponse.Producer.Id;
             producer.RFC = "UpdatedProducerRFC";
-            producer.SexId = 2;
+            producer.GenderId = 2;
             response = client.PostAsJsonAsync(updateAction, producer).Result;
             Assert.IsTrue(response.IsSuccessStatusCode);
             producerResponse = response.Content.ReadAsAsync<ProducerResponse>().Result;
@@ -97,7 +97,7 @@ namespace LasMargaritas.ULT
             getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>().Result;
             Assert.IsTrue(getProducerResponse.Success);
             Assert.IsTrue(getProducerResponse.Producers.Count == 1);
-            Assert.IsTrue(getProducerResponse.Producers.ElementAt(0).SexId == 2);
+            Assert.IsTrue(getProducerResponse.Producers.ElementAt(0).GenderId == 2);
             Assert.IsTrue(getProducerResponse.Producers.ElementAt(0).RFC == "UpdatedProducerRFC");
             //test delete
             response = client.PostAsJsonAsync(deleteAction, new IdModel(producerResponse.Producer.Id)).Result;
@@ -132,7 +132,7 @@ namespace LasMargaritas.ULT
             Assert.IsFalse(producerResponse.Success);
             Assert.IsTrue(producerResponse.ErrorCode.HasFlag(ProducerError.InvalidName));
             Assert.IsTrue(producerResponse.ErrorCode.HasFlag(ProducerError.InvalidCivilStatus));
-            Assert.IsTrue(producerResponse.ErrorCode.HasFlag(ProducerError.InvalidSex));
+            Assert.IsTrue(producerResponse.ErrorCode.HasFlag(ProducerError.InvalidGender));
 
 
             //Test update
@@ -142,7 +142,7 @@ namespace LasMargaritas.ULT
             Assert.IsFalse(producerResponse.Success);
             Assert.IsTrue(producerResponse.ErrorCode.HasFlag(ProducerError.InvalidName));
             Assert.IsTrue(producerResponse.ErrorCode.HasFlag(ProducerError.InvalidCivilStatus));
-            Assert.IsTrue(producerResponse.ErrorCode.HasFlag(ProducerError.InvalidSex));
+            Assert.IsTrue(producerResponse.ErrorCode.HasFlag(ProducerError.InvalidGender));
         }
 
         [TestMethod]

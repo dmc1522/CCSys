@@ -52,6 +52,28 @@ namespace LasMargaritas.UI.UserControls
                 }
                 return -1;
             }
+            set
+            {
+                if (value <= 0)
+                {
+
+                    ListBoxProducers.SelectedValue = null;
+                    ListBoxProducers.SelectedIndex = -1;
+                }
+                else
+                {
+                    foreach (var item in ListBoxProducers.Items)
+                    {
+                        if(((SelectableModel)item).Id == value)
+                        {
+                            ListBoxProducers.SelectedItem = item;
+                            ListBoxProducers.ScrollIntoView(item);                            
+                            break;
+                        }
+                    }
+                }
+
+            }
         }        
 
         public List<SelectableModel> Producers
@@ -70,7 +92,7 @@ namespace LasMargaritas.UI.UserControls
         public void HandleException(Exception ex, string method, Guid errorId)
         {
         }
-
+        
         #endregion
 
         #region Constructor
@@ -93,10 +115,12 @@ namespace LasMargaritas.UI.UserControls
                 ComboBoxCivilStatus.ItemsSource = CivilStatus;
                 ComboBoxRegime.ItemsSource = Regimes;
                 ComboBoxState.ItemsSource = States;
-                ComboBoxGender.ItemsSource = Genders;                             
+                ComboBoxGender.ItemsSource = Genders;                
                 listLoaded = true;
             }
         }
+
+        
 
         private ImageCodecInfo GetEncoder(ImageFormat format)
         {
@@ -161,5 +185,10 @@ namespace LasMargaritas.UI.UserControls
             }            
         }
         #endregion
+
+        private void ButtonAddProducer_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            presenter.NewProducer();
+        }
     }
 }

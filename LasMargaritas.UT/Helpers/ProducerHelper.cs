@@ -25,7 +25,7 @@ namespace LasMargaritas.ULT
             producer.PhoneNumber = "38323825";
             producer.RegimeId = 1;
             producer.RFC = "Wawawa";
-            producer.SexId = 1;
+            producer.GenderId = 1;
             producer.Spouse = "MargaritaEsposaTest";
             producer.StateId = 1;
             producer.StoreTS = DateTime.Now;

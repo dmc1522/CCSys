@@ -67,85 +67,9 @@ namespace LasMargaritas.BL.Presenters
 
         #endregion
 
-        #region Public methods
-        public void Initialize()
-        {
-            GetCatalogs();
-            LoadProducers();
-        }
 
-        private void GetCatalogs()
-        {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-            //States
-            HttpResponseMessage response = client.GetAsync(getStatesAction).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    producerView.States = getSelectableModelResponse.SelectableModels;
-                }
-            }
-            //Genders
-            response = client.GetAsync(getGenderAction).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    producerView.Genders = getSelectableModelResponse.SelectableModels;
-                }
-            }
-            //Civil Status
-            response = client.GetAsync(getCivilStatusAction).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    producerView.CivilStatus = getSelectableModelResponse.SelectableModels;
-                }
-            }
-            //Regimes
-            response = client.GetAsync(getRegimesAction).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    producerView.Regimes = getSelectableModelResponse.SelectableModels;
-                }
-            }
-        }
+        #region Private methods
 
-        public void UpdateCurrentProducer()
-        {
-            if (producerView.SelectedId == -1)
-            {
-                producerView.CurrentProducer = new Producer();
-            }
-            else
-            {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-                HttpResponseMessage response = client.GetAsync(string.Format("{0}?id={1}",getByIdAction, producerView.SelectedId)).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    GetProducerResponse getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>().Result;
-                    if (getProducerResponse.Success)
-                    {
-                        PropertyCopier.CopyProperties(getProducerResponse.Producers[0], producerView.CurrentProducer);
-                        producerView.CurrentProducer.RaiseUpdateProperties();                       
-                    }
-                }
-            }
-        }
         private void LoadProducers()
         {
             try
@@ -195,20 +119,109 @@ namespace LasMargaritas.BL.Presenters
                 producerView.Producers = originalProducers;
                 */
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 StackTrace st = new StackTrace();
                 StackFrame sf = st.GetFrame(0);
                 MethodBase currentMethodName = sf.GetMethod();
-                Guid errorId = Guid.NewGuid();            
+                Guid errorId = Guid.NewGuid();
                 //Log error here
                 producerView.HandleException(ex, currentMethodName.Name, errorId);
             }
-            
+
         }
 
+        private void GetCatalogs()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            //States
+            HttpResponseMessage response = client.GetAsync(getStatesAction).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                if (getSelectableModelResponse.Success)
+                {
+                    producerView.States = getSelectableModelResponse.SelectableModels;
+
+                }
+            }
+            //Genders
+            response = client.GetAsync(getGenderAction).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                if (getSelectableModelResponse.Success)
+                {
+                    producerView.Genders = getSelectableModelResponse.SelectableModels;
+                }
+            }
+            //Civil Status
+            response = client.GetAsync(getCivilStatusAction).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                if (getSelectableModelResponse.Success)
+                {
+                    producerView.CivilStatus = getSelectableModelResponse.SelectableModels;
+                }
+            }
+            //Regimes
+            response = client.GetAsync(getRegimesAction).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                if (getSelectableModelResponse.Success)
+                {
+                    producerView.Regimes = getSelectableModelResponse.SelectableModels;
+                }
+            }
+        }
+        #endregion
+
+
+        #region Public methods
+        public void Initialize()
+        {
+            GetCatalogs();
+            LoadProducers();
+        }
+        public void NewProducer()
+        {
+            PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
+            producerView.CurrentProducer.RaiseUpdateProperties();
+            producerView.SelectedId = -1;
+        }
+        public void UpdateCurrentProducer()
+        {
+            if (producerView.SelectedId == -1)
+            {
+                producerView.CurrentProducer = new Producer();
+            }
+            else
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                HttpResponseMessage response = client.GetAsync(string.Format("{0}?id={1}",getByIdAction, producerView.SelectedId)).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    GetProducerResponse getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>().Result;
+                    if (getProducerResponse.Success)
+                    {
+                        PropertyCopier.CopyProperties(getProducerResponse.Producers[0], producerView.CurrentProducer);
+                        producerView.CurrentProducer.RaiseUpdateProperties();                       
+                    }
+                }
+            }
+        }
+   
         public void SaveProducer()
         {
+            bool reLoadList = false;
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
@@ -218,6 +231,7 @@ namespace LasMargaritas.BL.Presenters
             {
                 //insert
                 action = insertAction;
+                reLoadList = true;
             }
             else
             {
@@ -228,17 +242,21 @@ namespace LasMargaritas.BL.Presenters
             HttpResponseMessage response = client.PostAsync(action, producerView.CurrentProducer, bsonFormatter).Result;
             response.EnsureSuccessStatusCode();
             MediaTypeFormatter[] formatters = new MediaTypeFormatter[] { bsonFormatter};
-            GetProducerResponse getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>(formatters).Result;
-            if (getProducerResponse.Success)
+            ProducerResponse producerResponse = response.Content.ReadAsAsync<ProducerResponse>(formatters).Result;
+            if (producerResponse.Success)
             {
-                if (getProducerResponse.Producers.Count == 1)
+                if (producerResponse.Producer != null)
                 {
-                    //Saved!
+                    if (reLoadList)
+                    {
+                        LoadProducers();
+                        producerView.SelectedId = producerResponse.Producer.Id;
+                    }
                 }
             }
             else
             {
-                throw new ProducerException(getProducerResponse.ErrorCode, getProducerResponse.ErrorMessage);
+                throw new ProducerException(producerResponse.ErrorCode, producerResponse.ErrorMessage);
             }
         }
 

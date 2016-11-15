@@ -48,7 +48,7 @@
                 </Grid>
 
                 <Button  Grid.Row="2"  x:Name="ButtonSearchProducer" Content="Buscar" Margin="15,2" />
-                <Button Grid.Row="3"  x:Name="ButtonAddProducer" Content="Nuevo Productor"  Margin="15,2" />
+                <Button Grid.Row="3"  x:Name="ButtonAddProducer" Content="Nuevo Productor"  Margin="15,2" Click="ButtonAddProducer_Click" />
 
                 <ListBox  Grid.Row="4" x:Name="ListBoxProducers"  Margin="15,20" SelectionChanged="ListBoxProducers_SelectionChanged"  >
                     <ListBox.Resources>
@@ -136,7 +136,7 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="5" Text="F. de Nacimiento:" FontSize="11"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding BirthDate}" x:Name="TextBoxBirthDate"   />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding BirthDate,  StringFormat=d, ConverterCulture=es-MX}" x:Name="TextBoxBirthDate"   />
                         <TextBlock Grid.Column="3" Margin="5" Text="RFC:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
                         <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding RFC}" x:Name="TextBoxRFC"  />
                     </Grid>
