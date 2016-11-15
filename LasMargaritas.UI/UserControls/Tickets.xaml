@@ -1,0 +1,312 @@
+﻿<UserControl x:Class="LasMargaritas.UI.UserControls.Tickets"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LasMargaritas.UI.UserControls"
+             xmlns:controls="clr-namespace:LasMargaritas.UI.UserControls.PopUps"
+             mc:Ignorable="d" d:DesignWidth="1920" Height="1080">
+    <Grid x:Name="GridWeightTickets">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="1520" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Style="{StaticResource TicketsListGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="850" />
+            </Grid.RowDefinitions>
+            <Label  Grid.Row="0" Content="Administrador de Boletas"  Style="{StaticResource Title1}" />
+            <Grid Grid.Row="1" Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+                <Label  Grid.Column="0" Content="Nueva Boleta:"  Style="{StaticResource Title1}" />
+                <ComboBox Grid.Column ="1" x:Name="cbTicketType" Margin="5,2" SelectedIndex="0" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Content" >
+                    <ComboBoxItem Content="Productor" Tag="producer" />
+                    <ComboBoxItem Content="Proveedor" Tag="supplier"/>
+                    <ComboBoxItem Content="Cliente de Ventas" Tag="costumer"/>
+                    <ComboBoxItem Content="Ganadero" Tag="rancher"/>
+                </ComboBox>
+                <Button  Grid.Column ="2"  x:Name="btnNewTicket" Content="Nueva Boleta" Style="{StaticResource RectangleButton1}" Margin="10,0" Width="Auto" Click="btnNewTicket_Click" />
+            </Grid>
+
+            <Label  Grid.Row="3" Content="Buscar Boletas:"  Style="{StaticResource Title1}" />
+            <TextBox Grid.Row="4" x:Name="txbSearhcTicket" Text="" Style="{StaticResource TextBox1}" />
+            <Grid Grid.Row="5" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <CheckBox  Grid.Column ="0" x:Name="cbPending" Content="Pendientes" Style="{StaticResource CheckBox1}"/>
+                <Button  Grid.Column ="1"  x:Name="btnSearchingTicket" Content="Buscar" Style="{StaticResource RectangleButton1}" Click="btnSearchingTicket_Click" />
+            </Grid>
+
+            <ListBox  Grid.Row="7" x:Name="lbTickets" Style="{StaticResource ListBox1}" />
+
+        </Grid>
+
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="980" />
+            </Grid.RowDefinitions>
+
+            <controls:TicketProcess Grid.Row="0" x:Name="ticketProccess" VerticalAlignment="Center" HorizontalAlignment="Center"  Width="999" Margin="246,3,275,3"/>
+
+            <Grid Grid.Row="1" x:Name="TicketDetails" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50,50">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Width="370" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="220" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0"  x:Name="GridFolio" Width="150" Height="50" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0"  Content="Folio: #"   VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1" x:Name="txtFolio" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+
+                    </Grid>
+                    <Grid Grid.Column="1" x:Name="GridCycle" Width="220" Height="50" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="170" />
+
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"  Content="Ciclo:"   VerticalAlignment="Center" Margin="0,2"/>
+                        <ComboBox Grid.Column="1" x:Name="cbCiclo" Grid.ColumnSpan="2" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Content" Margin="10"  />
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="1" x:Name="GridIndentifier" Width="470" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"  Content="Proveedor:" x:Name="lblIdentifier"  VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" x:Name="cbIdentificer" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Content" Margin="10"  />
+                    <Button  Grid.Column ="2"  x:Name="btnSearchingBatch" Content="Identificar" Style="{StaticResource RectangleButton1}" />
+                </Grid>
+
+
+                <Grid Grid.Row="2" x:Name="GridTransport" Width="450" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"  Content="Chofer: "   VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" x:Name="txtDriver" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                    <Label Grid.Column="2"  Content="Placas:"   VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="3" x:Name="txtRiverPlates" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                </Grid>
+
+                <Grid Grid.Row="3" x:Name="GridProduct" Width="420" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="350" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"  Content="Producto:" x:Name="lblProduct"  VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" x:Name="cbProduct" IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="Content" Margin="10"  />
+                </Grid>
+
+                <Grid Grid.Row="4" x:Name="GridWeigthingStart" Width="350" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+                    <Label   Grid.Column="0"  Content="Entrada"   VerticalAlignment="Center"  Style="{StaticResource Title1}"/>
+                </Grid>
+
+                <Grid Grid.Row="5" x:Name="GridWeigthing1" Width="400" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Label   Grid.Column="0"  Content="Peso de Entrada:"   VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" x:Name="txtWeigth1" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                    <Label  Grid.Column="2"  Content="KG"   VerticalAlignment="Center"/>
+                    <Button    Grid.Column ="3"  x:Name="btnWeight1" Content="Obtener" Style="{StaticResource RectangleButton1}" />
+                </Grid>
+
+
+                <Grid Grid.Row="6" x:Name="GridWeigthingDate1" Width="410" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Label   Grid.Column="0"  Content="Fecha de Entrada:"   VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" x:Name="txtDateWeigth1" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                    <CheckBox  Grid.Column ="2" x:Name="cbLading" Content="Fletes" Style="{StaticResource CheckBox1}"/>
+                </Grid>
+
+                <Grid Grid.Row="7" x:Name="GridWeigthingOwner1" Width="350" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="280" />
+                    </Grid.ColumnDefinitions>
+                    <Label   Grid.Column="0"  Content="Encargado:"   VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" x:Name="txtOwnerWeigth1" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                </Grid>
+
+                <Grid Grid.Row="8" x:Name="GridWetAdnImpurities" Width="400" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox  Grid.Column ="0" x:Name="cbWet" Content="Humedad" Style="{StaticResource CheckBox1}"/>
+                    <TextBox  Grid.Column="1" x:Name="txWet" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                    <CheckBox  Grid.Column ="2" x:Name="cbImpurities" Content="Impuurezas" Style="{StaticResource CheckBox1}"/>
+                    <TextBox  Grid.Column="3" x:Name="txtImpurities" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                </Grid>
+
+                <Grid Grid.Row="9"  x:Name="GridCattle" Width="350" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"  Content="Ganado: #"   VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" x:Name="txtCattle" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+
+                </Grid>
+
+                <Grid Grid.Row="10" x:Name="GridWeigthingEnd" Width="350" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+                    <Label   Grid.Column="0"  Content="Salida"   VerticalAlignment="Center"  Style="{StaticResource Title1}"/>
+                </Grid>
+
+                <Grid Grid.Row="11" x:Name="GridWeigthing2" Width="400" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Label   Grid.Column="0"  Content="Peso de Salida:"   VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" x:Name="txtWeigth2" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                    <Label  Grid.Column="2"  Content="KG"   VerticalAlignment="Center"/>
+                    <Button    Grid.Column ="3"  x:Name="btnWeight2" Content="Obtener" Style="{StaticResource RectangleButton1}" />
+                </Grid>
+
+
+                <Grid Grid.Row="12" x:Name="GridWeigthingDate2" Width="310" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+                    <Label   Grid.Column="0"  Content="Fecha de Salida:"   VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" x:Name="txtDateWeigth2" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                </Grid>
+
+                <Grid Grid.Row="13" x:Name="GridWeigthingOwner2" Width="350" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="280" />
+                    </Grid.ColumnDefinitions>
+                    <Label   Grid.Column="0"  Content="Encargado:"   VerticalAlignment="Center"/>
+                    <TextBox  Grid.Column="1" x:Name="txtOwnerWeigth2" Text="" Style="{StaticResource TextBox1}" Margin="10"/>
+                </Grid>
+
+                <Grid Grid.Row="14" x:Name="GridActions" Width="450" Height="50" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+                    <Button    Grid.Column ="0"  x:Name="btnUnlock" Content="Desbloquear" Style="{StaticResource RectangleButton1}"  Width="Auto" Margin="5"/>
+                    <Button    Grid.Column ="1"  x:Name="btnMoify" Content="Editar" Style="{StaticResource RectangleButton1}" Width="Auto"  Margin="5"/>
+                    <Button    Grid.Column ="2"  x:Name="btnSave" Content="Guardar" Style="{StaticResource RectangleButton1}"  Width="Auto"  Margin="5"/>
+                </Grid>
+
+
+
+
+
+                <!--<Grid Width="200" Height="200" Margin="82,72,1238,109" Grid.RowSpan="2" >
+                    <Label  Content="Folio:" Style="{StaticResource Text2}" Margin="0,0,-496,-22" />
+                    <TextBox x:Name="txtFolio" Text="" Style="{StaticResource TextBox1}" Margin="243,55,-233,93" />
+                </Grid>
+
+                <Grid Width="200" Height="200" >
+                    <Label  Content="Ciclo" Style="{StaticResource Text2}" />
+                    <ComboBox x:Name="cbCyclo" Margin="-20,78,-605,68" />
+                </Grid>-->
+
+
+            </Grid>
+        </Grid>
+
+
+
+
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="900" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1920" />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="mainBar" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1760" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Las Margaritas" HorizontalAlignment="Stretch" VerticalAlignment="Center" Style="{StaticResource Title1}"/>
+            <Button  Grid.Column="1"  x:Name="btnMinimizer" Content="-" Style="{StaticResource CircleButton}" />
+            <Button Grid.Column="2"  x:Name="btnClose" Content="X" Style="{StaticResource CircleButton}" Click="btnClose_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <controls:Login Visibility="Hidden"  />
+            <controls:MainMenue  />
+
+        </Grid>
+
+        <Grid Style="{StaticResource Footer}" Height="100" Width="1920" Grid.Row="2"></Grid>-->
+    </Grid>
+</UserControl>

@@ -99,11 +99,15 @@ namespace LasMargaritas.UI.UserControls
             {
                 IEnumerable<WebCameraId> cameras = webCameraControl.GetVideoCaptureDevices();
                 webCameraControl.StartCapture(cameras.ElementAt(0));
-                TextBoxImageInstructions.Text = "-----------Click para GUARDAR foto----------";
+                TextBoxImageInstructions.Text = "Click para GUARDAR foto";
+                ButtonCaptureImage.Visibility = System.Windows.Visibility.Hidden;
+                ButtonGetImage.Visibility = System.Windows.Visibility.Visible;
             }
             else
             {
-                TextBoxImageInstructions.Text = "-----------Click para CAPTURAR foto----------";
+                TextBoxImageInstructions.Text = "Click para CAPTURAR foto";
+                ButtonCaptureImage.Visibility = System.Windows.Visibility.Visible;
+                ButtonGetImage.Visibility = System.Windows.Visibility.Hidden;
                 Bitmap bitmap = webCameraControl.GetCurrentImage();             
                 using (var memoryStream = new MemoryStream())
                 {
