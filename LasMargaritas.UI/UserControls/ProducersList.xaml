@@ -4,25 +4,203 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LasMargaritas.UI.UserControls"
+             xmlns:wpf="clr-namespace:WebEye.Controls.Wpf;assembly=WebEye.Controls.Wpf.WebCameraControl"
+             xmlns:cnv="clr-namespace:LasMargaritas.UI.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="1920">
-    <Grid>
-        <ListView Margin="10" Name="ProducerListView">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="Nombre" Width="550" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Apellido" Width="550" DisplayMemberBinding="{Binding LastName}" />
-                    <GridViewColumn Header="Gaffete" Width="150">
-                        <GridViewColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Name="PrintGaffete" Content="Imprimir gafette" Click="PrintGaffete_Click"  CommandParameter="{Binding}"/>
-                        </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+             d:DesignHeight="980" d:DesignWidth="1920" IsVisibleChanged="UserControl_IsVisibleChanged">
+    <Grid x:Name="GridProducersControl" Visibility="Visible" Margin="5" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600" />
+            <ColumnDefinition Width="1300" />
+        </Grid.ColumnDefinitions>
 
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid Style="{StaticResource TicketsListGrid}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="33"/>
+                <RowDefinition Height="33" />
+                <RowDefinition Height="33"/>
+                <RowDefinition Height="870" />
+            </Grid.RowDefinitions>
+            <Label  Grid.Row="0" Content="Buscar Productor:"  Style="{StaticResource Title1}" />
+            <TextBox Grid.Row="1" x:Name="TextBoxSearchProducers" Text="" Style="{StaticResource TextBox1}" />
+            <Button   Grid.Row="2"  x:Name="ButtonAddProducer" Content="Nuevo Productor" Style="{StaticResource RectangleButton1}" Width="Auto" />
+            <ListBox  Grid.Row="3" x:Name="ListBoxProducers" Style="{StaticResource ListBox1}" Margin="5"  >
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>                            
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <TextBlock Text=" "></TextBlock>
+                            <TextBlock Text="{Binding LastName}"></TextBlock>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid x:Name="GridProducerDetails"  Grid.Column="1" >
+            <Grid.Resources>
+                <cnv:ImageConverter x:Key="imageConverter" />
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="280"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+       
+                
+
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Width="1300" Margin="5" Orientation="Vertical">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <TextBlock FontSize="30" HorizontalAlignment="Right" Margin="0">ID: </TextBlock>
+                    <TextBox Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Id}" x:Name="TextBoxId" IsEnabled="False" Foreground="Brown" FontSize="30" HorizontalAlignment="Right" Margin="10 0 10 0" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Border  BorderThickness="1" Margin="550 0 0 0" Height="153" Width="200" BorderBrush="Red">
+                        <Button x:Name="ButtonGetImage" Background="Transparent" Click="ButtonGetImage_Click">
+                            <Image Margin="0" x:Name="ImageProducer" Width="200" Height="153" Source="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Photo }"></Image>
+                        </Button>                   
+                    </Border>
+                    <wpf:WebCameraControl x:Name="webCameraControl" Visibility="Visible" Height="153" Width="200"/>                    
+
+                </StackPanel>
+                <TextBlock x:Name="TextBoxImageInstructions" Margin="0" Width="200">-------Click para CAPTURAR foto----------</TextBlock>
+              
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="5" Orientation="Horizontal">
+                <Label  Content="Nombre(s):"  Style="{StaticResource Title1}" Width="100" />
+                <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Name}" x:Name="TextBoxLastName" Width="1180"   />
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="5" Orientation="Horizontal">
+                <Label  Content="Apellidos:"  Style="{StaticResource Title1}" Width="100" />
+                <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.LastName}" x:Name="textBoxApellidos" Width="1180" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>                
+                    <Label  Content="Fecha de Nac:"  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.BirthDate}" x:Name="TextBoxBirthDate" Width="530"  />
+                </WrapPanel>
+                <WrapPanel   Orientation="Horizontal">
+                    <Label  Content="RFC:"  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.RFC}" x:Name="TextBoxRFC" Width="530"  />
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>
+                    <Label  Content="INE: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.INE}" x:Name="TextBoxIne" Width="530"  />
+                </WrapPanel>
+                <WrapPanel   Orientation="Horizontal">
+                    <Label  Content="CURP:"  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.CURP}" x:Name="TextBoxCurp" Width="530"  />
+                </WrapPanel>
+            </StackPanel>
+            
+            <StackPanel Grid.Row="5" Margin="5" Orientation="Horizontal">
+                <Label  Content="Domicilio:"  Style="{StaticResource Title1}" Width="100" />
+                <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Address}" TextWrapping="Wrap" AcceptsReturn="True" x:Name="TextBoxAddress" Width="1180"  />
+            </StackPanel>
+
+            <StackPanel Grid.Row="6" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>
+                    <Label  Content="Colonia: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.DistrinctOrColony}" x:Name="TextBoxColony" Width="530"  />
+                </WrapPanel>
+                <WrapPanel   Orientation="Horizontal">
+                    <Label  Content="Ciudad:"  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.City}" x:Name="TextBoxCity" Width="530"  />
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="7" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>
+                    <Label  Content="C. Postal: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.ZipCode}" x:Name="TextBoxZipCode" Width="530"  />
+                </WrapPanel>
+                <WrapPanel   Orientation="Horizontal">
+                    <Label  Content="Estado:"  Style="{StaticResource Title1}" Width="100" />
+                    <ComboBox HorizontalContentAlignment="Center" FontSize="25" SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.StateId}" x:Name="ComboBoxState" Width="530">
+                        <ComboBoxItem  Name="State">JALISCO</ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="8" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>
+                    <Label  Content="Sexo:"  Style="{StaticResource Title1}" Width="100" />
+                    <ComboBox HorizontalContentAlignment="Center" FontSize="25" SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.SexId}" x:Name="TextBoxSex" Width="530" >
+                        <ComboBoxItem  Name="cbi1">Masculino</ComboBoxItem>                        
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel   Orientation="Horizontal">
+                    <Label  Content="Telefono: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.PhoneNumber}" x:Name="TextBoxPhoneNumber" Width="530" />
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="9" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>
+                    <Label  Content="T. Trabajo: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.WorkPhoneNumber}" x:Name="TextBoxWorkPhoneNumber" Width="530" />
+                </WrapPanel>
+                <WrapPanel   Orientation="Horizontal">
+                    <Label  Content="Fax: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Fax}" x:Name="TextBoxFax" Width="530" />
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="10" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>
+                    <Label  Content="Email: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Email}" x:Name="TextBoxEmail" Width="530" />
+                </WrapPanel>
+                <WrapPanel   Orientation="Horizontal">
+                    <Label  Content="Estado Civil: "  Style="{StaticResource Title1}" Width="100" />
+                    <ComboBox HorizontalContentAlignment="Center" FontSize="25" SelectedValue="{Binding ElementName=ListBoxProducers, Path=SelectedItem.CivilStatusId}" x:Name="ComboBoxCivilStatus" Width="530">
+                        <ComboBoxItem  Name="Civil">SOLTERO</ComboBoxItem>                    
+                    </ComboBox>
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="11" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>
+                    <Label  Content="Régimen: "  Style="{StaticResource Title1}" Width="100" />
+                    <ComboBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.RegimeId}" x:Name="ComboBoxRegime" Width="530" >
+                        <ComboBoxItem  Name="Regimen">NO APLICA</ComboBoxItem>
+                    </ComboBox>
+                </WrapPanel>
+                <WrapPanel   Orientation="Horizontal">
+                    <Label  Content="Cónyuge: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.Spouse}" x:Name="TextBoxSpouse" Width="530" />
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="12" Margin="5" Orientation="Horizontal" >
+                <WrapPanel>
+                    <Label  Content="Cód. de barras: "  Style="{StaticResource Title1}" Width="100" />
+                    <TextBox IsEnabled="False" HorizontalContentAlignment="Center" FontSize="25" Text="{Binding ElementName=ListBoxProducers, Path=SelectedItem.BarCode}" x:Name="TextBoxBarCode" Width="530" />
+                </WrapPanel>
+               
+            </StackPanel>
+
+            <Button Grid.Row="13" Width="100" Height="30" HorizontalAlignment="Right" Margin="0 5 400 10" x:Name="ButtonSave" Click="ButtonSave_Click">Guardar</Button>
+            <Button Grid.Row="13" Width="100" Height="30" HorizontalAlignment="Right" Margin="0 4 200 10" x:Name="ButtonDelete">Eliminar</Button>
+            <Button Grid.Row="13" Width="100" Height="30" HorizontalAlignment="Right" Margin="0 4 30 10" x:Name="ButtonPrintGaffete" Click="ButtonPrintGaffete_Click">Imprimir Gafette</Button>
+        </Grid>        
     </Grid>
 </UserControl>

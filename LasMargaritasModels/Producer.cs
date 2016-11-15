@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace LasMargaritas.Models
 {
-    public class Producer
+    public class Producer:INotifyPropertyChanged
     {
         public int Id { get; set; }
 
@@ -23,6 +25,24 @@ namespace LasMargaritas.Models
         public string County { get; set; }
 
         public int StateId { get; set; }
+
+        private byte[] _Photo;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+     
+
+        public byte[] Photo
+        {
+            get
+            {
+                return _Photo;
+            }
+            set
+            {
+                _Photo = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Photo"));
+            }
+        }
 
         public string ZipCode { get; set; }
 

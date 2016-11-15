@@ -78,6 +78,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,13 +89,17 @@
   <ItemGroup>
     <Compile Include="AddProductResponse.cs" />
     <Compile Include="Cicle.cs" />
+    <Compile Include="LastModificationError.cs" />
     <Compile Include="CicleError.cs" />
     <Compile Include="CicleException.cs" />
     <Compile Include="CicleResponse.cs" />
     <Compile Include="GetCicleResponse.cs" />
+    <Compile Include="GetLastModificationResponse.cs" />
     <Compile Include="GetProducerResponse.cs" />
     <Compile Include="GetProductResponse.cs" />
     <Compile Include="GetWareHouseResponse.cs" />
+    <Compile Include="LastModification.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="ProductResponse.cs" />
     <Compile Include="GetWeightTicketResponse.cs" />
     <Compile Include="IdModel.cs" />

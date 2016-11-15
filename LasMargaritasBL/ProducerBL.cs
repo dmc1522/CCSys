@@ -9,9 +9,11 @@ namespace LasMargaritas.BL
     {
         private ProducerDL producerDL;
 
+        private LastModificationBL lastModificationBL;
         public ProducerBL(string connectionString)
         {
             producerDL = new ProducerDL(connectionString);
+            lastModificationBL = new LastModificationBL(connectionString);
         }
 
         public Producer InsertProducer(Producer producer)
@@ -26,7 +28,11 @@ namespace LasMargaritas.BL
             if (result != ProducerError.None)
                 throw new ProducerException(result);
             else
-                return producerDL.InsertProducer(producer);
+            {
+                producer = producerDL.InsertProducer(producer);
+                lastModificationBL.SetLastModification(new LastModification() { Module = Module.Producers });
+                return producer;
+            }
         }
 
         public Producer UpdateProducer(Producer producer)
@@ -41,7 +47,11 @@ namespace LasMargaritas.BL
             if (result != ProducerError.None)
                 throw new ProducerException(result);
             else
-                return producerDL.UpdateProducer(producer);
+            {
+                producer=  producerDL.UpdateProducer(producer);
+                lastModificationBL.SetLastModification(new LastModification() { Module = Module.Producers });
+                return producer;
+            }
         }
 
         public List<Producer> GetProducer(int? id = null)
@@ -67,7 +77,12 @@ namespace LasMargaritas.BL
             if (result != ProducerError.None)
                 throw new ProducerException(result);
             else
-                return producerDL.DeleteProducer(id);
+            {
+                bool success =  producerDL.DeleteProducer(id);
+                if(success)
+                    lastModificationBL.SetLastModification(new LastModification() { Module = Module.Producers });
+                return success;
+            }
         }
 
     }

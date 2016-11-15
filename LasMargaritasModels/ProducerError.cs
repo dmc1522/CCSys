@@ -6,9 +6,10 @@ namespace LasMargaritas.Models
     public enum ProducerError
     {
         None = 0,
-        InvalidName = 1,
-        InvalidSex = 2,
-        InvalidCivilStatus = 4,
-        InvalidId = 8
+        ApiCommunicationError = 1,
+        InvalidName = 2,
+        InvalidSex = 4,
+        InvalidCivilStatus = 8,
+        InvalidId = 16
     }
 }

@@ -56,6 +56,22 @@ namespace LasMargaritas.BL
             e.Graphics.FillRectangle(drawBrush, ((int)leftBorderFromPageInCm * 10), ((int)topBorderFromPageInCm * 10), 8, ((int)badgeHeightInCm * 10));
         }
 
+        public static Bitmap GetQRCode(string data)
+        {
+            string level = "L";
+            QRCodeGenerator.ECCLevel eccLevel = (QRCodeGenerator.ECCLevel)(level == "L" ? 0 : level == "M" ? 1 : level == "Q" ? 2 : 3);
+            using (QRCodeGenerator qrGenerator = new QRCodeGenerator())
+            {
+                using (QRCodeData qrCodeData = qrGenerator.CreateQrCode(producerId.ToString(), eccLevel))
+                {
+                    using (QRCode qrCode = new QRCode(qrCodeData))
+                    {
+                        Bitmap code = qrCode.GetGraphic(20, Color.Black, Color.White, null, 0);
+                        return code;
+                    }
+                }
+            }
+        }
         private static void PrintProducerData(PrintPageEventArgs e)
         {
             Font drawFont = new Font("Arial", 12);
@@ -99,10 +115,6 @@ namespace LasMargaritas.BL
             e.Graphics.DrawString(businessAddress, drawFont, drawBrush, location);
         }
 
-        private static void PrintBarCode()
-        {
-
-        }
 
         private static void PrintQrCode(PrintPageEventArgs e)
         {
