@@ -220,5 +220,10 @@ namespace LasMargaritas.UI.UserControls
             }
 
         }
+
+        private void ButtonReloadList_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.ReloadProducerList();
+        }
     }
 }

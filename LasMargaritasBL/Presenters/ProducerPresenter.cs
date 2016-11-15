@@ -194,7 +194,13 @@ namespace LasMargaritas.BL.Presenters
             GetCatalogs();
             LoadProducers();
         }
-
+        public void ReloadProducerList()
+        {
+            LoadProducers();
+            PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
+            producerView.CurrentProducer.RaiseUpdateProperties();
+            producerView.SelectedId = -1;
+        }
         public void DeleteProducer()
         {
             HttpClient client = new HttpClient();
