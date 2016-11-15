@@ -14,5 +14,9 @@ namespace LasMargaritas.Models
         {
             Error = error;
         }
+        public ProducerException(string message) : base(message)
+        {
+            
+        }
     }
 }

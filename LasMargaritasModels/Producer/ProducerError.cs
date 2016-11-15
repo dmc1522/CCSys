@@ -8,7 +8,7 @@ namespace LasMargaritas.Models
         None = 0,
         ApiCommunicationError = 1,
         InvalidName = 2,
-        InvalidSex = 4,
+        InvalidGender = 4,
         InvalidCivilStatus = 8,
         InvalidId = 16
     }

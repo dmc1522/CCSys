@@ -23,10 +23,11 @@ namespace LasMargaritas.UT.Presenter
         public class DummyProducerView : IProducerView
         {
             public Producer CurrentProducer { get; set; }
-            public List<Producer> Producers { get; set; }
+            public List<SelectableModel> Producers { get; set; }
             public void HandleException(Exception ex, string method, Guid errorId)
             {             
             }
+            public int SelectedId { get { return 1; } }
         }
 
         string baseUrl;

@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogDL.cs" />
     <Compile Include="LastModificationDL.cs" />
     <Compile Include="CicleDL.cs" />
     <Compile Include="DataReaderMapper.cs" />

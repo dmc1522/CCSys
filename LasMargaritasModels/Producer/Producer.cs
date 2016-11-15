@@ -4,14 +4,17 @@ using System.Drawing;
 
 namespace LasMargaritas.Models
 {
-    public class Producer:INotifyPropertyChanged
+    public class Producer: INotifyPropertyChanged
     {
+        public void RaiseUpdateProperties()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+        }
         public int Id { get; set; }
 
-        public string LastName { get; set; }
-
         public string Name { get; set; }
-
+        public string LastName { get; set; }
+     
         public DateTime? BirthDate { get; set; }
 
         public string INE { get; set; }
@@ -48,7 +51,7 @@ namespace LasMargaritas.Models
 
         public string RFC { get; set; }
 
-        public int SexId { get; set; }
+        public int GenderId { get; set; }
 
         public string PhoneNumber { get; set; }
 
@@ -62,7 +65,7 @@ namespace LasMargaritas.Models
 
         public int CivilStatusId { get; set; }
 
-        public int? RegimeId { get; set; }
+        public int RegimeId { get; set; }
 
         public DateTime? StoreTS { get; set; }
 

@@ -111,6 +111,7 @@
     <Compile Include="API\WeightTicketApiTest.cs" />
     <Compile Include="BLandDL\AuthRepositoryTest.cs" />
     <Compile Include="BLandDL\LastModificationBLDLTest.cs" />
+    <Compile Include="BLandDL\CatalogBLDLTest.cs" />
     <Compile Include="BLandDL\ProductBLDLTest.cs" />
     <Compile Include="BLandDL\ProducerBLDLTest.cs" />
     <Compile Include="BLandDL\WeightTicketBLDLTest.cs" />

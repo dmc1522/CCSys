@@ -220,6 +220,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\LastModificationController.cs" />
     <Compile Include="Controllers\CicleController.cs" />
     <Compile Include="Controllers\ProducerController.cs" />

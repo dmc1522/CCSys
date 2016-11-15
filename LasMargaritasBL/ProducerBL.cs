@@ -21,8 +21,8 @@ namespace LasMargaritas.BL
             ProducerError result = ProducerError.None;
             if(string.IsNullOrEmpty(producer.Name.Trim()))
                 result |= ProducerError.InvalidName;
-            if (producer.SexId <= 0)
-                result |= ProducerError.InvalidSex;
+            if (producer.GenderId <= 0)
+                result |= ProducerError.InvalidGender;
             if (producer.CivilStatusId <= 0)
                 result |= ProducerError.InvalidCivilStatus;
             if (result != ProducerError.None)
@@ -40,8 +40,8 @@ namespace LasMargaritas.BL
             ProducerError result = ProducerError.None;
             if (string.IsNullOrEmpty(producer.Name))
                 result |= ProducerError.InvalidName;
-            if (producer.SexId <= 0)
-                result |= ProducerError.InvalidSex;
+            if (producer.GenderId <= 0)
+                result |= ProducerError.InvalidGender;
             if (producer.CivilStatusId <= 0)
                 result |= ProducerError.InvalidCivilStatus;
             if (result != ProducerError.None)
@@ -65,6 +65,11 @@ namespace LasMargaritas.BL
                 throw new ProducerException(result);
             else
                 return producerDL.GetProducer(id);
+        }
+
+        public List<SelectableModel> GetBasicModels()
+        {
+            return producerDL.GetBasicModels();
         }
 
         public bool DeleteProducer(int id)

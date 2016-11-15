@@ -20,36 +20,41 @@ namespace LasMargaritas.UI.UserControls
     /// </summary>
     public partial class ProducerList : UserControl, IProducerView
     {
-        
-        private string baseUrl;
-        private string insertAction;
-        private string updateAction;
-        private string deleteAction;
-        private string getAllAction;
-        private string getByIdAction;
-        private ProducerPresenter presenter;        
-        private List<Producer> _Producers;
+        #region Private variables
+        private ProducerPresenter presenter;
+        private List<SelectableModel> _Producers;
         private bool listLoaded;
+        #endregion
 
+        #region Public Properties
         public Token Token { get; set; }
-        public Producer CurrentProducer
+
+
+
+
+        #endregion
+
+        #region IProducerView implementation
+        public Producer CurrentProducer { get; set; }
+        
+        public List<SelectableModel> States { get; set; }
+        public List<SelectableModel> CivilStatus { get; set; }
+        public List<SelectableModel> Regimes { get; set; }
+        public List<SelectableModel> Genders { get; set; }
+
+        public int SelectedId
         {
-            set
-            {
-                ListBoxProducers.SelectedItem = value;
-            }
-                
             get
             {
-                if (ListBoxProducers != null)
-                    return (Producer)ListBoxProducers.SelectedItem;
-                return null;
-                
+                if(ListBoxProducers.SelectedItem != null)
+                {
+                    return ((SelectableModel)ListBoxProducers.SelectedItem).Id;
+                }
+                return -1;
             }
-        }
+        }        
 
-
-        public List<Producer> Producers
+        public List<SelectableModel> Producers
         {
             get
             { 
@@ -60,39 +65,52 @@ namespace LasMargaritas.UI.UserControls
                 _Producers = value;
                 ListBoxProducers.ItemsSource = _Producers;
             }
-        }                    
-
-        public ProducerList()
-        {
-            InitializeComponent();          
-            presenter = new ProducerPresenter(this);          
-        }   
-
-        private void PrintGaffete_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Button b = sender as Button;
-            Producer producer = b.CommandParameter as Producer;
-            System.Drawing.Image logo = System.Drawing.Image.FromFile("Images\\Logo.jpg");
-            System.Drawing.Bitmap scaledLogo = ImageScaler.ResizeImage(logo, 60, 60);
-            BadgePrinterHelper.PrintBadge(producer.Id, "Comercializadora Las Margaritas", "PRODUCTOR DISTINGUIDO", "Avenida Patria 10. Ameca, Jalisco", producer.Name + " " + producer.LastName, scaledLogo, 5, 9, true, true);
         }
 
         public void HandleException(Exception ex, string method, Guid errorId)
-        {           
+        {
         }
-       
 
+        #endregion
+
+        #region Constructor
+        public ProducerList()
+        {
+            InitializeComponent();           
+            presenter = new ProducerPresenter(this);
+            CurrentProducer = new Producer();
+            GridProducerDetails.DataContext = CurrentProducer;
+        }
+        #endregion
+
+        #region Private Methods
         private void UserControl_IsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
             if ((bool)e.NewValue == true && !listLoaded)
             {
                 presenter.Token = Token;
-                presenter.LoadProducers();
+                presenter.Initialize();             
+                ComboBoxCivilStatus.ItemsSource = CivilStatus;
+                ComboBoxRegime.ItemsSource = Regimes;
+                ComboBoxState.ItemsSource = States;
+                ComboBoxGender.ItemsSource = Genders;                             
                 listLoaded = true;
             }
         }
 
-      
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
+        }
+
         private void ButtonGetImage_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (!webCameraControl.IsCapturing)
@@ -107,11 +125,16 @@ namespace LasMargaritas.UI.UserControls
             {
                 TextBoxImageInstructions.Text = "Click para CAPTURAR foto";
                 ButtonCaptureImage.Visibility = System.Windows.Visibility.Visible;
-                ButtonGetImage.Visibility = System.Windows.Visibility.Hidden;
-                Bitmap bitmap = webCameraControl.GetCurrentImage();             
+                ButtonGetImage.Visibility = System.Windows.Visibility.Hidden;                
+                Bitmap bitmap = webCameraControl.GetCurrentImage();
+                ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
+                System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+                EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 50L);
+                myEncoderParameters.Param[0] = myEncoderParameter;               
                 using (var memoryStream = new MemoryStream())
                 {
-                    bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Bmp);                    
+                    bitmap.Save(memoryStream,jpgEncoder, myEncoderParameters);                    
                     CurrentProducer.Photo = memoryStream.ToArray();
                 }                    
                 webCameraControl.StopCapture();
@@ -129,5 +152,14 @@ namespace LasMargaritas.UI.UserControls
             Gaffette_Preview preview = new Gaffette_Preview(CurrentProducer);
             preview.Show();
         }
+
+        private void ListBoxProducers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(ListBoxProducers.SelectedItem != null)
+            {
+                presenter.UpdateCurrentProducer();
+            }            
+        }
+        #endregion
     }
 }

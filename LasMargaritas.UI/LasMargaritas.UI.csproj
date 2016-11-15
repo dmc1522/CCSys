@@ -95,6 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\CaseConverter.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="Gaffette Preview.xaml.cs">
       <DependentUpon>Gaffette Preview.xaml</DependentUpon>

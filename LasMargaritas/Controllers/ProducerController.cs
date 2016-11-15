@@ -142,6 +142,26 @@ namespace LasMargaritas.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [Route("GetSelectableModels")]
+        [HttpGet]
+        public IHttpActionResult GetSelectableModels()
+        {
+            GetSelectableModelResponse response = new GetSelectableModelResponse();
+            try
+            {
+                List<SelectableModel> producers = producerBL.GetBasicModels();
+                response.SelectableModels = producers;
+                response.Success = true;
+            }            
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+        [Authorize(Roles = "Admin")]
         [Route("GetById")]
         [HttpGet]
         public IHttpActionResult GetById(int id)
