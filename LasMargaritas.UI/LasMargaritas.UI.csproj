@@ -307,6 +307,7 @@
     <Content Include="dll\System.Windows.Controls.Layout.Toolkit.dll" />
     <Content Include="dll\WPFToolkit.dll" />
     <Resource Include="References\back.jpg" />
+    <Resource Include="References\front.jpg" />
     <Content Include="References\WebEye.Controls.Wpf.WebCameraControl.dll" />
     <Content Include="References\ZBRGraphics.dll" />
     <Content Include="References\ZBRPrinter.dll" />

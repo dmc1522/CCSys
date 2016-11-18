@@ -18,14 +18,21 @@ namespace LasMargaritas.UI
         private string baseUrl;
         public MainWindow()
         {
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
             baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
             if (ConfigurationManager.AppSettings["baseUrl"] != null)
             {
                 baseUrl = ConfigurationManager.AppSettings["baseUrl"];
             }
-            token = TokenHelper.GetToken(baseUrl, "Melvin3", "MelvinPass3");
+            token = TokenHelper.GetToken(baseUrl, txtUser.Text,password.Password);
             InitializeComponent();
             producerList.Token = token;
+
+            login.Visibility = Visibility.Hidden;
+            controls.Visibility = Visibility.Visible;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

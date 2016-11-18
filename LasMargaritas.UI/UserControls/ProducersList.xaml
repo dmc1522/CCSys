@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              IsVisibleChanged="UserControl_IsVisibleChanged">
 
-    <Grid x:Name="GridProducersControl" Visibility="Visible" Margin="5" >
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*" MinWidth="300" />
             <ColumnDefinition Width="1300*" MinWidth="500" />

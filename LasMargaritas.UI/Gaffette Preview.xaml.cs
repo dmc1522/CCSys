@@ -70,6 +70,7 @@ namespace LasMargaritas.UI
             long error = 0;
             byte[] printerName = Encoding.ASCII.GetBytes("PDFCreator");
             byte[] myText = Encoding.ASCII.GetBytes(Producer.Name + " " + Producer.LastName);
+            byte[] type = Encoding.ASCII.GetBytes("Productor");
             byte[] myFont = Encoding.ASCII.GetBytes("Arial");
             byte[] backGround = Encoding.ASCII.GetBytes("back.jpg");
             File.WriteAllBytes("test.bmp", Producer.Photo);
@@ -80,11 +81,12 @@ namespace LasMargaritas.UI
             byte[] businessData = Encoding.ASCII.GetBytes("Grupo Garibay. Avenida Patria No 10 Ameca, Jalisco.");
             int result = ZBRGDIInitGraphics(printerName, ref handle, ref error);
             result = ZBRGDIDrawImageRect(backGround, 10, 10, 1054, 654, ref error);
-            result = ZBRGDIDrawImageRect(photo, 400, 82, 300, 300, ref error);
-            result = ZBRGDIDrawImageRect(barCode, 50, 380, 260, 260, ref error);
+            result = ZBRGDIDrawImageRect(photo, 700, 105, 300, 300, ref error);
+            result = ZBRGDIDrawImageRect(barCode, 215, 320, 230, 230, ref error);
             //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
-            result = ZBRGDIDrawText(335, 410, myText, myFont, 10, 1, 1, ref error);
-            result = ZBRGDIDrawText(315, 580, businessData, myFont, 6, 1, 8024182, ref error);
+            result = ZBRGDIDrawText(50, 120, myText, myFont, 10, 1, 1, ref error);
+            result = ZBRGDIDrawText(70, 220, type, myFont, 7, 1, 1, ref error);
+            result = ZBRGDIDrawText(30, 580, businessData, myFont, 6, 1, 16777215, ref error);            
           
             HwndSource hwndSource = PresentationSource.FromVisual(Gafette) as HwndSource;
 
