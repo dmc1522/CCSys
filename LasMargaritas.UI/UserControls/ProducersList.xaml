@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              IsVisibleChanged="UserControl_IsVisibleChanged">
 
-    <Grid x:Name="GridProducersControl" Visibility="Visible" Margin="5" >
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*" MinWidth="300" />
             <ColumnDefinition Width="1300*" MinWidth="500" />
@@ -18,8 +18,9 @@
         <Grid Grid.Column="0" TextBlock.TextAlignment="Center">
             <Grid Background="#BDBDBD" >
                 <Grid.RowDefinitions>                                      
-                    <RowDefinition Height="40" />                    
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="45" />                    
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
                     <RowDefinition MinHeight="180" Height="*"/>
                 </Grid.RowDefinitions>                
                
@@ -35,7 +36,9 @@
                 
                 <Button Grid.Row="1"  x:Name="ButtonAddProducer" Content="Nuevo Productor"  Margin="15,2" Click="ButtonAddProducer_Click" />
 
-                <ListBox  Grid.Row="2" x:Name="ListBoxProducers"  Margin="15,20" SelectionChanged="ListBoxProducers_SelectionChanged"  >
+                <Button Grid.Row="2"  x:Name="ButtonReloadList" Content="Recargar lista"  Margin="15,2" Click="ButtonReloadList_Click" />
+
+                <ListBox  Grid.Row="3" x:Name="ListBoxProducers"  Margin="15,20" SelectionChanged="ListBoxProducers_SelectionChanged"  >
                     <ListBox.Resources>
                         <cnv:CaseConverter x:Key="caseConverter" />
                     </ListBox.Resources>
