@@ -88,6 +88,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddProductResponse.cs" />
+    <Compile Include="SaleCustomer\GetSaleCustomerResponse.cs" />
+    <Compile Include="Rancher\GetRancherResponse.cs" />
+    <Compile Include="Rancher\RancherError.cs" />
+    <Compile Include="Rancher\RancherException.cs" />
+    <Compile Include="Rancher\RancherResponse.cs" />
+    <Compile Include="Rancher\Rancher.cs" />
+    <Compile Include="SaleCustomer\SaleCustomer.cs" />
+    <Compile Include="SaleCustomer\SaleCustomerError.cs" />
+    <Compile Include="SaleCustomer\SaleCustomerException.cs" />
+    <Compile Include="SaleCustomer\SaleCustomerResponse.cs" />
     <Compile Include="SelectableModel.cs" />
     <Compile Include="Cicle.cs" />
     <Compile Include="GetSelectableModelResponse.cs" />
@@ -113,6 +123,11 @@
     <Compile Include="Product.cs" />
     <Compile Include="ProductError.cs" />
     <Compile Include="ProductException.cs" />
+    <Compile Include="Supplier\GetSupplierResponse.cs" />
+    <Compile Include="Supplier\Supplier.cs" />
+    <Compile Include="Supplier\SupplierError.cs" />
+    <Compile Include="Supplier\SupplierException.cs" />
+    <Compile Include="Supplier\SupplierResponse.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="WareHouse.cs" />
     <Compile Include="WareHouseError.cs" />

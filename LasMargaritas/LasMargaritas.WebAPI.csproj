@@ -225,6 +225,9 @@
     <Compile Include="Controllers\CicleController.cs" />
     <Compile Include="Controllers\ProducerController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\RancherController.cs" />
+    <Compile Include="Controllers\SaleCustomerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\WareHouseController.cs" />
     <Compile Include="Controllers\WeightTicketController.cs" />
