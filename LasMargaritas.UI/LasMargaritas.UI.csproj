@@ -103,6 +103,15 @@
       <DependentUpon>Gaffette Preview.xaml</DependentUpon>
     </Compile>
     <Compile Include="System\Drawing\Color.cs" />
+    <Compile Include="UserControls\SupplierList.xaml.cs">
+      <DependentUpon>SupplierList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RancherList.xaml.cs">
+      <DependentUpon>RancherList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SaleCustomerList.xaml.cs">
+      <DependentUpon>SaleCustomerList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ProducersList.xaml.cs">
       <DependentUpon>ProducersList.xaml</DependentUpon>
     </Compile>
@@ -173,6 +182,18 @@
     <Page Include="Resources\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SupplierList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\RancherList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SaleCustomerList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\ProducersList.xaml">
       <Generator>MSBuild:Compile</Generator>

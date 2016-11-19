@@ -9,23 +9,44 @@
         WindowState="Maximized" 
         Style="{StaticResource MainWindow}"
         Title="Las Margaritas" Width="1920" Height="1080" >
+
     <Grid >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Button Height="40" Width="150" x:Name="buttonViewWeightTickets" Click="buttonViewWeightTickets_Click" >Ver boletas</Button>
-                <Button Height="40" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click" >Ver Productores</Button>
+
+        <Grid Height="150" Width="520" Visibility="Visible" x:Name="login">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"  />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="250" />
+            </Grid.ColumnDefinitions>
+            <Image x:Name="image"  Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"  Margin="24,24,28,27" Source="/Resources/Img/loging.png"/>
+            <Label Grid.Column="1" Grid.Row="0"  Content="Usuario:" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="2" Grid.Row="0"  Text="Melvin3"  Margin="5" x:Name="txtUser"/>
+            <Label Grid.Column="1" Grid.Row="1"  Content="Contraseña:" VerticalAlignment="Center"  />
+            <PasswordBox  Grid.Row="1" Grid.Column="2" x:Name="password" Margin="5" Password="MelvinPass3" />
+            <Button Grid.Column="2" Grid.Row="2"   x:Name="btnLogin" Content="Entrar"  Margin="5" Click="btnLogin_Click"/>
+        </Grid>
+        
+        <Grid Visibility="Hidden" x:Name="controls">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Button Height="40" Width="150" x:Name="buttonViewWeightTickets" Click="buttonViewWeightTickets_Click" >Ver boletas</Button>
+                    <Button Height="40" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click" >Ver Productores</Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-        <Grid Grid.Row="1">
-            <controls:ProducerList x:Name="producerList" Visibility="Visible"></controls:ProducerList>
-
-            <controls:Tickets x:Name="tickets" Visibility="Collapsed" ></controls:Tickets>
-
-          
+            <Grid Grid.Row="1">
+                <controls:ProducerList x:Name="producerList" Visibility="Hidden"></controls:ProducerList>
+                <controls:Tickets x:Name="tickets" Visibility="Hidden" ></controls:Tickets>
+            </Grid>
         </Grid>
     </Grid>
+
 </Window>

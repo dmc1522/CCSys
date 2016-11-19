@@ -67,6 +67,9 @@
     <Compile Include="EF\AuthContext.cs" />
     <Compile Include="ProducerDL.cs" />
     <Compile Include="ProductDL.cs" />
+    <Compile Include="SupplierDL.cs" />
+    <Compile Include="RancherDL.cs" />
+    <Compile Include="SaleCustomerDL.cs" />
     <Compile Include="WareHouseDL.cs" />
     <Compile Include="WeightTicketDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
