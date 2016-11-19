@@ -73,7 +73,6 @@ namespace LasMargaritas.BL.Presenters
 
         #endregion
 
-
         #region Private methods
 
         private void LoadProducers()
@@ -187,7 +186,6 @@ namespace LasMargaritas.BL.Presenters
         }
         #endregion
 
-
         #region Public methods
         public void Initialize()
         {
@@ -201,6 +199,7 @@ namespace LasMargaritas.BL.Presenters
             producerView.CurrentProducer.RaiseUpdateProperties();
             producerView.SelectedId = -1;
         }
+
         public void DeleteProducer()
         {
             HttpClient client = new HttpClient();
@@ -222,12 +221,14 @@ namespace LasMargaritas.BL.Presenters
             }
            
         }
+
         public void NewProducer()
         {
             PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
             producerView.CurrentProducer.RaiseUpdateProperties();
             producerView.SelectedId = -1;
         }
+
         public void UpdateCurrentProducer()
         {
             if (producerView.SelectedId == -1)
@@ -292,11 +293,7 @@ namespace LasMargaritas.BL.Presenters
             {
                 throw new ProducerException(producerResponse.ErrorCode, producerResponse.ErrorMessage);
             }
-        }
-
-        public void FilterProducerList()
-        {
-        }
+        }     
 
         #endregion
 

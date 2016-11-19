@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using LasMargaritas.BL.Presenters;
 using WebEye.Controls.Wpf;
 using System.Linq;
-using System.IO;
+using System.IO;    
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Windows.Data;
@@ -99,7 +99,7 @@ namespace LasMargaritas.UI.UserControls
                 return true;
             else
                 return ((item as SelectableModel).Name != null && (item as SelectableModel).Name.IndexOf(TextBoxSearchProducers.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                    || ((item as SelectableModel).Id.ToString().IndexOf(TextBoxSearchProducers.Text, StringComparison.OrdinalIgnoreCase) >= 0) ;
+                    || string.Compare(((item as SelectableModel).Id.ToString()), TextBoxSearchProducers.Text) == 0;
                        
         }
 
@@ -121,6 +121,29 @@ namespace LasMargaritas.UI.UserControls
         #endregion
 
         #region Private Methods
+        private void ButtonDelete_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Realmente deseas eliminar a este productor?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                presenter.DeleteProducer();
+            }
+
+        }
+
+        private void ButtonReloadList_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.ReloadProducerList();
+        }
+        private void ButtonAddProducer_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            presenter.NewProducer();
+        }
+
+        private void TextBoxSearchProducers_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(ListBoxProducers.ItemsSource).Refresh();
+        }
         private void UserControl_IsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
             if ((bool)e.NewValue == true && !listLoaded)
@@ -199,31 +222,6 @@ namespace LasMargaritas.UI.UserControls
                 presenter.UpdateCurrentProducer();
             }            
         }
-        #endregion
-
-        private void ButtonAddProducer_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            presenter.NewProducer();
-        }
-
-        private void TextBoxSearchProducers_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(ListBoxProducers.ItemsSource).Refresh();
-        }
-
-        private void ButtonDelete_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Realmente deseas eliminar a este productor?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if(result == MessageBoxResult.Yes)
-            {
-                presenter.DeleteProducer();
-            }
-
-        }
-
-        private void ButtonReloadList_Click(object sender, RoutedEventArgs e)
-        {
-            presenter.ReloadProducerList();
-        }
+        #endregion     
     }
 }

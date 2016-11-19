@@ -86,6 +86,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\WPFToolkit.dll</HintPath>
@@ -273,6 +274,10 @@
     <Resource Include="Resources\Img\cow.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LasMargaritas.WFControls\LasMargaritas.WFControls.csproj">
+      <Project>{6a3cc80a-1149-4ee2-b573-078763500fa4}</Project>
+      <Name>LasMargaritas.WFControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LasMargaritasBL\LasMargaritas.BL.csproj">
       <Project>{573d7320-ad53-4ff3-a138-eda258cc3718}</Project>
       <Name>LasMargaritas.BL</Name>
@@ -307,6 +312,7 @@
     <Content Include="dll\System.Windows.Controls.Layout.Toolkit.dll" />
     <Content Include="dll\WPFToolkit.dll" />
     <Resource Include="References\back.jpg" />
+    <Resource Include="References\front.jpg" />
     <Content Include="References\WebEye.Controls.Wpf.WebCameraControl.dll" />
     <Content Include="References\ZBRGraphics.dll" />
     <Content Include="References\ZBRPrinter.dll" />

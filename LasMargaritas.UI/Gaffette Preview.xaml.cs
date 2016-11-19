@@ -29,6 +29,9 @@ namespace LasMargaritas.UI
         public static extern int ZBRGDIInitGraphics(byte[] printerName, ref int myHandle, ref long errValue);
 
         [DllImport("ZBRGraphics.dll")]
+        public static extern int ZBRGDIClearGraphics(ref long errValue);
+
+        [DllImport("ZBRGraphics.dll")]
         public static extern int ZBRGDICloseGraphics(int myHandle, ref long errValue);
 
         [DllImport("ZBRGraphics.dll")]
@@ -60,39 +63,59 @@ namespace LasMargaritas.UI
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            File.Delete("test.bmp");
-            File.Delete("test2.bmp");
+            File.Delete("qr.bmp");
+            File.Delete("photo.bmp");
+        }
+
+        private void Print(bool isPreview)
+        {
+            int handle = 0;
+            long error = 0;
+            //Front
+            byte[] printerName = Encoding.ASCII.GetBytes("Zebra ZXP Series 3 USB Card Printer");
+            byte[] myText = Encoding.ASCII.GetBytes(Producer.Name + " " + Producer.LastName);
+            byte[] producerTitle = Encoding.ASCII.GetBytes("Productor");
+            byte[] myFont = Encoding.ASCII.GetBytes("Arial");
+            byte[] frontBackGround = Encoding.ASCII.GetBytes("back.jpg");
+            byte[] backBackGround = Encoding.ASCII.GetBytes("front.jpg");
+            File.WriteAllBytes("photo.bmp", Producer.Photo);
+            Bitmap qrCode = BadgePrinterHelper.GetQRCode(Producer.BarCode);
+            qrCode.Save("qr.bmp");
+            byte[] photo = Encoding.ASCII.GetBytes("photo.bmp");
+            byte[] barCode = Encoding.ASCII.GetBytes("qr.bmp");
+            byte[] businessData = Encoding.ASCII.GetBytes("Grupo Garibay. Avenida Patria No 10 Ameca, Jalisco.");
+            int result = ZBRGDIInitGraphics(printerName, ref handle, ref error);
+            result = ZBRGDIDrawImageRect(frontBackGround, 10, 10, 1054, 654, ref error);
+            result = ZBRGDIDrawImageRect(photo, 700, 105, 300, 300, ref error);
+            result = ZBRGDIDrawImageRect(barCode, 215, 320, 230, 230, ref error);
+            //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
+            result = ZBRGDIDrawText(50, 120, myText, myFont, 10, 1, 1, ref error);
+            result = ZBRGDIDrawText(70, 220, producerTitle, myFont, 7, 1, 1, ref error);
+            result = ZBRGDIDrawText(30, 580, businessData, myFont, 6, 1, 16777215, ref error);
+            if(isPreview)
+                result = ZBRGDIPreviewGraphics(ImageFront.PreviewImageHandle, ref error);
+            else
+                result = ZBRGDIPrintGraphics(handle, ref error);
+            result = ZBRGDIClearGraphics(ref error);
+            //Back
+            result = ZBRGDIDrawImageRect(backBackGround, 10, 10, 1054, 654, ref error);
+            if(isPreview)
+                result = ZBRGDIPreviewGraphics(ImageBack.PreviewImageHandle, ref error);
+            else
+                result = ZBRGDIPrintGraphics(handle, ref error);
+            ZBRGDICloseGraphics(handle, ref error);
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            int handle = 0;
-            long error = 0;
-            byte[] printerName = Encoding.ASCII.GetBytes("PDFCreator");
-            byte[] myText = Encoding.ASCII.GetBytes(Producer.Name + " " + Producer.LastName);
-            byte[] myFont = Encoding.ASCII.GetBytes("Arial");
-            byte[] backGround = Encoding.ASCII.GetBytes("back.jpg");
-            File.WriteAllBytes("test.bmp", Producer.Photo);
-            Bitmap qrCode = BadgePrinterHelper.GetQRCode(Producer.Id.ToString());
-            qrCode.Save("test2.bmp");
-            byte[] photo = Encoding.ASCII.GetBytes("test.bmp");
-            byte[] barCode = Encoding.ASCII.GetBytes("test2.bmp");
-            byte[] businessData = Encoding.ASCII.GetBytes("Grupo Garibay. Avenida Patria No 10 Ameca, Jalisco.");
-            int result = ZBRGDIInitGraphics(printerName, ref handle, ref error);
-            result = ZBRGDIDrawImageRect(backGround, 10, 10, 1054, 654, ref error);
-            result = ZBRGDIDrawImageRect(photo, 400, 82, 300, 300, ref error);
-            result = ZBRGDIDrawImageRect(barCode, 50, 380, 260, 260, ref error);
-            //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
-            result = ZBRGDIDrawText(335, 410, myText, myFont, 10, 1, 1, ref error);
-            result = ZBRGDIDrawText(315, 580, businessData, myFont, 6, 1, 8024182, ref error);
-          
-            HwndSource hwndSource = PresentationSource.FromVisual(Gafette) as HwndSource;
+            ImageFront.Title = "Frente";            
+            ImageBack.Title = "Reverso";
+            Print(true);
+        }
 
-            if (hwndSource != null)
-            {
-                result = ZBRGDIPreviewGraphics(hwndSource.Handle, ref error);
-            }
-            ZBRGDICloseGraphics(handle, ref error);
+        private void btnPrint_Click(object sender, RoutedEventArgs e)
+        {
+            Print(false);
         }
     }    
 }

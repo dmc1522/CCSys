@@ -23,7 +23,9 @@
         <Grid Grid.Row="1">
             <controls:ProducerList x:Name="producerList" Visibility="Visible"></controls:ProducerList>
 
-            <controls:Tickets x:Name="tickets" Visibility="Hidden" ></controls:Tickets>
+            <controls:Tickets x:Name="tickets" Visibility="Collapsed" ></controls:Tickets>
+
+          
         </Grid>
     </Grid>
 </Window>
