@@ -91,6 +91,7 @@
     <Compile Include="LastModificationBL.cs" />
     <Compile Include="CicleBL.cs" />
     <Compile Include="ImageScaler.cs" />
+    <Compile Include="Presenters\WeightTicketPresenter.cs" />
     <Compile Include="Presenters\SupplierPresenter.cs" />
     <Compile Include="Presenters\RancherPresenter.cs" />
     <Compile Include="Presenters\SaleCustomerPresenter.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="TokenHelper.cs" />
     <Compile Include="UserBL.cs" />
     <Compile Include="Utils\PropertyCopier.cs" />
+    <Compile Include="Views\IWeightTicketView.cs" />
     <Compile Include="Views\IProducerView.cs" />
     <Compile Include="Views\IRancherView.cs" />
     <Compile Include="Views\ISupplierView.cs" />

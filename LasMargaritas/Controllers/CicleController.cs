@@ -10,7 +10,8 @@ namespace LasMargaritas.Controllers
     [RoutePrefix("Cicle")]
     public class CicleController : ApiController
     {
-        private WareHouseBL wareHouseBL;
+        private CicleBL cicleBL;
+
         #region Constructor & Properties
 
         public CicleController()
@@ -20,33 +21,34 @@ namespace LasMargaritas.Controllers
             {
                 connectionString = ConfigurationManager.ConnectionStrings["LasMargaritasDb"].ConnectionString;
             }
-            wareHouseBL = new WareHouseBL(connectionString);
+            cicleBL = new CicleBL(connectionString);
         }
         #endregion
+
         #region Post Methods
         [HttpPost]
         [Route("Add")]
         [Authorize(Roles = "Admin")]
-        public IHttpActionResult Add(WareHouse wareHouse)
+        public IHttpActionResult Add(Cicle cicle)
         {
-            WareHouseResponse response = new WareHouseResponse();
+            CicleResponse response = new CicleResponse();
             try
             {
-                WareHouse wareHouseSaved = wareHouseBL.InsertWareHouse(wareHouse);
-                response.WareHouse = wareHouseSaved;
+                Cicle cicleSaved = cicleBL.InsertCicle(cicle);
+                response.Cicle = cicleSaved;
                 response.Success = true;
             }
-            catch (WareHouseException ex)
+            catch (CicleException ex)
             {
                 response.ErrorCode = ex.Error;
                 response.ErrorMessage = "Error. " + ex.Error.ToString();
-                response.WareHouse = null;
+                response.Cicle = null;
                 response.Success = false;
             }
             catch (Exception ex)
             {
                 response.ErrorMessage = "Error. " + ex.Message;
-                response.WareHouse = null;
+                response.Cicle = null;
                 response.Success = false;
             }
             return Ok(response);
@@ -55,26 +57,26 @@ namespace LasMargaritas.Controllers
         [HttpPost]
         [Route("Update")]
         [Authorize(Roles = "Admin")]
-        public IHttpActionResult Update(WareHouse wareHouse)
+        public IHttpActionResult Update(Cicle cicle)
         {
-            WareHouseResponse response = new WareHouseResponse();
+            CicleResponse response = new CicleResponse();
             try
             {
-                WareHouse wareHouseSaved = wareHouseBL.UpdateWareHouse(wareHouse);
-                response.WareHouse = wareHouseSaved;
+                Cicle cicleSaved = cicleBL.UpdateCicle(cicle);
+                response.Cicle = cicleSaved;
                 response.Success = true;
             }
-            catch (WareHouseException ex)
+            catch (CicleException ex)
             {
                 response.ErrorCode = ex.Error;
                 response.ErrorMessage = "Error. " + ex.Error.ToString();
-                response.WareHouse = null;
+                response.Cicle = null;
                 response.Success = false;
             }
             catch (Exception ex)
             {
                 response.ErrorMessage = "Error. " + ex.Message;
-                response.WareHouse = null;
+                response.Cicle = null;
                 response.Success = false;
             }
             return Ok(response);
@@ -85,23 +87,23 @@ namespace LasMargaritas.Controllers
         [Authorize(Roles = "Admin")]
         public IHttpActionResult Delete(IdModel id)
         {
-            WareHouseResponse response = new WareHouseResponse();
+            CicleResponse response = new CicleResponse();
             try
             {
-                bool success = wareHouseBL.DeleteWareHouse(id.Id);
+                bool success = cicleBL.DeleteCicle(id.Id);
                 response.Success = success;
             }
-            catch (WareHouseException ex)
+            catch (CicleException ex)
             {
                 response.ErrorCode = ex.Error;
                 response.ErrorMessage = "Error. " + ex.Error.ToString();
-                response.WareHouse = null;
+                response.Cicle = null;
                 response.Success = false;
             }
             catch (Exception ex)
             {
                 response.ErrorMessage = "Error. " + ex.Message;
-                response.WareHouse = null;
+                response.Cicle = null;
                 response.Success = false;
             }
             return Ok(response);
@@ -115,14 +117,14 @@ namespace LasMargaritas.Controllers
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            GetWareHouseResponse response = new GetWareHouseResponse();
+            GetCicleResponse response = new GetCicleResponse();
             try
             {
-                List<WareHouse> wareHouses = wareHouseBL.GetWareHouse();
-                response.WareHouses = wareHouses;
+                List<Cicle> cicles = cicleBL.GetCicle();
+                response.Cicles = cicles;
                 response.Success = true;
             }
-            catch (WareHouseException ex)
+            catch (CicleException ex)
             {
                 response.ErrorCode = ex.Error;
                 response.ErrorMessage = "Error. " + ex.Error.ToString();
@@ -141,18 +143,38 @@ namespace LasMargaritas.Controllers
         [HttpGet]
         public IHttpActionResult GetById(int id)
         {
-            GetWareHouseResponse response = new GetWareHouseResponse();
+            GetCicleResponse response = new GetCicleResponse();
             try
             {
-                List<WareHouse> wareHouses = wareHouseBL.GetWareHouse(id);
-                response.WareHouses = wareHouses;
+                List<Cicle> cicles = cicleBL.GetCicle(id);
+                response.Cicles = cicles;
                 response.Success = true;
             }
-            catch (WareHouseException ex)
+            catch (CicleException ex)
             {
                 response.ErrorCode = ex.Error;
                 response.ErrorMessage = "Error. " + ex.Error.ToString();
                 response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [Route("GetSelectableModels")]
+        [HttpGet]
+        public IHttpActionResult GetSelectableModels()
+        {
+            GetSelectableModelResponse response = new GetSelectableModelResponse();
+            try
+            {
+                List<SelectableModel> cicles = cicleBL.GetBasicModels();
+                response.SelectableModels = cicles;
+                response.Success = true;
             }
             catch (Exception ex)
             {

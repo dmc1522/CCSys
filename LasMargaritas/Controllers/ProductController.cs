@@ -168,19 +168,13 @@ namespace LasMargaritas.Controllers
         [HttpGet]
         public IHttpActionResult GetWeightTicketProducts()
         {
-            GetProductResponse response = new GetProductResponse();
+            GetSelectableModelResponse response = new GetSelectableModelResponse();
             try
             {
-                List<Product> products = productBL.GetWeightTicketProducts();
-                response.Products = products;
+                List<SelectableModel> products = productBL.GetWeightTicketProducts();
+                response.SelectableModels = products;
                 response.Success = true;
-            }
-            catch (ProductException ex)
-            {
-                response.ErrorCode = ex.Error;
-                response.ErrorMessage = "Error. " + ex.Error.ToString();
-                response.Success = false;
-            }
+            }        
             catch (Exception ex)
             {
                 response.ErrorMessage = "Error. " + ex.Message;

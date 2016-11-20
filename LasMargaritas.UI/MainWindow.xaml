@@ -44,7 +44,7 @@
             </StackPanel>
             <Grid Grid.Row="1">
                 <controls:ProducerList x:Name="producerList" Visibility="Hidden"></controls:ProducerList>
-                <controls:Tickets x:Name="tickets" Visibility="Hidden" ></controls:Tickets>
+                <controls:WeightTicketList x:Name="weightTickets" Visibility="Hidden" ></controls:WeightTicketList>
             </Grid>
         </Grid>
     </Grid>

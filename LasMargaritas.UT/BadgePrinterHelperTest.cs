@@ -12,7 +12,7 @@ namespace LasMargaritas.UT
         {
             Image logo = Image.FromFile("Images\\Logo.jpg");
             Bitmap scaledLogo = ImageScaler.ResizeImage(logo, 60, 60);
-            BadgePrinterHelper.PrintBadge(1, "Comercializadora Las Margaritas", "PRODUCTOR DISTINGUIDO", "Avenida Patria 10. Ameca, Jalisco", "Manuel A. Quintero Sánchez", scaledLogo, 5, 9, true, true);
+            //BadgePrinterHelper.PrintBadge(1, "Comercializadora Las Margaritas", "PRODUCTOR DISTINGUIDO", "Avenida Patria 10. Ameca, Jalisco", "Manuel A. Quintero Sánchez", scaledLogo, 5, 9, true, true);
         }
     }  
 }

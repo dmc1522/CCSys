@@ -164,6 +164,28 @@ namespace LasMargaritas.Controllers
             }
             return Ok(response);
         }
+
+        [Authorize(Roles = "Admin")]
+        [Route("GetSelectableModels")]
+        [HttpGet]
+        public IHttpActionResult GetSelectableModels(int cicleId)
+        {
+            GetSelectableModelResponse response = new GetSelectableModelResponse();
+            try
+            {
+                List<SelectableModel> weightTickets = weightTicketsBL.GetSelectableModels(cicleId);
+                response.SelectableModels = weightTickets;
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+
         #endregion
     }
 }

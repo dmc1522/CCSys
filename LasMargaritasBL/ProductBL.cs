@@ -65,7 +65,7 @@ namespace LasMargaritas.BL
                 return productDL.GetProduct(id);
         }
 
-        public List<Product> GetWeightTicketProducts()
+        public List<SelectableModel> GetWeightTicketProducts()
         {
             //Add validations here!           
             return productDL.GetProductByProductGroupId(WeightTicketProductGroupId);

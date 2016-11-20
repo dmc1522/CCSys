@@ -45,6 +45,7 @@ namespace LasMargaritas.ULT
             weightTicket.UpdateTs = DateTime.Now;
             weightTicket.UserId = "35d360f3-c296-4113-ab34-9b91fe729c18";
             weightTicket.WarehouseId = 1;
+            weightTicket.Freight = true;            
             return weightTicket;
         }     
     }

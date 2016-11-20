@@ -12,6 +12,7 @@ namespace LasMargaritas.Controllers
     public class WareHouseController : ApiController
     {
         private WareHouseBL wareHouseBL;
+        
         #region Constructor & Properties
 
         public WareHouseController()
@@ -24,6 +25,7 @@ namespace LasMargaritas.Controllers
             wareHouseBL = new WareHouseBL(connectionString);
         }
         #endregion
+        
         #region Post Methods
         [HttpPost]
         [Route("Add")]
@@ -154,6 +156,26 @@ namespace LasMargaritas.Controllers
                 response.ErrorCode = ex.Error;
                 response.ErrorMessage = "Error. " + ex.Error.ToString();
                 response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [Route("GetSelectableModels")]
+        [HttpGet]
+        public IHttpActionResult GetSelectableModels()
+        {
+            GetSelectableModelResponse response = new GetSelectableModelResponse();
+            try
+            {
+                List<SelectableModel> wareHouses = wareHouseBL.GetBasicModels();
+                response.SelectableModels = wareHouses;
+                response.Success = true;
             }
             catch (Exception ex)
             {

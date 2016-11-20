@@ -46,7 +46,26 @@ namespace LasMargaritas.DL
                 return wareHouse;
             }
         }
-
+        public List<SelectableModel> GetBasicModels()
+        {
+            List<SelectableModel> producers = new List<SelectableModel>();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetWareHouseSelectableModels";
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    producers = DataReaderMapper.Map<SelectableModel>(reader);
+                    reader.Close();
+                    connection.Close();
+                }
+                return producers;
+            }
+        }
         public WareHouse UpdateWareHouse(WareHouse wareHouse)
         {
             using (SqlCommand command = new SqlCommand())

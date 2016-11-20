@@ -24,7 +24,7 @@ namespace LasMargaritas.ULT
         {
             //Test get by Id
             ProductBL productBL = new ProductBL(connectionString);
-            List<Product> products = productBL.GetWeightTicketProducts();
+            List<SelectableModel> products = productBL.GetWeightTicketProducts();
             Assert.IsTrue(products.Count() > 1);
         }
     }

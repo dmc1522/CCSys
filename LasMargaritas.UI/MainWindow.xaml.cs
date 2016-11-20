@@ -30,6 +30,7 @@ namespace LasMargaritas.UI
             token = TokenHelper.GetToken(baseUrl, txtUser.Text,password.Password);
             InitializeComponent();
             producerList.Token = token;
+            weightTickets.Token = token;
 
             login.Visibility = Visibility.Hidden;
             controls.Visibility = Visibility.Visible;
@@ -42,13 +43,13 @@ namespace LasMargaritas.UI
 
         private void buttonViewWeightTickets_Click(object sender, RoutedEventArgs e)
         {
-            tickets.Visibility = Visibility.Visible;
+            weightTickets.Visibility = Visibility.Visible;
             producerList.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewProducers_Click(object sender, RoutedEventArgs e)
         {
-            tickets.Visibility = Visibility.Hidden;
+            weightTickets.Visibility = Visibility.Hidden;
             producerList.Visibility = Visibility.Visible;
         }
 

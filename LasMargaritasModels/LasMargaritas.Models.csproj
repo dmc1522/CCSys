@@ -133,12 +133,12 @@
     <Compile Include="WareHouseError.cs" />
     <Compile Include="WareHouseException.cs" />
     <Compile Include="WareHouseResponse.cs" />
-    <Compile Include="WeightTicketException.cs" />
-    <Compile Include="WeightTicketError.cs" />
-    <Compile Include="WeightTicket.cs" />
+    <Compile Include="WeightTicket\WeightTicketException.cs" />
+    <Compile Include="WeightTicket\WeightTicketError.cs" />
+    <Compile Include="WeightTicket\WeightTicket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="WeightTicketResponse.cs" />
+    <Compile Include="WeightTicket\WeightTicketResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

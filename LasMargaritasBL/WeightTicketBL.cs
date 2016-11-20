@@ -21,8 +21,6 @@ namespace LasMargaritas.BL
             WeightTicketError result = WeightTicketError.None;
             if (weightTicket.CicleId <= 0)
                 result |= WeightTicketError.InvalidCicle;
-            if(weightTicket.ProducerId <= 0)
-                result |= WeightTicketError.InvalidProducer;
             if (weightTicket.ProductId <= 0)
                 result |= WeightTicketError.InvalidProduct;
             if (weightTicket.WarehouseId <= 0)
@@ -68,6 +66,13 @@ namespace LasMargaritas.BL
                 throw new WeightTicketException(result);
             else
                 return weightTicketsDL.GetWeightTicket(id);
+        }
+
+
+        public List<SelectableModel> GetSelectableModels(int? cicleId)
+        {
+            //Add validations here!
+            return weightTicketsDL.GetSelectableModels(cicleId);
         }
 
         public bool DeleteWeightTicket(int id)

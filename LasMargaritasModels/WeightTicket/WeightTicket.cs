@@ -1,9 +1,16 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace LasMargaritas.Models
 {
-    public class WeightTicket
+    public class WeightTicket : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void RaiseUpdateProperties()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+        }
         public int Id { get; set; }
 
         public string Number { get; set; }
@@ -17,7 +24,7 @@ namespace LasMargaritas.Models
         public string UserId { get; set; }
 
         public float Humidity { get; set; }
-
+        
         public float HumidityDiscount { get; set; }
 
         public float Impurities { get; set; }
@@ -57,7 +64,9 @@ namespace LasMargaritas.Models
         public float ExitNetWeight { get; set; }
 
         public float DryingDiscount { get; set; }
-
+        public int? SupplierId { get; set; }
+        public int? SaleCustomerId { get; set; }
+        public int? RancherId { get; set; }
         public float TotalToPay { get; set; }
 
         public int WarehouseId { get; set; }
@@ -70,8 +79,9 @@ namespace LasMargaritas.Models
 
         public float SmallGrainDiscount { get; set; }
 
+        public bool Freight { get; set; }
         public float DamagedGrainDiscount { get; set; }
-
+        public int Cattle { get; set; }
         public float BrokenGrainDiscount { get; set; }
 
         public float CrashedGrainDiscount { get; set; }

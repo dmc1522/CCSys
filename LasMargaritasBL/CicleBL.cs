@@ -32,7 +32,10 @@ namespace LasMargaritas.BL
             else
                 return cicleDL.InsertCicle(cicle);
         }
-
+        public List<SelectableModel> GetBasicModels()
+        {
+            return cicleDL.GetBasicModels();
+        }
         public Cicle UpdateCicle(Cicle cicle)
         {
             CicleError result = CicleError.None;

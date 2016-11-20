@@ -17,11 +17,11 @@ namespace LasMargaritas.DL
             excludedPropertiesInUpdate = new List<string>();
             //excluding these while inserting
             excludedPropertiesInInsert.Add("Id");
-            excludedPropertiesInInsert.Add("StoreTS");
-            excludedPropertiesInInsert.Add("UpdateTS");
+            excludedPropertiesInInsert.Add("StoreTs");
+            excludedPropertiesInInsert.Add("UpdateTs");
             //exluding these while updating
-            excludedPropertiesInUpdate.Add("StoreTS");
-            excludedPropertiesInUpdate.Add("UpdateTS");
+            excludedPropertiesInUpdate.Add("StoreTs");
+            excludedPropertiesInUpdate.Add("UpdateTs");
 
         }
 
@@ -29,6 +29,33 @@ namespace LasMargaritas.DL
 
         private List<string> excludedPropertiesInUpdate;
 
+        public List<SelectableModel> GetSelectableModels(int? cicleId)
+        {
+            List<SelectableModel> tickets = new List<SelectableModel>();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetWeightTicketSelectableModels";
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = cicleId;
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while(reader.Read())
+                    {
+                        SelectableModel ticket = new SelectableModel();
+                        ticket.Id = int.Parse(reader["Id"].ToString());
+                        ticket.Name = reader["Folio"].ToString();
+                        tickets.Add(ticket);
+                    }
+                    
+                    connection.Close();
+                }
+                return tickets;
+            }
+        }
         public WeightTicket InsertWeightTicket(WeightTicket weightTicket)
         {
             using (SqlCommand command = new SqlCommand())
@@ -39,10 +66,10 @@ namespace LasMargaritas.DL
                     command.Connection = connection;
                     command.CommandText = "spUpsertWeightTicket";
                     command.CommandType = CommandType.StoredProcedure;
-                    foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())
-                    {                     
-                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
-                    }
+                    foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())                    {      
+                        
+                            command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
+                    }                    
                     connection.Open();
                     object weightTicketId = command.ExecuteScalar();
                     weightTicket.Id = int.Parse(weightTicketId.ToString());

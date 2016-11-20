@@ -140,8 +140,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="UserControls\Tickets.xaml.cs">
-      <DependentUpon>Tickets.xaml</DependentUpon>
+    <Compile Include="UserControls\WeightTicketsList.xaml.cs">
+      <DependentUpon>WeightTicketsList.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -227,7 +227,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tickets.xaml">
+    <Page Include="UserControls\WeightTicketsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

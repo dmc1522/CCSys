@@ -1,0 +1,436 @@
+﻿<UserControl x:Class="LasMargaritas.UI.UserControls.WeightTicketList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LasMargaritas.UI.UserControls"
+             xmlns:controls="clr-namespace:LasMargaritas.UI.UserControls.PopUps"
+                xmlns:cnv="clr-namespace:LasMargaritas.UI.Converters"
+             mc:Ignorable="d" 
+             IsVisibleChanged="UserControl_IsVisibleChanged">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600*" MinWidth="300" />
+            <ColumnDefinition Width="1300*" MinWidth="500" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#BDBDBD">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />                
+                <RowDefinition Height="35" />                
+                <RowDefinition MinHeight="180" Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock  Grid.Row="0" Text="Administrador de Boletas"   Style="{StaticResource HeaderTextBlockStyle}"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Grid Grid.Row="1" Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock  Grid.Column="0" Text="Tipo de Boleta:"   Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ComboBox Grid.Column ="1" x:Name="ComboBoxTicketType" Margin="3,2"  IsTextSearchEnabled="True" TextSearch.TextPath="Content" SelectionChanged="ComboBoxTicketType_SelectionChanged"  >
+                    <ComboBoxItem Content="Productor" Tag="producer" />
+                    <ComboBoxItem Content="Proveedor" Tag="supplier"/>
+                    <ComboBoxItem Content="Cliente de Venta" Tag="costumer"/>
+                    <ComboBoxItem Content="Ganadero" Tag="rancher"/>
+                </ComboBox>
+            </Grid>
+
+            <Button  Grid.Row ="2"  x:Name="btnNewTicket" Content="Nueva Boleta" Margin="3" Width="200" Click="btnNewTicket_Click"  />
+            <Grid Grid.Row="4" Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock  Grid.Column="0" Text="Ciclo:"  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ComboBox  Grid.Column="1" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id"  x:Name="ComboBoxCiclesFilter">
+                </ComboBox>
+            </Grid>
+
+            <Grid Grid.Row="5" Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock  Grid.Column="0" Text="Buscar:"  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Grid.Column="1" x:Name="txbSearhcTicket" Text="" Margin="10,5"/>
+            </Grid>
+
+
+            <Grid Grid.Row="6" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <CheckBox  Grid.Column ="0" x:Name="CheckBoxPending" Content="Pendientes" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Button  Grid.Column ="1"  x:Name="btnReloadTicket" Content="Recargar Lista" Margin="3" Click="btnReloadTicket_Click"/>
+            </Grid>
+
+            <ListBox  Grid.Row="7" x:Name="ListBoxTickets"  Margin="15,20">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+
+        <Grid Grid.Column="1" >
+            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                <Grid x:Name="GridTicketsDetails"   >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="980" />
+                    </Grid.RowDefinitions>
+
+                    <controls:TicketProcess Grid.Row="0" x:Name="ticketProccess" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+
+                    <Grid Grid.Row="1" x:Name="TicketDetails" VerticalAlignment="Center" MinWidth="400" MaxWidth="600">
+                        <Grid.Resources>
+                            <cnv:ImageConverter x:Key="imageConverter" />
+                            <cnv:CaseConverter x:Key="caseConverter" />
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.25*" />
+                                <ColumnDefinition Width="0.375*" />
+                                <ColumnDefinition Width="0.3375*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0"  x:Name="GridFolio" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" MinWidth="60"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Folio: #"  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBox Grid.Column="1" x:Name="txtFolio" Text="{Binding Folio, Converter={StaticResource caseConverter}}" Margin="3"/>
+                            </Grid>
+                            <Grid Grid.Column="1"  x:Name="GridWareHouse" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" MinWidth="100" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Bodega: "  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <ComboBox Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboboxWareHouse" Grid.ColumnSpan="2" SelectedValue="{Binding WarehouseId}" Margin="3"  />
+                            </Grid>
+
+                            <Grid Grid.Column="2" x:Name="GridCycle"  >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" MinWidth="100" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"  Text="Ciclo:"  Style="{StaticResource SubHeaderTextBlockStyle}"  VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <ComboBox Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxCicles" Grid.ColumnSpan="2" IsEditable="True"  SelectedValue="{Binding CicleId}"  Margin="3"  />
+                            </Grid>
+                        </Grid>
+
+                        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="10">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+
+                        <Grid Grid.Row="2" x:Name="GridIndentifier"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" MinWidth="150" />
+                                <ColumnDefinition Width="100" MinWidth="100" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"  Text="Proveedor:" x:Name="LabelSupplier" Style="{StaticResource SubHeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ComboBox Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxSupplier"  SelectedValue="{Binding SupplierId}" TextSearch.TextPath="Content" Margin="3"  >
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+                            <Button  Grid.Column ="2"  x:Name="btnSearchingBatch" Content="Identificar" Margin="3" />
+
+                            <TextBlock Grid.Column="0" Visibility="Collapsed"  Text="Productor:" x:Name="LabelProducer" Style="{StaticResource SubHeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ComboBox Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id" Visibility="Collapsed" IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" x:Name="ComboBoxProducer"  SelectedValue="{Binding ProducerId}" TextSearch.TextPath="Name" Margin="3">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>                                    
+                                </ComboBox.ItemsPanel>                                
+                            </ComboBox>
+
+                            <TextBlock Grid.Column="0" Visibility="Collapsed"  Text="Ganadero:" x:Name="LabelRancher" Style="{StaticResource SubHeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ComboBox Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id" Visibility="Collapsed" x:Name="ComboBoxRancher"   SelectedValue="{Binding RancherId}" TextSearch.TextPath="Content" Margin="3" >
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+
+                            <TextBlock Grid.Column="0" Visibility="Collapsed"  Text="Cliente de venta:" x:Name="LabelSalesCustomer" Style="{StaticResource SubHeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ComboBox Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id"  Visibility="Collapsed" x:Name="ComboBoxSalesCustomer"  SelectedValue="{Binding SaleCustomerId}" TextSearch.TextPath="Content" Margin="3"  >
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+                        </Grid>
+                        
+                        <Grid Grid.Row="3" x:Name="GridTransport"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" MinWidth="150" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" MinWidth="150"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"  Text="Chofer: "  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}" />
+                            <TextBox Grid.Column="1" x:Name="txtDriver" Text="{Binding Driver, Converter={StaticResource caseConverter}}" Margin="3"/>
+                            <TextBlock Grid.Column="2"  Text="Placas:"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <TextBox Grid.Column="3" x:Name="txtPlates" Text="{Binding Plate, Converter={StaticResource caseConverter}}" Margin="3"/>
+                        </Grid>
+
+                        <StackPanel Grid.Row="4" Orientation="Vertical" Margin="10">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+                        
+                        <Grid Grid.Row="5" x:Name="GridProduct" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" MinWidth="250"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"  Text="Producto:" x:Name="lblProduct"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}" />
+                            <ComboBox Grid.Column="1" DisplayMemberPath="Name"  SelectedValue="{Binding ProductId}" SelectedValuePath="Id" x:Name="ComboBoxProducts"  TextSearch.TextPath="Content" Margin="3"  />
+                        </Grid>
+
+                        <StackPanel Grid.Row="6" Orientation="Vertical" Margin="10">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+
+                        <Grid Grid.Row="7" x:Name="GridWeigthingStart"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"  Text="Entrada"   VerticalAlignment="Center"  Style="{StaticResource HeaderTextBlockStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="8" x:Name="GridWeigthing1"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="*" MinWidth="150"/>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"  Text="Peso de Entrada:"   VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <TextBox  Grid.Column="1" x:Name="txtWeigth1" Margin="3"  Text="{Binding EntranceWeightKg}"/>
+                            <TextBlock  Grid.Column="2"  Text="KG"   VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <Button    Grid.Column ="3"  x:Name="btnWeight1" Content="Obtener" Margin="3" />
+                            <TextBlock  Grid.Column="4"  Text="Imprimir"   HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <Button    Grid.Column ="5"  x:Name="ButtonEntrancePrint" Content="1a Pesada" Margin="3"/>
+                        </Grid>
+
+                        <Grid Grid.Row="9" x:Name="GridWeigthingDate1" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="*" MinWidth="150"/>
+                                <ColumnDefinition Width="*" MinWidth="150"/>
+                                <ColumnDefinition Width="*"  MinWidth="150"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"  Text="Fecha de Entrada:"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <TextBox  Grid.Column="1" x:Name="txtDateWeigth1" Margin="3" Text="{Binding EntranceDate,  StringFormat=dd-MM-yyy HH:mm, ConverterCulture=es-MX}"/>
+                            <Button  Grid.Column="2" x:Name="ButtonGetDate" Margin="3" Content="F. Actual" Click="ButtonGetDate_Click"/>
+                            <CheckBox  Grid.Column ="3" x:Name="ChecBoxFreight" IsChecked="{Binding Freight}" Content="Flete" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Row="10" x:Name="GridWeigthingOwner1"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="*" MinWidth="250" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"  Text="Encargado:"   VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <TextBox  Grid.Column="1" x:Name="txtOwnerWeigth1" Text="{Binding EntranceWeigher, Converter={StaticResource caseConverter}}" Margin="3"/>
+                        </Grid>
+
+                        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="11"/>
+
+                        <StackPanel Grid.Row="12" Orientation="Vertical" Margin="10">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+                        
+                        
+                        <Grid Grid.Row="13" x:Name="GridDiscountStart"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition  />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"  Text="Descuentos"   VerticalAlignment="Center"  Style="{StaticResource HeaderTextBlockStyle}"/>
+                        </Grid>
+                        <Grid Grid.Row="14" x:Name="GridWetAdnImpurities"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*"  MinWidth="100"/>
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox  Grid.Column ="0" x:Name="cbWet" Content="Humedad:" IsChecked="{Binding ApplyHumidity}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox  Grid.Column="1" x:Name="txWet"  Text="{Binding Humidity}"  Margin="3"/>
+                            <CheckBox  Grid.Column ="2" x:Name="cbImpurities"  IsChecked="{Binding ApplyImpurities}" Content="Impurezas:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox  Grid.Column="3" x:Name="txtImpurities" Text="{Binding Impurities}" Margin="3"/>
+                        </Grid>
+
+                        <Grid Grid.Row="15" x:Name="GridOtherDiscounts"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*"  MinWidth="100"/>
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                            </Grid.ColumnDefinitions>                            
+                            <CheckBox Grid.Column ="0" x:Name="ComboBoxSecado" Content="Secado:" IsChecked="{Binding ApplyDrying}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox  Grid.Column="1" x:Name="TextBoxDryingDiscount"  Text="{Binding DryingDiscount}"  Margin="3"/>
+                            <Label   Grid.Column ="2" x:Name="LabelSmaillGrain"   Content="Dcto. grano pequeño: " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Grid.Column="3" x:Name="TextBoxSmallGrainDiscount" Text="{Binding SmallGrainDiscount}" Margin="3"/>                            
+                        </Grid>
+
+                        <Grid Grid.Row="16" x:Name="GridOtherDiscounts2"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*"  MinWidth="100"/>
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column ="0" x:Name="LabelDamagedGrain" Content="Grano dañado: "  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Grid.Column="1" x:Name="TextboxDamagedGrainDiscount"  Text="{Binding DryingDiscount}"  Margin="3"/>
+                            <Label  Grid.Column ="2" x:Name="LabelBrokenGrainDiscount"   Content="Grano quebrado: " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Grid.Column="3" x:Name="TextboxBrokenGrainDiscount" Text="{Binding SmallGrainDiscount}" Margin="3"/>
+                        </Grid>
+
+                        <Grid Grid.Row="17" x:Name="GridOtherDiscounts3"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*"  MinWidth="100"/>
+                                <ColumnDefinition Width="140" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column ="0" x:Name="LabelCrashedGrainDiscount" Content="Grano estrellado: "  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox Grid.Column="1" x:Name="TextBoxCrashedGrainDiscount"  Text="{Binding DryingDiscount}"  Margin="3"/>                            
+                        </Grid>
+
+                        <StackPanel Grid.Row="18" Orientation="Vertical" Margin="10">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+
+                        <Grid Grid.Row="19"  x:Name="GridCattle"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"  Text="Ganado: #" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <TextBox Grid.Column="1"  Text="{Binding Cattle}"  x:Name="txtCattle"  Margin="3"/>
+
+                        </Grid>
+
+                        <StackPanel Grid.Row="20" Orientation="Vertical" Margin="10">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+
+                        <Grid Grid.Row="21" x:Name="GridWeigthingEnd"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"  Text="Salida" Margin="3"   VerticalAlignment="Center"  Style="{StaticResource HeaderTextBlockStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="22" x:Name="GridWeigthing2" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" MinWidth="100" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" MinWidth="100"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"   Text="Peso de Salida:" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <TextBox  Grid.Column="1" Text="{Binding ExitWeightKg}" x:Name="txtWeigth2"  Margin="4,5,5,5"/>
+                            <TextBlock  Grid.Column="2"  Text="KG"   HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <Button    Grid.Column ="3"  x:Name="btnWeight2" Content="Obtener" Margin="3"/>
+                            <TextBlock  Grid.Column="4"  Text="Imprimir"   HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <Button    Grid.Column ="5"  x:Name="ButtonExitPrint" Content="2a. Pesada" Margin="3"/>
+                        </Grid>
+
+
+                        <Grid Grid.Row="23" x:Name="GridWeigthingDate2" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="*" MinWidth="200"/>
+                                <ColumnDefinition Width="*" MinWidth="150"/>
+                                <ColumnDefinition Width="*" MinWidth="150"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"  Text="Fecha de Salida:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <TextBox  Grid.Column="1" x:Name="txtDateWeigth2" Text="{Binding ExitDate,  StringFormat=dd-MM-yyy HH:mm, ConverterCulture=es-MX}" Margin="3"/>
+                            <Button  Grid.Column="2" x:Name="ButtonGetDate2" Margin="3" Content="F. Actual" Click="ButtonGetDate2_Click"/>
+                        </Grid>
+
+                        <Grid Grid.Row="24" x:Name="GridWeigthingOwner2"  >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="*" MinWidth="250" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock   Grid.Column="0"  Text="Encargado:"   VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+                            <TextBox  Grid.Column="1" x:Name="txtOwnerWeigth2" Text="{Binding ExitWeigher}"  Margin="3"/>
+                        </Grid>
+
+                        <Grid Grid.Row="25" x:Name="GridActions" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="13*" />
+                                <ColumnDefinition Width="27*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button  Grid.Column ="0"  x:Name="btnUnlock" Content="Desbloquear" Margin="3"/>
+                            <Button  Grid.Column ="1"  x:Name="btnModify" Content="Editar"  Margin="3"/>
+                            <Button  Grid.Column ="2"  x:Name="btnSave" Content="Guardar" Margin="3" Grid.ColumnSpan="2" Click="btnSave_Click"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

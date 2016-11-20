@@ -14,6 +14,11 @@ namespace LasMargaritas.BL
             wareHouseDL = new WareHouseDL(connectionString);
         }
 
+        public List<SelectableModel> GetBasicModels()
+        {
+            return wareHouseDL.GetBasicModels();
+        }
+
         public WareHouse InsertWareHouse(WareHouse wareHouse)
         {
             //Add validations here!

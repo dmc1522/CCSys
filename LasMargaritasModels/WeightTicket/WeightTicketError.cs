@@ -11,6 +11,7 @@ namespace LasMargaritas.Models
         InvalidFolio = 4,
         InvalidProducer = 8,
         InvalidProduct = 16,
-        InvalidId = 32
+        InvalidId = 32,
+        ApiCommunicationError = 64
     }
 }

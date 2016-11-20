@@ -96,9 +96,9 @@ namespace LasMargaritas.DL
             }
         }
 
-        public List<Product> GetProductByProductGroupId(int productGroupId)
+        public List<SelectableModel> GetProductByProductGroupId(int productGroupId)
         {
-            List<Product> products = new List<Product>();
+            List<SelectableModel> products = new List<SelectableModel>();
             using (SqlCommand command = new SqlCommand())
             {
                 using (SqlConnection connection = new SqlConnection())
@@ -110,7 +110,7 @@ namespace LasMargaritas.DL
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    products = DataReaderMapper.Map<Product>(reader);
+                    products = DataReaderMapper.Map<SelectableModel>(reader);
                     reader.Close();
                     connection.Close();
                 }
