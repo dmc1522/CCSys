@@ -3,10 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LasMargaritas.UI"
+        xmlns:local="clr-namespace:LasMargaritas.UI"        
+        xmlns:wfc="clr-namespace:LasMargaritas.WFControls;assembly=LasMargaritas.WFControls"    
         mc:Ignorable="d"
-        Title="Gaffette_Preview" Height="250" Width="350" Loaded="Window_Loaded" ContentRendered="Window_ContentRendered" Closed="Window_Closed">
+        ResizeMode="NoResize"
+        Title="Gaffette_Preview" Height="420" Width="900" Loaded="Window_Loaded" ContentRendered="Window_ContentRendered" Closed="Window_Closed">
     <Grid>
-        <Image x:Name="Gafette" Width="335" Height="206"></Image>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">            
+                <Border Margin="20" BorderThickness="2" BorderBrush="Black" Width="400" Height="300">                
+                        <WindowsFormsHost Name="WindowsFormsHostImageFront">
+                            <WindowsFormsHost.Child>
+                                <wfc:WFImageWrapperControl x:Name="ImageFront" />
+                            </WindowsFormsHost.Child>
+                        </WindowsFormsHost>                
+                </Border>
+                <Border Margin="20" BorderThickness="2" BorderBrush="Black" Width="400" Height="300">
+                    <WindowsFormsHost Name="WindowsFormsHostImageBack">
+                        <WindowsFormsHost.Child>
+                            <wfc:WFImageWrapperControl x:Name="ImageBack" />
+                        </WindowsFormsHost.Child>
+                    </WindowsFormsHost>
+                </Border>
+            </StackPanel>
+            <Button x:Name="btnPrint" Width="100" Click="btnPrint_Click">Imprimir</Button>
+        </StackPanel>
     </Grid>
 </Window>
