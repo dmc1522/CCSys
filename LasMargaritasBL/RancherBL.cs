@@ -55,6 +55,11 @@ namespace LasMargaritas.BL
                 return rancherDL.GetRancher(id);
         }
 
+        public List<SelectableModel> GetBasicModels()
+        {
+            return rancherDL.GetBasicModels();
+        }
+
         public bool DeleteRancher(int id)
         {
             //Add validations here!

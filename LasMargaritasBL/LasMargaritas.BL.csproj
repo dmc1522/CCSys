@@ -98,7 +98,7 @@
     <Compile Include="ProducerBL.cs" />
     <Compile Include="ProductBL.cs" />
     <Compile Include="BadgePrinterHelper.cs" />
-    <Compile Include="RancherBL - Copy.cs" />
+    <Compile Include="SupplierBL.cs" />
     <Compile Include="RancherBL.cs" />
     <Compile Include="SaleCustomerBL.cs" />
     <Compile Include="TokenHelper.cs" />
