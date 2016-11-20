@@ -14,7 +14,7 @@ namespace LasMargaritas.Models
 
         public string Name { get; set; }
 
-        public string Addresss { get; set; }
+        public string Address { get; set; }
 
         public string City { get; set; }
 

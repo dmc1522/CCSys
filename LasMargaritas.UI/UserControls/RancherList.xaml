@@ -63,9 +63,7 @@
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="45" />
                         <RowDefinition Height="45" />
-                        <RowDefinition Height="90" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
+                        <RowDefinition Height="80" />
                         <RowDefinition Height="45" />
                         <RowDefinition Height="45" />
                         <RowDefinition Height="45" />
@@ -94,7 +92,7 @@
                         <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
                         <TextBox Grid.Column="1" CharacterCasing="Upper" Text="{Binding Name, Converter={StaticResource caseConverter}}" x:Name="TextBoxLastName"  />
                         <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}" ><Run Text="RFC:"/><LineBreak/><Run/></TextBlock>
-                        <TextBox Grid.Column="4"    CharacterCasing="Upper" Text="{Binding LastName}" x:Name="TextBoxRFC" />
+                        <TextBox Grid.Column="4"    CharacterCasing="Upper" Text="{Binding RFC}" x:Name="TextBoxRFC" />
                     </Grid>
 
                     <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">
@@ -106,30 +104,20 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}" ><Run Text="Ciudad"/><LineBreak/><Run/></TextBlock>
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding RFC}" x:Name="TextBoxCity"  />
+                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding City}" x:Name="TextBoxCity"  />
+                        <TextBlock Margin="10,9,0,0" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState" Margin="0,5,4,-4"/>
                     </Grid>
 
-                    <Grid Grid.Row="4" Margin="30,5"  VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}"  ><Run Text="Colonia:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding INE}" x:Name="TextBoxColony"   />
-                        <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}"  ><Run Text="C. Postal"/><LineBreak/><Run Text=":"/></TextBlock>
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding CURP}" x:Name="TextBoxZipCode"  />
-                    </Grid>
 
-                    <Grid Grid.Row="5" Margin="30,5"  >
+
+                    <Grid Grid.Row="4" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="400"  />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5"  Text="Domicilio:"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Address}" TextWrapping="Wrap" AcceptsReturn="True" x:Name="TextBoxAddress"  />
+                        <TextBlock Grid.Column="0" Margin="5,17,5,10"  Text="Domicilio:"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Address}" TextWrapping="Wrap" AcceptsReturn="True" x:Name="TextBoxAddress" Margin="0,10,0,5"  />
                     </Grid>
 
                     <Grid Grid.Row="6" Margin="30,5"  >
@@ -161,8 +149,6 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Margin="5,-86,5,95" Text="Telefono: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding PhoneNumber}" x:Name="TextBoxPhoneNumber" Margin="0,-90,0,91" />
                     </Grid>
 
                     <Grid Grid.Row="9" Margin="30,5"  >
@@ -214,7 +200,5 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
-        <TextBlock Grid.Column="1" Margin="36,330,624,489" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState" Margin="130,326,410,485"/>
     </Grid>
 </UserControl>

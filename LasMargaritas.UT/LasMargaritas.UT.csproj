@@ -118,6 +118,9 @@
     <Compile Include="BLandDL\WeightTicketBLDLTest.cs" />
     <Compile Include="Helpers\CicleHelper.cs" />
     <Compile Include="Helpers\ProducerHelper.cs" />
+    <Compile Include="Helpers\SupplierHelper.cs" />
+    <Compile Include="Helpers\RancherHelper.cs" />
+    <Compile Include="Helpers\SaleCustomerHelper.cs" />
     <Compile Include="Helpers\WareHouseHelper.cs" />
     <Compile Include="Helpers\WeightTicketHelper.cs" />
     <Compile Include="BadgePrinterHelperTest.cs" />
