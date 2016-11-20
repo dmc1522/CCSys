@@ -55,6 +55,11 @@ namespace LasMargaritas.BL
                 return saleCustomerDL.GetSaleCustomer(id);
         }
 
+        public List<SelectableModel> GetBasicModels()
+        {
+            return saleCustomerDL.GetBasicModels();
+        }
+
         public bool DeleteSaleCustomer(int id)
         {
             //Add validations here!

@@ -99,6 +99,27 @@ namespace LasMargaritas.DL
             }
         }
 
+        public List<SelectableModel> GetBasicModels()
+        {
+            List<SelectableModel> ranchers = new List<SelectableModel>();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetRancherSelectableModels";
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    ranchers = DataReaderMapper.Map<SelectableModel>(reader);
+                    reader.Close();
+                    connection.Close();
+                }
+                return ranchers;
+            }
+        }
+
         public bool DeleteRancher(int id)
         {
             using (SqlCommand command = new SqlCommand())

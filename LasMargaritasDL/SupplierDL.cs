@@ -99,6 +99,27 @@ namespace LasMargaritas.DL
             }
         }
 
+        public List<SelectableModel> GetBasicModels()
+        {
+            List<SelectableModel> suppliers = new List<SelectableModel>();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetSupplierSelectableModels";
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    suppliers = DataReaderMapper.Map<SelectableModel>(reader);
+                    reader.Close();
+                    connection.Close();
+                }
+                return suppliers;
+            }
+        }
+
         public bool DeleteSupplier(int id)
         {
             using (SqlCommand command = new SqlCommand())
