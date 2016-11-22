@@ -21,11 +21,11 @@ namespace LasMargaritas.DL
          
             //excluding these while inserting
             excludedPropertiesInInsert.Add("Id");
-            excludedPropertiesInInsert.Add("StoreTS");
-            excludedPropertiesInInsert.Add("UpdateTS");
+            excludedPropertiesInInsert.Add("StoreTs");
+            excludedPropertiesInInsert.Add("UpdateTs");
             //exluding these while updating
-            excludedPropertiesInUpdate.Add("StoreTS");
-            excludedPropertiesInUpdate.Add("UpdateTS");
+            excludedPropertiesInUpdate.Add("StoreTs");
+            excludedPropertiesInUpdate.Add("UpdateTs");
             //excludedPropertiesInUpdate.Add("Photo");
         }
 

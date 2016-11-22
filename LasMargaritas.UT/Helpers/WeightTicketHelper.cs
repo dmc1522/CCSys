@@ -8,7 +8,7 @@ namespace LasMargaritas.ULT
         public static WeightTicket CreateDummyTicket()
         {
             WeightTicket weightTicket = new WeightTicket();
-            weightTicket.Amount = 10000;
+            weightTicket.SubTotal = 10000;
             weightTicket.ApplyDrying = true;
             weightTicket.ApplyHumidity = true;
             weightTicket.ApplyImpurities = true;

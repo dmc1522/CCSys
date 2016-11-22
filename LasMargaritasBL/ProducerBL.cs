@@ -28,9 +28,9 @@ namespace LasMargaritas.BL
             if (result != ProducerError.None)
                 throw new ProducerException(result);
             else
-            {
+            {                
                 producer = producerDL.InsertProducer(producer);
-                lastModificationBL.SetLastModification(new LastModification() { Module = Module.Producers });
+                //lastModificationBL.SetLastModification(new LastModification() { Module = Module.Producers });
                 //update barcode, biz rule
                 producer.BarCode = producer.Id.ToString();
                 UpdateProducer(producer);
@@ -52,7 +52,7 @@ namespace LasMargaritas.BL
             else
             {
                 producer=  producerDL.UpdateProducer(producer);
-                lastModificationBL.SetLastModification(new LastModification() { Module = Module.Producers });
+               // lastModificationBL.SetLastModification(new LastModification() { Module = Module.Producers });
                 return producer;
             }
         }

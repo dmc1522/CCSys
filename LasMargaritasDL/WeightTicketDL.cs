@@ -15,19 +15,28 @@ namespace LasMargaritas.DL
             ConnectionString = connectionString;
             excludedPropertiesInInsert = new List<string>();
             excludedPropertiesInUpdate = new List<string>();
+            excludedPropertiesInReader = new List<string>();
             //excluding these while inserting
             excludedPropertiesInInsert.Add("Id");
             excludedPropertiesInInsert.Add("StoreTs");
             excludedPropertiesInInsert.Add("UpdateTs");
+            excludedPropertiesInInsert.Add("IsEntranceWeightTicket");
+            excludedPropertiesInInsert.Add("FirstPartPrinted");
             //exluding these while updating
             excludedPropertiesInUpdate.Add("StoreTs");
             excludedPropertiesInUpdate.Add("UpdateTs");
+            excludedPropertiesInUpdate.Add("IsEntranceWeightTicket");
+            excludedPropertiesInUpdate.Add("FirstPartPrinted");
+            //exclude properties in reader
+            excludedPropertiesInReader.Add("IsEntranceWeightTicket");
 
         }
 
         private List<string> excludedPropertiesInInsert;
 
         private List<string> excludedPropertiesInUpdate;
+
+        private List<string> excludedPropertiesInReader;
 
         public List<SelectableModel> GetSelectableModels(int? cicleId)
         {
@@ -39,7 +48,7 @@ namespace LasMargaritas.DL
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
                     command.CommandText = "spGetWeightTicketSelectableModels";
-                    command.Parameters.Add("@Id", SqlDbType.Int).Value = cicleId;
+                    command.Parameters.Add("@CicleId", SqlDbType.Int).Value = cicleId;
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
@@ -116,7 +125,7 @@ namespace LasMargaritas.DL
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    tickets = DataReaderMapper.Map<WeightTicket>(reader);   
+                    tickets = DataReaderMapper.Map<WeightTicket>(reader, excludedPropertiesInReader);   
                     reader.Close();
                     connection.Close();
                 }
@@ -145,3 +154,4 @@ namespace LasMargaritas.DL
         }
     }
 }
+

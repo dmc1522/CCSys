@@ -67,9 +67,9 @@ namespace LasMargaritas.Models
 
         public int RegimeId { get; set; }
 
-        public DateTime? StoreTS { get; set; }
+        public DateTime? StoreTs { get; set; }
 
-        public DateTime? UpdateTS { get; set; }
+        public DateTime? UpdateTs { get; set; }
 
         public string DistrinctOrColony { get; set; }
 

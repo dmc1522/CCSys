@@ -12,7 +12,13 @@ namespace LasMargaritas.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }
         public int Id { get; set; }
-
+        public bool IsEntranceWeightTicket
+        {
+            get
+            {
+                return (EntranceWeightKg - ExitWeightKg) > 0;
+            }
+        }
         public string Number { get; set; }
 
         public float EntranceWeightKg { get; set; }
@@ -37,7 +43,7 @@ namespace LasMargaritas.Models
 
         public decimal Price { get; set; }
 
-        public decimal Amount { get; set; }
+        public decimal SubTotal { get; set; }
 
         public string Plate { get; set; }
 
@@ -60,6 +66,7 @@ namespace LasMargaritas.Models
         public string ExitWeigher { get; set; }
 
         public float EntranceNetWeight { get; set; }
+                
 
         public float ExitNetWeight { get; set; }
 
@@ -67,7 +74,7 @@ namespace LasMargaritas.Models
         public int? SupplierId { get; set; }
         public int? SaleCustomerId { get; set; }
         public int? RancherId { get; set; }
-        public float TotalToPay { get; set; }
+        public decimal TotalToPay { get; set; }
 
         public int WarehouseId { get; set; }
 
@@ -76,10 +83,11 @@ namespace LasMargaritas.Models
         public bool ApplyImpurities { get; set; }
 
         public bool ApplyDrying { get; set; }
-
+        
         public float SmallGrainDiscount { get; set; }
-
+        public float TotalWeightToPay { get; set; }
         public bool Freight { get; set; }
+        public bool FromFarmToPens { get; set; }
         public float DamagedGrainDiscount { get; set; }
         public int Cattle { get; set; }
         public float BrokenGrainDiscount { get; set; }

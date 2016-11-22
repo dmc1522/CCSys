@@ -19,11 +19,11 @@ namespace LasMargaritas.DL
             excludedPropertiesInUpdate = new List<string>();
             //excluding these while inserting
             excludedPropertiesInInsert.Add("Id");
-            excludedPropertiesInInsert.Add("StoreTS");
-            excludedPropertiesInInsert.Add("UpdateTS");
+            excludedPropertiesInInsert.Add("StoreTs");
+            excludedPropertiesInInsert.Add("UpdateTs");
             //exluding these while updating
-            excludedPropertiesInUpdate.Add("StoreTS");
-            excludedPropertiesInUpdate.Add("UpdateTS");
+            excludedPropertiesInUpdate.Add("StoreTs");
+            excludedPropertiesInUpdate.Add("UpdateTs");
         }
         private List<string> excludedPropertiesInInsert;
 

@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LasMargaritas.Models;
 using LasMargaritas.BL.Presenters;
+using LasMargaritas.BL.Utils;
 
 namespace LasMargaritas.UI.UserControls
 {
@@ -48,7 +49,39 @@ namespace LasMargaritas.UI.UserControls
         public List<SelectableModel> Suppliers { get; set; }
 
         public List<SelectableModel> SalesCustomers { get; set; }
-        public List<SelectableModel> WeightTickets { get; set; }
+
+        public int SelectedFilterCicleId
+        {
+            get
+            {
+                if (ComboBoxCiclesFilter.SelectedItem != null)
+                    return ((SelectableModel)ComboBoxCiclesFilter.SelectedItem).Id;
+                return -1;
+            }
+        }
+        public List<SelectableModel> WeightTickets
+        {
+            get
+            {
+                return _WeightTickets;
+            }
+            set
+            {
+                _WeightTickets = value;
+                ListBoxTickets.ItemsSource = _WeightTickets;
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ListBoxTickets.ItemsSource);
+                view.Filter = WeightTicketFilter;
+            }
+        }
+        private bool WeightTicketFilter(object item)
+        {
+            if (string.IsNullOrEmpty(txbSearhcTicket.Text))
+                return true;
+            else
+                return ((item as SelectableModel).Name != null && (item as SelectableModel).Name.IndexOf(txbSearhcTicket.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    || string.Compare(((item as SelectableModel).Id.ToString()), txbSearhcTicket.Text) == 0;
+
+        }
 
         public int SelectedId
         {
@@ -85,8 +118,75 @@ namespace LasMargaritas.UI.UserControls
         }
 
         public WeightTicket CurrentWeightTicket { get; set; }
-        
-        
+
+        public bool ObtainEntranceWeightEnable
+        {
+            get
+            {
+                return btnWeight1.IsEnabled;
+            }
+
+            set
+            {
+                btnWeight1.IsEnabled = value;
+            }
+        }
+
+        public bool ObtainExitWeightEnable
+        {
+            get
+            {
+                return btnWeight2.IsEnabled;
+            }
+
+            set
+            {
+                btnWeight2.IsEnabled = value;
+            }
+        }
+
+        public WeightTicketType WeightTicketType
+        {
+            get
+            {
+                if (ComboBoxProducer.SelectedItem != null)
+                    return WeightTicketType.Producer;
+                else if (ComboBoxRancher.SelectedItem != null)
+                    return WeightTicketType.Rancher;
+                else if (ComboBoxSalesCustomer.SelectedItem != null)
+                    return WeightTicketType.SaleCustomer;
+                else if (ComboBoxSupplier.SelectedItem != null)
+                    return WeightTicketType.Supplier;
+                return WeightTicketType.None;
+            }
+        }
+
+        public string CurrentBuyerSaler
+        {
+            get
+            {
+                if (WeightTicketType == WeightTicketType.Rancher)
+                    return ((SelectableModel)ComboBoxRancher.SelectedItem).Name;
+                else if (WeightTicketType == WeightTicketType.Producer)
+                    return ((SelectableModel)ComboBoxProducer.SelectedItem).Name;
+                else if (WeightTicketType == WeightTicketType.SaleCustomer)
+                    return ((SelectableModel)ComboBoxSalesCustomer.SelectedItem).Name;
+                else if (WeightTicketType == WeightTicketType.Supplier)
+                    return ((SelectableModel)ComboBoxSupplier.SelectedItem).Name;
+                return string.Empty;
+            }
+        }
+
+        public string CurrentProduct
+        {
+            get
+            {
+                if (ComboBoxProducts.SelectedItem != null)
+                    return ((SelectableModel)ComboBoxProducts.SelectedItem).Name;
+                return string.Empty;
+            }
+        }
+
         public void HandleException(Exception ex, string method, Guid errorId)
         {
             
@@ -115,14 +215,14 @@ namespace LasMargaritas.UI.UserControls
         {
 
         }
-
+       
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)e.NewValue == true && !listLoaded)
             {
                 presenter.Token = Token;
-                presenter.Initialize();
-                this.ComboBoxTicketType.SelectedIndex = 0;
+                presenter.LoadCatalogs();
+                ComboBoxTicketType.SelectedIndex = 0;
                 ComboBoxCiclesFilter.ItemsSource = FilterCicles;
                 ComboBoxCicles.ItemsSource = Cicles;
                 ComboBoxProducer.ItemsSource = Producers;
@@ -130,15 +230,17 @@ namespace LasMargaritas.UI.UserControls
                 ComboBoxRancher.ItemsSource = Ranchers;
                 ComboBoxSalesCustomer.ItemsSource = SalesCustomers;
                 ComboBoxSupplier.ItemsSource = Suppliers;
-                ComboboxWareHouse.ItemsSource = WareHouses; 
+                ComboboxWareHouse.ItemsSource = WareHouses;
                 listLoaded = true;
+                ComboBoxCiclesFilter.SelectedIndex = 0;
+                presenter.LoadWeightTickets();
                 CreateDummyTicket();
             }
         }
         private  void CreateDummyTicket()
         {
             WeightTicket weightTicket = CurrentWeightTicket;
-            weightTicket.Amount = 10000;
+            weightTicket.SubTotal = 10000;
             weightTicket.ApplyDrying = true;
             weightTicket.ApplyHumidity = true;
             weightTicket.ApplyImpurities = true;
@@ -176,6 +278,7 @@ namespace LasMargaritas.UI.UserControls
             weightTicket.UserId = "35d360f3-c296-4113-ab34-9b91fe729c18";
             weightTicket.WarehouseId = 1;
             weightTicket.Freight = true;
+            weightTicket.Id = 0;
             weightTicket.RaiseUpdateProperties();         
         }
 
@@ -233,6 +336,58 @@ namespace LasMargaritas.UI.UserControls
         private void ButtonGetDate_Click(object sender, RoutedEventArgs e)
         {
             presenter.SetEntranceDateToNow();
+        }
+
+        private void CheckBoxDryingDiscount_Checked(object sender, RoutedEventArgs e)
+        {
+            presenter.CalculateTotals();
+        }
+
+        private void CalculatePrices_LostFocus(object sender, RoutedEventArgs e)
+        {
+            presenter.CalculateTotals();
+        }
+
+        private void btnWeight1_Click(object sender, RoutedEventArgs e)
+        {
+            WeightReader reader = new WeightReader();            
+            reader.ShowDialog();
+            CurrentWeightTicket.EntranceWeightKg = reader.Weight;
+            CurrentWeightTicket.RaiseUpdateProperties();
+            presenter.CalculateTotals();   
+
+        }
+
+        private void btnWeight2_Click(object sender, RoutedEventArgs e)
+        {
+            WeightReader reader = new WeightReader();
+            reader.ShowDialog();
+            CurrentWeightTicket.ExitWeightKg = reader.Weight;
+            CurrentWeightTicket.RaiseUpdateProperties();
+            presenter.CalculateTotals();
+        }
+
+        private void ButtonEntrancePrint_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.PrintFirstPart();            
+        }
+
+        private void ButtonExitPrint_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.PrintSecondPart();
+        }
+
+        private void txbSearhcTicket_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(ListBoxTickets.ItemsSource).Refresh();
+        }
+
+        private void ListBoxTickets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListBoxTickets.SelectedItem != null)
+            {
+                presenter.UpdateCurrentWeightTicket();
+            }
         }
     }     
 }

@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddProductResponse.cs" />
+    <Compile Include="WeightTicket\WeightTicketType.cs" />
     <Compile Include="SaleCustomer\GetSaleCustomerResponse.cs" />
     <Compile Include="Rancher\GetRancherResponse.cs" />
     <Compile Include="Rancher\RancherError.cs" />

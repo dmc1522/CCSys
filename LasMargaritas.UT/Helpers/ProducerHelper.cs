@@ -28,7 +28,7 @@ namespace LasMargaritas.ULT
             producer.GenderId = 1;
             producer.Spouse = "MargaritaEsposaTest";
             producer.StateId = 1;
-            producer.StoreTS = DateTime.Now;
+            producer.StoreTs = DateTime.Now;
             producer.WorkPhoneNumber = "333";
             producer.ZipCode = "45138";
            

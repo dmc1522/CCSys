@@ -136,6 +136,9 @@
     <Compile Include="UserControls\PopUps\Weighing.xaml.cs">
       <DependentUpon>Weighing.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WeightReader.xaml.cs">
+      <DependentUpon>WeightReader.xaml</DependentUpon>
+    </Compile>
     <Page Include="Gaffette Preview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\WeightTicketsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WeightReader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

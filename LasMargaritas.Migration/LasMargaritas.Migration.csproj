@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NewSystem\ProductHelperNew.cs" />
+    <Compile Include="OldSystem\SupplierOld.cs" />
+    <Compile Include="OldSystem\RancherOld.cs" />
+    <Compile Include="OldSystem\SaleCustomerOld.cs" />
     <Compile Include="OldSystem\ProductOld.cs" />
     <Compile Include="OldSystem\ProducerOld.cs" />
     <Compile Include="Program.cs" />

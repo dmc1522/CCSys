@@ -14,32 +14,32 @@ namespace LasMargaritas.BL
             rancherDL = new RancherDL(connectionString);
         }
 
-        public Rancher InsertRancher(Rancher customer)
+        public Rancher InsertRancher(Rancher rancher)
         {
             //Add validations here!
             RancherError result = RancherError.None;
-            if (string.IsNullOrEmpty(customer.Name))
+            if (string.IsNullOrEmpty(rancher.Name))
                 result |= RancherError.InvalidName;
-            if (customer.StateId <= 0)
+            if (rancher.StateId <= 0)
                 result |= RancherError.InvalidState;
             if (result != RancherError.None)
                 throw new RancherException(result);
             else
-                return rancherDL.InsertRancher(customer);
+                return rancherDL.InsertRancher(rancher);
         }
 
-        public Rancher UpdateRancher(Rancher customer)
+        public Rancher UpdateRancher(Rancher rancher)
         {
             //Add validations here!
             RancherError result = RancherError.None;
-            if (string.IsNullOrEmpty(customer.Name))
+            if (string.IsNullOrEmpty(rancher.Name))
                 result |= RancherError.InvalidName;
-            if (customer.StateId <= 0)
+            if (rancher.StateId <= 0)
                 result |= RancherError.InvalidState;
             if (result != RancherError.None)
                 throw new RancherException(result);
             else
-                return rancherDL.UpdateRancher(customer);
+                return rancherDL.UpdateRancher(rancher);
         }
 
         public List<Rancher> GetRancher(int? id = null)

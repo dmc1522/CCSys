@@ -70,7 +70,7 @@ namespace LasMargaritas.ULT
             Assert.IsTrue(ticketFound != null);
             //test update 
             weightTicket.Id = weightTicketResponse.WeightTicket.Id;                           
-            weightTicket.Amount = 20;
+            weightTicket.SubTotal = 20;
             weightTicket.ApplyDrying = false; //Todo check other properties
             response = client.PostAsJsonAsync(updateAction, weightTicket).Result;
             Assert.IsTrue(response.IsSuccessStatusCode);
@@ -82,7 +82,7 @@ namespace LasMargaritas.ULT
             getWeightTicketResponse = response.Content.ReadAsAsync<GetWeightTicketResponse>().Result;
             Assert.IsTrue(getWeightTicketResponse.Success);
             Assert.IsTrue(getWeightTicketResponse.WeightTickets.Count == 1);
-            Assert.IsTrue(getWeightTicketResponse.WeightTickets.ElementAt(0).Amount == 20);
+            Assert.IsTrue(getWeightTicketResponse.WeightTickets.ElementAt(0).SubTotal == 20);
             Assert.IsFalse(getWeightTicketResponse.WeightTickets.ElementAt(0).ApplyDrying);
             //test delete
             response = client.PostAsJsonAsync(deleteAction, new IdModel(weightTicketResponse.WeightTicket.Id)).Result;

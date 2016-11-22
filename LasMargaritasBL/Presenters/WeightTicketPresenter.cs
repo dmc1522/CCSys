@@ -6,11 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace LasMargaritas.BL.Presenters
 {
@@ -32,18 +35,20 @@ namespace LasMargaritas.BL.Presenters
         private List<SelectableModel> currentTickets;
         private string getWareHousesAction;   
         IWeightTicketView view;
+        private int currentPage;
+        private bool printingFirstPart;
         #endregion
 
         #region Constructor
         public WeightTicketPresenter(IWeightTicketView view)
         {
+            currentPage = 0;
             this.view = view;
             baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
             if (ConfigurationManager.AppSettings["baseUrl"] != null)
             {
                 baseUrl = ConfigurationManager.AppSettings["baseUrl"];
-            }
-     
+            }     
             insertAction = "WeightTicket/Add";
             updateAction = "WeightTicket/Update";
             deleteAction = "WeightTicket/Delete";
@@ -69,13 +74,14 @@ namespace LasMargaritas.BL.Presenters
 
         #region Private methods
 
-        private void LoadWeightTickets()
+        public void LoadWeightTickets()
         {
             try
             {
                 if (Token == null)
                     throw new InvalidOperationException("Login first");
-                GetWeightTicketsFromApi();                
+                GetWeightTicketsFromApi();
+                view.WeightTickets = currentTickets;     
                 /* string url = string.Format("{0}?module={1}", getLastModification, (int)Models.Module.Producers); //Producers
                 HttpResponseMessage response = client.GetAsync(url).Result;
                 if (response.IsSuccessStatusCode)
@@ -124,7 +130,7 @@ namespace LasMargaritas.BL.Presenters
 
         }
 
-        private void GetCatalogs()
+        public void LoadCatalogs()
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUrl);
@@ -141,8 +147,8 @@ namespace LasMargaritas.BL.Presenters
                     view.Producers = getSelectableModelResponse.SelectableModels;
                 }
             }
-            /* //Ranchers
-             HttpResponseMessage response = client.GetAsync(getRanchersAction).Result;
+             //Ranchers
+             response = client.GetAsync(getRanchersAction).Result;
              if (response.IsSuccessStatusCode)
              {
                  GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
@@ -172,7 +178,7 @@ namespace LasMargaritas.BL.Presenters
                  {
                      view.Suppliers = getSelectableModelResponse.SelectableModels;
                  }
-             }*/
+             }
 
             //Cicles
             response = client.GetAsync(getCiclesActions).Result;
@@ -218,6 +224,37 @@ namespace LasMargaritas.BL.Presenters
         #endregion
 
         #region Public methods
+        public void CalculateTotals()
+        {
+            if (view.CurrentWeightTicket.IsEntranceWeightTicket)
+            {
+                view.CurrentWeightTicket.EntranceNetWeight = view.CurrentWeightTicket.EntranceWeightKg - view.CurrentWeightTicket.ExitWeightKg;
+                view.CurrentWeightTicket.ExitNetWeight = 0;
+                view.CurrentWeightTicket.NetWeight = view.CurrentWeightTicket.EntranceNetWeight;
+            }
+            else
+            {
+                view.CurrentWeightTicket.ExitNetWeight = view.CurrentWeightTicket.ExitWeightKg - view.CurrentWeightTicket.EntranceWeightKg;
+                view.CurrentWeightTicket.EntranceWeightKg = 0;
+                view.CurrentWeightTicket.NetWeight = view.CurrentWeightTicket.ExitNetWeight;
+            }
+            if (view.CurrentWeightTicket.ApplyHumidity)
+            {
+                view.CurrentWeightTicket.HumidityDiscount = DiscountCalculator.GetDiscount(DiscountType.Humidity, view.CurrentWeightTicket.Humidity, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
+            }
+            if (view.CurrentWeightTicket.ApplyImpurities)
+            {
+                view.CurrentWeightTicket.ImpuritiesDiscount = DiscountCalculator.GetDiscount(DiscountType.Impurities, view.CurrentWeightTicket.Impurities, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
+            }
+            view.CurrentWeightTicket.TotalWeightToPay = view.CurrentWeightTicket.NetWeight - view.CurrentWeightTicket.HumidityDiscount - view.CurrentWeightTicket.ImpuritiesDiscount;
+            view.CurrentWeightTicket.SubTotal = view.CurrentWeightTicket.Price * (decimal)view.CurrentWeightTicket.TotalWeightToPay;
+            if (view.CurrentWeightTicket.ApplyDrying)
+            {
+                view.CurrentWeightTicket.DryingDiscount = DiscountCalculator.GetDiscount(DiscountType.Drying, view.CurrentWeightTicket.Humidity, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
+            }
+            view.CurrentWeightTicket.TotalToPay = view.CurrentWeightTicket.SubTotal - (decimal)view.CurrentWeightTicket.DryingDiscount;
+            view.CurrentWeightTicket.RaiseUpdateProperties();
+        }
         public void SetEntranceDateToNow()
         {
             view.CurrentWeightTicket.EntranceDate = DateTime.Now;
@@ -228,11 +265,7 @@ namespace LasMargaritas.BL.Presenters
             view.CurrentWeightTicket.ExitDate = DateTime.Now;
             view.CurrentWeightTicket.RaiseUpdateProperties();
         }
-        public void Initialize()
-        {
-            GetCatalogs();
-            LoadWeightTickets();
-        }
+       
         public void ReloadWeightTicketsList()
         {
             LoadWeightTickets();
@@ -274,8 +307,7 @@ namespace LasMargaritas.BL.Presenters
         {
             if (view.SelectedId == -1)
             {
-                PropertyCopier.CopyProperties(new Producer(), view.CurrentWeightTicket);
-                      
+                PropertyCopier.CopyProperties(new Producer(), view.CurrentWeightTicket);                      
             }
             else
             {
@@ -289,14 +321,169 @@ namespace LasMargaritas.BL.Presenters
                     GetWeightTicketResponse getWeightTicketResponse = response.Content.ReadAsAsync<GetWeightTicketResponse>().Result;
                     if (getWeightTicketResponse.Success)
                     {
-                        PropertyCopier.CopyProperties(getWeightTicketResponse.WeightTickets[0], view.CurrentWeightTicket);
-                        view.CurrentWeightTicket.RaiseUpdateProperties();                       
+                        PropertyCopier.CopyProperties(getWeightTicketResponse.WeightTickets[0], view.CurrentWeightTicket);                     
                     }
                 }
             }
             view.CurrentWeightTicket.RaiseUpdateProperties();
         }
-   
+
+        public void PrintFirstPart()
+        {
+            SaveWeightTicket();
+            printingFirstPart = true;
+            if (view.CurrentWeightTicket.EntranceWeightKg > 0)
+                view.ObtainEntranceWeightEnable = false;
+            else
+                view.ObtainEntranceWeightEnable = true;
+            currentPage = 0;
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio + "3";
+            PrintDialog pd = new PrintDialog();
+            pd.Document = printDocument;
+            printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
+            PaperSize ps = new PaperSize();
+            ps.Width = 425;
+            ps.Height = 551;
+            printDocument.DefaultPageSettings.PaperSize = ps;
+            printDocument.Print();
+        }
+
+        public void PrintSecondPart()
+        {
+            SaveWeightTicket();
+            printingFirstPart = false;
+            if (view.CurrentWeightTicket.EntranceWeightKg > 0)
+                view.ObtainEntranceWeightEnable = false;
+            else
+                view.ObtainEntranceWeightEnable = true;
+            currentPage = 0;
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio+ "3";
+            printDocument.PrinterSettings.PrinterName = "PDFCreator";//TODO Change!
+            PrintDialog pd = new PrintDialog();
+            pd.Document = printDocument;
+            printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
+            PaperSize ps = new PaperSize();
+            ps.Width = 425;
+            ps.Height = 551;
+            printDocument.DefaultPageSettings.PaperSize = ps;
+            printDocument.Print();
+        }
+
+        void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            e.HasMorePages = ++currentPage < e.PageSettings.PrinterSettings.Copies;
+            Graphics g = e.Graphics;
+            Brush brush = Brushes.Black;
+            g.PageUnit = GraphicsUnit.Millimeter;
+
+            float fAjusteX = 0.0f;
+            float fAjusteY = 0.0f;
+            double fFontSize = 7;
+            try
+            {
+                System.Drawing.Font fnt = new System.Drawing.Font("Arial", (float)fFontSize, GraphicsUnit.Point);
+                System.Drawing.Font fntDetalle = new System.Drawing.Font("Arial", (float)fFontSize, GraphicsUnit.Point);
+
+
+                String sText = string.Empty;
+                float px, py;
+                //fecha dia 
+                px = 0.0f + fAjusteX;
+                py = 10.0f + fAjusteY;
+                int logoSize = 12;
+                SizeF fontSize = g.MeasureString("TEST", fntDetalle);
+                //*if (printingFirstPart)
+                //{
+                    Image image = BadgePrinterHelper.GetQRCode(view.CurrentWeightTicket.Folio);
+                    g.DrawImage(image, px+10, py, 12, 12);
+                    py += logoSize;
+                    sText = "BOLETA ID: " + view.CurrentWeightTicket.Id.ToString() + " Ticket: " + view.CurrentWeightTicket.Folio;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    fontSize = g.MeasureString(sText.ToUpper(), fntDetalle);
+                    sText = view.CurrentBuyerSaler;
+                    py += fontSize.Height;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    sText = "PLACAS: " + view.CurrentWeightTicket.Plate;
+                    py += fontSize.Height;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    sText = "CHOFER: ";
+                    py += fontSize.Height;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    sText = view.CurrentWeightTicket.Driver;
+                    py += fontSize.Height;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    sText = "PRODUCTO: ";
+                    py += fontSize.Height;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    sText = view.CurrentProduct;
+                    py += fontSize.Height;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    sText = "PRIMERA PESADA";
+                    py += fontSize.Height * 2;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    sText = "FECHA: " + view.CurrentWeightTicket.EntranceDate.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                    py += fontSize.Height;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    sText = "PESO: " + view.CurrentWeightTicket.EntranceWeightKg.ToString() + " Kg";
+                    py += fontSize.Height;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                //}
+                //else
+                //{
+                    py += (fontSize.Height * 11); //+ logoSize;
+                    sText = "SEGUNDA PESADA   Ticket: " + view.CurrentWeightTicket.Folio;
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    py += fontSize.Height;
+                    sText = "FECHA: " + view.CurrentWeightTicket.ExitDate.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    py += fontSize.Height;
+                    sText = "PESO: " + view.CurrentWeightTicket.ExitWeightKg + " Kg";
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+
+                    py += fontSize.Height;
+                    sText = "PESO NETO: " + view.CurrentWeightTicket.NetWeight+ " Kg";
+                    g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+
+                    py += fontSize.Height;
+                    if (!(view.WeightTicketType == WeightTicketType.Rancher))
+                    {                        
+                        if (view.CurrentWeightTicket.Humidity > 0)
+                        {
+                            sText = "HUMEDAD: " + view.CurrentWeightTicket.Humidity.ToString("N2");
+                        }
+                        else
+                        {
+                            sText = "HUMEDAD: ________";
+                        }
+                        g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                        py += fontSize.Height;
+
+                        if (view.CurrentWeightTicket.Impurities > 0)
+                        {
+                            sText = "IMPUREZAS: " + view.CurrentWeightTicket.Impurities.ToString("N2");
+                        }
+                        else
+                        {
+                            sText = "IMPUREZAS: ________";
+                        }
+                        g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    }
+                    else
+                    {
+                        sText = "CABEZAS: " + view.CurrentWeightTicket.Cattle.ToString();
+                        g.DrawString(sText.ToUpper(), fnt, brush, px, py);
+                    }
+
+                //}
+            }
+            catch (System.Exception ex)
+            {
+               //TODO LOG!
+            }
+        }
+
         public void SaveWeightTicket()
         {
             bool reLoadList = false;
@@ -383,13 +570,14 @@ namespace LasMargaritas.BL.Presenters
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-            HttpResponseMessage response = client.GetAsync(getAllAction).Result;
+            string action = string.Format("{0}?cicleId={1}", getAllAction, view.SelectedFilterCicleId);
+            HttpResponseMessage response = client.GetAsync(action).Result;
             if (response.IsSuccessStatusCode)
             {
                 GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
                 if (getSelectableModelResponse.Success)
                 {
-                    currentTickets = getSelectableModelResponse.SelectableModels;
+                    currentTickets = getSelectableModelResponse.SelectableModels;                    
                 }
                 else
                 {

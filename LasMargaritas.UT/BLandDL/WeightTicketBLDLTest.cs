@@ -19,7 +19,8 @@ namespace LasMargaritas.ULT
             }
             connectionString = ConfigurationManager.ConnectionStrings["LasMargaritasDb"].ConnectionString;
         }
-        
+
+       
         [TestMethod]
         public void TestInsertUpdateAndGetWeightTicket()
         {
@@ -37,13 +38,13 @@ namespace LasMargaritas.ULT
             savedTicket = (from ticket in savedTickets where ticket.Id == savedTicket.Id select ticket).FirstOrDefault();
             Assert.IsTrue(savedTicket != null);
             //Test update
-            weightTicket.Amount = 20;
+            weightTicket.SubTotal = 20;
             weightTicket.ApplyDrying = false; //Todo check other properties
             weightTicket = weightTicketBL.UpdateWeightTicket(weightTicket);
             savedTickets = weightTicketBL.GetWeightTicket(weightTicket.Id);
             Assert.IsTrue(savedTickets != null && savedTickets.Count() == 1);
             savedTicket = savedTickets[0];            
-            Assert.IsTrue(savedTicket.Amount == 20);
+            Assert.IsTrue(savedTicket.SubTotal == 20);
             Assert.IsTrue(!savedTicket.ApplyDrying);
             //Test delete
             bool result = weightTicketBL.DeleteWeightTicket(savedTicket.Id);

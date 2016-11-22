@@ -20,7 +20,13 @@ namespace LasMargaritas.BL.Views
         List<SelectableModel> WareHouses { get; set; }
         int SelectedId { get; set; }
         WeightTicket CurrentWeightTicket { get; set; }
-        void HandleException(Exception ex, string method, Guid errorId);        
+        void HandleException(Exception ex, string method, Guid errorId);
+        bool ObtainEntranceWeightEnable { get; set; }
+        bool ObtainExitWeightEnable { get; set; }        
+        WeightTicketType WeightTicketType { get; }
+        string CurrentBuyerSaler { get;  }
+        string CurrentProduct { get;  }
+        int SelectedFilterCicleId { get; }
     }
 }
 
