@@ -31,6 +31,10 @@ namespace LasMargaritas.UI
             InitializeComponent();
             producerList.Token = token;
             weightTickets.Token = token;
+            ranchers.Token = token;
+            saleCustomers.Token = token;
+            suppliers.Token = token;
+
 
             login.Visibility = Visibility.Hidden;
             controls.Visibility = Visibility.Visible;
@@ -45,13 +49,48 @@ namespace LasMargaritas.UI
         {
             weightTickets.Visibility = Visibility.Visible;
             producerList.Visibility = Visibility.Hidden;
+            ranchers.Visibility = Visibility.Hidden;
+            saleCustomers.Visibility = Visibility.Hidden;
+            suppliers.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewProducers_Click(object sender, RoutedEventArgs e)
         {
             weightTickets.Visibility = Visibility.Hidden;
             producerList.Visibility = Visibility.Visible;
+            ranchers.Visibility = Visibility.Hidden;
+            saleCustomers.Visibility = Visibility.Hidden;
+            suppliers.Visibility = Visibility.Hidden;
         }
+
+        private void buttonViewSuppliers_Click(object sender, RoutedEventArgs e)
+        {
+            weightTickets.Visibility = Visibility.Hidden;
+            producerList.Visibility = Visibility.Hidden;
+            ranchers.Visibility = Visibility.Hidden;
+            saleCustomers.Visibility = Visibility.Hidden;
+            suppliers.Visibility = Visibility.Visible;
+
+        }
+
+        private void buttonViewRanchers_Click(object sender, RoutedEventArgs e)
+        {
+            weightTickets.Visibility = Visibility.Hidden;
+            producerList.Visibility = Visibility.Hidden;
+            ranchers.Visibility = Visibility.Visible;
+            saleCustomers.Visibility = Visibility.Hidden;
+            suppliers.Visibility = Visibility.Hidden;
+        }
+
+        private void buttonViewSaleCustomers_Click(object sender, RoutedEventArgs e)
+        {
+            weightTickets.Visibility = Visibility.Hidden;
+            producerList.Visibility = Visibility.Hidden;
+            ranchers.Visibility = Visibility.Hidden;
+            saleCustomers.Visibility = Visibility.Visible;
+            suppliers.Visibility = Visibility.Hidden;
+        }
+
 
     }
 }

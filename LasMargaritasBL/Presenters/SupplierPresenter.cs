@@ -45,6 +45,7 @@ namespace LasMargaritas.BL.Presenters
             deleteAction = "Supplier/Delete";
             getAllAction = "Supplier/GetAll";
             getByIdAction = "Supplier/GetById";
+            getSelectableModelsAction = "Supplier/GetSelectableModels";
             getStatesAction = "Catalog/GetStates";
             supplierView = view;
 

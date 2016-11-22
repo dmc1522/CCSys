@@ -40,11 +40,17 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Height="40" Width="150" x:Name="buttonViewWeightTickets" Click="buttonViewWeightTickets_Click" >Ver boletas</Button>
                     <Button Height="40" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click" >Ver Productores</Button>
+                    <Button Height="40" Width="150" x:Name="buttonViewRanchers" Click="buttonViewRanchers_Click" >Ver Ganaderos</Button>
+                    <Button Height="40" Width="200" x:Name="buttonViewSaleCustomers" Click="buttonViewSaleCustomers_Click" >Ver Cliente de venta</Button>
+                    <Button Height="40" Width="150" x:Name="buttonViewSuppliers" Click="buttonViewSuppliers_Click" >Ver Proveedores</Button>
                 </StackPanel>
             </StackPanel>
             <Grid Grid.Row="1">
                 <controls:ProducerList x:Name="producerList" Visibility="Hidden"></controls:ProducerList>
                 <controls:WeightTicketList x:Name="weightTickets" Visibility="Hidden" ></controls:WeightTicketList>
+                <controls:RancherList x:Name="ranchers" Visibility="Hidden" ></controls:RancherList>
+                <controls:SaleCustomerList x:Name="saleCustomers" Visibility="Hidden" ></controls:SaleCustomerList>
+                <controls:SupplierList x:Name="suppliers" Visibility="Hidden" ></controls:SupplierList>
             </Grid>
         </Grid>
     </Grid>

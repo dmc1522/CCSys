@@ -45,6 +45,7 @@ namespace LasMargaritas.BL.Presenters
             deleteAction = "Rancher/Delete";
             getAllAction = "Rancher/GetAll";
             getByIdAction = "Rancher/GetById";
+            getSelectableModelsAction = "Rancher/GetSelectableModels";
             getStatesAction = "Catalog/GetStates";
             rancherView = view;
 

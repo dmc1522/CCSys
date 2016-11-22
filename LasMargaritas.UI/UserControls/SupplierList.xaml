@@ -32,7 +32,7 @@
                 </Grid>
 
 
-                <Button Grid.Row="1"  x:Name="ButtonAddSupplier" Content="Nuevo Ganadero"  Margin="15,2" Click="ButtonAddSupplier_Click" />
+                <Button Grid.Row="1"  x:Name="ButtonAddSupplier" Content="Nuevo Proveedor"  Margin="15,2" Click="ButtonAddSupplier_Click" />
 
                 <ListBox  Grid.Row="2" x:Name="ListBoxSuppliers"  Margin="15,20" SelectionChanged="ListBoxSuppliers_SelectionChanged"  >
                     <ListBox.Resources>
@@ -105,6 +105,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
+                        <TextBlock Margin="10,7,10,5" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <ComboBox HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState" Margin="0.5,2,0,3" Grid.Column="1"/>
+                        <TextBlock Margin="10,6,21,5"  Style="{StaticResource SubHeaderTextBlockStyle}" Grid.Column="3" Text="C. Postal: " RenderTransformOrigin="-0.13,0.208" />
+                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding ZipCode}" x:Name="TextBoxCity_Copy"  Margin="0,2,0,-1"  />
                     </Grid>
 
                     <Grid Grid.Row="4" Margin="30,5"  VerticalAlignment="Center">
@@ -160,9 +164,9 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Margin="5,-86,5,95" Text="Telefono: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding PhoneNumber}" x:Name="TextBoxPhoneNumber" Margin="0,-90,0,91" HorizontalAlignment="Right" Width="210" />
-                        <TextBlock Margin="7,-86,3,95" Text="Celular:"  Style="{StaticResource SubHeaderTextBlockStyle}" Grid.Column="3"  />
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding MobilePhoneNumber}" x:Name="TextBoxMobilePhoneNumber" Margin="0,-90,-2,91" HorizontalAlignment="Right" Width="210" />
+                        <TextBox HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding PhoneNumber}" x:Name="TextBoxPhoneNumber" Margin="0,-90,0,91" HorizontalAlignment="Right" Width="213" Grid.ColumnSpan="2" />
+                        <TextBlock Margin="7,-86,15,95" Text="Celular:"  Style="{StaticResource SubHeaderTextBlockStyle}" Grid.Column="3"  />
+                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding MobilePhoneNumber}" x:Name="TextBoxMobilePhoneNumber" Margin="0,-90,-2,91" HorizontalAlignment="Right" Width="212" Grid.ColumnSpan="2" />
                     </Grid>
 
                     <Grid Grid.Row="9" Margin="30,5"  >
@@ -211,17 +215,7 @@
                         </Button>
 
                     </Grid>
-                    <Grid  Grid.Row="3" Margin="3,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="45*"/>
-                            <ColumnDefinition Width="73*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Margin="30,7,192,13" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <ComboBox HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState" Margin="125,7,408,-1" Grid.ColumnSpan="2"/>
-                        <TextBlock Margin="128,10,262,1"  Style="{StaticResource SubHeaderTextBlockStyle}" Grid.Column="1" Text="C. Postal: " />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding ZipCode}" x:Name="TextBoxCity_Copy"  Margin="224,2,25,-1"  />
 
-                    </Grid>
                 </Grid>
             </ScrollViewer>
         </Grid>

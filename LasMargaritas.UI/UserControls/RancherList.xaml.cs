@@ -36,7 +36,7 @@ namespace LasMargaritas.UI.UserControls
 
         #endregion
 
-        #region IProducerView implementation
+        #region IRancherView implementation
         public Rancher CurrentRancher { get; set; }
         
         public List<SelectableModel> States { get; set; }

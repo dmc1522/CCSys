@@ -141,6 +141,8 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="210*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState" Margin="660,0,-0.457,2" Grid.ColumnSpan="5"/>
+                        <TextBlock Grid.Column="1" Margin="572,8,229,2" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
                     </Grid>
 
                     <Grid Grid.Row="7" Margin="30,5"  >
@@ -214,7 +216,5 @@
                 </Grid>
             </ScrollViewer>
         </Grid>
-        <TextBlock Grid.Column="1" Margin="423,330,237,489" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState" Margin="508,330,32,481"/>
     </Grid>
 </UserControl>
