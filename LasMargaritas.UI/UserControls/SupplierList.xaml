@@ -94,7 +94,7 @@
                         <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
                         <TextBox CharacterCasing="Upper" Text="{Binding Name, Converter={StaticResource caseConverter}}" x:Name="TextBoxName" Grid.Column="1"  />
                         <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}" ><Run Text="Ciudad:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding City}" x:Name="TextBoxCity"  Margin="0,-3,0,3"  />
+                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding CityOrDistrict}" x:Name="TextBoxCity"  Margin="0,-3,0,3"  />
                     </Grid>
 
                     <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">

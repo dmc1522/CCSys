@@ -96,8 +96,8 @@ namespace LasMargaritas.UI.UserControls
                 return true;
             else
                 return ((item as SelectableModel).Name != null && (item as SelectableModel).Name.IndexOf(TextBoxSearchSaleCustomers.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                    || ((item as SelectableModel).Id.ToString().IndexOf(TextBoxSearchSaleCustomers.Text, StringComparison.OrdinalIgnoreCase) >= 0) ;
-                       
+                     || string.Compare(((item as SelectableModel).Id.ToString()), TextBoxSearchSaleCustomers.Text) == 0;
+
         }
 
 

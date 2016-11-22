@@ -94,7 +94,7 @@
                         <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
                         <TextBox Grid.Column="1" CharacterCasing="Upper" Text="{Binding Name, Converter={StaticResource caseConverter}}" x:Name="TextBoxLastName"  />
                         <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}" ><Run Text="RFC:"/><LineBreak/><Run/></TextBlock>
-                        <TextBox Grid.Column="4"    CharacterCasing="Upper" Text="{Binding LastName}" x:Name="TextBoxRFC" />
+                        <TextBox Grid.Column="4"    CharacterCasing="Upper" Text="{Binding RFC}" x:Name="TextBoxRFC" />
                     </Grid>
 
                     <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">
@@ -106,7 +106,7 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}" ><Run Text="Ciudad"/><LineBreak/><Run/></TextBlock>
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding RFC}" x:Name="TextBoxCity"  />
+                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding City}" x:Name="TextBoxCity"  />
                     </Grid>
 
                     <Grid Grid.Row="4" Margin="30,5"  VerticalAlignment="Center">
@@ -118,9 +118,9 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}"  ><Run Text="Colonia:"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding INE}" x:Name="TextBoxColony"   />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding DistrictOrColony}" x:Name="TextBoxColony"   />
                         <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}"  ><Run Text="C. Postal:"/><LineBreak/></TextBlock>
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding CURP}" x:Name="TextBoxZipCode"  />
+                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding ZipCode}" x:Name="TextBoxZipCode"  />
                     </Grid>
 
                     <Grid Grid.Row="5" Margin="30,5"  >

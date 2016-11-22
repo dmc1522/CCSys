@@ -108,7 +108,7 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spGetSaleCustomersSelectableModels";
+                    command.CommandText = "spGetSaleCustomerSelectableModels";
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
