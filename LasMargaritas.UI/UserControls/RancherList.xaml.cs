@@ -158,7 +158,7 @@ namespace LasMargaritas.UI.UserControls
 
         private void ButtonDelete_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Realmente deseas eliminar a este Cliente de venta?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("Realmente deseas eliminar a este Ganadero?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if(result == MessageBoxResult.Yes)
             {
                 presenter.DeleteRancher();

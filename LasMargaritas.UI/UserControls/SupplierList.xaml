@@ -145,7 +145,7 @@
                         </Grid.ColumnDefinitions>
                     </Grid>
 
-                    <Grid Grid.Row="7" Margin="30,5"  >
+                    <Grid Grid.Row="6" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -153,6 +153,10 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
+                        <TextBox HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding PhoneNumber}" x:Name="TextBoxPhoneNumber" Margin="0,1,28,0" HorizontalAlignment="Right" Width="212" Grid.Column="1" />
+                        <TextBlock Margin="0,1,22,8" Text="Celular:"  Style="{StaticResource SubHeaderTextBlockStyle}" Grid.Column="3"  />
+                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding MobilePhoneNumber}" x:Name="TextBoxMobilePhoneNumber" Margin="0,0,0,1" HorizontalAlignment="Right" Width="217" Grid.ColumnSpan="2" />
+                        <TextBlock Margin="0,1,10,8" Text="Telefono: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
                     </Grid>
 
                     <Grid Grid.Row="8" Margin="30,5"  >
@@ -163,10 +167,6 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Margin="5,-86,5,95" Text="Telefono: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding PhoneNumber}" x:Name="TextBoxPhoneNumber" Margin="0,-90,0,91" HorizontalAlignment="Right" Width="213" Grid.ColumnSpan="2" />
-                        <TextBlock Margin="7,-86,15,95" Text="Celular:"  Style="{StaticResource SubHeaderTextBlockStyle}" Grid.Column="3"  />
-                        <TextBox Grid.Column="3" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding MobilePhoneNumber}" x:Name="TextBoxMobilePhoneNumber" Margin="0,-90,-2,91" HorizontalAlignment="Right" Width="212" Grid.ColumnSpan="2" />
                     </Grid>
 
                     <Grid Grid.Row="9" Margin="30,5"  >
