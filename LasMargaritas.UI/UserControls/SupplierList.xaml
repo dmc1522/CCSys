@@ -52,8 +52,8 @@
         </Grid>
 
         <Grid  Grid.Column="1">
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" Height="845" VerticalAlignment="Bottom">
-                <Grid x:Name="GridSupplierDetails"   >
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" >
+                <Grid x:Name="GridSupplierDetails"   MinWidth="400" MaxWidth="700" VerticalAlignment="Center" >
                     <Grid.Resources>
                         <cnv:ImageConverter x:Key="imageConverter" />
                         <cnv:CaseConverter x:Key="caseConverter" />

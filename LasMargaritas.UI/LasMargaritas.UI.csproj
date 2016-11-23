@@ -103,6 +103,9 @@
       <DependentUpon>Gaffette Preview.xaml</DependentUpon>
     </Compile>
     <Compile Include="System\Drawing\Color.cs" />
+    <Compile Include="UserControls\PopUps\StatusProcess.xaml.cs">
+      <DependentUpon>StatusProcess.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SupplierList.xaml.cs">
       <DependentUpon>SupplierList.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PopUps\StatusProcess.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

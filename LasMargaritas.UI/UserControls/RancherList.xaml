@@ -30,10 +30,7 @@
                     <TextBlock VerticalAlignment="Center"  Grid.Column="0" Text="Buscar:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
                     <TextBox Grid.Column="1" x:Name="TextBoxSearchRanchers"  Margin="15,2" TextChanged="TextBoxSearchRanchers_TextChanged"  />
                 </Grid>
-
-
                 <Button Grid.Row="1"  x:Name="ButtonAddRancher" Content="Nuevo Ganadero"  Margin="15,2" Click="ButtonAddRancher_Click" />
-
                 <ListBox  Grid.Row="2" x:Name="ListBoxRanchers"  Margin="15,20" SelectionChanged="ListBoxRanchers_SelectionChanged"  >
                     <ListBox.Resources>
                         <cnv:CaseConverter x:Key="caseConverter" />
@@ -47,13 +44,11 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Grid>
-
-
         </Grid>
 
         <Grid  Grid.Column="1">
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" Height="845" VerticalAlignment="Bottom">
-                <Grid x:Name="GridRancherDetails"   >
+            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                <Grid x:Name="GridRancherDetails"  MinWidth="400" MaxWidth="700" VerticalAlignment="Center" >
                     <Grid.Resources>
                         <cnv:ImageConverter x:Key="imageConverter" />
                         <cnv:CaseConverter x:Key="caseConverter" />

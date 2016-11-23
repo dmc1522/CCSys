@@ -57,7 +57,7 @@
 
         <Grid  Grid.Column="1">
             <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                <Grid x:Name="GridProducerDetails"   >
+                <Grid x:Name="GridProducerDetails"  MinWidth="400" MaxWidth="700" VerticalAlignment="Center" >
                     <Grid.Resources>
                         <cnv:ImageConverter x:Key="imageConverter" />
                         <cnv:CaseConverter x:Key="caseConverter" />
@@ -66,6 +66,7 @@
                         <RowDefinition Height="45"/>
                         <RowDefinition Height="230"/>
                         <RowDefinition Height="45"/>
+                        <RowDefinition Height="45" />
                         <RowDefinition Height="45" />
                         <RowDefinition Height="45" />
                         <RowDefinition Height="90" />
@@ -105,20 +106,25 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="85*" MaxWidth="85"/>
                             <ColumnDefinition Width="*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" CharacterCasing="Upper" Text="{Binding Name, Converter={StaticResource caseConverter}}" x:Name="TextBoxLastName"  />
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90*" MaxWidth="90" />
                             <ColumnDefinition Width="*" MinWidth="200" />
                             <ColumnDefinition Width="90*" MaxWidth="90"  />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" CharacterCasing="Upper" Text="{Binding Name, Converter={StaticResource caseConverter}}" x:Name="TextBoxLastName"  />
-                        <TextBlock Grid.Column="2" Margin="5"  Text="A. Paterno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="3"    CharacterCasing="Upper" Text="{Binding PaternalSurname}" x:Name="textBoxApellidoPaterno" />
-                        <TextBlock Grid.Column="4" Margin="5"  Text="A. Materno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="5"    CharacterCasing="Upper" Text="{Binding MaternalSurname}" x:Name="textBoxApellidoMaterno" />
+                        <TextBlock Grid.Column="0" Margin="5"  Text="A. Paterno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <TextBox Grid.Column="1"    CharacterCasing="Upper" Text="{Binding PaternalSurname}" x:Name="textBoxApellidoPaterno" />
+                        <TextBlock Grid.Column="2" Margin="5"  Text="A. Materno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <TextBox Grid.Column="3"    CharacterCasing="Upper" Text="{Binding MaternalSurname}" x:Name="textBoxApellidoMaterno" />
                     </Grid>
 
-                    <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">
+                    <Grid Grid.Row="4" Margin="30,5"  VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -127,12 +133,24 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="5" Text="F. de Nacimiento:" FontSize="11"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding BirthDate,  StringFormat=d, ConverterCulture=es-MX}" x:Name="TextBoxBirthDate"   />
+                        <DatePicker Grid.Column="1" x:Name="TextBoxBirthDate" Text="{Binding BirthDate,  StringFormat=d, ConverterCulture=es-MX}" BorderThickness="0">
+                            <DatePicker.Resources>
+                                <Style TargetType="{x:Type DatePickerTextBox}">
+                                    <Setter Property="Control.Template">
+                                        <Setter.Value>
+                                            <ControlTemplate>
+                                                <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DatePicker.Resources>
+                        </DatePicker>
                         <TextBlock Grid.Column="3" Margin="5" Text="RFC:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
                         <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding RFC}" x:Name="TextBoxRFC"  />
                     </Grid>
 
-                    <Grid Grid.Row="4" Margin="30,5"  VerticalAlignment="Center">
+                    <Grid Grid.Row="5" Margin="30,5"  VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -146,7 +164,7 @@
                         <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding CURP}" x:Name="TextBoxCurp"  />
                     </Grid>
 
-                    <Grid Grid.Row="5" Margin="30,5"  >
+                    <Grid Grid.Row="6" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="400"  />
@@ -155,7 +173,7 @@
                         <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Address}" TextWrapping="Wrap" AcceptsReturn="True" x:Name="TextBoxAddress"  />
                     </Grid>
 
-                    <Grid Grid.Row="6" Margin="30,5"  >
+                    <Grid Grid.Row="7" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -169,7 +187,7 @@
                         <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding City}" x:Name="TextBoxCity"   />
                     </Grid>
 
-                    <Grid Grid.Row="7" Margin="30,5"  >
+                    <Grid Grid.Row="8" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -184,7 +202,7 @@
                         </ComboBox>
                     </Grid>
 
-                    <Grid Grid.Row="8" Margin="30,5"  >
+                    <Grid Grid.Row="9" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -199,7 +217,7 @@
                         <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding PhoneNumber}" x:Name="TextBoxPhoneNumber" />
                     </Grid>
 
-                    <Grid Grid.Row="9" Margin="30,5"  >
+                    <Grid Grid.Row="10" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -213,7 +231,7 @@
                         <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Fax}" x:Name="TextBoxFax" />
                     </Grid>
 
-                    <Grid Grid.Row="10" Margin="30,5"  >
+                    <Grid Grid.Row="11" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -228,7 +246,7 @@
                         </ComboBox>
                     </Grid>
 
-                    <Grid Grid.Row="11" Margin="30,5"  >
+                    <Grid Grid.Row="12" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />
@@ -243,7 +261,7 @@
                         <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Spouse}" x:Name="TextBoxSpouse"  />
                     </Grid>
 
-                    <Grid Grid.Row="12" Margin="30,5"  >
+                    <Grid Grid.Row="13" Margin="30,5"  >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" MinWidth="200"  />

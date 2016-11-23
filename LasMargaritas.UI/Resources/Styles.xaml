@@ -7,19 +7,6 @@
         <Setter Property="Background" Value="White"/>
     </Style>
 
-    <!--<Style TargetType="Window" x:Key="MainWindow">
-        
-        
-        <Setter Property="Background" >
-            <Setter.Value>
-                <LinearGradientBrush  StartPoint="1,0" EndPoint="1,1">
-                    <GradientStop Color="#FFFFFFFF" Offset="0.0" />
-                    <GradientStop Color="#F1EF9A" Offset="0.70" />
-                    <GradientStop Color="#B6C939" Offset="1.0" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-    </Style>-->
 
     <!-- ************************* GLOBAL BUTTONS*****************************************-->
 
@@ -119,9 +106,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
-
 
 
 </ResourceDictionary>

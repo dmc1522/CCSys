@@ -17,61 +17,61 @@
 
         <Grid Background="#BDBDBD">
             <Grid.RowDefinitions>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="35" />
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="45" />
                 <RowDefinition Height="10" />
-                <RowDefinition Height="35" />
-                <RowDefinition Height="35" />
-                <RowDefinition Height="35" />
+                <RowDefinition Height="45" />
+                <RowDefinition Height="45" />
+
                 <RowDefinition MinHeight="180" Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock  Grid.Row="0" Text="Administrador de Boletas"   Style="{StaticResource HeaderTextBlockStyle}"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Grid Grid.Row="1" Margin="2">
+            
+            <Grid Grid.Row="1" Margin="5" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="120" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock  Grid.Column="0" Text="Tipo de Boleta:"   Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock  Grid.Column="0" Text="Tipo:"   Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <ComboBox Grid.Column ="1" x:Name="ComboBoxTicketType" Margin="1,2"  IsTextSearchEnabled="True" TextSearch.TextPath="Content" SelectionChanged="ComboBoxTicketType_SelectionChanged"  >
                     <ComboBoxItem Content="Productor" Tag="producer" />
                     <ComboBoxItem Content="Proveedor" Tag="supplier"/>
                     <ComboBoxItem Content="Cliente de Venta" Tag="costumer"/>
                     <ComboBoxItem Content="Ganadero" Tag="rancher"/>
                 </ComboBox>
+                <Button  Grid.Column ="3"  x:Name="btnNewTicket" Content="Nueva Boleta" Margin="5,0"  Click="btnNewTicket_Click"  />
             </Grid>
 
-            <Button  Grid.Row ="2"  x:Name="btnNewTicket" Content="Nueva Boleta" Margin="1" Width="200" Click="btnNewTicket_Click"  />
-            <Grid Grid.Row="4" Margin="2">
+
+            <Grid Grid.Row="2" Margin="5" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="130" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock  Grid.Column="0" Text="Ciclo:"  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <ComboBox  Grid.Column="1" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id"  x:Name="ComboBoxCiclesFilter">
                 </ComboBox>
+                <CheckBox IsEnabled="False" Grid.Column ="3" x:Name="CheckBoxPending" Content="Pendientes" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
 
-            <Grid Grid.Row="5" Margin="2">
+            <Grid Grid.Row="4" Margin="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="70" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock  Grid.Column="0" Text="Buscar:"  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBox Grid.Column="1" x:Name="txbSearhcTicket" TextChanged="txbSearhcTicket_TextChanged"/>
             </Grid>
 
+            <Button   Grid.Row="5"  x:Name="btnReloadTicket" Content="Recargar Lista" Margin="5" Click="btnReloadTicket_Click"/>
 
-            <Grid Grid.Row="6" HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="200" />
-                </Grid.ColumnDefinitions>
-                <CheckBox IsEnabled="False" Grid.Column ="0" x:Name="CheckBoxPending" Content="Pendientes" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Button  Grid.Column ="1"  x:Name="btnReloadTicket" Content="Recargar Lista" Margin="1" Click="btnReloadTicket_Click"/>
-            </Grid>
 
-            <ListBox  Grid.Row="7" x:Name="ListBoxTickets"  Margin="15,20" SelectionChanged="ListBoxTickets_SelectionChanged">
+
+
+            <ListBox  Grid.Row="6" x:Name="ListBoxTickets"  Margin="15,20" SelectionChanged="ListBoxTickets_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
@@ -85,68 +85,62 @@
 
         <Grid Grid.Column="1" >
             <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Margin="10,20,10,20">
-                <Grid x:Name="GridTicketsDetails"   >
-                    <Grid.RowDefinitions>
-                        <!--<RowDefinition Height="75"/>-->
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-                    <!--<controls:TicketProcess Grid.Row="0" x:Name="ticketProccess" VerticalAlignment="Center" HorizontalAlignment="Center"  />-->
-
-                    <Grid Grid.Row="0" x:Name="TicketDetails" VerticalAlignment="Center" MinWidth="400" MaxWidth="600">
+                <Grid x:Name="GridTicketsDetails" >
+                    <Grid  x:Name="TicketDetails"  MinWidth="400" MaxWidth="700" VerticalAlignment="Center">
                         <Grid.Resources>
                             <cnv:ImageConverter x:Key="imageConverter" />
                             <cnv:CaseConverter x:Key="caseConverter" />
                         </Grid.Resources>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                             
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                             
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="35"/>
-                            <RowDefinition Height="270" />
-                            <RowDefinition Height="35"/>                            
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*"/>                            
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+                        
+                        <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
+                        
                         <Grid Grid.Row="1" x:Name="GridFolioWareHouseAndCicle" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
                             </Grid.ColumnDefinitions>
                             <TextBlock  Grid.Column="0"  Text="FOLIO, CICLO Y BODEGA" VerticalAlignment="Center"  Style="{StaticResource HeaderGrayTextBlockStyle}"/>
                         </Grid>
-                        <Grid Grid.Row="2">
+                        <Grid Grid.Row="2" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.33*" />
                                 <ColumnDefinition Width="0.33*" />
@@ -187,7 +181,7 @@
 
 
 
-                            <Grid Grid.Column="0"  x:Name="GridWareHouse" >
+                            <Grid Grid.Column="0"  x:Name="GridWareHouse" Margin="8" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60" />
                                     <ColumnDefinition Width="*" MinWidth="100" />
@@ -196,7 +190,7 @@
                                 <ComboBox Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboboxWareHouse" SelectedValue="{Binding WarehouseId}" Height="25" VerticalAlignment="Center"  />
                             </Grid>
 
-                            <Grid Grid.Column="1" x:Name="GridCycle"  >
+                            <Grid Grid.Column="1" x:Name="GridCycle" Margin="8" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="60" />
                                     <ColumnDefinition Width="*" MinWidth="100" />
@@ -206,18 +200,18 @@
                             </Grid>
                         </Grid>
 
-                        <StackPanel Grid.Row="4" Orientation="Vertical" Margin="10">
+                        <StackPanel Grid.Row="4" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
-                        <Grid Grid.Row="5" x:Name="GridClient" >
+                        <Grid Grid.Row="5" x:Name="GridClient" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
                             </Grid.ColumnDefinitions>
                             <TextBlock  Grid.Column="0"  Text="COMPRADOR/VENDEDOR" VerticalAlignment="Center"  Style="{StaticResource HeaderGrayTextBlockStyle}"/>
                         </Grid>
 
-                        <Grid Grid.Row="6" x:Name="GridIndentifier"  >
+                        <Grid Grid.Row="6" x:Name="GridIndentifier"  Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120" MinWidth="150" />
                                 <ColumnDefinition Width="*" MinWidth="150" />
@@ -263,18 +257,18 @@
                             </ComboBox>
                         </Grid>
 
-                        <StackPanel Grid.Row="7" Orientation="Vertical" Margin="10">
+                        <StackPanel Grid.Row="7" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
-                        <Grid Grid.Row="8" x:Name="GridDriverHeader" >
+                        <Grid Grid.Row="8" x:Name="GridDriverHeader" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
                             </Grid.ColumnDefinitions>
                             <TextBlock  Grid.Column="0"  Text="CHOFER" VerticalAlignment="Center"  Style="{StaticResource HeaderGrayTextBlockStyle}"/>
                         </Grid>
 
-                        <Grid Grid.Row="9" x:Name="GridDriver"  >
+                        <Grid Grid.Row="9" x:Name="GridDriver"  Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="*" MinWidth="150" />
@@ -288,20 +282,20 @@
                             <TextBox Grid.Column="3" x:Name="txtPlates" Text="{Binding Plate, Converter={StaticResource caseConverter}}" Margin="1"/>
                         </Grid>
 
-                        <StackPanel Grid.Row="10" Orientation="Vertical" Margin="10">
+                        <StackPanel Grid.Row="10" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
 
 
-                        <Grid Grid.Row="11" x:Name="GridProductHeader" >
+                        <Grid Grid.Row="11" x:Name="GridProductHeader" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
                             </Grid.ColumnDefinitions>
                             <TextBlock  Grid.Column="0"  Text="PRODUCTO" VerticalAlignment="Center"  Style="{StaticResource HeaderGrayTextBlockStyle}"/>
                         </Grid>
 
-                        <Grid Grid.Row="12" x:Name="GridProduct" >
+                        <Grid Grid.Row="12" x:Name="GridProduct" Margin="8" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="70" />
                                 <ColumnDefinition Width="*" MinWidth="250"/>
@@ -311,18 +305,18 @@
                             <ComboBox Grid.Column="1" DisplayMemberPath="Name"  SelectedValue="{Binding ProductId}" SelectedValuePath="Id" x:Name="ComboBoxProducts"  IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" Margin="1"  />
                         </Grid>
 
-                        <StackPanel Grid.Row="13" Orientation="Vertical" Margin="10">
+                        <StackPanel Grid.Row="13" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
-                        <Grid Grid.Row="14" x:Name="GridWeigthingStart" >
+                        <Grid Grid.Row="14" x:Name="GridWeigthingStart" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
                             </Grid.ColumnDefinitions>
                             <TextBlock  Grid.Column="0"  Text="PESO DE ENTRADA"   VerticalAlignment="Center"  Style="{StaticResource HeaderGrayTextBlockStyle}"/>
                         </Grid>
 
-                        <Grid Grid.Row="15" x:Name="GridWeigthing1"  >
+                        <Grid Grid.Row="15" x:Name="GridWeigthing1" Margin="8" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120" />
                                 <ColumnDefinition Width="*" MinWidth="150"/>
@@ -339,20 +333,32 @@
                             <Button    Grid.Column ="5"  x:Name="ButtonEntrancePrint" Content="1a Pesada" Margin="1" Click="ButtonEntrancePrint_Click"/>
                         </Grid>
 
-                        <Grid Grid.Row="16" x:Name="GridWeigthingDate1" >
+                        <Grid Grid.Row="16" x:Name="GridWeigthingDate1" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120" />
                                 <ColumnDefinition Width="*" MinWidth="150"/>
                                 <ColumnDefinition Width="*" MinWidth="150"/>
-                                <ColumnDefinition Width="*"  MinWidth="150"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock   Grid.Column="0"  Text="Fecha de Entrada:"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                            <TextBox  Grid.Column="1" x:Name="txtDateWeigth1" Margin="1" Text="{Binding EntranceDate,  StringFormat=dd-MM-yyy HH:mm, ConverterCulture=es-MX}"/>
-                            <Button  Grid.Column="2" VerticalAlignment="Top" x:Name="ButtonGetDate" Margin="1" Content="F. Actual" Click="ButtonGetDate_Click"/>
-                            <CheckBox  Grid.Column ="3" x:Name="ChecBoxFreight" IsChecked="{Binding Freight}" Content="Flete" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                            <DatePicker Grid.Column="1" x:Name="txtDateWeigth1" Text="{Binding EntranceDate,  StringFormat=d, ConverterCulture=es-MX}" BorderThickness="0">
+                                <DatePicker.Resources>
+                                    <Style TargetType="{x:Type DatePickerTextBox}">
+                                        <Setter Property="Control.Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DatePicker.Resources>
+                            </DatePicker>
+
+                            <CheckBox  Grid.Column ="2" x:Name="ChecBoxFreight" IsChecked="{Binding Freight}" Content="Flete" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
-                        <Grid Grid.Row="17" x:Name="GridWeigthingOwner1"  >
+                        <Grid Grid.Row="17" x:Name="GridWeigthingOwner1" Margin="8" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="90" />
                                 <ColumnDefinition Width="*" MinWidth="250" />
@@ -363,19 +369,19 @@
 
                         <StackPanel Grid.Row="18" Orientation="Vertical" Margin="11"/>
 
-                        <StackPanel Grid.Row="19" Orientation="Vertical" Margin="10">
+                        <StackPanel Grid.Row="19" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
 
-                        <Grid Grid.Row="20" x:Name="GridDiscountStart"  >
+                        <Grid Grid.Row="20" x:Name="GridDiscountStart" Margin="8" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
                             </Grid.ColumnDefinitions>
                             <TextBlock   Grid.Column="0"  Text="HUMEDAD E IMPUREZAS"   VerticalAlignment="Center"  Style="{StaticResource HeaderGrayTextBlockStyle}"/>
                         </Grid>
 
-                        <Grid Grid.Row="21" x:Name="GridWetAdnImpurities"  >
+                        <Grid Grid.Row="21" x:Name="GridWetAdnImpurities" Margin="8" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="140" />
                                 <ColumnDefinition Width="*"  MinWidth="100"/>
@@ -389,11 +395,11 @@
                             <TextBox  Grid.Column="3" x:Name="txtImpurities" Text="{Binding Impurities, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ApplyImpurities}" LostFocus="CalculatePrices_LostFocus" Margin="1"/>
                         </Grid>
 
-                        <StackPanel Grid.Row="22" x:Name="CattleSeparator" Orientation="Vertical" Margin="10">
+                        <StackPanel Grid.Row="22" x:Name="CattleSeparator" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
-                        <Grid Grid.Row="23" x:Name="GridCattleHeader" >
+                        <Grid Grid.Row="23" x:Name="GridCattleHeader" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
                             </Grid.ColumnDefinitions>
@@ -414,18 +420,18 @@
 
                         </Grid>
 
-                        <StackPanel Grid.Row="25" Orientation="Vertical" Margin="10">
+                        <StackPanel Grid.Row="25" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
-                        <Grid Grid.Row="26" x:Name="GridWeigthingEnd"  >
+                        <Grid Grid.Row="26" x:Name="GridWeigthingEnd"  Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <TextBlock   Grid.Column="0"  Text="SALIDA" Margin="1"   VerticalAlignment="Center"  Style="{StaticResource HeaderGrayTextBlockStyle}"/>
                         </Grid>
 
-                        <Grid Grid.Row="27" x:Name="GridWeigthing2" >
+                        <Grid Grid.Row="27" x:Name="GridWeigthing2" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100" />
                                 <ColumnDefinition Width="*" MinWidth="100" />
@@ -442,19 +448,29 @@
                             <Button    Grid.Column ="5"  x:Name="ButtonExitPrint" Content="2a. Pesada" Margin="1" Click="ButtonExitPrint_Click"/>
                         </Grid>
 
-                        <Grid Grid.Row="28" x:Name="GridWeigthingDate2" >
+                        <Grid Grid.Row="28" x:Name="GridWeigthingDate2" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120" />
                                 <ColumnDefinition Width="*" MinWidth="200"/>
                                 <ColumnDefinition Width="*" MinWidth="150"/>
-                                <ColumnDefinition Width="*" MinWidth="150"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock   Grid.Column="0"  Text="Fecha de Salida:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                            <TextBox  Grid.Column="1" x:Name="txtDateWeigth2" Text="{Binding ExitDate,  StringFormat=dd-MM-yyy HH:mm, ConverterCulture=es-MX}" Margin="1"/>
-                            <Button  Grid.Column="2" x:Name="ButtonGetDate2" Margin="1" Content="F. Actual" Click="ButtonGetDate2_Click"/>
+                            <DatePicker Grid.Column="1" x:Name="txtDateWeigth2" Text="{Binding ExitDate,  StringFormat=d, ConverterCulture=es-MX}" BorderThickness="0">
+                                <DatePicker.Resources>
+                                    <Style TargetType="{x:Type DatePickerTextBox}">
+                                        <Setter Property="Control.Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DatePicker.Resources>
+                            </DatePicker>
                         </Grid>
 
-                        <Grid Grid.Row="29" x:Name="GridWeigthingOwner2"  >
+                        <Grid Grid.Row="29" x:Name="GridWeigthingOwner2"  Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="90" />
                                 <ColumnDefinition Width="*" MinWidth="250" />
@@ -462,29 +478,29 @@
                             <TextBlock   Grid.Column="0"  Text="Encargado:"   VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                             <TextBox  Grid.Column="1" x:Name="txtOwnerWeigth2" Text="{Binding ExitWeigher}"  Margin="1"/>
                         </Grid>
-                        <StackPanel Grid.Row="30" Orientation="Vertical" Margin="10">
+                        <StackPanel Grid.Row="30" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
 
-                        <Grid Grid.Row="31" x:Name="GridSummary" >
+                        <Grid Grid.Row="31" x:Name="GridSummary" Margin="8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
                             </Grid.ColumnDefinitions>
                             <TextBlock   Grid.Column="0"  Text="CONCENTRADO"   VerticalAlignment="Center"  Style="{StaticResource HeaderGrayTextBlockStyle}"/>
                         </Grid>
 
-                        <Grid Grid.Row="32" x:Name="GridSummaryDetail">
+                        <Grid Grid.Row="32" x:Name="GridSummaryDetail" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="35"></RowDefinition>
-                                <RowDefinition Height="35"></RowDefinition>
-                                <RowDefinition Height="35"></RowDefinition>
-                                <RowDefinition Height="35"></RowDefinition>
-                                <RowDefinition Height="35"></RowDefinition>
-                                <RowDefinition Height="35"></RowDefinition>
-                                <RowDefinition Height="35"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                                 
                             </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
+                            <Grid Grid.Row="0" Margin="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="150" />
@@ -496,7 +512,7 @@
                                 <TextBlock   Grid.Column="2"  Text="Dcto. X Humedad:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                                 <TextBox  IsEnabled="False" Grid.Column="3" x:Name="TextBoxHumidityDiscount" Text="{Binding HumidityDiscount}" Margin="1"/>
                             </Grid>
-                            <Grid Grid.Row="1">
+                            <Grid Grid.Row="1" Margin="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="150" />
@@ -508,7 +524,7 @@
                                 <TextBlock   Grid.Column="2"  Text="Peso Total a Pagar:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                                 <TextBox   IsEnabled="False" Grid.Column="3" x:Name="TextBoxTotalWeightToPay" Text="{Binding TotalWeightToPay}" Margin="1"/>
                             </Grid>
-                            <Grid Grid.Row="2">
+                            <Grid Grid.Row="2" Margin="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="150" />
@@ -520,7 +536,7 @@
                                 <TextBlock   Grid.Column="2"  Text="SubTotal:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                                 <TextBox  IsEnabled="False" Grid.Column="3" x:Name="TextBoxSubTotal" Text="{Binding SubTotal, StringFormat=C2}" Margin="1"/>
                             </Grid>
-                            <Grid Grid.Row="3">
+                            <Grid Grid.Row="3" Margin="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="150" />
@@ -532,7 +548,7 @@
                                 <TextBlock   Grid.Column="2"  Text="Dcto por G. Quebrado:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                                 <TextBox Grid.Column="3" x:Name="TextboxBrokenGrainDiscount"  Text="{Binding BrokenGrainDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
                             </Grid>
-                            <Grid Grid.Row="4">
+                            <Grid Grid.Row="4" Margin="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="150" />
@@ -545,7 +561,7 @@
                                 <TextBox Grid.Column="31" x:Name="TextBoxSmallGrainDiscount"  Text="{Binding SmallGrainDiscount, StringFormat=C2, UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
 
                             </Grid>
-                            <Grid Grid.Row="5">
+                            <Grid Grid.Row="5" Margin="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="150" />
@@ -556,7 +572,7 @@
                                 <TextBox Grid.Column="1" x:Name="TextboxDamagedGrainDiscount"  Text="{Binding DamagedGrainDiscount,StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
 
                             </Grid>
-                            <Grid Grid.Row="6">
+                            <Grid Grid.Row="6" Margin="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="200" />
@@ -568,7 +584,7 @@
 
                         </Grid>
 
-                        <Grid Grid.Row="33" x:Name="GridActions" >
+                        <Grid Grid.Row="33" x:Name="GridActions" Margin="8" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="40*" />
                                 <ColumnDefinition Width="40*" />
