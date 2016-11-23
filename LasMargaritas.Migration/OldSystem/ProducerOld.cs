@@ -25,7 +25,8 @@ namespace LasMargaritas.Migration.OldSystem
                         while(reader.Read())
                         {
                             Producer producer = new Producer();
-                            producer.LastName = reader["apaterno"].ToString() + " " + reader["amaterno"].ToString();
+                            producer.PaternalSurname = reader["apaterno"].ToString();
+                            producer.MaternalSurname = reader["amaterno"].ToString();
                             producer.Name = reader["Nombre"].ToString();
                             producer.BirthDate = reader["fechanacimiento"] == DBNull.Value ? (DateTime?)null : DateTime.Parse(reader["fechanacimiento"].ToString());
                             producer.INE = reader["IFE"].ToString();

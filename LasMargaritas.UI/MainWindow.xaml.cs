@@ -28,6 +28,11 @@ namespace LasMargaritas.UI
                 baseUrl = ConfigurationManager.AppSettings["baseUrl"];
             }
             token = TokenHelper.GetToken(baseUrl, txtUser.Text,password.Password);
+            if (token == null || string.IsNullOrEmpty(token.access_token))
+            {
+                MessageBox.Show("Usuario o contraseña no válidos. Reintente de nuevo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             InitializeComponent();
             producerList.Token = token;
             weightTickets.Token = token;

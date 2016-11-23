@@ -27,7 +27,7 @@ namespace LasMargaritas.UI
             set { lock (this) { _KeepThreadRunning = value; } }
         }
 
-        private SerialPort serialPort = new SerialPort();
+        private SerialPort serialPort;
         private bool _KeepThreadRunning;
         private Thread weightReaderThread;
         public WeightReader()
@@ -50,8 +50,14 @@ namespace LasMargaritas.UI
                 {
                     try
                     {
-                        //lineRead = serialPort.ReadLine();                        
-                        lineRead = string.Format("test,test,{0}kg\r", randomizer.Next(1000, 1010));
+                        Dispatcher.Invoke(new Action(() =>
+                              TextTest.Text = "a"
+                          ));
+                        lineRead = serialPort.ReadLine();
+                        Dispatcher.Invoke(new Action(() =>
+                              TextTest.Text = lineRead
+                          ));
+                        //lineRead = string.Format("test,test,{0}kg\r", randomizer.Next(1000, 1010));
                         parts = lineRead.Split(',');
                         //                         a = a.Replace("ST,GS,", "");
                         //                         a = a.Replace("kg\r", "");
@@ -87,13 +93,10 @@ namespace LasMargaritas.UI
         {
             try
             {
-                this.KeepThreadRunning = false;
-                //serialPort.Close();
-                //serialPort.Dispose();
-                while (weightReaderThread.IsAlive)
-                {
-                    Thread.Sleep(10);
-                }              
+                KeepThreadRunning = false;
+                serialPort.Close();
+                serialPort.Dispose();
+                weightReaderThread.Abort();     
             }
             catch
             {
@@ -104,7 +107,8 @@ namespace LasMargaritas.UI
         {
             try
             {
-                //serialPort = new SerialPort("COM1"); //TODO change this! 
+                serialPort = new SerialPort("COM2");
+                serialPort.Open();
                 weightReaderThread = new Thread(new ThreadStart(ReadPort));
                 KeepThreadRunning = true;
                 weightReaderThread.Start();
@@ -112,8 +116,7 @@ namespace LasMargaritas.UI
             }
             catch (Exception ex)
             {
-
-                //Error not logged
+                MessageBox.Show("Error leyendo peso de báscula en puerto COM. " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

@@ -13,8 +13,9 @@ namespace LasMargaritas.Models
         public int Id { get; set; }
 
         public string Name { get; set; }
-        public string LastName { get; set; }
-     
+        public string PaternalSurname { get; set; }
+        public string MaternalSurname { get; set; }
+
         public DateTime? BirthDate { get; set; }
 
         public string INE { get; set; }

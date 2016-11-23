@@ -25,6 +25,10 @@ namespace LasMargaritas.UI
     /// </summary>
     public partial class Gaffette_Preview : Window
     {
+        
+        [DllImport("kernel32.dll")]
+        private static extern IntPtr LoadLibrary(string dllToLoad);
+
         [DllImport("ZBRGraphics.dll")]
         public static extern int ZBRGDIInitGraphics(byte[] printerName, ref int myHandle, ref long errValue);
 
@@ -54,6 +58,8 @@ namespace LasMargaritas.UI
         {
             InitializeComponent();
             Producer = producer;
+            var is64 = IntPtr.Size == 8;
+            LoadLibrary(is64 ? "x64/ZBRGraphics.dll" : "x86/ZBRGraphics.dll");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -73,7 +79,7 @@ namespace LasMargaritas.UI
             long error = 0;
             //Front
             byte[] printerName = Encoding.ASCII.GetBytes("Zebra ZXP Series 3 USB Card Printer");
-            byte[] myText = Encoding.ASCII.GetBytes(Producer.Name + " " + Producer.LastName);
+            byte[] myText = Encoding.ASCII.GetBytes(Producer.Name + " " + Producer.PaternalSurname);
             byte[] producerTitle = Encoding.ASCII.GetBytes("Productor");
             byte[] myFont = Encoding.ASCII.GetBytes("Arial");
             byte[] frontBackGround = Encoding.ASCII.GetBytes("back.jpg");
@@ -91,7 +97,7 @@ namespace LasMargaritas.UI
             //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
             result = ZBRGDIDrawText(50, 120, myText, myFont, 10, 1, 1, ref error);
             result = ZBRGDIDrawText(70, 220, producerTitle, myFont, 7, 1, 1, ref error);
-            result = ZBRGDIDrawText(30, 580, businessData, myFont, 6, 1, 16777215, ref error);
+            //result = ZBRGDIDrawText(30, 580, businessData, myFont, 6, 1, 16777215, ref error);
             if(isPreview)
                 result = ZBRGDIPreviewGraphics(ImageFront.PreviewImageHandle, ref error);
             else

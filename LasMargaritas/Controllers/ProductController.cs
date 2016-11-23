@@ -166,12 +166,12 @@ namespace LasMargaritas.Controllers
         [Authorize(Roles = "Admin")]
         [Route("GetWeightTicketProducts")]
         [HttpGet]
-        public IHttpActionResult GetWeightTicketProducts()
+        public IHttpActionResult GetWeightTicketProducts(WeightTicketType type)
         {
             GetSelectableModelResponse response = new GetSelectableModelResponse();
             try
             {
-                List<SelectableModel> products = productBL.GetWeightTicketProducts();
+                List<SelectableModel> products = productBL.GetWeightTicketProducts(type);
                 response.SelectableModels = products;
                 response.Success = true;
             }        

@@ -96,7 +96,7 @@ namespace LasMargaritas.DL
             }
         }
 
-        public List<SelectableModel> GetProductByProductGroupId(int productGroupId)
+        public List<SelectableModel> GetProductByProductGroupId(WeightTicketType type)
         {
             List<SelectableModel> products = new List<SelectableModel>();
             using (SqlCommand command = new SqlCommand())
@@ -105,8 +105,8 @@ namespace LasMargaritas.DL
                 {
                     connection.ConnectionString = ConnectionString;
                     command.Connection = connection;
-                    command.CommandText = "spGetProductByProductGroupId";
-                    command.Parameters.Add("@ProductGroupId", SqlDbType.Int).Value = productGroupId;
+                    command.CommandText = "spGetWeightTicketProducts";
+                    command.Parameters.Add("@WeightTicketType", SqlDbType.Int).Value = (int)type;
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();

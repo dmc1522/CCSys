@@ -103,16 +103,19 @@
 
                     <Grid Grid.Row="2" Margin="30,5"  VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="85*" MaxWidth="85"/>
                             <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="90*" MaxWidth="90" />
+                            <ColumnDefinition Width="*" MinWidth="200" />
+                            <ColumnDefinition Width="90*" MaxWidth="90"  />
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
                         <TextBox Grid.Column="1" CharacterCasing="Upper" Text="{Binding Name, Converter={StaticResource caseConverter}}" x:Name="TextBoxLastName"  />
-                        <TextBlock Grid.Column="3" Margin="5"  Text="Apellidos:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="4"    CharacterCasing="Upper" Text="{Binding LastName}" x:Name="textBoxApellidos" />
+                        <TextBlock Grid.Column="2" Margin="5"  Text="A. Paterno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <TextBox Grid.Column="3"    CharacterCasing="Upper" Text="{Binding PaternalSurname}" x:Name="textBoxApellidoPaterno" />
+                        <TextBlock Grid.Column="4" Margin="5"  Text="A. Materno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <TextBox Grid.Column="5"    CharacterCasing="Upper" Text="{Binding MaternalSurname}" x:Name="textBoxApellidoMaterno" />
                     </Grid>
 
                     <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">

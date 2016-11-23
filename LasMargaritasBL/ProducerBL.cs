@@ -19,8 +19,8 @@ namespace LasMargaritas.BL
         public Producer InsertProducer(Producer producer)
         {
             ProducerError result = ProducerError.None;
-            if(string.IsNullOrEmpty(producer.Name.Trim()))
-                result |= ProducerError.InvalidName;
+           /* if(string.IsNullOrEmpty(producer.Name.Trim()))
+                result |= ProducerError.InvalidName;*/
             if (producer.GenderId <= 0)
                 result |= ProducerError.InvalidGender;
             if (producer.CivilStatusId <= 0)

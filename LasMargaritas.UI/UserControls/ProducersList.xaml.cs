@@ -178,7 +178,20 @@ namespace LasMargaritas.UI.UserControls
             if (!webCameraControl.IsCapturing)
             {
                 IEnumerable<WebCameraId> cameras = webCameraControl.GetVideoCaptureDevices();
-                webCameraControl.StartCapture(cameras.ElementAt(0));
+                if (cameras.Count() == 0)
+                {
+                    MessageBox.Show("No se encontró camara", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }  
+                
+                if (cameras.Count()>1)
+                {
+                    webCameraControl.StartCapture(cameras.ElementAt(1));
+                }
+                else
+                {
+                    webCameraControl.StartCapture(cameras.ElementAt(0));
+                }              
                 TextBoxImageInstructions.Text = "Click para GUARDAR foto";
                 ButtonCaptureImage.Visibility = System.Windows.Visibility.Hidden;
                 ButtonGetImage.Visibility = System.Windows.Visibility.Visible;

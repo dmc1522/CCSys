@@ -56,7 +56,7 @@ namespace LasMargaritas.BL.Presenters
             getByIdAction = "WeightTicket/GetById";
             getProductsAction = "Product/GetWeightTicketProducts";
             getProducersAction = "Producer/GetSelectableModels";
-            getSalesCustomersAction = "SalesCustomer/GetSelectableModels";
+            getSalesCustomersAction = "SaleCustomer/GetSelectableModels";
             getSuppliersAction = "Supplier/GetSelectableModels";
             getRanchersAction = "Rancher/GetSelectableModels";
             getWareHousesAction = "WareHouse/GetSelectableModels";
@@ -130,6 +130,25 @@ namespace LasMargaritas.BL.Presenters
 
         }
 
+        public void LoadProducts()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            HttpResponseMessage response;
+            //Products
+            string action = string.Format("{0}?type={1}", getProductsAction, (int)view.WeightTicketType);
+            response = client.GetAsync(action).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                if (getSelectableModelResponse.Success)
+                {
+                    view.Products = getSelectableModelResponse.SelectableModels;
+                }
+            }
+        }
         public void LoadCatalogs()
         {
             HttpClient client = new HttpClient();
@@ -200,16 +219,7 @@ namespace LasMargaritas.BL.Presenters
                     view.FilterCicles = getSelectableModelResponse.SelectableModels;
                 }
             }
-            //Products
-            response = client.GetAsync(getProductsAction).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    view.Products = getSelectableModelResponse.SelectableModels;
-                }
-            }
+           
             //Warehouses
             response = client.GetAsync(getWareHousesAction).Result;
             if (response.IsSuccessStatusCode)
@@ -235,7 +245,7 @@ namespace LasMargaritas.BL.Presenters
             else
             {
                 view.CurrentWeightTicket.ExitNetWeight = view.CurrentWeightTicket.ExitWeightKg - view.CurrentWeightTicket.EntranceWeightKg;
-                view.CurrentWeightTicket.EntranceWeightKg = 0;
+                view.CurrentWeightTicket.EntranceNetWeight = 0;
                 view.CurrentWeightTicket.NetWeight = view.CurrentWeightTicket.ExitNetWeight;
             }
             if (view.CurrentWeightTicket.ApplyHumidity)
@@ -340,6 +350,7 @@ namespace LasMargaritas.BL.Presenters
             PrintDocument printDocument = new PrintDocument();
             printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio + "3";
             PrintDialog pd = new PrintDialog();
+            printDocument.PrinterSettings.PrinterName = "Tickets";//TODO Change!
             pd.Document = printDocument;
             printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
             PaperSize ps = new PaperSize();
@@ -360,7 +371,7 @@ namespace LasMargaritas.BL.Presenters
             currentPage = 0;
             PrintDocument printDocument = new PrintDocument();
             printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio+ "3";
-            printDocument.PrinterSettings.PrinterName = "PDFCreator";//TODO Change!
+            printDocument.PrinterSettings.PrinterName = "Tickets";//TODO Change!
             PrintDialog pd = new PrintDialog();
             pd.Document = printDocument;
             printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
@@ -394,8 +405,8 @@ namespace LasMargaritas.BL.Presenters
                 py = 10.0f + fAjusteY;
                 int logoSize = 12;
                 SizeF fontSize = g.MeasureString("TEST", fntDetalle);
-                //*if (printingFirstPart)
-                //{
+                if (printingFirstPart)
+                {
                     Image image = BadgePrinterHelper.GetQRCode(view.CurrentWeightTicket.Folio);
                     g.DrawImage(image, px+10, py, 12, 12);
                     py += logoSize;
@@ -429,10 +440,10 @@ namespace LasMargaritas.BL.Presenters
                     sText = "PESO: " + view.CurrentWeightTicket.EntranceWeightKg.ToString() + " Kg";
                     py += fontSize.Height;
                     g.DrawString(sText.ToUpper(), fnt, brush, px, py);
-                //}
-                //else
-                //{
-                    py += (fontSize.Height * 11); //+ logoSize;
+                }
+                else
+                {
+                    py += (fontSize.Height * 10) + logoSize;
                     sText = "SEGUNDA PESADA   Ticket: " + view.CurrentWeightTicket.Folio;
                     g.DrawString(sText.ToUpper(), fnt, brush, px, py);
                     py += fontSize.Height;
@@ -476,7 +487,7 @@ namespace LasMargaritas.BL.Presenters
                         g.DrawString(sText.ToUpper(), fnt, brush, px, py);
                     }
 
-                //}
+                }
             }
             catch (System.Exception ex)
             {

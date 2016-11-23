@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LasMargaritas.UI"
         mc:Ignorable="d"
-        Title="Leer peso" Height="220" Width="370" Loaded="Window_Loaded"  Closing="Window_Closing">
+        Title="Leer peso" Height="250" Width="420" Loaded="Window_Loaded"  Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"  Style="{StaticResource HeaderTextBlockStyleSmallWindow}" VerticalAlignment="Center"  HorizontalAlignment="Center">Lector de báscula</TextBlock>
@@ -29,9 +30,11 @@
             <TextBlock Margin="10,0,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="30">
                 KG
             </TextBlock>
-        </Grid>
+           </Grid>
         <Button Grid.Row="2" x:Name="ButtonCaptureWeight" Click="ButtonCaptureWeight_Click" >
             Capturar
-        </Button>        
+        </Button>
+        <TextBlock x:Name="TextTest" Grid.Row="3"></TextBlock>
+
     </Grid>
 </Window>

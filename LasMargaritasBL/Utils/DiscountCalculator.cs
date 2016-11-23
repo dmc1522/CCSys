@@ -25,7 +25,7 @@
                         return (value - 2F) * 0.01f * totalKg;
                 case DiscountType.Drying:
                     if (isEntranceTicketWeight)
-                        return (value >= 16 ? ((value - 16.0f) * 10.0f + 50.0f) * totalKg / 1000.0f : 0.0f);
+                        return (value >= 16 ? ((value - 16.0f) * 10.0f + 130.0f) * totalKg / 1000.0f : 0.0f);
                     else
                         return 0;
             }

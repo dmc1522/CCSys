@@ -213,7 +213,7 @@ namespace LasMargaritas.UI.UserControls
 
         private void btnReloadTicket_Click(object sender, RoutedEventArgs e)
         {
-
+            presenter.LoadWeightTickets();
         }
        
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -221,20 +221,21 @@ namespace LasMargaritas.UI.UserControls
             if ((bool)e.NewValue == true && !listLoaded)
             {
                 presenter.Token = Token;
-                presenter.LoadCatalogs();
-                ComboBoxTicketType.SelectedIndex = 0;
+                presenter.LoadCatalogs();                
                 ComboBoxCiclesFilter.ItemsSource = FilterCicles;
                 ComboBoxCicles.ItemsSource = Cicles;
-                ComboBoxProducer.ItemsSource = Producers;
-                ComboBoxProducts.ItemsSource = Products;
+                ComboBoxProducer.ItemsSource = Producers;                
                 ComboBoxRancher.ItemsSource = Ranchers;
                 ComboBoxSalesCustomer.ItemsSource = SalesCustomers;
                 ComboBoxSupplier.ItemsSource = Suppliers;
                 ComboboxWareHouse.ItemsSource = WareHouses;
                 listLoaded = true;
                 ComboBoxCiclesFilter.SelectedIndex = 0;
+                ComboBoxTicketType.SelectedIndex = 0;
+                presenter.LoadProducts();
+                ComboBoxProducts.ItemsSource = Products;
                 presenter.LoadWeightTickets();
-                CreateDummyTicket();
+                //CreateDummyTicket();
             }
         }
         private  void CreateDummyTicket()
@@ -298,29 +299,39 @@ namespace LasMargaritas.UI.UserControls
             LabelSupplier.Visibility = Visibility.Collapsed;
             ComboBoxSupplier.Visibility = Visibility.Collapsed;
             ComboBoxSupplier.SelectedIndex = -1;
-            GridCattle.Visibility = Visibility.Collapsed; 
-
+            GridCattle.Visibility = Visibility.Collapsed;
+            CattleSeparator.Visibility = Visibility.Collapsed;
+            GridCattleHeader.Visibility = Visibility.Collapsed;
             if (selectedValue == "Productor")
             {
                 LabelProducer.Visibility = Visibility.Visible;
                 ComboBoxProducer.Visibility = Visibility.Visible;
+                ComboBoxProducer.SelectedIndex = 0;
+
             }
             else if (selectedValue == "Ganadero")
             {
                 LabelRancher.Visibility = Visibility.Visible;
                 ComboBoxRancher.Visibility = Visibility.Visible;
                 GridCattle.Visibility = Visibility.Visible;
+                CattleSeparator.Visibility = Visibility.Visible;
+                GridCattleHeader.Visibility = Visibility.Visible;
+                ComboBoxRancher.SelectedIndex = 0;
             }
             else if (selectedValue == "Cliente de Venta")
             {
                 LabelSalesCustomer.Visibility = Visibility.Visible;
                 ComboBoxSalesCustomer.Visibility = Visibility.Visible;
+                ComboBoxSalesCustomer.SelectedIndex = 0;
             }
             else if (selectedValue == "Proveedor")
             {
                 LabelSupplier.Visibility = Visibility.Visible;
                 ComboBoxSupplier.Visibility = Visibility.Visible;
+                ComboBoxSupplier.SelectedIndex = 0;
             }
+            presenter.LoadProducts();
+            ComboBoxProducts.ItemsSource = Products;
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

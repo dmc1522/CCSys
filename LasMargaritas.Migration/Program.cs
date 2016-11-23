@@ -15,13 +15,13 @@ namespace LasMargaritas.Migration
         static string connectionString = string.Empty;
         static void Main(string[] args)
         {
-            bool production = false;
+            bool production = true;
             if(production)
                 connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDB;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             else
                 connectionString = "Server=tcp:lasmargaritas.database.windows.net,1433;Initial Catalog=LasMargaritasDBDev;Persist Security Info=False;User ID=LasMargaritasDbUser;Password=LasMargaritasPassw0rd!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             //MigrateProducts();
-            //MigrateProducers();
+            MigrateProducers();
             MigrateSaleCustomers();
             MigrateRanchers();
             MigrateSuppliers();
@@ -59,36 +59,24 @@ namespace LasMargaritas.Migration
             ProducerBL bl = new ProducerBL(connectionString);
             foreach (Producer producer in producers)
             {
+                if (string.IsNullOrEmpty(producer.Name.Trim()) &&
+                    string.IsNullOrEmpty(producer.MaternalSurname.Trim()) &&
+                    string.IsNullOrEmpty(producer.PaternalSurname.Trim()))
+                    continue;
                 try
-                {
-                    string[] parts = producer.LastName.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                    if (parts.Count() == 3)
-                    {
-                        producer.Name = parts[2];
-                        producer.LastName = parts[0] + " " + parts[1];
-                    }
-                    else if (parts.Count() == 2)
-                    {
-                        producer.Name = parts[1];
-                        producer.LastName = parts[0];
-                    }
-                    else
-                    {
-                        producer.Name = producer.LastName;
-                        producer.LastName = string.Empty;
-                    }
+                {                                       
                     bl.InsertProducer(producer);
                 }
                 catch (Exception ex)
                 {
-                    exceptions.Add(producer.Name + " " + producer.LastName + ". Error " + ex.Message);
+                    exceptions.Add(producer.Name + " " + producer.PaternalSurname + ". Error " + ex.Message);
                 }
             }
             foreach (string ex in exceptions)
             {
                 Console.WriteLine(ex);
             }
-            Console.ReadLine();
+             Console.ReadLine();
         }
 
         private static void MigrateSaleCustomers()

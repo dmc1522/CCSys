@@ -19,7 +19,7 @@ namespace LasMargaritas.ULT
             producer.Email = "test@gmail.com";
             producer.Fax = "111223";
             producer.INE = "testINE";
-            producer.LastName = "testLastName";
+            producer.PaternalSurname = "testLastName";
             producer.MobilePhoneNumber = "3313486214";
             producer.Name = "testName";
             producer.PhoneNumber = "38323825";
