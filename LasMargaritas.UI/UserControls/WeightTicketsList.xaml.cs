@@ -235,7 +235,7 @@ namespace LasMargaritas.UI.UserControls
                 presenter.LoadProducts();
                 ComboBoxProducts.ItemsSource = Products;
                 presenter.LoadWeightTickets();
-                CreateDummyTicket();
+               // CreateDummyTicket();
             }
         }
         private  void CreateDummyTicket()
@@ -341,12 +341,12 @@ namespace LasMargaritas.UI.UserControls
 
         private void ButtonGetDate2_Click(object sender, RoutedEventArgs e)
         {
-            presenter.SetExitDateToNow();
+           
         }
 
         private void ButtonGetDate_Click(object sender, RoutedEventArgs e)
         {
-            presenter.SetEntranceDateToNow();
+           
         }
 
         private void CheckBoxCalculatePrices_CheckedUnChecked(object sender, RoutedEventArgs e)
@@ -399,6 +399,16 @@ namespace LasMargaritas.UI.UserControls
             {
                 presenter.UpdateCurrentWeightTicket();
             }
+        }
+
+        private void ButtonEntranceDateToNow_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.SetEntranceDateToNow();
+        }
+
+        private void ButtonExitDateToNow_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.SetExitDateToNow();
         }
     }     
 }

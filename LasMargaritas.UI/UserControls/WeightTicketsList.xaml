@@ -90,6 +90,7 @@
                         <Grid.Resources>
                             <cnv:ImageConverter x:Key="imageConverter" />
                             <cnv:CaseConverter x:Key="caseConverter" />
+                            <cnv:UtcToLocalDateTimeConverter x:Key="utcToLocalDateTimeConverter" />
                         </Grid.Resources>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="20"/>
@@ -337,25 +338,26 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120" />
                                 <ColumnDefinition Width="*" MinWidth="150"/>
-                                <ColumnDefinition Width="*" MinWidth="150"/>
+                                <ColumnDefinition Width="150" MinWidth="150"/>
+                                <ColumnDefinition Width="*" MinWidth="50"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock   Grid.Column="0"  Text="Fecha de Entrada:"  VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-
-                            <DatePicker Grid.Column="1" x:Name="txtDateWeigth1" Text="{Binding EntranceDate,  StringFormat=d, ConverterCulture=es-MX}" BorderThickness="0">
+                            <TextBox  Grid.Column="1"  x:Name="txtDateWeigth1" Text="{Binding EntranceDate,  StringFormat=dd/MM/yyy HH:mm, ConverterCulture=es-MX}"></TextBox>
+                            <!--<DatePicker Grid.Column="1" x:Name="txtDateWeigth1" SelectedDate="{Binding EntranceDate,  StringFormat=d, ConverterCulture=es-MX}" BorderThickness="0">
                                 <DatePicker.Resources>
                                     <Style TargetType="{x:Type DatePickerTextBox}">
                                         <Setter Property="Control.Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                                    <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, StringFormat=d, ConverterCulture=es-MX, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
                                     </Style>
                                 </DatePicker.Resources>
-                            </DatePicker>
-
-                            <CheckBox  Grid.Column ="2" x:Name="ChecBoxFreight" IsChecked="{Binding Freight}" Content="Flete" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </DatePicker>-->
+                            <Button Grid.Column="2" x:Name="ButtonEntranceDateToNow" Click="ButtonEntranceDateToNow_Click">Fecha Actual</Button>
+                            <CheckBox  Grid.Column ="3" x:Name="ChecBoxFreight" IsChecked="{Binding Freight}" Content="Flete" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Grid>
 
                         <Grid Grid.Row="17" x:Name="GridWeigthingOwner1" Margin="8" >
@@ -452,22 +454,25 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="120" />
                                 <ColumnDefinition Width="*" MinWidth="200"/>
-                                <ColumnDefinition Width="*" MinWidth="150"/>
+                                <ColumnDefinition Width="150" MinWidth="150"/>
+                                
                             </Grid.ColumnDefinitions>
                             <TextBlock   Grid.Column="0"  Text="Fecha de Salida:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                            <DatePicker Grid.Column="1" x:Name="txtDateWeigth2" Text="{Binding ExitDate,  StringFormat=d, ConverterCulture=es-MX}" BorderThickness="0">
+                            <TextBox  Grid.Column="1"  x:Name="txtDateWeigth2" Text="{Binding ExitDate,  StringFormat=dd/MM/yyy HH:mm,  ConverterCulture=es-MX}"></TextBox>
+                            <!--<DatePicker Grid.Column="1" x:Name="txtDateWeigth2" SelectedDate="{Binding ExitDate, UpdateSourceTrigger=PropertyChanged,  StringFormat=d, ConverterCulture=es-MX}" BorderThickness="0" >
                                 <DatePicker.Resources>
                                     <Style TargetType="{x:Type DatePickerTextBox}">
                                         <Setter Property="Control.Template">
                                             <Setter.Value>
                                                 <ControlTemplate>
-                                                    <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                                    <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, StringFormat=d, ConverterCulture=es-MX, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
                                                 </ControlTemplate>
                                             </Setter.Value>
                                         </Setter>
                                     </Style>
                                 </DatePicker.Resources>
-                            </DatePicker>
+                            </DatePicker>-->
+                            <Button Grid.Column="2" x:Name="ButtonExitDateToNow" Click="ButtonExitDateToNow_Click">Fecha Actual</Button>
                         </Grid>
 
                         <Grid Grid.Row="29" x:Name="GridWeigthingOwner2"  Margin="8">

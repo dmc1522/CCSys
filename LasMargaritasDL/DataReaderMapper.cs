@@ -41,7 +41,9 @@ namespace LasMargaritas.DL
                                     }
                                 }
                                 else
+                                {                                   
                                     propertyInfo.SetValue(objectToCreate, dr[propertyInfo.Name]);
+                                }
 
                             }
                         }               

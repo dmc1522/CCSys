@@ -4,6 +4,8 @@ using System.Data;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using System;
+
 namespace LasMargaritas.DL
 {
     public class WeightTicketsDL
@@ -75,8 +77,17 @@ namespace LasMargaritas.DL
                     command.Connection = connection;
                     command.CommandText = "spUpsertWeightTicket";
                     command.CommandType = CommandType.StoredProcedure;
-                    foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())                    {      
-                        
+                    foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInInsert.Contains(x.Name) select x).ToArray())
+                    {
+                        if (prop.PropertyType == typeof(DateTime))
+                        {
+                            command.Parameters.AddWithValue("@" + prop.Name, ((DateTime)prop.GetValue(weightTicket)).ToUniversalTime());
+                        }
+                        else if (prop.PropertyType == typeof(DateTime?) && ((DateTime?)prop.GetValue(weightTicket)).HasValue)
+                        {
+                            command.Parameters.AddWithValue("@" + prop.Name, ((DateTime)prop.GetValue(weightTicket)).ToUniversalTime());
+                        }
+                        else
                             command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
                     }                    
                     connection.Open();
@@ -100,7 +111,16 @@ namespace LasMargaritas.DL
                     command.CommandType = CommandType.StoredProcedure;
                     foreach (PropertyInfo prop in (from x in weightTicket.GetType().GetProperties() where !excludedPropertiesInUpdate.Contains(x.Name) select x).ToArray())
                     {
-                        command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
+                        if(prop.PropertyType == typeof(DateTime))
+                        {
+                            command.Parameters.AddWithValue("@" + prop.Name,((DateTime)prop.GetValue(weightTicket)).ToUniversalTime());
+                        }
+                        else if (prop.PropertyType == typeof(DateTime?) && ((DateTime?)prop.GetValue(weightTicket)).HasValue)
+                        {
+                            command.Parameters.AddWithValue("@" + prop.Name, ((DateTime)prop.GetValue(weightTicket)).ToUniversalTime());
+                        }
+                        else
+                            command.Parameters.AddWithValue("@" + prop.Name, prop.GetValue(weightTicket));
                     }
                     connection.Open();
                     object weightTicketId = command.ExecuteScalar();

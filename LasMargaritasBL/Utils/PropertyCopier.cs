@@ -14,7 +14,7 @@ namespace LasMargaritas.BL.Utils
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="destination">The destination.</param>
-        public static void CopyProperties(this object source, object destination)
+        public static void CopyProperties(this object source, object destination, bool changeUtcDatesToLocalDates=false)
         {
             // If any this null throw an exception
             if (source == null || destination == null)
@@ -34,7 +34,25 @@ namespace LasMargaritas.BL.Utils
             //map the properties
             foreach (var props in results)
             {
-                props.targetProperty.SetValue(destination, props.sourceProperty.GetValue(source, null), null);
+                if (changeUtcDatesToLocalDates)
+                {
+                    if (props.sourceProperty.PropertyType == typeof(DateTime))
+                    {
+                        props.targetProperty.SetValue(destination, ((DateTime)props.sourceProperty.GetValue(source, null)).ToLocalTime(), null);
+                    }
+                    else if (props.sourceProperty.PropertyType == typeof(DateTime?) && ((DateTime?)props.sourceProperty.GetValue(source, null)).HasValue)
+                    {
+                        props.targetProperty.SetValue(destination, ((DateTime?)props.sourceProperty.GetValue(source, null)).Value.ToLocalTime(), null);
+                    }
+                    else
+                    {
+                        props.targetProperty.SetValue(destination, props.sourceProperty.GetValue(source, null), null);
+                    }
+                }
+                else
+                {
+                    props.targetProperty.SetValue(destination, props.sourceProperty.GetValue(source, null), null);
+                }
             }
         }
     }

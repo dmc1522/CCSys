@@ -72,8 +72,9 @@ namespace LasMargaritas.UI
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            File.Delete("qr.bmp");
-            File.Delete("photo.bmp");
+            File.Delete(System.IO.Path.GetTempPath() + "\\photo.bmp");
+            File.Delete(System.IO.Path.GetTempPath() + "\\qr.bmp");
+
         }
 
         private void Print(bool isPreview)
@@ -87,11 +88,11 @@ namespace LasMargaritas.UI
             byte[] myFont = Encoding.ASCII.GetBytes("Arial");
             byte[] frontBackGround = Encoding.ASCII.GetBytes("back.jpg");
             byte[] backBackGround = Encoding.ASCII.GetBytes("front.jpg");
-            File.WriteAllBytes("photo.bmp", Producer.Photo);
+            File.WriteAllBytes(System.IO.Path.GetTempPath() +"\\photo.bmp", Producer.Photo);
             Bitmap qrCode = BadgePrinterHelper.GetQRCode(Producer.BarCode);
-            qrCode.Save("qr.bmp");
-            byte[] photo = Encoding.ASCII.GetBytes("photo.bmp");
-            byte[] barCode = Encoding.ASCII.GetBytes("qr.bmp");
+            qrCode.Save(System.IO.Path.GetTempPath()+"\\qr.bmp");
+            byte[] photo = Encoding.ASCII.GetBytes(System.IO.Path.GetTempPath() + "\\photo.bmp");
+            byte[] barCode = Encoding.ASCII.GetBytes(System.IO.Path.GetTempPath() + "\\qr.bmp");
             byte[] businessData = Encoding.ASCII.GetBytes("Grupo Garibay. Avenida Patria No 10 Ameca, Jalisco.");
             int result = ZBRGDIInitGraphics(printerName, ref handle, ref error);
             if (result != 1)

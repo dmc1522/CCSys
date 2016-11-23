@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define LasMargaritas.UI_TargetDir=$(var.LasMargaritas.UI.TargetDir)?>
-  <Product Id="*" Name="LasMargaritas" Language="1033" Version="1.0.0.0" Manufacturer="BCS" UpgradeCode="0da9dee6-c02d-4c18-941e-8c97cab082ab">
+  <Product Id="246abfff-829b-4648-bc9a-d84da5b8c255" Name="LasMargaritas" Language="1033" Version="1.0.0.0" Manufacturer="BCS" UpgradeCode="0da9dee6-c02d-4c18-941e-8c97cab082ab">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-
+    <UIRef Id="WixUI_Minimal" />
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-    <MediaTemplate />
+    <MediaTemplate EmbedCab="yes" />
 
     <Feature Id="ProductFeature" Title="LasMargaritas" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="x64_files" />
-      <ComponentGroupRef Id="x86_files" />      
+      <ComponentGroupRef Id="x86_files" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="ApplicationShortcutDesktop" />
     </Feature>
   </Product>
 
   <Fragment>
+    
     <Directory Id="TARGETDIR" Name="SourceDir">
+     
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="LasMargaritas"/>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"/> 
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLFOLDER" Name="LasMargaritas">
           <Directory Id="x64_files" Name="x64" />
@@ -109,6 +117,25 @@
       
     </ComponentGroup>
   </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="9bd13330-6540-406f-a3a8-78a9b69ae7f9">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="LasMargaritas" Description="LasMargaritas" Target="[INSTALLFOLDER]LasMargaritas.UI.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\LasMargaritas" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="ApplicationShortcutDesktop" Guid="cde1178a-eb64-49a5-b7b8-400b379c2d1a">
+        <Shortcut Id="ApplicationDesktopShortcut" Name="LasMargaritas" Description="LasMargaritas" Target="[INSTALLFOLDER]LasMargaritas.UI.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\LasMargaritas" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+  
   <Fragment>
     <ComponentGroup Id="x64_files" Directory="x64_files">
       <Component Id="x64_ZBRGraphics.dll" Guid="10263ddd-d126-49a6-9cf6-083d65481070">

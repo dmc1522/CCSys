@@ -293,7 +293,7 @@ namespace LasMargaritas.BL.Presenters
         public void ReloadWeightTicketsList()
         {
             LoadWeightTickets();
-            PropertyCopier.CopyProperties(new WeightTicket(), view.CurrentWeightTicket);
+            PropertyCopier.CopyProperties(new WeightTicket(), view.CurrentWeightTicket,true);
             view.CurrentWeightTicket.RaiseUpdateProperties();
             view.SelectedId = -1;
         }
@@ -345,7 +345,7 @@ namespace LasMargaritas.BL.Presenters
                     GetWeightTicketResponse getWeightTicketResponse = response.Content.ReadAsAsync<GetWeightTicketResponse>().Result;
                     if (getWeightTicketResponse.Success)
                     {
-                        PropertyCopier.CopyProperties(getWeightTicketResponse.WeightTickets[0], view.CurrentWeightTicket);                     
+                        PropertyCopier.CopyProperties(getWeightTicketResponse.WeightTickets[0], view.CurrentWeightTicket,true);                     
                     }
                 }
             }
