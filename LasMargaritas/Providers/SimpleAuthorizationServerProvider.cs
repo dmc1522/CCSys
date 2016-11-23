@@ -18,6 +18,7 @@ namespace LasMargaritas.WebAPI.Providers
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
             IList<string> roles;
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             using (AuthRepository authRepository = new AuthRepository())
             {
                 IdentityUser user = await authRepository.FindUser(context.UserName, context.Password);
@@ -27,10 +28,9 @@ namespace LasMargaritas.WebAPI.Providers
                     return;
                 }
                 roles = await authRepository.UserRoles(user.Id);
+                identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
             }
-
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
             foreach (string role in roles)
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, role));

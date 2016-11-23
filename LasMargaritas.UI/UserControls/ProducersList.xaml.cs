@@ -224,8 +224,14 @@ namespace LasMargaritas.UI.UserControls
 
         private void ButtonPrintGaffete_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (CurrentProducer.Photo == null)
+            {
+                MessageBox.Show("Capture la foto del productor primero. ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;                
+            }
             Gaffette_Preview preview = new Gaffette_Preview(CurrentProducer);
             preview.Show();
+
         }
 
         private void ListBoxProducers_SelectionChanged(object sender, SelectionChangedEventArgs e)

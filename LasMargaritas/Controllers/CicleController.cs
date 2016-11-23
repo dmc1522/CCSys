@@ -34,6 +34,7 @@ namespace LasMargaritas.Controllers
             CicleResponse response = new CicleResponse();
             try
             {
+                //cicle.UserId = CurrentUserId;
                 Cicle cicleSaved = cicleBL.InsertCicle(cicle);
                 response.Cicle = cicleSaved;
                 response.Success = true;

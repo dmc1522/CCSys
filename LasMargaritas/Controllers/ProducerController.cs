@@ -34,6 +34,7 @@ namespace LasMargaritas.Controllers
         [Authorize(Roles = "Admin")]
         public IHttpActionResult Add(Producer producer)
         {
+            //producer.UserId = CurrentUserId;
             ProducerResponse response = new ProducerResponse();
             try
             {

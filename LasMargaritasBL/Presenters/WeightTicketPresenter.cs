@@ -274,7 +274,9 @@ namespace LasMargaritas.BL.Presenters
             {
                 view.CurrentWeightTicket.DryingDiscount = 0;
             }
-            view.CurrentWeightTicket.TotalToPay = view.CurrentWeightTicket.SubTotal - (decimal)view.CurrentWeightTicket.DryingDiscount;
+            view.CurrentWeightTicket.TotalToPay = view.CurrentWeightTicket.SubTotal - (decimal)view.CurrentWeightTicket.DryingDiscount
+                                                  - (decimal)view.CurrentWeightTicket.BrokenGrainDiscount - (decimal)view.CurrentWeightTicket.CrashedGrainDiscount 
+                                                  - (decimal)view.CurrentWeightTicket.DamagedGrainDiscount - (decimal)view.CurrentWeightTicket.SmallGrainDiscount;
             view.CurrentWeightTicket.RaiseUpdateProperties();
         }
         public void SetEntranceDateToNow()

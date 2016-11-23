@@ -276,7 +276,7 @@ namespace LasMargaritas.UI.UserControls
             weightTicket.TotalDiscount = 50;
             weightTicket.TotalToPay = 100;
             weightTicket.UpdateTs = DateTime.Now;
-            weightTicket.UserId = "35d360f3-c296-4113-ab34-9b91fe729c18";
+            //weightTicket.UserId = "35d360f3-c296-4113-ab34-9b91fe729c18";
             weightTicket.WarehouseId = 1;
             weightTicket.Freight = true;
             weightTicket.Id = 0;

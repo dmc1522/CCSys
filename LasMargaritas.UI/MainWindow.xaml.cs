@@ -18,6 +18,7 @@ namespace LasMargaritas.UI
         private string baseUrl;
         public MainWindow()
         {
+            FrameworkCompatibilityPreferences.KeepTextBoxDisplaySynchronizedWithTextProperty = false;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define LasMargaritas.UI_TargetDir=$(var.LasMargaritas.UI.TargetDir)?>
+  <Product Id="*" Name="LasMargaritas" Language="1033" Version="1.0.0.0" Manufacturer="BCS" UpgradeCode="0da9dee6-c02d-4c18-941e-8c97cab082ab">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
+
+    <Feature Id="ProductFeature" Title="LasMargaritas" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="x64_files" />
+      <ComponentGroupRef Id="x86_files" />      
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="LasMargaritas">
+          <Directory Id="x64_files" Name="x64" />
+          <Directory Id="x86_files" Name="x86" />          
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <!-- <Component Id="ProductComponent"> -->
+      <!-- TODO: Insert files, registry keys, and other resources here. -->
+      <!-- </Component> -->
+      <Component Id="System.Windows.Controls.Input.Toolkit.dll" Guid="0f52cb9e-7d15-4ac8-8327-fb8f5b47733b">
+        <File Id="System.Windows.Controls.Input.Toolkit.dll" Name="System.Windows.Controls.Input.Toolkit.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Windows.Controls.Input.Toolkit.dll" />
+      </Component>
+      <Component Id="System.Windows.Controls.Layout.Toolkit.dll" Guid="baa5f9d7-d7a3-47b0-8f7e-ea7b2d89c046">
+        <File Id="System.Windows.Controls.Layout.Toolkit.dll" Name="System.Windows.Controls.Layout.Toolkit.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Windows.Controls.Layout.Toolkit.dll" />
+      </Component>
+      <Component Id="WPFToolkit.dll" Guid="32ffe407-ba4d-4134-9063-11f83514805f">
+        <File Id="WPFToolkit.dll" Name="WPFToolkit.dll" Source="$(var.LasMargaritas.UI_TargetDir)WPFToolkit.dll" />
+      </Component>
+      <Component Id="WebEye.Controls.Wpf.WebCameraControl.dll" Guid="cceef1af-debd-4b47-b944-65cc27f5e0ab">
+        <File Id="WebEye.Controls.Wpf.WebCameraControl.dll" Name="WebEye.Controls.Wpf.WebCameraControl.dll" Source="$(var.LasMargaritas.UI_TargetDir)WebEye.Controls.Wpf.WebCameraControl.dll" />
+      </Component>
+      <Component Id="QRCoder.dll" Guid="fb454bed-dacb-483e-a0da-f8815f50a726">
+        <File Id="QRCoder.dll" Name="QRCoder.dll" Source="$(var.LasMargaritas.UI_TargetDir)QRCoder.dll" />
+      </Component>
+      <Component Id="EntityFramework.dll" Guid="c9c42b34-c74e-44be-a9bc-84e37b391202">
+        <File Id="EntityFramework.dll" Name="EntityFramework.dll" Source="$(var.LasMargaritas.UI_TargetDir)EntityFramework.dll" />
+      </Component>
+      <!--<Component Id="EntityFramework.SqlServer.dll" Guid="e8ec8f3f-ca4d-4f94-b5e8-dfe41b44f536">
+        <File Id="EntityFramework.SqlServer.dll" Name="EntityFramework.SqlServer.dll" Source="$(var.LasMargaritas.UI_TargetDir)EntityFramework.SqlServer.dll" />
+      </Component>-->
+      <Component Id="Microsoft.AspNet.Identity.Core.dll" Guid="c637f849-d5e3-46e8-b76b-91d0d395a59e">
+        <File Id="Microsoft.AspNet.Identity.Core.dll" Name="Microsoft.AspNet.Identity.Core.dll" Source="$(var.LasMargaritas.UI_TargetDir)Microsoft.AspNet.Identity.Core.dll" />
+      </Component>
+      <Component Id="Microsoft.AspNet.Identity.EntityFramework.dll" Guid="2bcca74d-8a4b-4edd-bc2b-ac327fbb2c00">
+        <File Id="Microsoft.AspNet.Identity.EntityFramework.dll" Name="Microsoft.AspNet.Identity.EntityFramework.dll" Source="$(var.LasMargaritas.UI_TargetDir)Microsoft.AspNet.Identity.EntityFramework.dll" />
+      </Component>
+      <!--<Component Id="Microsoft.AspNet.Identity.Owin.dll" Guid="ffcd4462-9b3a-477a-8267-24fc08ba8e4f">
+        <File Id="Microsoft.AspNet.Identity.Owin.dll" Name="Microsoft.AspNet.Identity.Owin.dll" Source="$(var.LasMargaritas.UI_TargetDir)Microsoft.AspNet.Identity.Owin.dll" />
+      </Component>-->
+      <Component Id="System.Net.Http.Formatting.dll" Guid="3b4dbedb-ff29-4c7e-a5d1-b4c2cf22a788">
+        <File Id="System.Net.Http.Formatting.dll" Name="System.Net.Http.Formatting.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Net.Http.Formatting.dll" />
+      </Component>
+      <!--<Component Id="Microsoft.Owin.dll" Guid="0fc9d43c-3fc1-4b12-acb5-8f99e60fc2de">
+        <File Id="Microsoft.Owin.dll" Name="Microsoft.Owin.dll" Source="$(var.LasMargaritas.UI_TargetDir)Microsoft.Owin.dll" />
+      </Component>
+      <Component Id="Microsoft.Owin.Security.dll" Guid="99e15610-1fad-4aa3-85de-c4d3f7d0a8db">
+        <File Id="Microsoft.Owin.Security.dll" Name="Microsoft.Owin.Security.dll" Source="$(var.LasMargaritas.UI_TargetDir)Microsoft.Owin.Security.dll" />
+      </Component>
+      <Component Id="Microsoft.Owin.Security.Cookies.dll" Guid="d87f380f-d46d-4ccb-95d8-c54fb1b5bf38">
+        <File Id="Microsoft.Owin.Security.Cookies.dll" Name="Microsoft.Owin.Security.Cookies.dll" Source="$(var.LasMargaritas.UI_TargetDir)Microsoft.Owin.Security.Cookies.dll" />
+      </Component>
+      <Component Id="Microsoft.Owin.Security.OAuth.dll" Guid="4c2772f7-8329-44f7-a150-53e514614f8e">
+        <File Id="Microsoft.Owin.Security.OAuth.dll" Name="Microsoft.Owin.Security.OAuth.dll" Source="$(var.LasMargaritas.UI_TargetDir)Microsoft.Owin.Security.OAuth.dll" />
+      </Component>-->
+      <Component Id="Newtonsoft.Json.dll" Guid="050b6c95-ea91-4d15-ba1d-72fcdef72dce">
+        <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.LasMargaritas.UI_TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <!--<Component Id="Owin.dll" Guid="58f6986a-d780-46ee-b367-8e484536838f">
+        <File Id="Owin.dll" Name="Owin.dll" Source="$(var.LasMargaritas.UI_TargetDir)Owin.dll" />
+      </Component>-->
+      <Component Id="LasMargaritas.BL.dll" Guid="cabf8bf1-99f1-47c6-8e39-64251622074e">
+        <File Id="LasMargaritas.BL.dll" Name="LasMargaritas.BL.dll" Source="$(var.LasMargaritas.UI_TargetDir)LasMargaritas.BL.dll" />
+      </Component>
+      <Component Id="LasMargaritas.DL.dll" Guid="4b3bcc69-a9a7-4d6a-809a-af31d6f51ad4">
+        <File Id="LasMargaritas.DL.dll" Name="LasMargaritas.DL.dll" Source="$(var.LasMargaritas.UI_TargetDir)LasMargaritas.DL.dll" />
+      </Component>
+      <Component Id="LasMargaritas.Models.dll" Guid="530ededb-7bdd-404b-9741-b39633305eaf">
+        <File Id="LasMargaritas.Models.dll" Name="LasMargaritas.Models.dll" Source="$(var.LasMargaritas.UI_TargetDir)LasMargaritas.Models.dll" />
+      </Component>
+      <Component Id="LasMargaritas.UI.exe" Guid="d4d06601-2781-45bf-906f-8c7456e4c670">
+        <File Id="LasMargaritas.UI.exe" Name="LasMargaritas.UI.exe" Source="$(var.LasMargaritas.UI_TargetDir)LasMargaritas.UI.exe" />
+      </Component>
+      <Component Id="LasMargaritas.WFControls.dll" Guid="779fad14-e89f-4d46-840b-1749bfc484a6">
+        <File Id="LasMargaritas.WFControls.dll" Name="LasMargaritas.WFControls.dll" Source="$(var.LasMargaritas.UI_TargetDir)LasMargaritas.WFControls.dll" />
+      </Component>
+      <Component Id="LasMargaritas.UI.exe.config" Guid="db9b9e08-8866-47be-935f-6d1f4aa077d0">
+        <File Id="LasMargaritas.UI.exe.config" Name="LasMargaritas.UI.exe.config" Source="$(var.LasMargaritas.UI_TargetDir)LasMargaritas.UI.exe.config" />
+      </Component>
+      <Component Id="back.jpg" Guid="db9b9e08-8866-47be-935f-6d1f4aa01234">
+        <File Id="back.jpg" Name="back.jpg" Source="$(var.LasMargaritas.UI_TargetDir)back.jpg" />
+      </Component>
+      <Component Id="front.jpg" Guid="db9b9e08-8866-47be-935f-6d1f4aa04443">
+        <File Id="front.jpg" Name="front.jpg" Source="$(var.LasMargaritas.UI_TargetDir)front.jpg" />
+      </Component>
+      
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="x64_files" Directory="x64_files">
+      <Component Id="x64_ZBRGraphics.dll" Guid="10263ddd-d126-49a6-9cf6-083d65481070">
+        <File Id="x64_ZBRGraphics.dll" Name="ZBRGraphics.dll" Source="$(var.LasMargaritas.UI_TargetDir)x64\ZBRGraphics.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="x86_files" Directory="x86_files">
+      <Component Id="x86_ZBRGraphics.dll" Guid="10263ddd-d126-49a6-9cf6-083d65481049">
+        <File Id="x86_ZBRGraphics.dll" Name="ZBRGraphics.dll" Source="$(var.LasMargaritas.UI_TargetDir)x86\ZBRGraphics.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  <!--<Fragment>
+    <ComponentGroup Id="References_files" Directory="References">
+      <Component Id="References_WebEye.Controls.Wpf.WebCameraControl.dll" Guid="d18d1de2-95d8-4577-9142-ea77bb5d6d77">
+        <File Id="References_WebEye.Controls.Wpf.WebCameraControl.dll" Name="WebEye.Controls.Wpf.WebCameraControl.dll" Source="$(var.LasMargaritas.UI_TargetDir)WebEye.Controls.Wpf.WebCameraControl.dll" />
+      </Component>
+      <Component Id="References_ZBRGraphics.dll" Guid="10263ddd-d126-49a6-9cf6-083d65481049">
+        <File Id="References_ZBRGraphics.dll" Name="ZBRGraphics.dll" Source="$(var.LasMargaritas.UI_TargetDir)x64\ZBRGraphics.dll" />
+      </Component>
+      --><!--<Component Id="References_ZBRPrinter.dll" Guid="1c8ed90f-9c1a-411a-8c56-6192aeeb9c84">
+        <File Id="References_ZBRGraphics.dll" Name="ZBRGraphics.dll" Source="$(var.LasMargaritas.UI_TargetDir)x64\ZBRGraphics.dll" />
+      </Component>--><!--
+    </ComponentGroup>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="Resources_files" Directory="Resources">
+      <Component Id="Resources_QRCoder.dll" Guid="90092a9b-9228-4392-a2a3-54d537aad5ec">
+        <File Id="Resources_QRCoder.dll" Name="QRCoder.dll" Source="$(var.LasMargaritas.UI_TargetDir)QRCoder.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>-->
+</Wix>

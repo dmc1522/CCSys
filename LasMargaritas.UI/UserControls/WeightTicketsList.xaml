@@ -591,7 +591,7 @@
                                 <ColumnDefinition Width="13*" />
                                 <ColumnDefinition Width="27*"/>
                             </Grid.ColumnDefinitions>
-                            <Button  Grid.Column ="0"  x:Name="btnUnlock" Content="Desbloquear" Margin="1"/>
+                            <Button  Grid.Column ="0" IsEnabled="False"  x:Name="btnUnlock" Content="Desbloquear" Margin="1"/>
                             <Button  Grid.Column ="1"  x:Name="btnModify" Content="Editar"  Margin="1"/>
                             <Button  Grid.Column ="2"  x:Name="btnSave" Content="Guardar" Margin="1" Grid.ColumnSpan="2" Click="btnSave_Click"/>
                         </Grid>
