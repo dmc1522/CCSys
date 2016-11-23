@@ -349,7 +349,7 @@ namespace LasMargaritas.UI.UserControls
             presenter.SetEntranceDateToNow();
         }
 
-        private void CheckBoxDryingDiscount_Checked(object sender, RoutedEventArgs e)
+        private void CheckBoxCalculatePrices_CheckedUnChecked(object sender, RoutedEventArgs e)
         {
             presenter.CalculateTotals();
         }

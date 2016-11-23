@@ -383,9 +383,9 @@
                                 <ColumnDefinition Width="*" MinWidth="100"/>
                             </Grid.ColumnDefinitions>
 
-                            <CheckBox  Grid.Column ="0" x:Name="cbWet" Content="Humedad:" IsChecked="{Binding ApplyHumidity, UpdateSourceTrigger=PropertyChanged}" Checked="CheckBoxDryingDiscount_Checked" Unchecked="CheckBoxDryingDiscount_Checked" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <CheckBox  Grid.Column ="0" x:Name="cbWet" Content="Humedad:" IsChecked="{Binding ApplyHumidity, UpdateSourceTrigger=PropertyChanged}" Checked="CheckBoxCalculatePrices_CheckedUnChecked" Unchecked="CheckBoxCalculatePrices_CheckedUnChecked" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <TextBox  Grid.Column="1" x:Name="txWet"  Text="{Binding Humidity, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ApplyHumidity}" LostFocus="CalculatePrices_LostFocus" Margin="1"/>
-                            <CheckBox  Grid.Column ="2" x:Name="cbImpurities"  IsChecked="{Binding ApplyImpurities}" Content="Impurezas:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <CheckBox  Grid.Column ="2" x:Name="cbImpurities"  IsChecked="{Binding ApplyImpurities, UpdateSourceTrigger=PropertyChanged}" Checked="CheckBoxCalculatePrices_CheckedUnChecked" Unchecked="CheckBoxCalculatePrices_CheckedUnChecked"  Content="Impurezas:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <TextBox  Grid.Column="3" x:Name="txtImpurities" Text="{Binding Impurities, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ApplyImpurities}" LostFocus="CalculatePrices_LostFocus" Margin="1"/>
                         </Grid>
 
@@ -527,7 +527,7 @@
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                 </Grid.ColumnDefinitions>
-                                <CheckBox Grid.Column ="0" x:Name="CheckBoxDryingDiscount" Content="Dcto X Secado:" IsChecked="{Binding ApplyDrying}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderCheckBoxStyle}" Unchecked="CheckBoxDryingDiscount_Checked" Checked="CheckBoxDryingDiscount_Checked"/>
+                                <CheckBox Grid.Column ="0" x:Name="CheckBoxDryingDiscount" Content="Dcto X Secado:" IsChecked="{Binding ApplyDrying, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderCheckBoxStyle}" Unchecked="CheckBoxCalculatePrices_CheckedUnChecked" Checked="CheckBoxCalculatePrices_CheckedUnChecked"/>
                                 <TextBox  IsEnabled="False" Grid.Column="1" x:Name="TextBoxDryingDiscount"  Text="{Binding DryingDiscount, StringFormat=C2}"  Margin="1"/>
                                 <TextBlock   Grid.Column="2"  Text="Dcto por G. Quebrado:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                                 <TextBox Grid.Column="3" x:Name="TextboxBrokenGrainDiscount"  Text="{Binding BrokenGrainDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
