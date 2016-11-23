@@ -19,14 +19,14 @@ namespace LasMargaritas.ULT
             }
             connectionString = ConfigurationManager.ConnectionStrings["LasMargaritasDb"].ConnectionString;
         }
-        [TestMethod]
-        public void TestGetWeightTicketProducts()
-        {
-            //Test get by Id
-            ProductBL productBL = new ProductBL(connectionString);
-            List<SelectableModel> products = productBL.GetWeightTicketProducts();
-            Assert.IsTrue(products.Count() > 1);
-        }
+        //[TestMethod]
+        //public void TestGetWeightTicketProducts()
+        //{
+        //    //Test get by Id
+        //    ProductBL productBL = new ProductBL(connectionString);
+        //    List<SelectableModel> products = productBL.GetWeightTicketProducts();
+        //    Assert.IsTrue(products.Count() > 1);
+        //}
     }
 }
 

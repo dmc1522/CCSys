@@ -78,7 +78,8 @@ namespace LasMargaritas.UI
             int handle = 0;
             long error = 0;
             //Front
-            byte[] printerName = Encoding.ASCII.GetBytes("Zebra ZXP Series 3 USB Card Printer");
+            // byte[] printerName = Encoding.ASCII.GetBytes("Zebra ZXP Series 3 USB Card Printer");
+            byte[] printerName = Encoding.ASCII.GetBytes("PDFCreator");
             byte[] myText = Encoding.ASCII.GetBytes(Producer.Name + " " + Producer.PaternalSurname);
             byte[] producerTitle = Encoding.ASCII.GetBytes("Productor");
             byte[] myFont = Encoding.ASCII.GetBytes("Arial");

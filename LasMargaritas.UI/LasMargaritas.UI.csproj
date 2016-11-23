@@ -347,8 +347,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(TargetDir)x64" mkdir "$(ProjectDir)x64"
-if not exist "$(TargetDir)x86" mkdir "$(ProjectDir)x86"
+    <PostBuildEvent>if not exist "$(TargetDir)x64" mkdir "$(TargetDir)x64"
+if not exist "$(TargetDir)x86" mkdir "$(TargetDir)x86"
 copy "$(ProjectDir)References\ZBRGraphics.dll" "$(TargetDir)x86\ZBRGraphics.dll" 
 copy "$(ProjectDir)References\ZBRGraphics.dll_64" "$(TargetDir)x64\ZBRGraphics.dll" 
 copy "$(ProjectDir)References\back.jpg" "$(TargetDir)back.jpg" 
