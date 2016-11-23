@@ -134,7 +134,7 @@
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
                             <RowDefinition Height="35"/>
-                            <RowDefinition Height="200" />
+                            <RowDefinition Height="270" />
                             <RowDefinition Height="35"/>                            
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
@@ -383,10 +383,10 @@
                                 <ColumnDefinition Width="*" MinWidth="100"/>
                             </Grid.ColumnDefinitions>
 
-                            <CheckBox  Grid.Column ="0" x:Name="cbWet" Content="Humedad:" IsChecked="{Binding ApplyHumidity}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBox  Grid.Column="1" x:Name="txWet"  Text="{Binding Humidity}" IsEnabled="{Binding ApplyHumidity, UpdateSourceTrigger=PropertyChanged}" LostFocus="CalculatePrices_LostFocus" Margin="1"/>
+                            <CheckBox  Grid.Column ="0" x:Name="cbWet" Content="Humedad:" IsChecked="{Binding ApplyHumidity, UpdateSourceTrigger=PropertyChanged}" Checked="CheckBoxDryingDiscount_Checked" Unchecked="CheckBoxDryingDiscount_Checked" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBox  Grid.Column="1" x:Name="txWet"  Text="{Binding Humidity, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ApplyHumidity}" LostFocus="CalculatePrices_LostFocus" Margin="1"/>
                             <CheckBox  Grid.Column ="2" x:Name="cbImpurities"  IsChecked="{Binding ApplyImpurities}" Content="Impurezas:" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBox  Grid.Column="3" x:Name="txtImpurities" Text="{Binding Impurities}" IsEnabled="{Binding ApplyImpurities, UpdateSourceTrigger=PropertyChanged}" LostFocus="CalculatePrices_LostFocus" Margin="1"/>
+                            <TextBox  Grid.Column="3" x:Name="txtImpurities" Text="{Binding Impurities, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ApplyImpurities}" LostFocus="CalculatePrices_LostFocus" Margin="1"/>
                         </Grid>
 
                         <StackPanel Grid.Row="22" x:Name="CattleSeparator" Orientation="Vertical" Margin="10">
@@ -482,6 +482,7 @@
                                 <RowDefinition Height="35"></RowDefinition>
                                 <RowDefinition Height="35"></RowDefinition>
                                 <RowDefinition Height="35"></RowDefinition>
+                                
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
@@ -526,10 +527,10 @@
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                 </Grid.ColumnDefinitions>
-                                <CheckBox Grid.Column ="0" x:Name="CheckBoxDryingDiscount" Content="Dcto X Secado:" IsChecked="{Binding ApplyDrying}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderCheckBoxStyle}" Checked="CheckBoxDryingDiscount_Checked"/>
+                                <CheckBox Grid.Column ="0" x:Name="CheckBoxDryingDiscount" Content="Dcto X Secado:" IsChecked="{Binding ApplyDrying}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderCheckBoxStyle}" Unchecked="CheckBoxDryingDiscount_Checked" Checked="CheckBoxDryingDiscount_Checked"/>
                                 <TextBox  IsEnabled="False" Grid.Column="1" x:Name="TextBoxDryingDiscount"  Text="{Binding DryingDiscount, StringFormat=C2}"  Margin="1"/>
                                 <TextBlock   Grid.Column="2"  Text="Dcto por G. Quebrado:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox Grid.Column="3" x:Name="TextboxBrokenGrainDiscount"  Text="{Binding DryingDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
+                                <TextBox Grid.Column="3" x:Name="TextboxBrokenGrainDiscount"  Text="{Binding BrokenGrainDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
                             </Grid>
                             <Grid Grid.Row="4">
                                 <Grid.ColumnDefinitions>
@@ -539,9 +540,9 @@
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock   Grid.Column="0"  Text="Dcto por G. Estrellado:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox Grid.Column="1" x:Name="TextBoxCrashedGrainDiscount"  Text="{Binding DryingDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
+                                <TextBox Grid.Column="1" x:Name="TextBoxCrashedGrainDiscount"  Text="{Binding CrashedGrainDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
                                 <TextBlock   Grid.Column="2"  Text="Dcto por G. Pequeño:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox Grid.Column="31" x:Name="TextBoxSmallGrainDiscount"  Text="{Binding DryingDiscount, StringFormat=C2, UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
+                                <TextBox Grid.Column="31" x:Name="TextBoxSmallGrainDiscount"  Text="{Binding SmallGrainDiscount, StringFormat=C2, UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
 
                             </Grid>
                             <Grid Grid.Row="5">
@@ -552,7 +553,7 @@
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock   Grid.Column="0"  Text="Dcto X Grano dañado:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox Grid.Column="1" x:Name="TextboxDamagedGrainDiscount"  Text="{Binding DryingDiscount,StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
+                                <TextBox Grid.Column="1" x:Name="TextboxDamagedGrainDiscount"  Text="{Binding DamagedGrainDiscount,StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
 
                             </Grid>
                             <Grid Grid.Row="6">

@@ -235,7 +235,7 @@ namespace LasMargaritas.UI.UserControls
                 presenter.LoadProducts();
                 ComboBoxProducts.ItemsSource = Products;
                 presenter.LoadWeightTickets();
-                //CreateDummyTicket();
+                CreateDummyTicket();
             }
         }
         private  void CreateDummyTicket()
@@ -254,21 +254,21 @@ namespace LasMargaritas.UI.UserControls
             weightTicket.EntranceDate = DateTime.Now;
             weightTicket.EntranceNetWeight = 1000;
             weightTicket.EntranceWeigher = "Weigher";
-            weightTicket.EntranceWeightKg = 1500;
-            weightTicket.ExitWeightKg = 1000;
+            weightTicket.EntranceWeightKg = 18840;
+            weightTicket.ExitWeightKg = 9880;
             weightTicket.ExitDate = DateTime.Now;
             weightTicket.ExitNetWeight = 200;
             weightTicket.ExitWeigher = "Weigher";
-            weightTicket.Folio = "Folio" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            weightTicket.Humidity = 10;
+            weightTicket.Folio = DateTime.Now.ToString("MMddHHmmssfff");
+            weightTicket.Humidity = 18.6F;
             weightTicket.HumidityDiscount = 10;
-            weightTicket.Impurities = 10;
+            weightTicket.Impurities = 4.8F;
             weightTicket.ImpuritiesDiscount = 10;
             weightTicket.NetWeight = 400;
-            weightTicket.Number = "Number" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            weightTicket.Number = "N"+ DateTime.Now.ToString("MMddHHmmssfff");
             weightTicket.Paid = false;
             weightTicket.Plate = "Plate";
-            weightTicket.Price = 10;
+            weightTicket.Price = 3.35M;
             weightTicket.ProducerId = 1;
             weightTicket.ProductId = 1;
             weightTicket.SmallGrainDiscount = 10;

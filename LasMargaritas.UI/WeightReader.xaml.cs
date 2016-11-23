@@ -49,14 +49,8 @@ namespace LasMargaritas.UI
                 while (this.KeepThreadRunning)
                 {
                     try
-                    {
-                        Dispatcher.Invoke(new Action(() =>
-                              TextTest.Text = "a"
-                          ));
-                        lineRead = serialPort.ReadLine();
-                        Dispatcher.Invoke(new Action(() =>
-                              TextTest.Text = lineRead
-                          ));
+                    {                      
+                        lineRead = serialPort.ReadLine();                     
                         //lineRead = string.Format("test,test,{0}kg\r", randomizer.Next(1000, 1010));
                         parts = lineRead.Split(',');
                         //                         a = a.Replace("ST,GS,", "");

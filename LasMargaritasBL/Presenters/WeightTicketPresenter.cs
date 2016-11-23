@@ -252,15 +252,27 @@ namespace LasMargaritas.BL.Presenters
             {
                 view.CurrentWeightTicket.HumidityDiscount = DiscountCalculator.GetDiscount(DiscountType.Humidity, view.CurrentWeightTicket.Humidity, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
             }
+            else
+            {
+                view.CurrentWeightTicket.HumidityDiscount = 0;
+            }
             if (view.CurrentWeightTicket.ApplyImpurities)
             {
                 view.CurrentWeightTicket.ImpuritiesDiscount = DiscountCalculator.GetDiscount(DiscountType.Impurities, view.CurrentWeightTicket.Impurities, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
+            }
+            else
+            {
+                view.CurrentWeightTicket.ImpuritiesDiscount = 0;
             }
             view.CurrentWeightTicket.TotalWeightToPay = view.CurrentWeightTicket.NetWeight - view.CurrentWeightTicket.HumidityDiscount - view.CurrentWeightTicket.ImpuritiesDiscount;
             view.CurrentWeightTicket.SubTotal = view.CurrentWeightTicket.Price * (decimal)view.CurrentWeightTicket.TotalWeightToPay;
             if (view.CurrentWeightTicket.ApplyDrying)
             {
                 view.CurrentWeightTicket.DryingDiscount = DiscountCalculator.GetDiscount(DiscountType.Drying, view.CurrentWeightTicket.Humidity, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
+            }
+            else
+            {
+                view.CurrentWeightTicket.DryingDiscount = 0;
             }
             view.CurrentWeightTicket.TotalToPay = view.CurrentWeightTicket.SubTotal - (decimal)view.CurrentWeightTicket.DryingDiscount;
             view.CurrentWeightTicket.RaiseUpdateProperties();
