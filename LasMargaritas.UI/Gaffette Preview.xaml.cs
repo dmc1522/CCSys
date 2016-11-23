@@ -54,9 +54,12 @@ namespace LasMargaritas.UI
         public static extern int ZBRGDIPreviewGraphics(IntPtr pictureBoxHandler, ref long errValue);                                        
         
         public Producer Producer { get; set; }
+
+        private string defaultPrinter;
         public Gaffette_Preview(Producer producer)
         {
             InitializeComponent();
+            defaultPrinter = "Zebra ZXP Series 3 USB Card Printer";
             Producer = producer;
             var is64 = IntPtr.Size == 8;
             LoadLibrary(is64 ? "x64/ZBRGraphics.dll" : "x86/ZBRGraphics.dll");
@@ -74,11 +77,11 @@ namespace LasMargaritas.UI
         }
 
         private void Print(bool isPreview)
-        {
+        {           
             int handle = 0;
             long error = 0;
             //Front
-            byte[] printerName = Encoding.ASCII.GetBytes("Zebra ZXP Series 3 USB Card Printer");
+            byte[] printerName = Encoding.ASCII.GetBytes(defaultPrinter);
             byte[] myText = Encoding.ASCII.GetBytes(Producer.Name + " " + Producer.PaternalSurname);
             byte[] producerTitle = Encoding.ASCII.GetBytes("Productor");
             byte[] myFont = Encoding.ASCII.GetBytes("Arial");
@@ -91,6 +94,11 @@ namespace LasMargaritas.UI
             byte[] barCode = Encoding.ASCII.GetBytes("qr.bmp");
             byte[] businessData = Encoding.ASCII.GetBytes("Grupo Garibay. Avenida Patria No 10 Ameca, Jalisco.");
             int result = ZBRGDIInitGraphics(printerName, ref handle, ref error);
+            if (result != 1)
+            {
+                MessageBox.Show("No se encontró la impresora", "Error", MessageBoxButton.OK, MessageBoxImage.Error);                
+                return;
+            }
             result = ZBRGDIDrawImageRect(frontBackGround, 10, 10, 1054, 654, ref error);
             result = ZBRGDIDrawImageRect(photo, 700, 105, 300, 300, ref error);
             result = ZBRGDIDrawImageRect(barCode, 215, 320, 230, 230, ref error);

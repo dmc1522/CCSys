@@ -4,11 +4,12 @@ using LasMargaritas.Models;
 using LasMargaritas.BL;
 using System.Configuration;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace LasMargaritas.Controllers
 {
     [RoutePrefix("WeightTicket")]
-    public class WeightTicketController : ApiController
+    public class WeightTicketController : BaseController
     {
 
         private WeightTicketsBL weightTicketsBL; 
@@ -35,6 +36,7 @@ namespace LasMargaritas.Controllers
             WeightTicketResponse response = new WeightTicketResponse();
             try
             {
+                weightTicket.UserId = CurrentUserId;
                 WeightTicket weightTicketSaved =  weightTicketsBL.InsertWeightTicket(weightTicket);
                 response.WeightTicket = weightTicketSaved;
                 response.Success = true;                
@@ -63,6 +65,7 @@ namespace LasMargaritas.Controllers
             WeightTicketResponse response = new WeightTicketResponse();
             try
             {
+                weightTicket.UserId = CurrentUserId;
                 WeightTicket weightTicketSaved = weightTicketsBL.UpdateWeightTicket(weightTicket);
                 response.WeightTicket = weightTicketSaved;
                 response.Success = true;                
@@ -87,7 +90,7 @@ namespace LasMargaritas.Controllers
         [Route("Delete")]
         [Authorize(Roles = "Admin")]
         public IHttpActionResult Delete(IdModel id)
-        {
+        {            
             WeightTicketResponse response = new WeightTicketResponse();
             try
             {
