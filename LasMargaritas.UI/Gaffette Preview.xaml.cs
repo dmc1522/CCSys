@@ -59,7 +59,7 @@ namespace LasMargaritas.UI
         public Gaffette_Preview(Producer producer)
         {
             InitializeComponent();
-            defaultPrinter = "Zebra ZXP Series 3 USB Card Printer";
+            defaultPrinter = "Zebra ZXP Series 3 USB Card Printer"; //"PDFCreator";
             Producer = producer;
             var is64 = IntPtr.Size == 8;
             LoadLibrary(is64 ? "x64/ZBRGraphics.dll" : "x86/ZBRGraphics.dll");
@@ -101,11 +101,11 @@ namespace LasMargaritas.UI
                 return;
             }
             result = ZBRGDIDrawImageRect(frontBackGround, 10, 10, 1054, 654, ref error);
-            result = ZBRGDIDrawImageRect(photo, 700, 105, 300, 300, ref error);
-            result = ZBRGDIDrawImageRect(barCode, 215, 320, 230, 230, ref error);
+            result = ZBRGDIDrawImageRect(photo, 377, 50, 300, 300, ref error);
+            result = ZBRGDIDrawImageRect(barCode, 412, 500, 230, 230, ref error);
             //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
-            result = ZBRGDIDrawText(50, 120, myText, myFont, 10, 1, 1, ref error);
-            result = ZBRGDIDrawText(70, 220, producerTitle, myFont, 7, 1, 1, ref error);
+            result = ZBRGDIDrawText(180, 380, myText, myFont, 10, 1, 1, ref error);
+            result = ZBRGDIDrawText(180, 450, producerTitle, myFont, 7, 1, 1, ref error);
             //result = ZBRGDIDrawText(30, 580, businessData, myFont, 6, 1, 16777215, ref error);
             if(isPreview)
                 result = ZBRGDIPreviewGraphics(ImageFront.PreviewImageHandle, ref error);
