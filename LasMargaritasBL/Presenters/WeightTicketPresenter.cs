@@ -323,6 +323,9 @@ namespace LasMargaritas.BL.Presenters
         public void NewWeightTicket()
         {
             PropertyCopier.CopyProperties(new WeightTicket(), view.CurrentWeightTicket);
+            this.printingFirstPart = false;
+            view.ObtainEntranceWeightEnable = true;
+            view.ObtainEntranceWeightEnable = true;
             view.CurrentWeightTicket.RaiseUpdateProperties();
             view.SelectedId = -1;
         }
@@ -364,7 +367,7 @@ namespace LasMargaritas.BL.Presenters
             PrintDocument printDocument = new PrintDocument();
             printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio + "3";
             PrintDialog pd = new PrintDialog();
-            printDocument.PrinterSettings.PrinterName = "Tickets";//TODO Change!
+            printDocument.PrinterSettings.PrinterName = "PDFCreator";//TODO Change!
             pd.Document = printDocument;
             printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
             PaperSize ps = new PaperSize();
@@ -385,7 +388,7 @@ namespace LasMargaritas.BL.Presenters
             currentPage = 0;
             PrintDocument printDocument = new PrintDocument();
             printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio+ "3";
-            printDocument.PrinterSettings.PrinterName = "Tickets";//TODO Change!
+            printDocument.PrinterSettings.PrinterName = "PDFCreator";//TODO Change!
             PrintDialog pd = new PrintDialog();
             pd.Document = printDocument;
             printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
@@ -405,7 +408,7 @@ namespace LasMargaritas.BL.Presenters
 
             float fAjusteX = 0.0f;
             float fAjusteY = 0.0f;
-            double fFontSize = 7;
+            double fFontSize = 8;
             try
             {
                 System.Drawing.Font fnt = new System.Drawing.Font("Arial", (float)fFontSize, GraphicsUnit.Point);
@@ -417,13 +420,9 @@ namespace LasMargaritas.BL.Presenters
                 //fecha dia 
                 px = 0.0f + fAjusteX;
                 py = 10.0f + fAjusteY;
-                int logoSize = 12;
                 SizeF fontSize = g.MeasureString("TEST", fntDetalle);
                 if (printingFirstPart)
                 {
-                    Image image = BadgePrinterHelper.GetQRCode(view.CurrentWeightTicket.Folio);
-                    g.DrawImage(image, px+10, py, 12, 12);
-                    py += logoSize;
                     sText = "BOLETA ID: " + view.CurrentWeightTicket.Id.ToString() + " Ticket: " + view.CurrentWeightTicket.Folio;
                     g.DrawString(sText.ToUpper(), fnt, brush, px, py);
                     fontSize = g.MeasureString(sText.ToUpper(), fntDetalle);
@@ -457,7 +456,7 @@ namespace LasMargaritas.BL.Presenters
                 }
                 else
                 {
-                    py += (fontSize.Height * 10) + logoSize;
+                    py += (fontSize.Height * 12);
                     sText = "SEGUNDA PESADA   Ticket: " + view.CurrentWeightTicket.Folio;
                     g.DrawString(sText.ToUpper(), fnt, brush, px, py);
                     py += fontSize.Height;
@@ -499,8 +498,7 @@ namespace LasMargaritas.BL.Presenters
                     {
                         sText = "CABEZAS: " + view.CurrentWeightTicket.Cattle.ToString();
                         g.DrawString(sText.ToUpper(), fnt, brush, px, py);
-                    }
-
+                    }                    
                 }
             }
             catch (System.Exception ex)
