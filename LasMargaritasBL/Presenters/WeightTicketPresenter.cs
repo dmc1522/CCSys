@@ -367,7 +367,7 @@ namespace LasMargaritas.BL.Presenters
             PrintDocument printDocument = new PrintDocument();
             printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio + "3";
             PrintDialog pd = new PrintDialog();
-            printDocument.PrinterSettings.PrinterName = "PDFCreator";//TODO Change!
+            printDocument.PrinterSettings.PrinterName = "tickets";//TODO Change!
             pd.Document = printDocument;
             printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
             PaperSize ps = new PaperSize();
@@ -388,7 +388,7 @@ namespace LasMargaritas.BL.Presenters
             currentPage = 0;
             PrintDocument printDocument = new PrintDocument();
             printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio+ "3";
-            printDocument.PrinterSettings.PrinterName = "PDFCreator";//TODO Change!
+            printDocument.PrinterSettings.PrinterName = "tickets";//TODO Change!
             PrintDialog pd = new PrintDialog();
             pd.Document = printDocument;
             printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);

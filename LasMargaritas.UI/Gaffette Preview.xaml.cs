@@ -47,6 +47,10 @@ namespace LasMargaritas.UI
         [DllImport("ZBRGraphics.dll")] 
         public static extern int ZBRGDIDrawText(int x, int y, byte[] text, byte[] font, int fontSize, int fontStyle, int color, ref long errValue);
 
+        [DllImport("ZBRGraphics.dll")]
+        public static extern int ZBRGDIDrawTextUnicode(int x, int y, byte[] text, byte[] font, int fontSize, int fontStyle, int color, ref long errValue);
+
+
         [DllImport("ZBRGraphics.dll")] 
         public static extern int ZBRGDIDrawLine(int x, int y, int x2, int y2, int color, float thicknes, ref long errValue);
 
@@ -83,16 +87,17 @@ namespace LasMargaritas.UI
             long error = 0;
             //Front
             byte[] printerName = Encoding.ASCII.GetBytes(defaultPrinter);
-            byte[] myText = Encoding.ASCII.GetBytes(Producer.Name + " " + Producer.PaternalSurname);
-            byte[] producerTitle = Encoding.ASCII.GetBytes("Productor");
+            byte[] producerName = Encoding.ASCII.GetBytes((Producer.Name + " " + Producer.PaternalSurname + " " + Producer.MaternalSurname).ToUpper().Replace("Ñ", "N"));
+            byte[] qrCodeText = Encoding.ASCII.GetBytes("Id: " + Producer.BarCode);
+            byte[] producerTitle = Encoding.ASCII.GetBytes("PRODUCTOR");
             byte[] myFont = Encoding.ASCII.GetBytes("Arial");
             byte[] frontBackGround = Encoding.ASCII.GetBytes("back.jpg");
             byte[] backBackGround = Encoding.ASCII.GetBytes("front.jpg");
             File.WriteAllBytes(System.IO.Path.GetTempPath() +"\\photo.bmp", Producer.Photo);
-            Bitmap qrCode = BadgePrinterHelper.GetQRCode(Producer.BarCode);
-            qrCode.Save(System.IO.Path.GetTempPath()+"\\qr.bmp");
+            Bitmap qrCodeImage = BadgePrinterHelper.GetQRCode(Producer.BarCode);
+            qrCodeImage.Save(System.IO.Path.GetTempPath()+"\\qr.bmp");
             byte[] photo = Encoding.ASCII.GetBytes(System.IO.Path.GetTempPath() + "\\photo.bmp");
-            byte[] barCode = Encoding.ASCII.GetBytes(System.IO.Path.GetTempPath() + "\\qr.bmp");
+            byte[] qrCodeImageBytes = Encoding.ASCII.GetBytes(System.IO.Path.GetTempPath() + "\\qr.bmp");
             byte[] businessData = Encoding.ASCII.GetBytes("Grupo Garibay. Avenida Patria No 10 Ameca, Jalisco.");
             int result = ZBRGDIInitGraphics(printerName, ref handle, ref error);
             if (result != 1)
@@ -102,9 +107,10 @@ namespace LasMargaritas.UI
             }
             result = ZBRGDIDrawImageRect(frontBackGround, 10, 10, 1054, 654, ref error);
             result = ZBRGDIDrawImageRect(photo, 377, 50, 300, 300, ref error);
-            result = ZBRGDIDrawImageRect(barCode, 412, 500, 230, 230, ref error);
+            result = ZBRGDIDrawImageRect(qrCodeImageBytes, 412, 460, 230, 230, ref error);
+            result = ZBRGDIDrawText(440, 680, qrCodeText, myFont, 10, 1, 1, ref error);
             //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
-            result = ZBRGDIDrawText(180, 380, myText, myFont, 10, 1, 1, ref error);
+            result = ZBRGDIDrawText(180, 380, producerName, myFont, 10, 1, 1, ref error);
             result = ZBRGDIDrawText(180, 450, producerTitle, myFont, 7, 1, 1, ref error);
             //result = ZBRGDIDrawText(30, 580, businessData, myFont, 6, 1, 16777215, ref error);
             if(isPreview)
