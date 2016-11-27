@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LasMargaritas.Installer.wax" />
+    <Content Include="license.rtf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LasMargaritas.UI\LasMargaritas.UI.csproj">
