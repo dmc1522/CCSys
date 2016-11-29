@@ -1,6 +1,7 @@
 ﻿using LasMargaritas.DL;
 using LasMargaritas.Models;
 using System.Collections.Generic;
+using System.Data;
 
 namespace LasMargaritas.BL
 {
@@ -34,6 +35,10 @@ namespace LasMargaritas.BL
                 return weightTicketsDL.InsertWeightTicket(weightTicket);
         }
 
+        public DataTable GetWeightTicketsReport(int? cicleId, int? productId, int? producerId, int? saleCustomerId, int? rancherId, int? supplierId, WeightTicketType? type, bool? entranceWeightTicketsOnly, bool? exitWeightTicketsOnly)
+        {
+            return weightTicketsDL.GetWeightTicketsReport(cicleId, productId, producerId, saleCustomerId, rancherId, supplierId, type, entranceWeightTicketsOnly, exitWeightTicketsOnly);
+        }
         public WeightTicket UpdateWeightTicket(WeightTicket weightTicket)
         {
             //Add validations here!

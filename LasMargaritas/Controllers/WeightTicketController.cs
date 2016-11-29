@@ -5,6 +5,8 @@ using LasMargaritas.BL;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Data;
+using System.Linq;
 
 namespace LasMargaritas.Controllers
 {
@@ -116,6 +118,29 @@ namespace LasMargaritas.Controllers
         #endregion
 
         #region Get Methods
+
+        [HttpGet]
+        [Route("GetReportDataResponse")]
+        [Authorize(Roles = "Admin")]
+        public IHttpActionResult  GetWeightTicketsReport(int? cicleId, int? productId, int? producerId, int? saleCustomerId, int? rancherId, int? supplierId, WeightTicketType? type, bool? entranceWeightTicketsOnly, bool? exitWeightTicketsOnly)
+        {
+            GetReportDataResponse response = new GetReportDataResponse();
+            try
+            {
+                DataTable dataTable = weightTicketsBL.GetWeightTicketsReport(cicleId, productId, producerId, saleCustomerId, rancherId, supplierId, type, entranceWeightTicketsOnly, exitWeightTicketsOnly);
+                IEnumerable<Dictionary<string, object>> result = dataTable.Select().Select(x => x.ItemArray.Select((a, i) => new { Name = dataTable.Columns[i].ColumnName, Value = a })
+                                                                                    .ToDictionary(a => a.Name, a => a.Value));
+                response.ReportData = new List<Dictionary<string, object>>(result);
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
         [Authorize(Roles = "Admin")]
         [Route("GetAll")]
         [HttpGet]

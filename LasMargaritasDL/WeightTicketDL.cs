@@ -67,6 +67,36 @@ namespace LasMargaritas.DL
                 return tickets;
             }
         }
+
+        public DataTable GetWeightTicketsReport(int? cicleId, int? productId, int? producerId, int? saleCustomerId, int? rancherId, int? supplierId, WeightTicketType? type,  bool? entranceWeightTicketsOnly, bool? exitWeightTicketsOnly)
+        {
+            DataTable dataTable = new DataTable();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetWeightTicketReport";
+                    command.Parameters.Add("@productId", SqlDbType.Int).Value = productId.HasValue ? (object)productId : (object)DBNull.Value;
+                    command.Parameters.Add("@cicleId", SqlDbType.Int).Value = cicleId.HasValue ? (object)cicleId : (object)DBNull.Value;
+                    command.Parameters.Add("@producerId", SqlDbType.Int).Value = producerId.HasValue ? (object)producerId : (object)DBNull.Value;
+                    command.Parameters.Add("@saleCustomerId", SqlDbType.Int).Value = saleCustomerId.HasValue ? (object)saleCustomerId : (object)DBNull.Value;
+                    command.Parameters.Add("@rancherId", SqlDbType.Int).Value = rancherId.HasValue ? (object)rancherId : (object)DBNull.Value;
+                    command.Parameters.Add("@supplierId", SqlDbType.Int).Value = supplierId.HasValue ? (object)supplierId : (object)DBNull.Value;
+                    command.Parameters.Add("@exitWeightTicketsOnly", SqlDbType.Int).Value = exitWeightTicketsOnly.HasValue ? (object)exitWeightTicketsOnly : (object)DBNull.Value;
+                    command.Parameters.Add("@entranceWeightTicketsOnly", SqlDbType.Int).Value = entranceWeightTicketsOnly.HasValue ? (object)entranceWeightTicketsOnly : (object)DBNull.Value;
+                    command.Parameters.Add("@weightTicketType", SqlDbType.Int).Value = type.HasValue ? (object)type : (object)DBNull.Value;
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter())
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+                return dataTable;
+            }
+        }
         public WeightTicket InsertWeightTicket(WeightTicket weightTicket)
         {
             using (SqlCommand command = new SqlCommand())
