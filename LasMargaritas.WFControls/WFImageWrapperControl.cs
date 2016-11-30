@@ -24,11 +24,12 @@ namespace LasMargaritas.WFControls
         {
             get
             {
-                return this.lblDescription.Text;
+                return this.Text;
             }
             set
             {
-                this.lblDescription.Text = value;
+                this.Text = value;
+             
             }
 
         }

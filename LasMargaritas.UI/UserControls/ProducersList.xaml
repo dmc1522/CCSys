@@ -119,9 +119,9 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="5"  Text="A. Paterno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="1"    CharacterCasing="Upper" Text="{Binding PaternalSurname}" x:Name="textBoxApellidoPaterno" />
+                        <TextBox Grid.Column="1"    CharacterCasing="Upper" Text="{Binding PaternalSurname,  Converter={StaticResource caseConverter}}" x:Name="textBoxApellidoPaterno" />
                         <TextBlock Grid.Column="2" Margin="5"  Text="A. Materno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="3"    CharacterCasing="Upper" Text="{Binding MaternalSurname}" x:Name="textBoxApellidoMaterno" />
+                        <TextBox Grid.Column="3"    CharacterCasing="Upper" Text="{Binding MaternalSurname, Converter={StaticResource caseConverter}}" x:Name="textBoxApellidoMaterno" />
                     </Grid>
 
                     <Grid Grid.Row="4" Margin="30,5"  VerticalAlignment="Center">

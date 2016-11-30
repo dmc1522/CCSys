@@ -77,63 +77,51 @@ namespace LasMargaritas.BL.Presenters
 
         private void LoadProducers()
         {
-            try
+           
+            if (Token == null)
+                throw new InvalidOperationException("Login first");
+            //Get last remote modification
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            GetProducersFromApi();
+            producerView.Producers = originalProducers;
+            /* string url = string.Format("{0}?module={1}", getLastModification, (int)Models.Module.Producers); //Producers
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            if (response.IsSuccessStatusCode)
             {
-                if (Token == null)
-                    throw new InvalidOperationException("Login first");
-                //Get last remote modification
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-                GetProducersFromApi();
-                producerView.Producers = originalProducers;
-                /* string url = string.Format("{0}?module={1}", getLastModification, (int)Models.Module.Producers); //Producers
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                if (response.IsSuccessStatusCode)
+                GetLastModificationResponse getLastModificationResponse = response.Content.ReadAsAsync<GetLastModificationResponse>().Result;
+                if (getLastModificationResponse.LastModifications.Count == 1)
+                    LastRemoteModificationTimeStamp = getLastModificationResponse.LastModifications.ElementAt(0).Timestamp;
+            }
+            //No log here ...                     
+            if (LastRemoteModificationTimeStamp.HasValue)
+            {
+                //Check cached version
+                CachedModel<Producer> cachedProducers = cacher.LoadFromCache();
+                if (null != cachedProducers && LastRemoteModificationTimeStamp.Equals(cachedProducers.CachedDate))
                 {
-                    GetLastModificationResponse getLastModificationResponse = response.Content.ReadAsAsync<GetLastModificationResponse>().Result;
-                    if (getLastModificationResponse.LastModifications.Count == 1)
-                        LastRemoteModificationTimeStamp = getLastModificationResponse.LastModifications.ElementAt(0).Timestamp;
-                }
-                //No log here ...                     
-                if (LastRemoteModificationTimeStamp.HasValue)
-                {
-                    //Check cached version
-                    CachedModel<Producer> cachedProducers = cacher.LoadFromCache();
-                    if (null != cachedProducers && LastRemoteModificationTimeStamp.Equals(cachedProducers.CachedDate))
-                    {
-                        //cached version is the same
-                        originalProducers = cachedProducers.Models;
-                        LastSynchronizationTimeStamp = cacher.CachedDate;
-                    }
-                    else
-                    {
-                        GetProducersFromApi();
-                        SaveProducersToCache();
-                        LastSynchronizationTimeStamp = cacher.CachedDate;
-                    }
+                    //cached version is the same
+                    originalProducers = cachedProducers.Models;
+                    LastSynchronizationTimeStamp = cacher.CachedDate;
                 }
                 else
                 {
-                    LastRemoteModificationTimeStamp = DateTime.Now; //nothing to do here
                     GetProducersFromApi();
                     SaveProducersToCache();
                     LastSynchronizationTimeStamp = cacher.CachedDate;
                 }
-                producerView.Producers = originalProducers;
-                */
             }
-            catch (Exception ex)
+            else
             {
-                StackTrace st = new StackTrace();
-                StackFrame sf = st.GetFrame(0);
-                MethodBase currentMethodName = sf.GetMethod();
-                Guid errorId = Guid.NewGuid();
-                //Log error here
-                producerView.HandleException(ex, currentMethodName.Name, errorId);
+                LastRemoteModificationTimeStamp = DateTime.Now; //nothing to do here
+                GetProducersFromApi();
+                SaveProducersToCache();
+                LastSynchronizationTimeStamp = cacher.CachedDate;
             }
-
+            producerView.Producers = originalProducers;
+            */
         }
 
         private void GetCatalogs()
@@ -152,6 +140,10 @@ namespace LasMargaritas.BL.Presenters
                     producerView.States = getSelectableModelResponse.SelectableModels;
 
                 }
+                else
+                {
+                    throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                }
             }
             //Genders
             response = client.GetAsync(getGenderAction).Result;
@@ -161,6 +153,10 @@ namespace LasMargaritas.BL.Presenters
                 if (getSelectableModelResponse.Success)
                 {
                     producerView.Genders = getSelectableModelResponse.SelectableModels;
+                }
+                else
+                {
+                    throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
                 }
             }
             //Civil Status
@@ -172,6 +168,10 @@ namespace LasMargaritas.BL.Presenters
                 {
                     producerView.CivilStatus = getSelectableModelResponse.SelectableModels;
                 }
+                else
+                {
+                    throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                }
             }
             //Regimes
             response = client.GetAsync(getRegimesAction).Result;
@@ -182,6 +182,10 @@ namespace LasMargaritas.BL.Presenters
                 {
                     producerView.Regimes = getSelectableModelResponse.SelectableModels;
                 }
+                else
+                {
+                    throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                }
             }
         }
         #endregion
@@ -189,28 +193,53 @@ namespace LasMargaritas.BL.Presenters
         #region Public methods
         public void Initialize()
         {
-            GetCatalogs();
-            LoadProducers();
+            try
+            {
+                GetCatalogs();
+                LoadProducers();
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                producerView.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
         public void ReloadProducerList()
         {
-            LoadProducers();
-            PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
-            producerView.CurrentProducer.RaiseUpdateProperties();
-            producerView.SelectedId = -1;
+            try
+            {
+                LoadProducers();
+                PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
+                producerView.CurrentProducer.RaiseUpdateProperties();
+                producerView.SelectedId = -1;
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                producerView.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
 
         public void DeleteProducer()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-            HttpResponseMessage response = client.PostAsJsonAsync(deleteAction, new IdModel(producerView.SelectedId)).Result;
-            if (response.IsSuccessStatusCode)
+            try
             {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                HttpResponseMessage response = client.PostAsJsonAsync(deleteAction, new IdModel(producerView.SelectedId)).Result;
+                response.EnsureSuccessStatusCode();
                 ProducerResponse producerResponse = response.Content.ReadAsAsync<ProducerResponse>().Result;
-                if(producerResponse.Success)
+                if (producerResponse.Success)
                 {
                     //Deleted!
                     LoadProducers();
@@ -218,80 +247,130 @@ namespace LasMargaritas.BL.Presenters
                     producerView.CurrentProducer.RaiseUpdateProperties();
                     producerView.SelectedId = -1;
                 }
+                else
+                {
+                    throw new ProducerException(producerResponse.ErrorCode, producerResponse.ErrorMessage);
+                }
             }
-           
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                producerView.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
 
         public void NewProducer()
         {
-            PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
-            producerView.CurrentProducer.RaiseUpdateProperties();
-            producerView.SelectedId = -1;
+            try
+            {
+                PropertyCopier.CopyProperties(new Producer(), producerView.CurrentProducer);
+                producerView.CurrentProducer.RaiseUpdateProperties();
+                producerView.SelectedId = -1;
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                producerView.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
 
         public void UpdateCurrentProducer()
         {
-            if (producerView.SelectedId == -1)
+            try
             {
-                producerView.CurrentProducer = new Producer();
-            }
-            else
-            {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-                HttpResponseMessage response = client.GetAsync(string.Format("{0}?id={1}",getByIdAction, producerView.SelectedId)).Result;
-                if (response.IsSuccessStatusCode)
+                if (producerView.SelectedId == -1)
                 {
+                    producerView.CurrentProducer = new Producer();
+                }
+                else
+                {
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(baseUrl);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                    HttpResponseMessage response = client.GetAsync(string.Format("{0}?id={1}", getByIdAction, producerView.SelectedId)).Result;
+                    response.EnsureSuccessStatusCode();
                     GetProducerResponse getProducerResponse = response.Content.ReadAsAsync<GetProducerResponse>().Result;
                     if (getProducerResponse.Success)
                     {
                         PropertyCopier.CopyProperties(getProducerResponse.Producers[0], producerView.CurrentProducer);
-                        producerView.CurrentProducer.RaiseUpdateProperties();                       
+                        producerView.CurrentProducer.RaiseUpdateProperties();
+                    }
+                    else
+                    {
+                        throw new ProducerException(getProducerResponse.ErrorCode, getProducerResponse.ErrorMessage);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                producerView.HandleException(ex, currentMethodName.Name, errorId);
             }
         }
    
         public void SaveProducer()
         {
-            bool reLoadList = false;
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);            
-            string action = string.Empty;
-            if (producerView.CurrentProducer.Id == 0)
+            try
             {
-                //insert
-                action = insertAction;
-                reLoadList = true;                
-            }
-            else
-            {
-                action = updateAction;
-            }            
-            //update
-            MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
-            HttpResponseMessage response = client.PostAsync(action, producerView.CurrentProducer, bsonFormatter).Result;
-            response.EnsureSuccessStatusCode();
-            MediaTypeFormatter[] formatters = new MediaTypeFormatter[] { bsonFormatter};
-            ProducerResponse producerResponse = response.Content.ReadAsAsync<ProducerResponse>(formatters).Result;
-            if (producerResponse.Success)
-            {
-                if (producerResponse.Producer != null)
+                bool reLoadList = false;
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                string action = string.Empty;
+                if (producerView.CurrentProducer.Id == 0)
                 {
-                    if (reLoadList)
+                    //insert
+                    action = insertAction;
+                    reLoadList = true;
+                }
+                else
+                {
+                    action = updateAction;
+                }
+                //update
+                MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
+                HttpResponseMessage response = client.PostAsync(action, producerView.CurrentProducer, bsonFormatter).Result;
+                response.EnsureSuccessStatusCode();
+                MediaTypeFormatter[] formatters = new MediaTypeFormatter[] { bsonFormatter };
+                ProducerResponse producerResponse = response.Content.ReadAsAsync<ProducerResponse>(formatters).Result;
+                if (producerResponse.Success)
+                {
+                    if (producerResponse.Producer != null)
                     {
-                        LoadProducers();
-                        producerView.SelectedId = producerResponse.Producer.Id;
+                        if (reLoadList)
+                        {
+                            LoadProducers();
+                            producerView.SelectedId = producerResponse.Producer.Id;
+                        }
                     }
                 }
+                else
+                {
+                    throw new ProducerException(producerResponse.ErrorCode, producerResponse.ErrorMessage);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                throw new ProducerException(producerResponse.ErrorCode, producerResponse.ErrorMessage);
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                producerView.HandleException(ex, currentMethodName.Name, errorId);
             }
         }     
 
@@ -341,22 +420,16 @@ namespace LasMargaritas.BL.Presenters
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
             HttpResponseMessage response = client.GetAsync(getSelectableModelsAction).Result;
-            if (response.IsSuccessStatusCode)
+            response.EnsureSuccessStatusCode();
+            GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+            if (getSelectableModelResponse.Success)
             {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    originalProducers = getSelectableModelResponse.SelectableModels;
-                }
-                else
-                {
-                    throw new ProducerException(getSelectableModelResponse.ErrorMessage);
-                }
+                originalProducers = getSelectableModelResponse.SelectableModels;
             }
             else
             {
-                throw new ProducerException(ProducerError.ApiCommunicationError);
-            }
+                throw new SelectableModelException(getSelectableModelResponse.ErrorMessage);
+            }                      
         }
         #endregion
     }

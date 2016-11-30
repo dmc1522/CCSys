@@ -106,6 +106,21 @@ namespace LasMargaritas.UI.UserControls
 
         public void HandleException(Exception ex, string method, Guid errorId)
         {
+            string errorMessage = string.Empty;
+            if(ex is ProducerException)
+            {
+                errorMessage = "Hubo un problema en la última acción. Detalles: - Producer Exception: " + ((ProducerException)ex).Error.ToString();
+            }
+            else if (ex is SelectableModelException)
+            {
+                errorMessage = "Hubo un problema en la última acción. Detalles: - SelectableModelException Exception: " + ((SelectableModelException)ex).Error.ToString();
+            }
+            else
+            {
+                errorMessage = "Hubo un problema en la última acción. Detalles: - Unknown Exception ";
+            }
+            errorMessage += ". " + ex.Message + ". Method: " + method;
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         
         #endregion
@@ -153,7 +168,11 @@ namespace LasMargaritas.UI.UserControls
                 ComboBoxCivilStatus.ItemsSource = CivilStatus;
                 ComboBoxRegime.ItemsSource = Regimes;
                 ComboBoxState.ItemsSource = States;
-                ComboBoxGender.ItemsSource = Genders;                
+                ComboBoxGender.ItemsSource = Genders;
+                ComboBoxState.SelectedValue = 14;         //JALISCO
+                ComboBoxRegime.SelectedIndex = 0;
+                ComboBoxGender.SelectedIndex = 0;
+                ComboBoxCivilStatus.SelectedIndex = 0;
                 listLoaded = true;
             }
         }

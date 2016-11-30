@@ -72,7 +72,7 @@ namespace LasMargaritas.BL.Presenters
 
         #endregion
 
-        #region Private methods
+        #region Public methods
 
         public void LoadWeightTickets()
         {
@@ -132,274 +132,461 @@ namespace LasMargaritas.BL.Presenters
 
         public void LoadProducts()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-            HttpResponseMessage response;
-            //Products
-            string action = string.Format("{0}?type={1}", getProductsAction, (int)view.WeightTicketType);
-            response = client.GetAsync(action).Result;
-            if (response.IsSuccessStatusCode)
+            try
             {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                HttpResponseMessage response;
+                //Products
+                string action = string.Format("{0}?type={1}", getProductsAction, (int)view.WeightTicketType);
+                response = client.GetAsync(action).Result;
+                response.EnsureSuccessStatusCode();
                 GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
                 if (getSelectableModelResponse.Success)
                 {
                     view.Products = getSelectableModelResponse.SelectableModels;
                 }
+                else
+                {
+                    throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
             }
         }
+
+        
         public void LoadCatalogs()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-            HttpResponseMessage response;
-            //Producers
-            response = client.GetAsync(getProducersAction).Result;
-            if (response.IsSuccessStatusCode)
+            try
             {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    view.Producers = getSelectableModelResponse.SelectableModels;
-                }
-            }
-             //Ranchers
-             response = client.GetAsync(getRanchersAction).Result;
-             if (response.IsSuccessStatusCode)
-             {
-                 GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                 if (getSelectableModelResponse.Success)
-                 {
-                     view.Ranchers = getSelectableModelResponse.SelectableModels;
+                LoadProducers();
+                LoadRanchers();
+                LoadSuppliers();
+                LoadSaleCustomers();
 
-                 }
-             }
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                HttpResponseMessage response;
 
-             //Sales customers
-             response = client.GetAsync(getSalesCustomersAction).Result;
-             if (response.IsSuccessStatusCode)
-             {
-                 GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                 if (getSelectableModelResponse.Success)
-                 {
-                     view.SalesCustomers = getSelectableModelResponse.SelectableModels;
-                 }
-             }
-             //Suppliers
-             response = client.GetAsync(getSuppliersAction).Result;
-             if (response.IsSuccessStatusCode)
-             {
-                 GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                 if (getSelectableModelResponse.Success)
-                 {
-                     view.Suppliers = getSelectableModelResponse.SelectableModels;
-                 }
-             }
+                //Cicles
+                response = client.GetAsync(getCiclesActions).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                    if (getSelectableModelResponse.Success)
+                    {
+                        view.Cicles = getSelectableModelResponse.SelectableModels;
+                    }
+                    else
+                    {
+                        throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                    }
+                }
+                //Filter cicles
+                response = client.GetAsync(getCiclesActions).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                    if (getSelectableModelResponse.Success)
+                    {
+                        view.FilterCicles = getSelectableModelResponse.SelectableModels;
+                    }
+                    else
+                    {
+                        throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                    }
+                }
 
-            //Cicles
-            response = client.GetAsync(getCiclesActions).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
+                //Warehouses
+                response = client.GetAsync(getWareHousesAction).Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    view.Cicles = getSelectableModelResponse.SelectableModels;
+                    GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                    if (getSelectableModelResponse.Success)
+                    {
+                        view.WareHouses = getSelectableModelResponse.SelectableModels;
+                    }
+                    else
+                    {
+                        throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                    }
                 }
             }
-            //Filter cicles
-            response = client.GetAsync(getCiclesActions).Result;
-            if (response.IsSuccessStatusCode)
+            catch (Exception ex)
             {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    view.FilterCicles = getSelectableModelResponse.SelectableModels;
-                }
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
             }
-           
-            //Warehouses
-            response = client.GetAsync(getWareHousesAction).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                if (getSelectableModelResponse.Success)
-                {
-                    view.WareHouses = getSelectableModelResponse.SelectableModels;
-                }
-            }
+
         }
         #endregion
 
         #region Public methods
         public void CalculateTotals()
         {
-            if (view.CurrentWeightTicket.IsEntranceWeightTicket)
+            try
             {
-                view.CurrentWeightTicket.EntranceNetWeight = view.CurrentWeightTicket.EntranceWeightKg - view.CurrentWeightTicket.ExitWeightKg;
-                view.CurrentWeightTicket.ExitNetWeight = 0;
-                view.CurrentWeightTicket.NetWeight = view.CurrentWeightTicket.EntranceNetWeight;
+                if (view.CurrentWeightTicket.IsEntranceWeightTicket)
+                {
+                    view.CurrentWeightTicket.EntranceNetWeight = view.CurrentWeightTicket.EntranceWeightKg - view.CurrentWeightTicket.ExitWeightKg;
+                    view.CurrentWeightTicket.ExitNetWeight = 0;
+                    view.CurrentWeightTicket.NetWeight = view.CurrentWeightTicket.EntranceNetWeight;
+                }
+                else
+                {
+                    view.CurrentWeightTicket.ExitNetWeight = view.CurrentWeightTicket.ExitWeightKg - view.CurrentWeightTicket.EntranceWeightKg;
+                    view.CurrentWeightTicket.EntranceNetWeight = 0;
+                    view.CurrentWeightTicket.NetWeight = view.CurrentWeightTicket.ExitNetWeight;
+                }
+                if (view.CurrentWeightTicket.ApplyHumidity)
+                {
+                    view.CurrentWeightTicket.HumidityDiscount = DiscountCalculator.GetDiscount(DiscountType.Humidity, view.CurrentWeightTicket.Humidity, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
+                }
+                else
+                {
+                    view.CurrentWeightTicket.HumidityDiscount = 0;
+                }
+                if (view.CurrentWeightTicket.ApplyImpurities)
+                {
+                    view.CurrentWeightTicket.ImpuritiesDiscount = DiscountCalculator.GetDiscount(DiscountType.Impurities, view.CurrentWeightTicket.Impurities, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
+                }
+                else
+                {
+                    view.CurrentWeightTicket.ImpuritiesDiscount = 0;
+                }
+                view.CurrentWeightTicket.TotalWeightToPay = view.CurrentWeightTicket.NetWeight - view.CurrentWeightTicket.HumidityDiscount - view.CurrentWeightTicket.ImpuritiesDiscount;
+                view.CurrentWeightTicket.SubTotal = view.CurrentWeightTicket.Price * (decimal)view.CurrentWeightTicket.TotalWeightToPay;
+                if (view.CurrentWeightTicket.ApplyDrying)
+                {
+                    view.CurrentWeightTicket.DryingDiscount = DiscountCalculator.GetDiscount(DiscountType.Drying, view.CurrentWeightTicket.Humidity, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
+                }
+                else
+                {
+                    view.CurrentWeightTicket.DryingDiscount = 0;
+                }
+                view.CurrentWeightTicket.TotalToPay = view.CurrentWeightTicket.SubTotal - (decimal)view.CurrentWeightTicket.DryingDiscount
+                                                      - (decimal)view.CurrentWeightTicket.BrokenGrainDiscount - (decimal)view.CurrentWeightTicket.CrashedGrainDiscount
+                                                      - (decimal)view.CurrentWeightTicket.DamagedGrainDiscount - (decimal)view.CurrentWeightTicket.SmallGrainDiscount;
+                view.CurrentWeightTicket.RaiseUpdateProperties();
             }
-            else
+            catch (Exception ex)
             {
-                view.CurrentWeightTicket.ExitNetWeight = view.CurrentWeightTicket.ExitWeightKg - view.CurrentWeightTicket.EntranceWeightKg;
-                view.CurrentWeightTicket.EntranceNetWeight = 0;
-                view.CurrentWeightTicket.NetWeight = view.CurrentWeightTicket.ExitNetWeight;
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
             }
-            if (view.CurrentWeightTicket.ApplyHumidity)
-            {
-                view.CurrentWeightTicket.HumidityDiscount = DiscountCalculator.GetDiscount(DiscountType.Humidity, view.CurrentWeightTicket.Humidity, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
-            }
-            else
-            {
-                view.CurrentWeightTicket.HumidityDiscount = 0;
-            }
-            if (view.CurrentWeightTicket.ApplyImpurities)
-            {
-                view.CurrentWeightTicket.ImpuritiesDiscount = DiscountCalculator.GetDiscount(DiscountType.Impurities, view.CurrentWeightTicket.Impurities, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
-            }
-            else
-            {
-                view.CurrentWeightTicket.ImpuritiesDiscount = 0;
-            }
-            view.CurrentWeightTicket.TotalWeightToPay = view.CurrentWeightTicket.NetWeight - view.CurrentWeightTicket.HumidityDiscount - view.CurrentWeightTicket.ImpuritiesDiscount;
-            view.CurrentWeightTicket.SubTotal = view.CurrentWeightTicket.Price * (decimal)view.CurrentWeightTicket.TotalWeightToPay;
-            if (view.CurrentWeightTicket.ApplyDrying)
-            {
-                view.CurrentWeightTicket.DryingDiscount = DiscountCalculator.GetDiscount(DiscountType.Drying, view.CurrentWeightTicket.Humidity, view.CurrentWeightTicket.NetWeight, view.CurrentWeightTicket.IsEntranceWeightTicket);
-            }
-            else
-            {
-                view.CurrentWeightTicket.DryingDiscount = 0;
-            }
-            view.CurrentWeightTicket.TotalToPay = view.CurrentWeightTicket.SubTotal - (decimal)view.CurrentWeightTicket.DryingDiscount
-                                                  - (decimal)view.CurrentWeightTicket.BrokenGrainDiscount - (decimal)view.CurrentWeightTicket.CrashedGrainDiscount 
-                                                  - (decimal)view.CurrentWeightTicket.DamagedGrainDiscount - (decimal)view.CurrentWeightTicket.SmallGrainDiscount;
-            view.CurrentWeightTicket.RaiseUpdateProperties();
         }
         public void SetEntranceDateToNow()
         {
-            view.CurrentWeightTicket.EntranceDate = DateTime.Now;
-            view.CurrentWeightTicket.RaiseUpdateProperties();
+            try
+            {
+                view.CurrentWeightTicket.EntranceDate = DateTime.Now;
+                view.CurrentWeightTicket.RaiseUpdateProperties();
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
         public void SetExitDateToNow()
         {
-            view.CurrentWeightTicket.ExitDate = DateTime.Now;
-            view.CurrentWeightTicket.RaiseUpdateProperties();
+            try
+            {
+                view.CurrentWeightTicket.ExitDate = DateTime.Now;
+                view.CurrentWeightTicket.RaiseUpdateProperties();
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
        
+        public void ReloadSellerBuyer()
+        {
+           switch(view.WeightTicketType)
+            {
+                case WeightTicketType.Producer:
+                    LoadProducers();
+                break;
+                case WeightTicketType.Rancher:
+                    LoadRanchers();
+                break;
+                case WeightTicketType.SaleCustomer:
+                    LoadSaleCustomers();
+                break;
+                case WeightTicketType.Supplier:
+                    LoadSuppliers();
+                break;
+            }
+        }
         public void ReloadWeightTicketsList()
         {
-            LoadWeightTickets();
-            PropertyCopier.CopyProperties(new WeightTicket(), view.CurrentWeightTicket,true);
-            view.CurrentWeightTicket.RaiseUpdateProperties();
-            view.SelectedId = -1;
+            try
+            {
+                LoadWeightTickets();
+                PropertyCopier.CopyProperties(new WeightTicket(), view.CurrentWeightTicket, true);
+                view.CurrentWeightTicket.RaiseUpdateProperties();
+                view.SelectedId = -1;
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
 
         public void DeleteTicket()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-            HttpResponseMessage response = client.PostAsJsonAsync(deleteAction, new IdModel(view.SelectedId)).Result;
-            if (response.IsSuccessStatusCode)
+            try
             {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                HttpResponseMessage response = client.PostAsJsonAsync(deleteAction, new IdModel(view.SelectedId)).Result;
+                response.EnsureSuccessStatusCode();
                 ProducerResponse producerResponse = response.Content.ReadAsAsync<ProducerResponse>().Result;
-                if(producerResponse.Success)
+                if (producerResponse.Success)
                 {
                     //Deleted!
                     LoadWeightTickets();
                     PropertyCopier.CopyProperties(new Producer(), view.CurrentWeightTicket);
                     view.CurrentWeightTicket.RaiseUpdateProperties();
                     view.SelectedId = -1;
-                }
+                }                
             }
-           
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
+
         }
 
         public void NewWeightTicket()
         {
-            PropertyCopier.CopyProperties(new WeightTicket(), view.CurrentWeightTicket);
-            this.printingFirstPart = false;
-            view.ObtainEntranceWeightEnable = true;
-            view.ObtainEntranceWeightEnable = true;
-            view.CurrentWeightTicket.RaiseUpdateProperties();
-            view.SelectedId = -1;
+            try
+            {
+                PropertyCopier.CopyProperties(new WeightTicket(), view.CurrentWeightTicket);
+                view.CurrentWeightTicket.EntranceDate = DateTime.Now;
+                view.CurrentWeightTicket.ExitDate = DateTime.Now;
+                printingFirstPart = false;
+                view.ObtainEntranceWeightEnable = true;
+                view.ObtainEntranceWeightEnable = true;
+                view.CurrentWeightTicket.RaiseUpdateProperties();
+                view.SelectedId = -1;
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
+
         }
 
         public void UpdateCurrentWeightTicket()
         {
-            if (view.SelectedId == -1)
+            try
             {
-                PropertyCopier.CopyProperties(new Producer(), view.CurrentWeightTicket);                      
-            }
-            else
-            {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(baseUrl);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-                HttpResponseMessage response = client.GetAsync(string.Format("{0}?id={1}",getByIdAction, view.SelectedId)).Result;
-                if (response.IsSuccessStatusCode)
+                if (view.SelectedId == -1)
                 {
-                    GetWeightTicketResponse getWeightTicketResponse = response.Content.ReadAsAsync<GetWeightTicketResponse>().Result;
-                    if (getWeightTicketResponse.Success)
+                    PropertyCopier.CopyProperties(new Producer(), view.CurrentWeightTicket);
+                }
+                else
+                {
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(baseUrl);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                    HttpResponseMessage response = client.GetAsync(string.Format("{0}?id={1}", getByIdAction, view.SelectedId)).Result;
+                    if (response.IsSuccessStatusCode)
                     {
-                        PropertyCopier.CopyProperties(getWeightTicketResponse.WeightTickets[0], view.CurrentWeightTicket,true);                     
+                        GetWeightTicketResponse getWeightTicketResponse = response.Content.ReadAsAsync<GetWeightTicketResponse>().Result;
+                        if (getWeightTicketResponse.Success)
+                        {
+                            PropertyCopier.CopyProperties(getWeightTicketResponse.WeightTickets[0], view.CurrentWeightTicket, true);
+                        }
                     }
                 }
+                view.CurrentWeightTicket.RaiseUpdateProperties();
             }
-            view.CurrentWeightTicket.RaiseUpdateProperties();
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
 
         public void PrintFirstPart()
         {
-            SaveWeightTicket();
-            printingFirstPart = true;
-            if (view.CurrentWeightTicket.EntranceWeightKg > 0)
-                view.ObtainEntranceWeightEnable = false;
-            else
-                view.ObtainEntranceWeightEnable = true;
-            currentPage = 0;
-            PrintDocument printDocument = new PrintDocument();
-            printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio + "3";
-            PrintDialog pd = new PrintDialog();
-            printDocument.PrinterSettings.PrinterName = "tickets";//TODO Change!
-            pd.Document = printDocument;
-            printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
-            PaperSize ps = new PaperSize();
-            ps.Width = 425;
-            ps.Height = 551;
-            printDocument.DefaultPageSettings.PaperSize = ps;
-            printDocument.Print();
+            try
+            {
+                SaveWeightTicket();
+                printingFirstPart = true;
+                if (view.CurrentWeightTicket.EntranceWeightKg > 0)
+                    view.ObtainEntranceWeightEnable = false;
+                else
+                    view.ObtainEntranceWeightEnable = true;
+                currentPage = 0;
+                PrintDocument printDocument = new PrintDocument();
+                printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio + "3";
+                PrintDialog pd = new PrintDialog();
+                printDocument.PrinterSettings.PrinterName = "tickets";//TODO Change!
+                pd.Document = printDocument;
+                printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
+                PaperSize ps = new PaperSize();
+                ps.Width = 425;
+                ps.Height = 551;
+                printDocument.DefaultPageSettings.PaperSize = ps;
+                printDocument.Print();
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
 
         public void PrintSecondPart()
         {
-            SaveWeightTicket();
-            printingFirstPart = false;
-            if (view.CurrentWeightTicket.EntranceWeightKg > 0)
-                view.ObtainEntranceWeightEnable = false;
-            else
-                view.ObtainEntranceWeightEnable = true;
-            currentPage = 0;
-            PrintDocument printDocument = new PrintDocument();
-            printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio+ "3";
-            printDocument.PrinterSettings.PrinterName = "tickets";//TODO Change!
-            PrintDialog pd = new PrintDialog();
-            pd.Document = printDocument;
-            printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
-            PaperSize ps = new PaperSize();
-            ps.Width = 425;
-            ps.Height = 551;
-            printDocument.DefaultPageSettings.PaperSize = ps;
-            printDocument.Print();
+            try
+            {
+                SaveWeightTicket();
+                printingFirstPart = false;
+                if (view.CurrentWeightTicket.EntranceWeightKg > 0)
+                    view.ObtainEntranceWeightEnable = false;
+                else
+                    view.ObtainEntranceWeightEnable = true;
+                currentPage = 0;
+                PrintDocument printDocument = new PrintDocument();
+                printDocument.DocumentName = "Boleta: " + view.CurrentWeightTicket.Folio + "3";
+                printDocument.PrinterSettings.PrinterName = "tickets";//TODO Change!
+                PrintDialog pd = new PrintDialog();
+                pd.Document = printDocument;
+                printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
+                PaperSize ps = new PaperSize();
+                ps.Width = 425;
+                ps.Height = 551;
+                printDocument.DefaultPageSettings.PaperSize = ps;
+                printDocument.Print();
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
         }
+        public void SaveWeightTicket()
+        {
+            try
+            {
+                bool reLoadList = false;
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+                string action = string.Empty;
+                if (view.CurrentWeightTicket.Id == 0)
+                {
+                    //insert
+                    action = insertAction;
+                    reLoadList = true;
+                }
+                else
+                {
+                    action = updateAction;
+                }
+                //update
+                MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
+                HttpResponseMessage response = client.PostAsync(action, view.CurrentWeightTicket, bsonFormatter).Result;
+                response.EnsureSuccessStatusCode();
+                MediaTypeFormatter[] formatters = new MediaTypeFormatter[] { bsonFormatter };
+                WeightTicketResponse weightTicketResponse = response.Content.ReadAsAsync<WeightTicketResponse>(formatters).Result;
+                if (weightTicketResponse.Success)
+                {
+                    if (weightTicketResponse.WeightTicket != null)
+                    {
+                        if (reLoadList)
+                        {
+                            LoadWeightTickets();
+                            view.SelectedId = weightTicketResponse.WeightTicket.Id;
+                        }
+                    }
+                }
+                else
+                {
+                    throw new WeightTicketException(weightTicketResponse.ErrorCode, weightTicketResponse.ErrorMessage);
+                }
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace();
+                StackFrame sf = st.GetFrame(0);
+                MethodBase currentMethodName = sf.GetMethod();
+                Guid errorId = Guid.NewGuid();
+                //Log error here
+                view.HandleException(ex, currentMethodName.Name, errorId);
+            }
+        }
+        #endregion
 
-        void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        #region Private methods
+
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             e.HasMorePages = ++currentPage < e.PageSettings.PrinterSettings.Copies;
             Graphics g = e.Graphics;
@@ -467,12 +654,12 @@ namespace LasMargaritas.BL.Presenters
                     g.DrawString(sText.ToUpper(), fnt, brush, px, py);
 
                     py += fontSize.Height;
-                    sText = "PESO NETO: " + view.CurrentWeightTicket.NetWeight+ " Kg";
+                    sText = "PESO NETO: " + view.CurrentWeightTicket.NetWeight + " Kg";
                     g.DrawString(sText.ToUpper(), fnt, brush, px, py);
 
                     py += fontSize.Height;
                     if (!(view.WeightTicketType == WeightTicketType.Rancher))
-                    {                        
+                    {
                         if (view.CurrentWeightTicket.Humidity > 0)
                         {
                             sText = "HUMEDAD: " + view.CurrentWeightTicket.Humidity.ToString("N2");
@@ -498,59 +685,15 @@ namespace LasMargaritas.BL.Presenters
                     {
                         sText = "CABEZAS: " + view.CurrentWeightTicket.Cattle.ToString();
                         g.DrawString(sText.ToUpper(), fnt, brush, px, py);
-                    }                    
+                    }
                 }
             }
             catch (System.Exception ex)
             {
-               //TODO LOG!
+                //TODO LOG!
             }
         }
 
-        public void SaveWeightTicket()
-        {
-            bool reLoadList = false;
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/bson"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);            
-            string action = string.Empty;
-            if (view.CurrentWeightTicket.Id == 0)
-            {
-                //insert
-                action = insertAction;
-                reLoadList = true;                
-            }
-            else
-            {
-                action = updateAction;
-            }            
-            //update
-            MediaTypeFormatter bsonFormatter = new BsonMediaTypeFormatter();
-            HttpResponseMessage response = client.PostAsync(action, view.CurrentWeightTicket, bsonFormatter).Result;
-            response.EnsureSuccessStatusCode();
-            MediaTypeFormatter[] formatters = new MediaTypeFormatter[] { bsonFormatter};
-            WeightTicketResponse weightTicketResponse = response.Content.ReadAsAsync<WeightTicketResponse>(formatters).Result;
-            if (weightTicketResponse.Success)
-            {
-                if (weightTicketResponse.WeightTicket != null)
-                {
-                    if (reLoadList)
-                    {
-                        LoadWeightTickets();
-                        view.SelectedId = weightTicketResponse.WeightTicket.Id;
-                    }
-                }
-            }
-            else
-            {
-                throw new WeightTicketException(weightTicketResponse.ErrorCode, weightTicketResponse.ErrorMessage);
-            }
-        }     
-
-        #endregion
-
-        #region Private methods
         /* private void SaveProducersToCache()
            {
                CachedModel<Producer> cachedVersion = new CachedModel<Producer>();
@@ -611,6 +754,93 @@ namespace LasMargaritas.BL.Presenters
             {
                 throw new WeightTicketException(WeightTicketError.ApiCommunicationError);
             }
+        }
+
+        private void LoadProducers()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            HttpResponseMessage response;
+            //Producers
+            response = client.GetAsync(getProducersAction).Result;
+            response.EnsureSuccessStatusCode();
+            GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+            if (getSelectableModelResponse.Success)
+            {
+                view.Producers = getSelectableModelResponse.SelectableModels;
+            }
+            else
+            {
+                throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+            }            
+        }
+
+        private void LoadRanchers()
+        {
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            HttpResponseMessage response;
+            //Ranchers
+            response = client.GetAsync(getRanchersAction).Result;
+            response.EnsureSuccessStatusCode();
+            GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+            if (getSelectableModelResponse.Success)
+            {
+                view.Ranchers = getSelectableModelResponse.SelectableModels;
+            }
+            else
+            {
+                throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+            }            
+        }
+
+        private void LoadSuppliers()
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            HttpResponseMessage response;
+            //Suppliers
+            response = client.GetAsync(getSuppliersAction).Result;
+            response.EnsureSuccessStatusCode();
+            GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+            if (getSelectableModelResponse.Success)
+            {
+                view.Suppliers = getSelectableModelResponse.SelectableModels;
+            }
+            else
+            {
+                throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+            }
+        }
+
+        private void LoadSaleCustomers()
+        {
+
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
+            HttpResponseMessage response;
+            //Sales customers
+            response = client.GetAsync(getSalesCustomersAction).Result;
+            response.EnsureSuccessStatusCode();
+            GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+            if (getSelectableModelResponse.Success)
+            {
+                view.SaleCustomers = getSelectableModelResponse.SelectableModels;
+            }
+            else
+            {
+                throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+            }           
         }
         #endregion
     }

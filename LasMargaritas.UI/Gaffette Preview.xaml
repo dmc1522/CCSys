@@ -11,14 +11,14 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">            
-                <Border Margin="20" BorderThickness="2" BorderBrush="Black" Width="400" Height="300">                
+                <Border Margin="20" BorderThickness="2" BorderBrush="Black" Width="400" Height="280">                
                         <WindowsFormsHost Name="WindowsFormsHostImageFront">
                             <WindowsFormsHost.Child>
                                 <wfc:WFImageWrapperControl x:Name="ImageFront" />
                             </WindowsFormsHost.Child>
                         </WindowsFormsHost>                
                 </Border>
-                <Border Margin="20" BorderThickness="2" BorderBrush="Black" Width="400" Height="300">
+                <Border Margin="20" BorderThickness="2" BorderBrush="Black" Width="400" Height="280">
                     <WindowsFormsHost Name="WindowsFormsHostImageBack">
                         <WindowsFormsHost.Child>
                             <wfc:WFImageWrapperControl x:Name="ImageBack" />

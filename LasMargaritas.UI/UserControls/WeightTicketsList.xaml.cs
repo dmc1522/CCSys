@@ -28,6 +28,12 @@ namespace LasMargaritas.UI.UserControls
         private bool listLoaded;
         private WeightTicketPresenter presenter;
         private List<SelectableModel> _WeightTickets;
+        private List<SelectableModel> _Producers;
+        private List<SelectableModel> _Ranchers;
+        private List<SelectableModel> _Suppliers;
+        private List<SelectableModel> _SaleCustomers;
+        
+
         #endregion
 
         #region Public properties
@@ -35,7 +41,18 @@ namespace LasMargaritas.UI.UserControls
         #endregion
 
         #region IWeightTicketView
-        public List<SelectableModel> Producers { get; set; }
+        public List<SelectableModel> Producers
+        {
+            get
+            {
+                return _Producers;
+            }
+            set
+            {
+                _Producers = value;
+                ComboBoxProducer.ItemsSource = value;
+            }
+        }
         public List<SelectableModel> WareHouses { get; set; }
 
         public List<SelectableModel> Products { get; set; }
@@ -44,11 +61,42 @@ namespace LasMargaritas.UI.UserControls
 
         public List<SelectableModel> Cicles { get; set; }
 
-        public List<SelectableModel> Ranchers { get; set; }
-
-        public List<SelectableModel> Suppliers { get; set; }
-
-        public List<SelectableModel> SalesCustomers { get; set; }
+        public List<SelectableModel> Ranchers
+        {
+            get
+            {
+                return _Ranchers;
+            }
+            set
+            {
+                _Ranchers = value;
+                ComboBoxRancher.ItemsSource = value;
+            }
+        }
+        public List<SelectableModel> Suppliers
+        {
+            get
+            {
+                return _Suppliers;
+            }
+            set
+            {
+                _Suppliers = value;
+                ComboBoxSupplier.ItemsSource = value;
+            }
+        }
+        public List<SelectableModel> SaleCustomers
+        {
+            get
+            {
+                return _SaleCustomers;
+            }
+            set
+            {
+                _SaleCustomers = value;
+                ComboBoxSalesCustomer.ItemsSource = value;
+            }
+        }
 
         public int SelectedFilterCicleId
         {
@@ -189,7 +237,22 @@ namespace LasMargaritas.UI.UserControls
 
         public void HandleException(Exception ex, string method, Guid errorId)
         {
-            
+
+            string errorMessage = string.Empty;
+            if (ex is WeightTicketException)
+            {
+                errorMessage = "Hubo un problema en la última acción. Detalles: - WeightTicket Exception: " + ((WeightTicketException)ex).Error.ToString();
+            }
+            else if (ex is SelectableModelException)
+            {
+                errorMessage = "Hubo un problema en la última acción. Detalles: - SelectableModelException Exception: " + ((SelectableModelException)ex).Error.ToString();
+            }
+            else
+            {
+                errorMessage = "Hubo un problema en la última acción. Detalles: - Unknown Exception ";
+            }
+            errorMessage += ". " + ex.Message + ". Method: " + method;
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         #endregion
         #region Constructors
@@ -224,17 +287,13 @@ namespace LasMargaritas.UI.UserControls
                 presenter.LoadCatalogs();                
                 ComboBoxCiclesFilter.ItemsSource = FilterCicles;
                 ComboBoxCicles.ItemsSource = Cicles;
-                ComboBoxProducer.ItemsSource = Producers;                
-                ComboBoxRancher.ItemsSource = Ranchers;
-                ComboBoxSalesCustomer.ItemsSource = SalesCustomers;
-                ComboBoxSupplier.ItemsSource = Suppliers;
                 ComboboxWareHouse.ItemsSource = WareHouses;
                 listLoaded = true;
                 ComboBoxCiclesFilter.SelectedIndex = 0;
                 ComboBoxTicketType.SelectedIndex = 0;
                 presenter.LoadProducts();
                 ComboBoxProducts.ItemsSource = Products;
-                presenter.LoadWeightTickets();
+                presenter.LoadWeightTickets();                
                // CreateDummyTicket();
             }
         }
@@ -409,6 +468,12 @@ namespace LasMargaritas.UI.UserControls
         private void ButtonExitDateToNow_Click(object sender, RoutedEventArgs e)
         {
             presenter.SetExitDateToNow();
+        }
+
+        
+        private void btnReloadSellerBuyer_Click(object sender, RoutedEventArgs e)
+        {
+            presenter.ReloadSellerBuyer();
         }
     }     
 }

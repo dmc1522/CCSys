@@ -227,7 +227,7 @@
                                     </ItemsPanelTemplate>
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
-                            <Button Height="0" Grid.Column ="2"  x:Name="btnSearchingBatch" Content="Identificar" />
+                            <Button Height="0" Grid.Column ="2"  x:Name="btnReloadSellerBuyer" Content="Recargar" Click="btnReloadSellerBuyer_Click" />
 
                             <TextBlock Grid.Column="0" Visibility="Collapsed"  Text="Productor:" x:Name="LabelProducer" Style="{StaticResource SubHeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             <ComboBox Grid.Column="1" DisplayMemberPath="Name" SelectedValuePath="Id" Visibility="Collapsed" IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True" x:Name="ComboBoxProducer"  SelectedValue="{Binding ProducerId}" TextSearch.TextPath="Name" Margin="1">

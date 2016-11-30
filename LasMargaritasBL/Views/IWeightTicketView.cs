@@ -15,7 +15,7 @@ namespace LasMargaritas.BL.Views
         List<SelectableModel> Cicles { get; set; }
         List<SelectableModel> Ranchers { get; set; }
         List<SelectableModel> Suppliers { get; set; }
-        List<SelectableModel> SalesCustomers { get; set; }
+        List<SelectableModel> SaleCustomers { get; set; }
         List<SelectableModel> WeightTickets { get; set; }
         List<SelectableModel> WareHouses { get; set; }
         int SelectedId { get; set; }

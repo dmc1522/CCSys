@@ -106,12 +106,12 @@ namespace LasMargaritas.UI
                 return;
             }
             result = ZBRGDIDrawImageRect(frontBackGround, 10, 10, 1054, 654, ref error);
-            result = ZBRGDIDrawImageRect(photo, 377, 50, 300, 300, ref error);
-            result = ZBRGDIDrawImageRect(qrCodeImageBytes, 412, 460, 230, 230, ref error);
-            result = ZBRGDIDrawText(440, 680, qrCodeText, myFont, 10, 1, 1, ref error);
+            result = ZBRGDIDrawImageRect(photo, 700, 105, 300, 300, ref error);
+            result = ZBRGDIDrawImageRect(qrCodeImageBytes, 215, 320, 225, 225, ref error);
+            result = ZBRGDIDrawText(215, 590, qrCodeText, myFont, 10, 1, 1, ref error);
             //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);
-            result = ZBRGDIDrawText(180, 380, producerName, myFont, 10, 1, 1, ref error);
-            result = ZBRGDIDrawText(180, 450, producerTitle, myFont, 7, 1, 1, ref error);
+            result = ZBRGDIDrawText(50, 120, producerName, myFont, 9, 1, 1, ref error);
+            result = ZBRGDIDrawText(70, 220, producerTitle, myFont, 7, 1, 1, ref error);
             //result = ZBRGDIDrawText(30, 580, businessData, myFont, 6, 1, 16777215, ref error);
             if(isPreview)
                 result = ZBRGDIPreviewGraphics(ImageFront.PreviewImageHandle, ref error);
