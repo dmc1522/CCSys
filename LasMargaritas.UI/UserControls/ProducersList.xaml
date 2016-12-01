@@ -196,7 +196,7 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="5" Text="C. Postal: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding ZipCode}" x:Name="TextBoxZipCode"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding ZipCode}" x:Name="TextBoxZipCode" InputScope="Number"  />
                         <TextBlock Grid.Column="3" Margin="5" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
                         <ComboBox Grid.Column="4" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState">                            
                         </ComboBox>
@@ -240,7 +240,7 @@
                             <ColumnDefinition Width="*" MinWidth="200"  />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Margin="5" Text="Email: "  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Email}" x:Name="TextBoxEmail"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Email}" x:Name="TextBoxEmail" InputScope="EmailSmtpAddress"  />
                         <TextBlock Grid.Column="3" Margin="5"  Text="Estado Civil: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
                         <ComboBox Grid.Column="4" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id"  SelectedValue="{Binding CivilStatusId}" x:Name="ComboBoxCivilStatus" >                            
                         </ComboBox>

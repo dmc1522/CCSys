@@ -4,7 +4,7 @@ using System;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
-
+using WPFTabTip;
 
 namespace LasMargaritas.UI
 {
@@ -19,6 +19,9 @@ namespace LasMargaritas.UI
         public MainWindow()
         {
             FrameworkCompatibilityPreferences.KeepTextBoxDisplaySynchronizedWithTextProperty = false;
+            TabTipAutomation.IgnoreHardwareKeyboard = HardwareKeyboardIgnoreOptions.IgnoreAll;
+            TabTipAutomation.BindTo<TextBox>();
+            TabTipAutomation.BindTo<PasswordBox>();           
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -96,7 +99,5 @@ namespace LasMargaritas.UI
             saleCustomers.Visibility = Visibility.Visible;
             suppliers.Visibility = Visibility.Hidden;
         }
-
-
     }
 }

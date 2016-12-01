@@ -27,7 +27,7 @@
                 <RowDefinition MinHeight="180" Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock  Grid.Row="0" Text="Administrador de Boletas"   Style="{StaticResource HeaderTextBlockStyle}"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            
+
             <Grid Grid.Row="1" Margin="5" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
@@ -120,21 +120,21 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
-                            
+
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
-                            
+
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="*"/>                            
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        
+
                         <StackPanel Grid.Row="0" Orientation="Vertical" Margin="5">
                             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                         </StackPanel>
-                        
+
                         <Grid Grid.Row="1" x:Name="GridFolioWareHouseAndCicle" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition  />
@@ -154,7 +154,7 @@
                                     <ColumnDefinition Width="*" MinWidth="100"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Id interno: "  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBox Grid.Column="1" x:Name="TextBoxId" IsReadOnly="True" Text="{Binding Id}" Margin="1"/>
+                                <TextBox Grid.Column="1" x:Name="TextBoxId" IsReadOnly="True" Text="{Binding Id}" Margin="1" InputScope="Number"/>
                             </Grid>
                             <Grid Grid.Column="1"  x:Name="GridFolio" >
                                 <Grid.ColumnDefinitions>
@@ -162,7 +162,7 @@
                                     <ColumnDefinition Width="*" MinWidth="100"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Folio: #"  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBox VerticalAlignment="Stretch" Grid.Column="1" x:Name="txtFolio" Text="{Binding Folio, Converter={StaticResource caseConverter}}" Margin="1"/>
+                                <TextBox VerticalAlignment="Stretch" Grid.Column="1" x:Name="txtFolio" Text="{Binding Folio, Converter={StaticResource caseConverter}}" Margin="1" InputScope="Number" />
                             </Grid>
                             <Grid Grid.Column="2"  x:Name="GridNumber" >
                                 <Grid.ColumnDefinitions>
@@ -170,7 +170,7 @@
                                     <ColumnDefinition Width="*" MinWidth="100"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Numero: #"  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBox Grid.Column="1" x:Name="TextBoxNumber" Text="{Binding Number, Converter={StaticResource caseConverter}}" Margin="1"/>
+                                <TextBox Grid.Column="1" x:Name="TextBoxNumber" Text="{Binding Number, Converter={StaticResource caseConverter}}" Margin="1" InputScope="Number"/>
                             </Grid>
 
                         </Grid>
@@ -416,7 +416,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0"  Text="Ganado: #" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                            <TextBox Grid.Column="1"  Text="{Binding Cattle}"  x:Name="txtCattle"  Margin="1"/>
+                            <TextBox Grid.Column="1"  Text="{Binding Cattle}"  x:Name="txtCattle"  Margin="1" InputScope="Number"/>
                             <TextBlock Grid.Column="2"  Text="Granja a corrales: " HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                             <CheckBox Grid.Column="3"  IsChecked="{Binding FromFarmToPens}"  x:Name="ChecBoxFromFarmToPens"  Margin="1"/>
 
@@ -455,7 +455,7 @@
                                 <ColumnDefinition Width="120" />
                                 <ColumnDefinition Width="*" MinWidth="200"/>
                                 <ColumnDefinition Width="150" MinWidth="150"/>
-                                
+
                             </Grid.ColumnDefinitions>
                             <TextBlock   Grid.Column="0"  Text="Fecha de Salida:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                             <TextBox  Grid.Column="1"  x:Name="txtDateWeigth2" Text="{Binding ExitDate,  StringFormat=dd/MM/yyy HH:mm,  ConverterCulture=es-MX}"></TextBox>
@@ -503,7 +503,7 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
-                                
+
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0" Margin="8">
                                 <Grid.ColumnDefinitions>
@@ -513,9 +513,9 @@
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock   Grid.Column="0"  Text="Peso Neto:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox IsEnabled="False" Grid.Column="1" x:Name="TextPesoNeto" Text="{Binding NetWeight}" Margin="1"/>
+                                <TextBox IsEnabled="False" Grid.Column="1" x:Name="TextPesoNeto" Text="{Binding NetWeight}" Margin="1" InputScope="Number"/>
                                 <TextBlock   Grid.Column="2"  Text="Dcto. X Humedad:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox  IsEnabled="False" Grid.Column="3" x:Name="TextBoxHumidityDiscount" Text="{Binding HumidityDiscount}" Margin="1"/>
+                                <TextBox  IsEnabled="False" Grid.Column="3" x:Name="TextBoxHumidityDiscount" Text="{Binding HumidityDiscount}" Margin="1" InputScope="Number"/>
                             </Grid>
                             <Grid Grid.Row="1" Margin="8">
                                 <Grid.ColumnDefinitions>
@@ -527,7 +527,7 @@
                                 <TextBlock   Grid.Column="0"  Text="Dcto. X Impurezas:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                                 <TextBox  IsEnabled="False" Grid.Column="1" x:Name="TextBoxImpuritiesDiscount" Text="{Binding ImpuritiesDiscount}" Margin="1"/>
                                 <TextBlock   Grid.Column="2"  Text="Peso Total a Pagar:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox   IsEnabled="False" Grid.Column="3" x:Name="TextBoxTotalWeightToPay" Text="{Binding TotalWeightToPay}" Margin="1"/>
+                                <TextBox   IsEnabled="False" Grid.Column="3" x:Name="TextBoxTotalWeightToPay" Text="{Binding TotalWeightToPay}" Margin="1" InputScope="Number"/>
                             </Grid>
                             <Grid Grid.Row="2" Margin="8">
                                 <Grid.ColumnDefinitions>
@@ -539,7 +539,7 @@
                                 <TextBlock   Grid.Column="0"  Text="Precio:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                                 <TextBox  Grid.Column="1" x:Name="TextBoxPrecio" Text="{Binding Price, StringFormat=C2, UpdateSourceTrigger=PropertyChanged}" Margin="1"  LostFocus="CalculatePrices_LostFocus"/>
                                 <TextBlock   Grid.Column="2"  Text="SubTotal:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox  IsEnabled="False" Grid.Column="3" x:Name="TextBoxSubTotal" Text="{Binding SubTotal, StringFormat=C2}" Margin="1"/>
+                                <TextBox  IsEnabled="False" Grid.Column="3" x:Name="TextBoxSubTotal" Text="{Binding SubTotal, StringFormat=C2}" Margin="1,0,1,1" InputScope="Number" Height="30" VerticalAlignment="Bottom"/>
                             </Grid>
                             <Grid Grid.Row="3" Margin="8">
                                 <Grid.ColumnDefinitions>
@@ -549,7 +549,7 @@
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                 </Grid.ColumnDefinitions>
                                 <CheckBox Grid.Column ="0" x:Name="CheckBoxDryingDiscount" Content="Dcto X Secado:" IsChecked="{Binding ApplyDrying, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderCheckBoxStyle}" Unchecked="CheckBoxCalculatePrices_CheckedUnChecked" Checked="CheckBoxCalculatePrices_CheckedUnChecked"/>
-                                <TextBox  IsEnabled="False" Grid.Column="1" x:Name="TextBoxDryingDiscount"  Text="{Binding DryingDiscount, StringFormat=C2}"  Margin="1"/>
+                                <TextBox  IsEnabled="False" InputScope="Number" Grid.Column="1" x:Name="TextBoxDryingDiscount"  Text="{Binding DryingDiscount, StringFormat=C2}"  Margin="1"/>
                                 <TextBlock   Grid.Column="2"  Text="Dcto por G. Quebrado:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
                                 <TextBox Grid.Column="3" x:Name="TextboxBrokenGrainDiscount"  Text="{Binding BrokenGrainDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
                             </Grid>
@@ -561,9 +561,9 @@
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock   Grid.Column="0"  Text="Dcto por G. Estrellado:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox Grid.Column="1" x:Name="TextBoxCrashedGrainDiscount"  Text="{Binding CrashedGrainDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
+                                <TextBox Grid.Column="1" x:Name="TextBoxCrashedGrainDiscount" InputScope="Number"  Text="{Binding CrashedGrainDiscount, StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
                                 <TextBlock   Grid.Column="2"  Text="Dcto por G. Pequeño:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox Grid.Column="31" x:Name="TextBoxSmallGrainDiscount"  Text="{Binding SmallGrainDiscount, StringFormat=C2, UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
+                                <TextBox Grid.Column="31" x:Name="TextBoxSmallGrainDiscount"   InputScope="Number" Text="{Binding SmallGrainDiscount, StringFormat=C2, UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
 
                             </Grid>
                             <Grid Grid.Row="5" Margin="8">
@@ -574,7 +574,7 @@
                                     <ColumnDefinition Width="*" MinWidth="150" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock   Grid.Column="0"  Text="Dcto X Grano dañado:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox Grid.Column="1" x:Name="TextboxDamagedGrainDiscount"  Text="{Binding DamagedGrainDiscount,StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
+                                <TextBox Grid.Column="1" x:Name="TextboxDamagedGrainDiscount"  InputScope="Number" Text="{Binding DamagedGrainDiscount,StringFormat=C2,UpdateSourceTrigger=PropertyChanged}"  Margin="1" LostFocus="CalculatePrices_LostFocus"/>
 
                             </Grid>
                             <Grid Grid.Row="6" Margin="8">
@@ -583,7 +583,7 @@
                                     <ColumnDefinition Width="*" MinWidth="200" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock   Grid.Column="0"  Text="Total a Pagar:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
-                                <TextBox Grid.Column="1" x:Name="TextBoxTotalToPay"  Text="{Binding TotalToPay, StringFormat=C2}"  Style="{StaticResource HeaderTextBoxStyle}" Margin="1"/>
+                                <TextBox Grid.Column="1" x:Name="TextBoxTotalToPay"  Text="{Binding TotalToPay, StringFormat=C2}"  Style="{StaticResource HeaderTextBoxStyle}" Margin="1" InputScope="Number"/>
 
                             </Grid>
 
