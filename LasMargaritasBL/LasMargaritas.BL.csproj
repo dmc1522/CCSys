@@ -92,6 +92,9 @@
     <Compile Include="LastModificationBL.cs" />
     <Compile Include="CicleBL.cs" />
     <Compile Include="ImageScaler.cs" />
+    <Compile Include="Presenters\ProductPresenter.cs" />
+    <Compile Include="Presenters\CiclePresenter.cs" />
+    <Compile Include="Presenters\WareHousePresenter.cs" />
     <Compile Include="Presenters\WeightTicketPresenter.cs" />
     <Compile Include="Presenters\SupplierPresenter.cs" />
     <Compile Include="Presenters\RancherPresenter.cs" />
@@ -107,6 +110,9 @@
     <Compile Include="UserBL.cs" />
     <Compile Include="Utils\DiscountCalculator.cs" />
     <Compile Include="Utils\PropertyCopier.cs" />
+    <Compile Include="Views\IWareHouseView.cs" />
+    <Compile Include="Views\IProductView.cs" />
+    <Compile Include="Views\ICicleView.cs" />
     <Compile Include="Views\IWeightTicketView.cs" />
     <Compile Include="Views\IProducerView.cs" />
     <Compile Include="Views\IRancherView.cs" />

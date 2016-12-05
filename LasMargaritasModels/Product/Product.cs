@@ -1,9 +1,16 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace LasMargaritas.Models
 {
-    public class Product
+    public class Product : INotifyPropertyChanged
     {
+        public void RaiseUpdateProperties()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -33,6 +40,8 @@ namespace LasMargaritas.Models
         public int? ProductGroupId { get; set; }
 
         public int? AgriculturalBrandId { get; set; }
+
+        
 
     }
 

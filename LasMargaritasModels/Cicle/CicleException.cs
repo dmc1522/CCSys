@@ -10,5 +10,13 @@ namespace LasMargaritas.Models
         {
             Error = error;
         }
+        public CicleException(CicleError error, string message):base(message)
+        {
+            Error = error;
+        }
+        public CicleException(string message) : base(message)
+        {
+
+        }
     }
 }

@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="LasMargaritas.UI.UserControls.CicleList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LasMargaritas.UI.UserControls"
+             xmlns:cnv="clr-namespace:LasMargaritas.UI.Converters"
+             mc:Ignorable="d" 
+             IsVisibleChanged="UserControl_IsVisibleChanged">
+
+    <Grid x:Name="GridCiclesControl" Visibility="Visible" Margin="5" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600*" MinWidth="300" />
+            <ColumnDefinition Width="1300*" MinWidth="500" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" TextBlock.TextAlignment="Center">
+            <Grid Background="#BDBDBD" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40"/>
+                    <RowDefinition MinHeight="180" Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center"  Grid.Column="0" Text="Buscar:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                    <TextBox Grid.Column="1" x:Name="TextBoxSearchCicles"  Margin="15,2" TextChanged="TextBoxSearchCicles_TextChanged"  />
+                </Grid>
+                <Button Grid.Row="1"  x:Name="ButtonAddCicle" Content="Nuevo Ciclo"  Margin="15,2" Click="ButtonAddCicle_Click" />
+                <ListBox  Grid.Row="2" x:Name="ListBoxCicles"  Margin="15,20" SelectionChanged="ListBoxCicles_SelectionChanged"  >
+                    <ListBox.Resources>
+                        <cnv:CaseConverter x:Key="caseConverter" />
+                    </ListBox.Resources>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <TextBlock Text="{Binding Name, Converter={StaticResource caseConverter}}"></TextBlock>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+
+        <Grid  Grid.Column="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                <Grid x:Name="GridCicleDetails"  MinWidth="400" MaxWidth="700" VerticalAlignment="Center" >
+                    <Grid.Resources>
+                        <cnv:ImageConverter x:Key="imageConverter" />
+                        <cnv:CaseConverter x:Key="caseConverter" />
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="80" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="17.667"  />
+                            <ColumnDefinition Width="82.333"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}" Margin="0,13">ID:</TextBlock>
+                        <TextBox CharacterCasing="Upper" Grid.Column="1" Text="{Binding Id}" x:Name="TextBoxId" IsEnabled="False" Foreground="Brown" VerticalAlignment="Center" RenderTransformOrigin="0.42,5.267" Grid.ColumnSpan="2" Margin="0,8,0,7" ></TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="30,5"  VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                            <ColumnDefinition Width="20*" MaxWidth="70" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" CharacterCasing="Upper" Text="{Binding Name, Converter={StaticResource caseConverter}}" x:Name="TextBoxLastName"  />
+                        <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}" ><Run Text="RFC:"/><LineBreak/><Run/></TextBlock>
+                        <TextBox Grid.Column="4"    CharacterCasing="Upper" Text="{Binding RFC}" x:Name="TextBoxRFC" />
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                            <ColumnDefinition Width="20*" MaxWidth="70" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="3" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}" ><Run Text="Ciudad"/><LineBreak/><Run/></TextBlock>
+                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding City}" x:Name="TextBoxCity"  />
+                        <TextBlock Margin="10,9,0,0" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState" Margin="0,5,4,-4"/>
+                    </Grid>
+
+
+
+                    <Grid Grid.Row="4" Margin="30,5"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="400"  />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="5,17,5,10"  Text="Domicilio:"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
+                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Address}" TextWrapping="Wrap" AcceptsReturn="True" x:Name="TextBoxAddress" Margin="0,10,0,5"  />
+                    </Grid>
+
+                    <Grid Grid.Row="6" Margin="30,5"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="197*" MinWidth="200"  />
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="70*" MaxWidth="70" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="210*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+
+                    <Grid Grid.Row="7" Margin="30,5"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                            <ColumnDefinition Width="20*" MaxWidth="70" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+
+                    <Grid Grid.Row="8" Margin="30,5"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                            <ColumnDefinition Width="20*" MaxWidth="70" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+
+                    <Grid Grid.Row="9" Margin="30,5"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                            <ColumnDefinition Width="20*" MaxWidth="70" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+
+                    <Grid Grid.Row="10" Margin="30,5"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                            <ColumnDefinition Width="20*" MaxWidth="70" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+
+                    <Grid Grid.Row="11" Margin="30,5"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                            <ColumnDefinition Width="20*" MaxWidth="70" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+
+                    <Grid Grid.Row="8" Margin="24,5,36,5"  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" MinWidth="200"  />
+                            <ColumnDefinition Width="85" />
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="150"  />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="5"  Text="Cód. de barras: "  Style="{StaticResource SubHeaderTextBlockStyle}" />
+                        <TextBox Grid.Column="1" IsEnabled="False" Margin="2"   CharacterCasing="Upper" Text="{Binding BarCode}" x:Name="TextBoxBarCode"  />
+                        <Button Grid.Column="2" x:Name="ButtonSave" Click="ButtonSave_Click" Width="100" Grid.ColumnSpan="2" Margin="10,0" >Guardar</Button>
+                        <Button  Grid.Column="4" x:Name="ButtonDelete" Width="100" IsEnabled="{Binding ElementName=ListBoxCicles, Path=SelectedItems.Count}" Click="ButtonDelete_Click" Margin="10,0">Eliminar
+                        </Button>
+
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

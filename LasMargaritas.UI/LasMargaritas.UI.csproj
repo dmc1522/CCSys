@@ -128,8 +128,17 @@
       <DependentUpon>Gaffette Preview.xaml</DependentUpon>
     </Compile>
     <Compile Include="System\Drawing\Color.cs" />
+    <Compile Include="UserControls\ProductList.xaml.cs">
+      <DependentUpon>ProductList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WareHouseList.xaml.cs">
+      <DependentUpon>WareHouseList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PopUps\StatusProcess.xaml.cs">
       <DependentUpon>StatusProcess.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CicleList.xaml.cs">
+      <DependentUpon>CicleList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SupplierList.xaml.cs">
       <DependentUpon>SupplierList.xaml</DependentUpon>
@@ -214,9 +223,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\ProductList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\WareHouseList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\PopUps\StatusProcess.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CicleList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\SupplierList.xaml">
       <Generator>MSBuild:Compile</Generator>
