@@ -1,283 +1,125 @@
-﻿<UserControl x:Class="LasMargaritas.UI.UserControls.ProducerList"
+﻿<UserControl x:Class="LasMargaritas.UI.UserControls.WeightTicketsReport"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LasMargaritas.UI.UserControls"
-             xmlns:wpf="clr-namespace:WebEye.Controls.Wpf;assembly=WebEye.Controls.Wpf.WebCameraControl"
+             xmlns:local="clr-namespace:LasMargaritas.UI.UserControls"             
              xmlns:cnv="clr-namespace:LasMargaritas.UI.Converters"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              IsVisibleChanged="UserControl_IsVisibleChanged">
 
     <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="600*" MinWidth="300" />
-            <ColumnDefinition Width="1300*" MinWidth="500" />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="0" TextBlock.TextAlignment="Center">
-            <Grid Background="#BDBDBD" >
-                <Grid.RowDefinitions>                                      
-                    <RowDefinition Height="45" />                    
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition MinHeight="180" Height="*"/>
-                </Grid.RowDefinitions>                
-               
-                <Grid Grid.Row="0" Margin="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Center"  Grid.Column="0" Text="Buscar:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                    <TextBox Grid.Column="1" x:Name="TextBoxSearchProducers"  Margin="15,2" TextChanged="TextBoxSearchProducers_TextChanged"  />
-                </Grid>
-
+        <Grid.Resources>
+            <cnv:CaseConverter x:Key="caseConverter" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="330" MinHeight="200">               
+            </RowDefinition>
+            <RowDefinition Height="750" MinHeight="500">
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid x:Name="GridFilters" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" MinWidth="100">                    
+                </ColumnDefinition>
+                <ColumnDefinition Width="500" MinWidth="250">
+                </ColumnDefinition>
+                <ColumnDefinition Width="200" MinWidth="100">
+                </ColumnDefinition>
+                <ColumnDefinition Width="500" MinWidth="250">
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+            </Grid.RowDefinitions>
+            <RadioButton Checked="RadioButtonProducer_Checked"  x:Name="RadioButtonProducer" GroupName="WeightTicket" Margin="40 0 0 0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0">Productor</RadioButton>
+            <ComboBox SelectedValue="{Binding ProducerId}"  DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxProducer" Grid.Row="0" Grid.Column="1">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">Producto</Label>
+            <ComboBox SelectedValue="{Binding ProductId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxProduct" Grid.Row="0" Grid.Column="3"></ComboBox>
+            <RadioButton Checked="RadioButtonSaleCustomer_Checked" x:Name="RadioButtonSaleCustomer" GroupName="WeightTicket" Margin="40 0 0 0" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0">Cliente de Venta</RadioButton>
+            <ComboBox SelectedValue="{Binding SaleCustomerId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxSaleCustomer" Grid.Row="1" Grid.Column="1">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2">Entrada/Salida?</Label>
+            <ComboBox SelectionChanged="ComboBoxEntranceExitType_SelectionChanged" x:Name="ComboBoxEntranceExitType" Grid.Row="1" Grid.Column="3">
+                <ComboBoxItem>Todas</ComboBoxItem>
+                <ComboBoxItem>Entrada</ComboBoxItem>
+                <ComboBoxItem>Salidas</ComboBoxItem>
+            </ComboBox>
+            <RadioButton  Checked="RadioButtonRancher_Checked" x:Name="RadioButtonRancher" GroupName="WeightTicket" Margin="40 0 0 0" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0">Proveedor/Ganado</RadioButton>
+            <ComboBox SelectedValue="{Binding RancherId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxRancher" Grid.Row="2" Grid.Column="1">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"># Ticket</Label>
+            <TextBox Text="{Binding Folio, Converter={StaticResource caseConverter}}" x:Name="TextBoxTicket" Grid.Row="2" Grid.Column="3"></TextBox>
+            <RadioButton Checked="RadioButtonSupplier_Checked" x:Name="RadioButtonSupplier" GroupName="WeightTicket" Margin="40 0 0 0" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0">Proveedores</RadioButton>
+            <ComboBox  SelectedValue="{Binding SupplierId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxSupplier" Grid.Row="3" Grid.Column="1">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2">Bodega</Label>
+            <ComboBox SelectedValue="{Binding WareHouseId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxWareHouse" Grid.Row="3" Grid.Column="3"></ComboBox>
+            <CheckBox Checked="CheckBoxDateFilter_Checked" Unchecked="CheckBoxDateFilter_Unchecked" x:Name="CheckBoxDateFilter"  Margin="30 10 0 0" HorizontalAlignment="Left" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0">Filtrar por fecha</CheckBox>
+            <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2">Ciclo</Label>
+            <ComboBox SelectedValue="{Binding CicleId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxCicle" Grid.Row="4" Grid.Column="3"></ComboBox>
+            <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Fecha Inicio</Label>
+            <DatePicker  SelectedDate="{Binding StartTime, StringFormat=d, ConverterCulture=es-MX}"  Grid.Row="5" Grid.Column="1" x:Name="TextBoxStartDate" BorderThickness="0">
+                <DatePicker.Resources>
+                    <Style TargetType="{x:Type DatePickerTextBox}">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox x:Name="DateTextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+            <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2">Fecha Fin</Label>
+            <DatePicker  SelectedDate="{Binding EndDateTime, StringFormat=d, ConverterCulture=es-MX}" Grid.Row="5" Grid.Column="3" x:Name="TextBoxEndDate" BorderThickness="0">
+                <DatePicker.Resources>
+                    <Style TargetType="{x:Type DatePickerTextBox}">
+                        <Setter Property="Control.Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <TextBox x:Name="DateTextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+            <Button Margin="5" Grid.Column="0" Grid.ColumnSpan="4" Width="100" Grid.Row="6" x:Name="ButtonReloadReport" Click="ButtonReloadReport_Click">Filtrar</Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DataGrid x:Name="DataGridWeightTickets" IsReadOnly="True">
                 
-                <Button Grid.Row="1"  x:Name="ButtonAddProducer" Content="Nuevo Productor"  Margin="15,2" Click="ButtonAddProducer_Click" />
-
-                <Button Grid.Row="2"  x:Name="ButtonReloadList" Content="Recargar lista"  Margin="15,2" Click="ButtonReloadList_Click" />
-
-                <ListBox  Grid.Row="3" x:Name="ListBoxProducers"  Margin="15,20" SelectionChanged="ListBoxProducers_SelectionChanged"  >
-                    <ListBox.Resources>
-                        <cnv:CaseConverter x:Key="caseConverter" />
-                    </ListBox.Resources>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <WrapPanel>
-                                <TextBlock Text="{Binding Name, Converter={StaticResource caseConverter}}"></TextBlock>                                
-                            </WrapPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
-
-
-        </Grid>
-
-        <Grid  Grid.Column="1">
-            <ScrollViewer HorizontalScrollBarVisibility="Visible">
-                <Grid x:Name="GridProducerDetails"  MinWidth="400" MaxWidth="700" VerticalAlignment="Center" >
-                    <Grid.Resources>
-                        <cnv:ImageConverter x:Key="imageConverter" />
-                        <cnv:CaseConverter x:Key="caseConverter" />
-                    </Grid.Resources>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="230"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="90" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                        <RowDefinition Height="45" />
-                    </Grid.RowDefinitions>
-
-                    <Grid Grid.Row="0" HorizontalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30" />
-                            <ColumnDefinition Width="100"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}">ID:</TextBlock>
-                        <TextBox CharacterCasing="Upper" Grid.Column="1" Text="{Binding Id}" x:Name="TextBoxId" IsEnabled="False" Foreground="Brown" VerticalAlignment="Center" ></TextBox>
-                    </Grid>
-
-                    <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="153"/>
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Visibility="Hidden" x:Name="ButtonGetImage" Background="Transparent"  Click="ButtonGetImage_Click">
-                            <wpf:WebCameraControl  x:Name="webCameraControl" Visibility="Visible"/>
-                        </Button>
-                        <Button Grid.Row="0" x:Name="ButtonCaptureImage" Background="Transparent" Click="ButtonGetImage_Click">
-                            <Image  Margin="0" x:Name="ImageProducer" Source="{Binding Photo}"></Image>
-                        </Button>
-                        <TextBlock Grid.Row="1" x:Name="TextBoxImageInstructions" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}">Click para CAPTURAR foto</TextBlock>
-                    </Grid>
-
-                    <Grid Grid.Row="2" Margin="30,5"  VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="85*" MaxWidth="85"/>
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5"  Text="Nombre(s):"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" CharacterCasing="Upper" Text="{Binding Name, Converter={StaticResource caseConverter}}" x:Name="TextBoxLastName"  />
-                    </Grid>
-
-                    <Grid Grid.Row="3" Margin="30,5"  VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90*" MaxWidth="90" />
-                            <ColumnDefinition Width="*" MinWidth="200" />
-                            <ColumnDefinition Width="90*" MaxWidth="90"  />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5"  Text="A. Paterno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="1"    CharacterCasing="Upper" Text="{Binding PaternalSurname}" x:Name="textBoxApellidoPaterno" />
-                        <TextBlock Grid.Column="2" Margin="5"  Text="A. Materno:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="3"    CharacterCasing="Upper" Text="{Binding MaternalSurname}" x:Name="textBoxApellidoMaterno" />
-                    </Grid>
-
-                    <Grid Grid.Row="4" Margin="30,5"  VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5" Text="F. de Nacimiento:" FontSize="11"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <DatePicker Grid.Column="1" x:Name="TextBoxBirthDate" SelectedDate="{Binding BirthDate,  StringFormat=d, ConverterCulture=es-MX}" BorderThickness="0">
-                            <DatePicker.Resources>
-                                <Style TargetType="{x:Type DatePickerTextBox}">
-                                    <Setter Property="Control.Template">
-                                        <Setter.Value>
-                                            <ControlTemplate>
-                                                <TextBox x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, StringFormat=d, ConverterCulture=es-MX,RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </DatePicker.Resources>
-                        </DatePicker>
-                        <TextBlock Grid.Column="3" Margin="5" Text="RFC:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding RFC}" x:Name="TextBoxRFC"  />
-                    </Grid>
-
-                    <Grid Grid.Row="5" Margin="30,5"  VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0"  Text="INE: " Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding INE}" x:Name="TextBoxIne"   />
-                        <TextBlock Grid.Column="3" Text="CURP:" Margin="5"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding CURP}" x:Name="TextBoxCurp"  />
-                    </Grid>
-
-                    <Grid Grid.Row="6" Margin="30,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="400"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5"  Text="Domicilio:"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Address}" TextWrapping="Wrap" AcceptsReturn="True" x:Name="TextBoxAddress"  />
-                    </Grid>
-
-                    <Grid Grid.Row="7" Margin="30,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5" Text="Colonia: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding DistrinctOrColony}" x:Name="TextBoxColony"  />
-                        <TextBlock Grid.Column="3" Margin="5" Text="Ciudad:"  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding City}" x:Name="TextBoxCity"   />
-                    </Grid>
-
-                    <Grid Grid.Row="8" Margin="30,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5" Text="C. Postal: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding ZipCode}" x:Name="TextBoxZipCode"  />
-                        <TextBlock Grid.Column="3" Margin="5" Text="Estado:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <ComboBox Grid.Column="4" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding StateId}" x:Name="ComboBoxState">                            
-                        </ComboBox>
-                    </Grid>
-
-                    <Grid Grid.Row="9" Margin="30,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5" Text="Sexo:"  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center" DisplayMemberPath="Name" SelectedValuePath="Id"  SelectedValue="{Binding GenderId}" x:Name="ComboBoxGender" >                            
-                        </ComboBox>
-                        <TextBlock Grid.Column="3" Margin="5" Text="Telefono: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding PhoneNumber}" x:Name="TextBoxPhoneNumber" />
-                    </Grid>
-
-                    <Grid Grid.Row="10" Margin="30,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5" Text="T. Trabajo: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding WorkPhoneNumber}" x:Name="TextBoxWorkPhoneNumber" />
-                        <TextBlock Grid.Column="3" Margin="5" Text="Fax: "  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Fax}" x:Name="TextBoxFax" />
-                    </Grid>
-
-                    <Grid Grid.Row="11" Margin="30,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5" Text="Email: "  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="1" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Email}" x:Name="TextBoxEmail"  />
-                        <TextBlock Grid.Column="3" Margin="5"  Text="Estado Civil: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <ComboBox Grid.Column="4" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id"  SelectedValue="{Binding CivilStatusId}" x:Name="ComboBoxCivilStatus" >                            
-                        </ComboBox>
-                    </Grid>
-
-                    <Grid Grid.Row="12" Margin="30,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="20*" MaxWidth="70" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5" Text="Régimen: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center" DisplayMemberPath="Name" SelectedValuePath="Id"  SelectedValue="{Binding RegimeId}" x:Name="ComboBoxRegime"  >                            
-                        </ComboBox>
-                        <TextBlock Grid.Column="3" Margin="5" Text="Cónyuge: "  Style="{StaticResource SubHeaderTextBlockStyle}"  />
-                        <TextBox Grid.Column="4" HorizontalContentAlignment="Center"   CharacterCasing="Upper" Text="{Binding Spouse}" x:Name="TextBoxSpouse"  />
-                    </Grid>
-
-                    <Grid Grid.Row="13" Margin="30,5"  >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" MinWidth="200"  />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="140"  />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Margin="5"  Text="Cód. de barras: "  Style="{StaticResource SubHeaderTextBlockStyle}" />
-                        <TextBox Grid.Column="1" IsEnabled="False" Margin="2"   CharacterCasing="Upper" Text="{Binding BarCode}" x:Name="TextBoxBarCode"  />
-                        <Button Grid.Column="2" x:Name="ButtonSave" Click="ButtonSave_Click" Width="100" >Guardar</Button>
-                        <Button  Grid.Column="3" x:Name="ButtonDelete" Width="100" IsEnabled="{Binding ElementName=ListBoxProducers, Path=SelectedItems.Count}" Click="ButtonDelete_Click">Eliminar                         
-                        </Button>
-                        <Button Grid.Column="4" x:Name="ButtonPrintGaffete" IsEnabled="{Binding ElementName=ListBoxProducers, Path=SelectedItems.Count}" Click="ButtonPrintGaffete_Click" Width="130">Imprimir Gafette</Button>
-                    </Grid>
-                </Grid>
-            </ScrollViewer>
-        </Grid>
+            </DataGrid>
+        </Grid>        
+     
     </Grid>
 </UserControl>

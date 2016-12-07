@@ -97,6 +97,7 @@
     <Compile Include="Presenters\RancherPresenter.cs" />
     <Compile Include="Presenters\SaleCustomerPresenter.cs" />
     <Compile Include="Presenters\ProducerPresenter.cs" />
+    <Compile Include="Presenters\WeightTicketReportPresenter.cs" />
     <Compile Include="ProducerBL.cs" />
     <Compile Include="ProductBL.cs" />
     <Compile Include="BadgePrinterHelper.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="UserBL.cs" />
     <Compile Include="Utils\DiscountCalculator.cs" />
     <Compile Include="Utils\PropertyCopier.cs" />
+    <Compile Include="Views\IWeightTicketReportView.cs" />
     <Compile Include="Views\IWeightTicketView.cs" />
     <Compile Include="Views\IProducerView.cs" />
     <Compile Include="Views\IRancherView.cs" />

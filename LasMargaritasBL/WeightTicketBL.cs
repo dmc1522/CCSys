@@ -1,5 +1,6 @@
 ﻿using LasMargaritas.DL;
 using LasMargaritas.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -35,9 +36,24 @@ namespace LasMargaritas.BL
                 return weightTicketsDL.InsertWeightTicket(weightTicket);
         }
 
-        public DataTable GetWeightTicketsReport(int? cicleId, int? productId, int? producerId, int? saleCustomerId, int? rancherId, int? supplierId, WeightTicketType? type, bool? entranceWeightTicketsOnly, bool? exitWeightTicketsOnly)
+        public List<List<ReportDataItem>> GetWeightTicketsReport(WeightTicketReportFilterModel filters)
         {
-            return weightTicketsDL.GetWeightTicketsReport(cicleId, productId, producerId, saleCustomerId, rancherId, supplierId, type, entranceWeightTicketsOnly, exitWeightTicketsOnly);
+            List<List<ReportDataItem>> reportData = new List<List<ReportDataItem>>();
+            DataTable data = weightTicketsDL.GetWeightTicketsReport(filters);           
+            foreach(DataRow row in data.Rows)
+            {
+                List<ReportDataItem> rowItem = new List<ReportDataItem>();
+                for(int i =0; i<row.ItemArray.Length; i++)
+                {
+                    ReportDataItem item = new ReportDataItem();
+                    item.Name = data.Columns[i].ColumnName;
+                    item.Value = row.ItemArray[i];
+                    item.Type = data.Columns[i].DataType;
+                    rowItem.Add(item);
+                }
+                reportData.Add(rowItem);
+            }
+            return reportData;
         }
         public WeightTicket UpdateWeightTicket(WeightTicket weightTicket)
         {

@@ -3,6 +3,7 @@ using LasMargaritas.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 namespace LasMargaritas.ULT
 {
@@ -20,7 +21,16 @@ namespace LasMargaritas.ULT
             connectionString = ConfigurationManager.ConnectionStrings["LasMargaritasDb"].ConnectionString;
         }
 
-       
+        [TestMethod]
+        public void TestGetWeightTicketReport()
+        {
+            WeightTicketsBL weightTicketBL = new WeightTicketsBL(connectionString);
+            WeightTicketReportFilterModel filter = new WeightTicketReportFilterModel();
+            filter.CicleId = 1;
+            filter.WeightTicketType = 1;
+            List<List<ReportDataItem>> data = weightTicketBL.GetWeightTicketsReport(filter);
+
+        }
         [TestMethod]
         public void TestInsertUpdateAndGetWeightTicket()
         {

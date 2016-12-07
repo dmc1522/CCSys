@@ -40,7 +40,7 @@ namespace LasMargaritas.UI
             ranchers.Token = token;
             saleCustomers.Token = token;
             suppliers.Token = token;
-
+            weightTicketsReport.Token = token;
 
             login.Visibility = Visibility.Hidden;
             controls.Visibility = Visibility.Visible;
@@ -58,6 +58,7 @@ namespace LasMargaritas.UI
             ranchers.Visibility = Visibility.Hidden;
             saleCustomers.Visibility = Visibility.Hidden;
             suppliers.Visibility = Visibility.Hidden;
+            weightTicketsReport.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewProducers_Click(object sender, RoutedEventArgs e)
@@ -76,6 +77,7 @@ namespace LasMargaritas.UI
             ranchers.Visibility = Visibility.Hidden;
             saleCustomers.Visibility = Visibility.Hidden;
             suppliers.Visibility = Visibility.Visible;
+            weightTicketsReport.Visibility = Visibility.Hidden;
 
         }
 
@@ -86,6 +88,7 @@ namespace LasMargaritas.UI
             ranchers.Visibility = Visibility.Visible;
             saleCustomers.Visibility = Visibility.Hidden;
             suppliers.Visibility = Visibility.Hidden;
+            weightTicketsReport.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewSaleCustomers_Click(object sender, RoutedEventArgs e)
@@ -95,8 +98,17 @@ namespace LasMargaritas.UI
             ranchers.Visibility = Visibility.Hidden;
             saleCustomers.Visibility = Visibility.Visible;
             suppliers.Visibility = Visibility.Hidden;
+            weightTicketsReport.Visibility = Visibility.Hidden;
         }
 
-
+        private void buttonViewWeightTicketsReport_Click(object sender, RoutedEventArgs e)
+        {
+            weightTickets.Visibility = Visibility.Hidden;
+            producerList.Visibility = Visibility.Hidden;
+            ranchers.Visibility = Visibility.Hidden;
+            saleCustomers.Visibility = Visibility.Hidden;
+            weightTicketsReport.Visibility = Visibility.Visible;
+            suppliers.Visibility = Visibility.Hidden;
+        }
     }
 }
