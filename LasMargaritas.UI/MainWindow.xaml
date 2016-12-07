@@ -11,7 +11,9 @@
         Title="Las Margaritas" Width="1920" Height="1080" >
 
     <Grid >
-
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Right">
+            <CheckBox Margin="20" Height="40" Width="150" x:Name="CheckBoxTouchKeyBoard" Click="CheckBoxTouchKeyBoard_Click">Teclado touch</CheckBox>
+        </Grid>
         <Grid Height="150" Width="520" Visibility="Visible" x:Name="login">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"  />
@@ -38,6 +40,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
+                   
                     <Button Height="40" Width="150" x:Name="buttonViewWeightTickets" Click="buttonViewWeightTickets_Click" >Ver boletas</Button>
                     <Button Height="40" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click" >Ver Productores</Button>
                     <Button Height="40" Width="150" x:Name="buttonViewRanchers" Click="buttonViewRanchers_Click" >Ver Ganaderos</Button>

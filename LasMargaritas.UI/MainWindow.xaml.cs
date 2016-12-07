@@ -19,9 +19,8 @@ namespace LasMargaritas.UI
         public MainWindow()
         {
             FrameworkCompatibilityPreferences.KeepTextBoxDisplaySynchronizedWithTextProperty = false;
-            TabTipAutomation.IgnoreHardwareKeyboard = HardwareKeyboardIgnoreOptions.IgnoreAll;
             TabTipAutomation.BindTo<TextBox>();
-            TabTipAutomation.BindTo<PasswordBox>();           
+            TabTipAutomation.BindTo<PasswordBox>();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -112,6 +111,20 @@ namespace LasMargaritas.UI
             saleCustomers.Visibility = Visibility.Hidden;
             weightTicketsReport.Visibility = Visibility.Visible;
             suppliers.Visibility = Visibility.Hidden;
+        }
+
+        private void CheckBoxTouchKeyBoard_Click(object sender, RoutedEventArgs e)
+        {
+         
+            if (CheckBoxTouchKeyBoard.IsChecked.HasValue && CheckBoxTouchKeyBoard.IsChecked.Value)
+            {
+                TabTipAutomation.IgnoreHardwareKeyboard = HardwareKeyboardIgnoreOptions.IgnoreAll;
+            }
+            else
+            {
+                TabTipAutomation.IgnoreHardwareKeyboard = HardwareKeyboardIgnoreOptions.DoNotIgnore;
+            }
+            
         }
     }
 }
