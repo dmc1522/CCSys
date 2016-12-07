@@ -36,10 +36,10 @@ namespace LasMargaritas.BL
                 return weightTicketsDL.InsertWeightTicket(weightTicket);
         }
 
-        public List<List<ReportDataItem>> GetWeightTicketsReport(WeightTicketReportFilterModel filters)
+        public ReportData GetWeightTicketsReport(WeightTicketReportFilterModel filters)
         {
-            List<List<ReportDataItem>> reportData = new List<List<ReportDataItem>>();
-            DataTable data = weightTicketsDL.GetWeightTicketsReport(filters);           
+            ReportData reportData = new ReportData();
+            /*DataTable data = weightTicketsDL.GetWeightTicketsReport(filters);           
             foreach(DataRow row in data.Rows)
             {
                 List<ReportDataItem> rowItem = new List<ReportDataItem>();
@@ -52,7 +52,7 @@ namespace LasMargaritas.BL
                     rowItem.Add(item);
                 }
                 reportData.Add(rowItem);
-            }
+            }*/
             return reportData;
         }
         public WeightTicket UpdateWeightTicket(WeightTicket weightTicket)

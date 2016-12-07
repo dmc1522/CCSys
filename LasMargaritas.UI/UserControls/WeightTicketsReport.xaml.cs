@@ -24,7 +24,7 @@ namespace LasMargaritas.UI.UserControls
     {
         #region Private variables
         private WeightTicketReportPresenter presenter;
-        private List<List<ReportDataItem>> _ReportData;
+        private ReportData _ReportData;
         private List<SelectableModel> _Producers;
         private List<SelectableModel> _Ranchers;
         private List<SelectableModel> _Suppliers;
@@ -53,7 +53,7 @@ namespace LasMargaritas.UI.UserControls
 
         #region IWeightTicketReportView implementation        
 
-        public List<List<ReportDataItem>> ReportData
+        public ReportData ReportData
         {
             get
             {
@@ -63,7 +63,7 @@ namespace LasMargaritas.UI.UserControls
             set
             {
                 _ReportData = value;
-                //Get the column names from first element
+                /*//Get the column names from first element
                 if(ReportData != null && ReportData.Count > 0)
                 {
                     List<ReportDataItem> firstElement = ReportData.ElementAt(0);
@@ -83,8 +83,7 @@ namespace LasMargaritas.UI.UserControls
                         DataGridWeightTickets.Columns.Add(textColumn);
                     }
                 }
-                DataGridWeightTickets.ItemsSource = _ReportData;
-                
+                DataGridWeightTickets.ItemsSource = _ReportData;*/                
             }
         }
 

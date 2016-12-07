@@ -28,7 +28,7 @@ namespace LasMargaritas.ULT
             WeightTicketReportFilterModel filter = new WeightTicketReportFilterModel();
             filter.CicleId = 1;
             filter.WeightTicketType = 1;
-            List<List<ReportDataItem>> data = weightTicketBL.GetWeightTicketsReport(filter);
+            ReportData data = weightTicketBL.GetWeightTicketsReport(filter);
 
         }
         [TestMethod]

@@ -90,6 +90,7 @@
     <Compile Include="AddProductResponse.cs" />
     <Compile Include="GetReportDataResponse.cs" />
     <Compile Include="ReportDataColumn.cs" />
+    <Compile Include="ReportData.cs" />
     <Compile Include="ReportDataRow.cs" />
     <Compile Include="SelectableModelException.cs" />
     <Compile Include="WeightTicketReportFilterModel.cs" />

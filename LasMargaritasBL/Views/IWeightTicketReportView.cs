@@ -9,7 +9,7 @@ namespace LasMargaritas.BL.Views
 {
     public interface IWeightTicketReportView
     {
-        List<List<ReportDataItem>> ReportData { get; set; }
+        ReportData ReportData { get; set; }
         WeightTicketReportFilterModel CurrentFilters { get; set; }
         List<SelectableModel> Products { get; set; }
         List<SelectableModel> Cicles { get; set; }
