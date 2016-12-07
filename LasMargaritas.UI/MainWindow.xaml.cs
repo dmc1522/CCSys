@@ -21,7 +21,10 @@ namespace LasMargaritas.UI
             FrameworkCompatibilityPreferences.KeepTextBoxDisplaySynchronizedWithTextProperty = false;
             TabTipAutomation.IgnoreHardwareKeyboard = HardwareKeyboardIgnoreOptions.IgnoreAll;
             TabTipAutomation.BindTo<TextBox>();
-            TabTipAutomation.BindTo<PasswordBox>();           
+            TabTipAutomation.BindTo<PasswordBox>();
+            
+            TabTip.Open();
+            TabTip.Close();        
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
