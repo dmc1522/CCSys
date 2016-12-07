@@ -18,6 +18,7 @@ namespace LasMargaritas.UI
         private string baseUrl;
         public MainWindow()
         {
+
             FrameworkCompatibilityPreferences.KeepTextBoxDisplaySynchronizedWithTextProperty = false;
             TabTipAutomation.BindTo<TextBox>();
             TabTipAutomation.BindTo<PasswordBox>();
