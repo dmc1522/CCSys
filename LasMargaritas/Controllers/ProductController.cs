@@ -164,6 +164,26 @@ namespace LasMargaritas.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [Route("GetSelectableModels")]
+        [HttpGet]
+        public IHttpActionResult GetSelectableModels()
+        {
+            GetSelectableModelResponse response = new GetSelectableModelResponse();
+            try
+            {
+                List<SelectableModel> wareHouses = productBL.GetBasicModels();
+                response.SelectableModels = wareHouses;
+                response.Success = true;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+        [Authorize(Roles = "Admin")]
         [Route("GetWeightTicketProducts")]
         [HttpGet]
         public IHttpActionResult GetWeightTicketProducts(WeightTicketType type)

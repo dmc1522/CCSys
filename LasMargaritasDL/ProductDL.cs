@@ -51,6 +51,27 @@ namespace LasMargaritas.DL
             }
         }
 
+          public List<SelectableModel> GetBasicModels()
+        {
+            List<SelectableModel> products = new List<SelectableModel>();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetProductSelectableModels";
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    products = DataReaderMapper.Map<SelectableModel>(reader);
+                    reader.Close();
+                    connection.Close();
+                }
+                return products;
+            }
+        }
+
         public Product UpdateProduct(Product product)
         {
             using (SqlCommand command = new SqlCommand())

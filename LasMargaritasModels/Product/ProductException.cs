@@ -10,5 +10,13 @@ namespace LasMargaritas.Models
         {
             Error = error;
         }
+        public ProductException(ProductError error, string message):base(message)
+        {
+            Error = error;
+        }
+        public ProductException(string message) : base(message)
+        {
+
+        }
     }
 }
