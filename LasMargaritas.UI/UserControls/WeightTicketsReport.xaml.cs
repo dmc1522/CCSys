@@ -20,227 +20,294 @@ namespace LasMargaritas.UI.UserControls
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class WeightTicketsReport : UserControl// WeightTicketsReportView
+    public partial class WeightTicketsReport : UserControl, IWeightTicketReportView
     {
-      /*  #region Private variables
-        private ProducerPresenter presenter;
+        #region Private variables
+        private WeightTicketReportPresenter presenter;
+        private List<List<ReportDataItem>> _ReportData;
         private List<SelectableModel> _Producers;
-        private bool listLoaded;
-        #endregion
+        private List<SelectableModel> _Ranchers;
+        private List<SelectableModel> _Suppliers;
+        private List<SelectableModel> _SaleCustomers;
+        private List<SelectableModel> _Products;
+        private List<SelectableModel> _WareHouses;
+        private List<SelectableModel> _Cicles;        
+        private bool listShown;
 
-        #region Public Properties
-        public Token Token { get; set; }
-
-
-
-
-        #endregion
-
-        #region IProducerView implementation
-        public Producer CurrentProducer { get; set; }
-        
-        public List<SelectableModel> States { get; set; }
-        public List<SelectableModel> CivilStatus { get; set; }
-        public List<SelectableModel> Regimes { get; set; }
-        public List<SelectableModel> Genders { get; set; }
-
-        public int SelectedId
-        {
-            get
-            {
-                if(ListBoxProducers.SelectedItem != null)
-                {
-                    return ((SelectableModel)ListBoxProducers.SelectedItem).Id;
-                }
-                return -1;
-            }
-            set
-            {
-                if (value <= 0)
-                {
-
-                    ListBoxProducers.SelectedValue = null;
-                    ListBoxProducers.SelectedIndex = -1;
-                }
-                else
-                {
-                    foreach (var item in ListBoxProducers.Items)
-                    {
-                        if(((SelectableModel)item).Id == value)
-                        {
-                            ListBoxProducers.SelectedItem = item;
-                            ListBoxProducers.ScrollIntoView(item);                            
-                            break;
-                        }
-                    }
-                }
-
-            }
-        }        
-
-        public List<SelectableModel> Producers
-        {
-            get
-            { 
-                return _Producers;
-            }
-            set
-            {
-                _Producers = value;
-                ListBoxProducers.ItemsSource = _Producers;
-                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ListBoxProducers.ItemsSource);
-                view.Filter = ProducerFilter;
-            }
-        }
-
-        private bool ProducerFilter(object item)
-        {
-            if (string.IsNullOrEmpty(TextBoxSearchProducers.Text))
-                return true;
-            else
-                return ((item as SelectableModel).Name != null && (item as SelectableModel).Name.IndexOf(TextBoxSearchProducers.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                    || string.Compare(((item as SelectableModel).Id.ToString()), TextBoxSearchProducers.Text) == 0;
-                       
-        }
-
-
-        public void HandleException(Exception ex, string method, Guid errorId)
-        {
-        }
-        
         #endregion
 
         #region Constructor
-        public ProducerList()
+        public WeightTicketsReport()
         {
-            InitializeComponent();           
-            presenter = new ProducerPresenter(this);
-            CurrentProducer = new Producer();
-            GridProducerDetails.DataContext = CurrentProducer;
+            InitializeComponent();
+            presenter = new WeightTicketReportPresenter(this);
+            CurrentFilters = new WeightTicketReportFilterModel();            
+            GridFilters.DataContext = CurrentFilters;
+                        
         }
         #endregion
+        #region Public Properties
+        public Token Token { get; set; }
 
-        #region Private Methods
-        private void ButtonDelete_Click(object sender, System.Windows.RoutedEventArgs e)
+        #endregion
+
+        #region IWeightTicketReportView implementation        
+
+        public List<List<ReportDataItem>> ReportData
         {
-            MessageBoxResult result = MessageBox.Show("Realmente deseas eliminar a este productor?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            get
             {
-                presenter.DeleteProducer();
+                return _ReportData;
             }
 
-        }
-
-        private void ButtonReloadList_Click(object sender, RoutedEventArgs e)
-        {
-            presenter.ReloadProducerList();
-        }
-        private void ButtonAddProducer_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            presenter.NewProducer();
-        }
-
-        private void TextBoxSearchProducers_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(ListBoxProducers.ItemsSource).Refresh();
-        }
-        private void UserControl_IsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-        {
-            if ((bool)e.NewValue == true && !listLoaded)
+            set
             {
-                presenter.Token = Token;
-                presenter.Initialize();             
-                ComboBoxCivilStatus.ItemsSource = CivilStatus;
-                ComboBoxRegime.ItemsSource = Regimes;
-                ComboBoxState.ItemsSource = States;
-                ComboBoxGender.ItemsSource = Genders;                
-                listLoaded = true;
+                _ReportData = value;
+                //Get the column names from first element
+                if(ReportData != null && ReportData.Count > 0)
+                {
+                    List<ReportDataItem> firstElement = ReportData.ElementAt(0);
+                    foreach(ReportDataItem columnData in firstElement)
+                    {
+                        DataGridTextColumn textColumn = new DataGridTextColumn();
+                        textColumn.Header = columnData.Name;                       
+                        textColumn.Binding = new Binding(".Value");
+                        if (columnData.Type == typeof(int))
+                            textColumn.Binding.StringFormat = "N";
+                        if (columnData.Type == typeof(decimal))
+                            textColumn.Binding.StringFormat = "C2";
+                        if (columnData.Type == typeof(float))
+                            textColumn.Binding.StringFormat = "N2";
+                        if (columnData.Type == typeof(DateTime))
+                            textColumn.Binding.StringFormat = "dd/MM/yyy HH:mm";
+                        DataGridWeightTickets.Columns.Add(textColumn);
+                    }
+                }
+                DataGridWeightTickets.ItemsSource = _ReportData;
+                
             }
         }
 
+
+        public WeightTicketReportFilterModel CurrentFilters { get; set; }
         
 
-        private ImageCodecInfo GetEncoder(ImageFormat format)
+        public List<SelectableModel> Products
         {
-            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
-            foreach (ImageCodecInfo codec in codecs)
+            get
             {
-                if (codec.FormatID == format.Guid)
-                {
-                    return codec;
-                }
+                return _Products;
             }
-            return null;
+
+            set
+            {
+                _Products = value;
+                _Products.Insert(0, new SelectableModel(-1, "TODOS"));
+                ComboBoxProduct.ItemsSource = _Products;
+            }
+        }
+        public List<SelectableModel> Producers
+        {
+            get
+            {
+                return _Producers;
+            }
+
+            set
+            {
+                _Producers = value;
+                _Producers.Insert(0, new SelectableModel(-1, "TODOS"));
+                ComboBoxProducer.ItemsSource = _Producers;
+            }
         }
 
-        private void ButtonGetImage_Click(object sender, System.Windows.RoutedEventArgs e)
+        public List<SelectableModel> Cicles
         {
-            if (!webCameraControl.IsCapturing)
+            get
             {
-                IEnumerable<WebCameraId> cameras = webCameraControl.GetVideoCaptureDevices();
-                if (cameras.Count() == 0)
-                {
-                    MessageBox.Show("No se encontró camara", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }  
-                
-                if (cameras.Count()>1)
-                {
-                    webCameraControl.StartCapture(cameras.ElementAt(1));
-                }
-                else
-                {
-                    webCameraControl.StartCapture(cameras.ElementAt(0));
-                }              
-                TextBoxImageInstructions.Text = "Click para GUARDAR foto";
-                ButtonCaptureImage.Visibility = System.Windows.Visibility.Hidden;
-                ButtonGetImage.Visibility = System.Windows.Visibility.Visible;
+                return _Cicles;
+            }
+
+            set
+            {
+                _Cicles = value;
+                ComboBoxCicle.ItemsSource = _Cicles;
+            }
+        }
+
+        public List<SelectableModel> Ranchers
+        {
+            get
+            {
+                return _Ranchers;
+            }
+
+            set
+            {
+                _Ranchers = value;
+                _Ranchers.Insert(0, new SelectableModel(-1, "TODOS"));
+                ComboBoxRancher.ItemsSource = _Ranchers;
+            }
+        }
+
+        public List<SelectableModel> Suppliers
+        {
+            get
+            {
+                return _Suppliers;
+            }
+
+            set
+            {
+                _Suppliers = value;
+                _Suppliers.Insert(0, new SelectableModel(-1, "TODOS"));
+                ComboBoxSupplier.ItemsSource = _Suppliers;
+            }
+        }
+
+        public List<SelectableModel> SaleCustomers
+        {
+            get
+            {
+                return _SaleCustomers;
+            }
+
+            set
+            {
+                _SaleCustomers = value;
+                _SaleCustomers.Insert(0, new SelectableModel(-1, "TODOS"));
+                ComboBoxSaleCustomer.ItemsSource = _SaleCustomers;
+            }
+        }
+
+     
+        public List<SelectableModel> WareHouses
+        {
+            get
+            {
+                return _WareHouses;
+            }
+
+            set
+            {
+                _WareHouses = value;
+                _WareHouses.Insert(0, new SelectableModel(-1, "TODAS"));
+                ComboBoxWareHouse.ItemsSource = _WareHouses;
+            }
+        }
+
+        public void HandleException(Exception ex, string method, Guid errorId)
+        {
+
+            string errorMessage = string.Empty;           
+            errorMessage = "Hubo un problema en la última acción. Detalles: - Unknown Exception ";            
+            errorMessage += ". " + ex.Message + ". Method: " + method;
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+
+        #endregion
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue == true && !listShown)
+            {
+                presenter.Token = Token;
+                presenter.LoadCatalogs();
+                ComboBoxProduct.SelectedIndex = 0;
+                ComboBoxProducer.SelectedIndex = 0;
+                ComboBoxRancher.SelectedIndex = 0;
+                ComboBoxSaleCustomer.SelectedIndex = 0;
+                ComboBoxSupplier.SelectedIndex = 0;
+                ComboBoxWareHouse.SelectedIndex = 0;
+                RadioButtonProducer.IsChecked = true;
+                ComboBoxCicle.SelectedIndex = 0;
+                TextBoxStartDate.IsEnabled = false;
+                TextBoxEndDate.IsEnabled = false;
+                listShown = true;
+            }
+        }
+
+        private void ButtonReloadReport_Click(object sender, RoutedEventArgs e)
+        {
+            if (CurrentFilters.ProducerId == -1) CurrentFilters.ProducerId = null;
+            if (CurrentFilters.RancherId == -1) CurrentFilters.RancherId = null;
+            if (CurrentFilters.SaleCustomerId == -1) CurrentFilters.SaleCustomerId = null;
+            if (CurrentFilters.SupplierId == -1) CurrentFilters.SupplierId = null;
+            if (CurrentFilters.ProductId == -1) CurrentFilters.ProductId = null;
+            if (CurrentFilters.WareHouseId == -1) CurrentFilters.WareHouseId = null;
+            if (CheckBoxDateFilter.IsChecked.HasValue && !CheckBoxDateFilter.IsChecked.Value)
+            {
+                CurrentFilters.EndDateTime = null;
+                CurrentFilters.StartDateTime = null;
+            }
+            if (RadioButtonProducer.IsChecked.HasValue && RadioButtonProducer.IsChecked.Value) CurrentFilters.WeightTicketType = (int) WeightTicketType.Producer;
+            if (RadioButtonRancher.IsChecked.HasValue && RadioButtonRancher.IsChecked.Value) CurrentFilters.WeightTicketType = (int)WeightTicketType.Rancher;
+            if (RadioButtonSaleCustomer.IsChecked.HasValue && RadioButtonSaleCustomer.IsChecked.Value) CurrentFilters.WeightTicketType = (int)WeightTicketType.SaleCustomer;
+            if (RadioButtonSupplier.IsChecked.HasValue && RadioButtonSupplier.IsChecked.Value) CurrentFilters.WeightTicketType = (int)WeightTicketType.Supplier;
+
+            presenter.LoadReport();
+        }
+
+    
+        private void RadioButtonProducer_Checked(object sender, RoutedEventArgs e)
+        {
+            ComboBoxRancher.IsEnabled = false;            
+            ComboBoxSaleCustomer.IsEnabled = false;            
+            ComboBoxSupplier.IsEnabled = false;
+            ComboBoxProducer.IsEnabled = true;
+            
+        }
+
+        private void RadioButtonSaleCustomer_Checked(object sender, RoutedEventArgs e)
+        {
+            ComboBoxRancher.IsEnabled = false;
+            ComboBoxSaleCustomer.IsEnabled = true;
+            ComboBoxSupplier.IsEnabled = false;
+            ComboBoxProducer.IsEnabled = false;
+        }
+
+        private void RadioButtonSupplier_Checked(object sender, RoutedEventArgs e)
+        {
+            ComboBoxRancher.IsEnabled = false;
+            ComboBoxSaleCustomer.IsEnabled = false;
+            ComboBoxSupplier.IsEnabled = true;
+            ComboBoxProducer.IsEnabled = false;
+        }
+
+        private void RadioButtonRancher_Checked(object sender, RoutedEventArgs e)
+        {
+            ComboBoxRancher.IsEnabled = true;
+            ComboBoxSaleCustomer.IsEnabled = false;
+            ComboBoxSupplier.IsEnabled = false;
+            ComboBoxProducer.IsEnabled = false;
+
+        }
+
+        private void CheckBoxDateFilter_Checked(object sender, RoutedEventArgs e)
+        {
+            TextBoxStartDate.IsEnabled = true;
+            TextBoxEndDate.IsEnabled = true;
+        }
+
+        private void CheckBoxDateFilter_Unchecked(object sender, RoutedEventArgs e)
+        {
+            TextBoxStartDate.IsEnabled = false;
+            TextBoxEndDate.IsEnabled = false;
+        }
+
+        private void ComboBoxEntranceExitType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CurrentFilters.EntranceWeightTicketsOnly = null;
+            CurrentFilters.ExitWeightTicketsOnly = null;
+            if (ComboBoxEntranceExitType.SelectedIndex == 1)
+            {
+                CurrentFilters.EntranceWeightTicketsOnly = true;                
             }
             else
-            {
-                TextBoxImageInstructions.Text = "Click para CAPTURAR foto";
-                ButtonCaptureImage.Visibility = System.Windows.Visibility.Visible;
-                ButtonGetImage.Visibility = System.Windows.Visibility.Hidden;                
-                Bitmap bitmap = webCameraControl.GetCurrentImage();
-                ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
-                System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
-                EncoderParameters myEncoderParameters = new EncoderParameters(1);
-                EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 50L);
-                myEncoderParameters.Param[0] = myEncoderParameter;               
-                using (var memoryStream = new MemoryStream())
-                {
-                    bitmap.Save(memoryStream,jpgEncoder, myEncoderParameters);                    
-                    CurrentProducer.Photo = memoryStream.ToArray();
-                }                    
-                webCameraControl.StopCapture();
+            {                
+                CurrentFilters.ExitWeightTicketsOnly = true;
             }
         }
-
-        private void ButtonSave_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            presenter.SaveProducer();
-        }
-    
-
-        private void ButtonPrintGaffete_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (CurrentProducer.Photo == null)
-            {
-                MessageBox.Show("Capture la foto del productor primero. ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;                
-            }
-            Gaffette_Preview preview = new Gaffette_Preview(CurrentProducer);
-            preview.Show();
-
-        }
-
-        private void ListBoxProducers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(ListBoxProducers.SelectedItem != null)
-            {
-                presenter.UpdateCurrentProducer();
-            }            
-        }
-        #endregion    */ 
     }
 }

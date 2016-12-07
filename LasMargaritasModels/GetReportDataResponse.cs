@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LasMargaritas.Models
 {
@@ -6,10 +7,12 @@ namespace LasMargaritas.Models
     {
         public GetReportDataResponse()
         {
-            ReportData = new List<Dictionary<string, object>>();
+            ReportData = new List<List<ReportDataItem>>();
         }
         public string ErrorMessage { get; set; }
         public bool Success { get; set; }
-        public List<Dictionary<string, object>> ReportData { get; set; }
+        public List<List<ReportDataItem>> ReportData { get; set; }
     }
+
+
 }

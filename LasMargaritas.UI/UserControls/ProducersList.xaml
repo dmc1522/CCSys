@@ -10,6 +10,7 @@
              IsVisibleChanged="UserControl_IsVisibleChanged">
 
     <Grid >
+     
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="600*" MinWidth="300" />
             <ColumnDefinition Width="1300*" MinWidth="500" />

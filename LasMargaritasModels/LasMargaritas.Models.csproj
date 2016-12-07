@@ -89,7 +89,9 @@
   <ItemGroup>
     <Compile Include="AddProductResponse.cs" />
     <Compile Include="GetReportDataResponse.cs" />
+    <Compile Include="ReportDataItem.cs" />
     <Compile Include="SelectableModelException.cs" />
+    <Compile Include="WeightTicketReportFilterModel.cs" />
     <Compile Include="WeightTicket\WeightTicketType.cs" />
     <Compile Include="SaleCustomer\GetSaleCustomerResponse.cs" />
     <Compile Include="Rancher\GetRancherResponse.cs" />

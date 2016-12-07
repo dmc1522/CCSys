@@ -9,9 +9,17 @@ namespace LasMargaritas.BL.Views
 {
     public interface IWeightTicketReportView
     {
-        List<Dictionary<string, object>> ReportData { get; set; }      
-        int CicleId { get; set; }
+        List<List<ReportDataItem>> ReportData { get; set; }
+        WeightTicketReportFilterModel CurrentFilters { get; set; }
+        List<SelectableModel> Products { get; set; }
+        List<SelectableModel> Cicles { get; set; }
+        List<SelectableModel> Ranchers { get; set; }
+        List<SelectableModel> Suppliers { get; set; }
+        List<SelectableModel> SaleCustomers { get; set; }        
+        List<SelectableModel> WareHouses { get; set; }
+        List<SelectableModel> Producers { get; set; }
         void HandleException(Exception ex, string method, Guid errorId);
+        
     }
 }
 

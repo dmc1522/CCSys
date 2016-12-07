@@ -183,47 +183,42 @@ namespace LasMargaritas.BL.Presenters
 
                 //Cicles
                 response = client.GetAsync(getCiclesActions).Result;
-                if (response.IsSuccessStatusCode)
+                response.EnsureSuccessStatusCode();
+                GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                if (getSelectableModelResponse.Success)
                 {
-                    GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                    if (getSelectableModelResponse.Success)
-                    {
-                        view.Cicles = getSelectableModelResponse.SelectableModels;
-                    }
-                    else
-                    {
-                        throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
-                    }
+                    view.Cicles = getSelectableModelResponse.SelectableModels;
                 }
+                else
+                {
+                    throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                }
+                
                 //Filter cicles
                 response = client.GetAsync(getCiclesActions).Result;
-                if (response.IsSuccessStatusCode)
+                response.EnsureSuccessStatusCode();
+                getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                if (getSelectableModelResponse.Success)
                 {
-                    GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                    if (getSelectableModelResponse.Success)
-                    {
-                        view.FilterCicles = getSelectableModelResponse.SelectableModels;
-                    }
-                    else
-                    {
-                        throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
-                    }
+                    view.FilterCicles = getSelectableModelResponse.SelectableModels;
                 }
-
+                else
+                {
+                    throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                }                
                 //Warehouses
                 response = client.GetAsync(getWareHousesAction).Result;
-                if (response.IsSuccessStatusCode)
+                response.EnsureSuccessStatusCode();
+                getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
+                if (getSelectableModelResponse.Success)
                 {
-                    GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
-                    if (getSelectableModelResponse.Success)
-                    {
-                        view.WareHouses = getSelectableModelResponse.SelectableModels;
-                    }
-                    else
-                    {
-                        throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
-                    }
+                    view.WareHouses = getSelectableModelResponse.SelectableModels;
                 }
+                else
+                {
+                    throw new SelectableModelException(getSelectableModelResponse.ErrorCode, getSelectableModelResponse.ErrorMessage);
+                }
+                
             }
             catch (Exception ex)
             {

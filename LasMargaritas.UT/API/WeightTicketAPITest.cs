@@ -19,6 +19,7 @@ namespace LasMargaritas.ULT
         private string deleteAction;
         private string getAllAction;
         private string getByIdAction;
+        private string getReportAction;
         public WeightTicketApiTest()
         {
             baseUrl = @"http://lasmargaritasdev.azurewebsites.net/";
@@ -31,8 +32,29 @@ namespace LasMargaritas.ULT
             deleteAction = "WeightTicket/Delete";
             getAllAction = "WeightTicket/GetAll";
             getByIdAction = "WeightTicket/GetById";
-        }   
+            getReportAction = "WeightTicket/GetWeightTicketsReport";
+        }
 
+        [TestMethod]
+        public void TestGetWeightTicketReport()
+        {
+            //Test this one in prod
+            baseUrl = @"http://lasmargaritas.azurewebsites.net/";
+            Token token = TokenHelper.GetToken(baseUrl, "Melvin3", "MelvinPass3");
+            HttpClient client = new HttpClient();           
+            client.BaseAddress = new Uri(baseUrl);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.access_token);
+            WeightTicketReportFilterModel filter = new WeightTicketReportFilterModel();
+            filter.CicleId = 1;
+            filter.WeightTicketType = (int)WeightTicketType.Producer;
+            HttpResponseMessage response = client.GetAsync(string.Format("{0}?{1}", getReportAction, filter.GetUrlQuery())).Result;
+            response.EnsureSuccessStatusCode();
+            GetReportDataResponse getReportDataResponse = response.Content.ReadAsAsync<GetReportDataResponse>().Result;
+            Assert.IsTrue(getReportDataResponse.Success);
+            Assert.IsTrue(getReportDataResponse.ReportData != null);
+            Assert.IsTrue(getReportDataResponse.ReportData.Count > 0);
+        }
         [TestMethod]
         public void TestInsertUpdateAndGetWeightTicket()
         {
