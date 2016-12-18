@@ -39,10 +39,12 @@ namespace LasMargaritas.UI
             }
             InitializeComponent();
             producerList.Token = token;
-            weightTickets.Token = token;
+            weightTickets.Token = token;           
             ranchers.Token = token;
             saleCustomers.Token = token;
             suppliers.Token = token;
+            cicles.Token = token;
+            wareHouses.Token = token;
             weightTicketsReport.Token = token;
 
             login.Visibility = Visibility.Hidden;
@@ -62,6 +64,9 @@ namespace LasMargaritas.UI
             saleCustomers.Visibility = Visibility.Hidden;
             suppliers.Visibility = Visibility.Hidden;
             weightTicketsReport.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Hidden;
+            cicles.Visibility = Visibility.Hidden;
+            products.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewProducers_Click(object sender, RoutedEventArgs e)
@@ -71,6 +76,9 @@ namespace LasMargaritas.UI
             ranchers.Visibility = Visibility.Hidden;
             saleCustomers.Visibility = Visibility.Hidden;
             suppliers.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Hidden;
+            cicles.Visibility = Visibility.Hidden;
+            products.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewSuppliers_Click(object sender, RoutedEventArgs e)
@@ -81,6 +89,9 @@ namespace LasMargaritas.UI
             saleCustomers.Visibility = Visibility.Hidden;
             suppliers.Visibility = Visibility.Visible;
             weightTicketsReport.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Hidden;
+            cicles.Visibility = Visibility.Hidden;
+            products.Visibility = Visibility.Hidden;
 
         }
 
@@ -92,6 +103,9 @@ namespace LasMargaritas.UI
             saleCustomers.Visibility = Visibility.Hidden;
             suppliers.Visibility = Visibility.Hidden;
             weightTicketsReport.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Hidden;
+            cicles.Visibility = Visibility.Hidden;
+            products.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewSaleCustomers_Click(object sender, RoutedEventArgs e)
@@ -102,6 +116,9 @@ namespace LasMargaritas.UI
             saleCustomers.Visibility = Visibility.Visible;
             suppliers.Visibility = Visibility.Hidden;
             weightTicketsReport.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Hidden;
+            cicles.Visibility = Visibility.Hidden;
+            products.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewWeightTicketsReport_Click(object sender, RoutedEventArgs e)
@@ -112,6 +129,47 @@ namespace LasMargaritas.UI
             saleCustomers.Visibility = Visibility.Hidden;
             weightTicketsReport.Visibility = Visibility.Visible;
             suppliers.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Hidden;
+            cicles.Visibility = Visibility.Hidden;
+            products.Visibility = Visibility.Hidden;
+        }
+
+        private void buttonViewWareHouses_Click(object sender, RoutedEventArgs e)
+        {
+            weightTickets.Visibility = Visibility.Hidden;
+            producerList.Visibility = Visibility.Hidden;
+            ranchers.Visibility = Visibility.Hidden;
+            saleCustomers.Visibility = Visibility.Hidden;
+            weightTicketsReport.Visibility = Visibility.Hidden;
+            suppliers.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Visible;
+            cicles.Visibility = Visibility.Hidden;
+            products.Visibility = Visibility.Hidden;
+        }
+        private void buttonViewCicles_Click(object sender, RoutedEventArgs e)
+        {
+            weightTickets.Visibility = Visibility.Hidden;
+            producerList.Visibility = Visibility.Hidden;
+            ranchers.Visibility = Visibility.Hidden;
+            saleCustomers.Visibility = Visibility.Hidden;
+            weightTicketsReport.Visibility = Visibility.Hidden;
+            suppliers.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Hidden;
+            cicles.Visibility = Visibility.Visible;
+            products.Visibility = Visibility.Hidden;
+        }
+        private void buttonViewProducts_Click(object sender, RoutedEventArgs e)
+        {
+
+            weightTickets.Visibility = Visibility.Hidden;
+            producerList.Visibility = Visibility.Hidden;
+            ranchers.Visibility = Visibility.Hidden;
+            saleCustomers.Visibility = Visibility.Hidden;
+            weightTicketsReport.Visibility = Visibility.Hidden;
+            suppliers.Visibility = Visibility.Hidden;
+            wareHouses.Visibility = Visibility.Hidden;
+            cicles.Visibility = Visibility.Hidden;
+            products.Visibility = Visibility.Visible;
         }
 
         private void CheckBoxTouchKeyBoard_Click(object sender, RoutedEventArgs e)
