@@ -45,6 +45,9 @@
                     <Button Height="40" Width="150" x:Name="buttonViewProducers" Click="buttonViewProducers_Click" >Ver Productores</Button>
                     <Button Height="40" Width="150" x:Name="buttonViewRanchers" Click="buttonViewRanchers_Click" >Ver Ganaderos</Button>
                     <Button Height="40" Width="200" x:Name="buttonViewSaleCustomers" Click="buttonViewSaleCustomers_Click" >Ver Cliente de venta</Button>
+                    <Button Height="40" Width="200" x:Name="buttonViewProducts" Click="buttonViewProducts_Click" >Ver Productos</Button>
+                    <Button Height="40" Width="200" x:Name="buttonViewWareHouses" Click="buttonViewWareHouses_Click" >Ver Bodegas</Button>
+                    <Button Height="40" Width="200" x:Name="buttonViewCicles" Click="buttonViewCicles_Click" >Ver Ciclos</Button>
                     <Button Height="40" Width="150" x:Name="buttonViewSuppliers" Click="buttonViewSuppliers_Click" >Ver Proveedores</Button>
                     <Button Height="40" Width="150" x:Name="buttonViewWeightTicketsReport" Click="buttonViewWeightTicketsReport_Click"  >Reporte boletas</Button>
                 </StackPanel>
@@ -55,6 +58,9 @@
                 <controls:RancherList x:Name="ranchers" Visibility="Hidden" ></controls:RancherList>
                 <controls:SaleCustomerList x:Name="saleCustomers" Visibility="Hidden" ></controls:SaleCustomerList>
                 <controls:SupplierList x:Name="suppliers" Visibility="Hidden" ></controls:SupplierList>
+                <controls:ProductList x:Name="products" Visibility="Hidden" ></controls:ProductList>
+                <controls:CicleList x:Name="cicles" Visibility="Hidden" ></controls:CicleList>
+                <controls:WareHouseList x:Name="wareHouses" Visibility="Hidden" ></controls:WareHouseList>
                 <controls:WeightTicketsReport x:Name="weightTicketsReport" Visibility="Collapsed"></controls:WeightTicketsReport>
             </Grid>
         </Grid>
