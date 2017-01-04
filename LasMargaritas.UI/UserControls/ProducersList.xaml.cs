@@ -132,6 +132,10 @@ namespace LasMargaritas.UI.UserControls
             presenter = new ProducerPresenter(this);
             CurrentProducer = new Producer();
             GridProducerDetails.DataContext = CurrentProducer;
+            IEnumerable<WebCameraId> cameras = webCameraControl.GetVideoCaptureDevices();
+            this.ComboBoxCameras.ItemsSource = cameras;
+            if (cameras.Count() > 0)
+                this.ComboBoxCameras.SelectedIndex = 0;
         }
         #endregion
 
@@ -196,21 +200,12 @@ namespace LasMargaritas.UI.UserControls
         {
             if (!webCameraControl.IsCapturing)
             {
-                IEnumerable<WebCameraId> cameras = webCameraControl.GetVideoCaptureDevices();
-                if (cameras.Count() == 0)
+                if (ComboBoxCameras.SelectedItem == null)
                 {
-                    MessageBox.Show("No se encontró camara", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("No se seleccionó alguna cámara", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
-                }  
-                
-                if (cameras.Count()>1)
-                {
-                    webCameraControl.StartCapture(cameras.ElementAt(1));
                 }
-                else
-                {
-                    webCameraControl.StartCapture(cameras.ElementAt(0));
-                }              
+                webCameraControl.StartCapture((WebCameraId)ComboBoxCameras.SelectedItem);              
                 TextBoxImageInstructions.Text = "Click para GUARDAR foto";
                 ButtonCaptureImage.Visibility = System.Windows.Visibility.Hidden;
                 ButtonGetImage.Visibility = System.Windows.Visibility.Visible;

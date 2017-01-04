@@ -30,6 +30,7 @@ namespace LasMargaritas.BL.Presenters
         private string getCiclesActions;
         private string getWareHousesAction;
         private string getReportAction;
+        private List<string> excludedColumns;
         private IWeightTicketReportView view;        
         #endregion
 
@@ -43,7 +44,7 @@ namespace LasMargaritas.BL.Presenters
                 baseUrl = ConfigurationManager.AppSettings["baseUrl"];
             }     
             getAllAction = "WeightTicket/GetWeightTicketsReport";
-            getProductsAction = "Product/GetAll";
+            getProductsAction = "Product/GetWeightTicketProducts";
             getProducersAction = "Producer/GetSelectableModels";
             getSalesCustomersAction = "SaleCustomer/GetSelectableModels";
             getSuppliersAction = "Supplier/GetSelectableModels";
@@ -51,6 +52,7 @@ namespace LasMargaritas.BL.Presenters
             getWareHousesAction = "WareHouse/GetSelectableModels";
             getCiclesActions = "Cicle/GetSelectableModels";
             getReportAction = "WeightTicket/GetWeightTicketsReport";
+            excludedColumns = new List<string>();
         }
         #endregion
 
@@ -170,7 +172,7 @@ namespace LasMargaritas.BL.Presenters
             }
         }
 
-        private void LoadProducts()
+        public void LoadProducts()
         {
             try
             {
@@ -180,7 +182,7 @@ namespace LasMargaritas.BL.Presenters
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
                 HttpResponseMessage response;
                 //Products
-                string action = string.Format("{0}", getProductsAction);
+                string action = string.Format("{0}?type={1}", getProductsAction, (int)view.WeightTicketType);
                 response = client.GetAsync(action).Result;
                 response.EnsureSuccessStatusCode();
                 GetSelectableModelResponse getSelectableModelResponse = response.Content.ReadAsAsync<GetSelectableModelResponse>().Result;
@@ -250,7 +252,7 @@ namespace LasMargaritas.BL.Presenters
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);                
                 HttpResponseMessage response = client.GetAsync(string.Format("{0}?{1}", getReportAction, view.CurrentFilters.GetUrlQuery())).Result;
                 response.EnsureSuccessStatusCode();
-                GetReportDataResponse getReportDataResponse = response.Content.ReadAsAsync<GetReportDataResponse>().Result;
+                GetReportDataResponse getReportDataResponse = response.Content.ReadAsAsync<GetReportDataResponse>().Result;                
                 view.ReportData = getReportDataResponse.ReportData;
             }
             catch (Exception ex)

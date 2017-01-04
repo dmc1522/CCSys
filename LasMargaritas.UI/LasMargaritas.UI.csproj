@@ -107,6 +107,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPF.FlipView">
+      <HintPath>References\WPF.FlipView.dll</HintPath>
+    </Reference>
     <Reference Include="WPFTabTip, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WPFTabTip.1.0.4\lib\net45\WPFTabTip.dll</HintPath>
       <Private>True</Private>

@@ -89,18 +89,20 @@
                         <TextBox CharacterCasing="Upper" Grid.Column="1" Text="{Binding Id}" x:Name="TextBoxId" IsEnabled="False" Foreground="Brown" VerticalAlignment="Center" ></TextBox>
                     </Grid>
 
-                    <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
+                    <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="205">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="153"/>
                             <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Visibility="Hidden" x:Name="ButtonGetImage" Background="Transparent"  Click="ButtonGetImage_Click">
+                        <Button Grid.Row="0" Width="203" Visibility="Hidden" x:Name="ButtonGetImage" Background="Transparent"  Click="ButtonGetImage_Click">
                             <wpf:WebCameraControl  x:Name="webCameraControl" Visibility="Visible"/>
                         </Button>
-                        <Button Grid.Row="0" x:Name="ButtonCaptureImage" Background="Transparent" Click="ButtonGetImage_Click">
+                        <Button Grid.Row="0"  Width="203" x:Name="ButtonCaptureImage" Background="Transparent" Click="ButtonGetImage_Click">
                             <Image  Margin="0" x:Name="ImageProducer" Source="{Binding Photo}"></Image>
                         </Button>
                         <TextBlock Grid.Row="1" x:Name="TextBoxImageInstructions" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}">Click para CAPTURAR foto</TextBlock>
+                        <ComboBox Grid.Row="2" x:Name="ComboBoxCameras" DisplayMemberPath="Name"></ComboBox>
                     </Grid>
 
                     <Grid Grid.Row="2" Margin="30,5"  VerticalAlignment="Center">

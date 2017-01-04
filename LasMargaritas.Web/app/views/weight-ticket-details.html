@@ -1,0 +1,73 @@
+﻿
+
+    <form> 
+        <h2>Boleta {{ weightTicket.id > 0 ? ('Id: ' + weightTicket.id) : 'Nueva'}}</h2>   
+        
+            <div class="form-group row ">
+                <label for="folio">Folio:</label>
+                <input class="form-control" readonly  ng-model="weightTicket.folio" />
+            </div>
+            <div class="form-group row ">
+                <label for="entranceWeight">P.Entrada:</label>
+                <input class="form-control" ng-change="updateTotals()"  number-format ng-model="weightTicket.entranceWeightKg" />
+            </div>
+            <div class="form-group row">
+                <label for="exitWeight">P.Salida:</label>
+                <input class="form-control" ng-change="updateTotals()" number-format  ng-model="weightTicket.exitWeightKg" />
+            </div>
+            <div class="form-group row">
+                <label for="netWeight">P.Neto:</label>
+                <input class="form-control" ng-change="updateTotals()" number-format ng-model="weightTicket.netWeight" />
+            </div>
+            <div class="form-group row">
+                <label for="applyHumidity">Aplicar dcto X humedad:</label>
+                <input type="checkbox" class="form-control" ng-change="updateTotals()" ng-model="weightTicket.applyHumidity" />
+            </div>
+            <div class="form-group row">
+                <label for="humidity">Humedad:</label>
+                <input ng-disabled="!weightTicket.applyHumidity" number-format ng-change="updateTotals()" class="form-control" ng-model="weightTicket.humidity" />
+            </div>
+            <div class="form-group row">
+                <label for="humidityDiscount">D.Humedad:</label>
+                <input class="form-control" readonly ng-model="weightTicket.humidityDiscount" />
+            </div>
+            <div class="form-group row">
+                <label for="applyHumidity">Aplicar dcto X impurezas:</label>
+                <input type="checkbox" class="form-control" ng-model="weightTicket.applyImpurities" />
+            </div>
+            <div class="form-group row">
+                <label for="impurities">Impurezas:</label>
+                <input ng-disabled="!weightTicket.applyHumidity" number-format  ng-change="updateTotals()" class="form-control" ng-model="weightTicket.impurities" />
+            </div>
+            <div class="form-group row">
+                <label for="impuritiesDiscount">D. Impurezas:</label>
+                <input class="form-control" readonly ng-model="weightTicket.impuritiesDiscount" />
+            </div>
+            <div class="form-group row">
+                <label for="price">Precio:</label>
+                <input class="form-control"  currency-format ng-change="updateTotals()" ng-model="weightTicket.price" />
+            </div>
+            <div class="form-group row">
+                <label for="total">SubTotal:</label>
+                <input class="form-control" currency-format readonly ng-model="weightTicket.subTotal" />
+            </div>
+            <div class="form-group row">
+                <label for="applyDrying">Aplicar dcto X secado:</label>
+                <input ng-change="updateTotals()" type="checkbox" class="form-control" ng-model="weightTicket.applyDrying" />
+            </div>
+            <div class="form-group row">
+                <label for="dryingDiscount">Descuento por secado:</label>
+                <input  ng-change="updateTotals()" currency-format readonly class="form-control" ng-model="weightTicket.dryingDiscount" />
+            </div>      
+            <div class="form-group row">
+                <label for="total">Total a pagar:</label>
+                <input class="form-control" currency-format readonly ng-model="weightTicket.totalToPay" />
+            </div>
+            <div class="form-group row">
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit" data-ng-click="saveWeightTicket()">Guardar</button>
+                    <button class="btn btn-primary" type="submit" data-ng-click="close()">Cancelar</button>
+                </div>
+            </div>
+     
+    </form>   

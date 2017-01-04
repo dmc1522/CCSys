@@ -39,20 +39,20 @@ namespace LasMargaritas.BL
         public ReportData GetWeightTicketsReport(WeightTicketReportFilterModel filters)
         {
             ReportData reportData = new ReportData();
-            /*DataTable data = weightTicketsDL.GetWeightTicketsReport(filters);           
-            foreach(DataRow row in data.Rows)
+            DataTable data = weightTicketsDL.GetWeightTicketsReport(filters);
+            foreach (DataColumn column in data.Columns)
             {
-                List<ReportDataItem> rowItem = new List<ReportDataItem>();
-                for(int i =0; i<row.ItemArray.Length; i++)
-                {
-                    ReportDataItem item = new ReportDataItem();
-                    item.Name = data.Columns[i].ColumnName;
-                    item.Value = row.ItemArray[i];
-                    item.Type = data.Columns[i].DataType;
-                    rowItem.Add(item);
-                }
-                reportData.Add(rowItem);
-            }*/
+                ReportDataColumn reportColumn = new ReportDataColumn();
+                reportColumn.Type = column.DataType;
+                reportColumn.Name = column.ColumnName;
+                reportData.Columns.Add(reportColumn);
+            }
+            foreach(DataRow row in data.Rows)
+            {               
+                ReportDataRow reportRow = new ReportDataRow();
+                reportRow.Items = new List<object>(row.ItemArray);
+                reportData.Rows.Add(reportRow);
+            }
             return reportData;
         }
         public WeightTicket UpdateWeightTicket(WeightTicket weightTicket)
@@ -88,12 +88,38 @@ namespace LasMargaritas.BL
             else
                 return weightTicketsDL.GetWeightTicket(id);
         }
-
-
-        public List<SelectableModel> GetSelectableModels(int? cicleId)
+        public List<WeightTicket> GetWeightTicketsInSettlementFullDetails(int settlementId)
         {
             //Add validations here!
-            return weightTicketsDL.GetSelectableModels(cicleId);
+            WeightTicketError result = WeightTicketError.None;
+            if (settlementId <= 0)
+                result |= WeightTicketError.InvalidId;
+
+            if (result != WeightTicketError.None)
+                throw new WeightTicketException(result);
+            else
+                return weightTicketsDL.GetWeightTicketsInSettlementFullDetails(settlementId);
+        }
+        public List<WeightTicket> GetWeightTicketsAvailablesToSettleFullDetails(int cicleId, int producerId)
+        {
+            //Add validations here!
+            WeightTicketError result = WeightTicketError.None;
+            if (cicleId <= 0)
+                result |= WeightTicketError.InvalidId;
+            if (producerId <= 0)
+                result |= WeightTicketError.InvalidId;
+
+            if (result != WeightTicketError.None)
+                throw new WeightTicketException(result);
+            else
+                return weightTicketsDL.GetWeightTicketsAvailablesToSettleFullDetails(cicleId, producerId);
+        }
+        
+
+        public List<SelectableModel> GetSelectableModels(int? cicleId, bool? onlyPendingTickets)
+        {
+            //Add validations here!
+            return weightTicketsDL.GetSelectableModels(cicleId, onlyPendingTickets);
         }
 
         public bool DeleteWeightTicket(int id)

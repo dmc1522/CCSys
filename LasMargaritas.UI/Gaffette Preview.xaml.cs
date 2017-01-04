@@ -106,7 +106,7 @@ namespace LasMargaritas.UI
                 return;
             }
             result = ZBRGDIDrawImageRect(frontBackGround, 10, 10, 1054, 654, ref error);
-            result = ZBRGDIDrawImageRect(photo, 700, 105, 300, 300, ref error);
+            result = ZBRGDIDrawImageRect(photo, 700, 105, 400, 300, ref error);
             result = ZBRGDIDrawImageRect(qrCodeImageBytes, 215, 320, 225, 225, ref error);
             result = ZBRGDIDrawText(215, 590, qrCodeText, myFont, 10, 1, 1, ref error);
             //result = ZBRGDIDrawLine(30, 75, 520, 75, 1, 75, ref error);

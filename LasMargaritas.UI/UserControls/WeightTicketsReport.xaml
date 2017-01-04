@@ -13,33 +13,35 @@
             <cnv:CaseConverter x:Key="caseConverter" />
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="330" MinHeight="200">               
+            <RowDefinition Height="250*" MinHeight="250">               
             </RowDefinition>
-            <RowDefinition Height="750" MinHeight="500">
+            <RowDefinition Height="500*" MinHeight="380">
+            </RowDefinition>
+            <RowDefinition Height="100*" MinHeight="50">
             </RowDefinition>
         </Grid.RowDefinitions>
         <Grid x:Name="GridFilters" Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" MinWidth="100">                    
+                <ColumnDefinition Width="200*" MinWidth="100">                    
                 </ColumnDefinition>
-                <ColumnDefinition Width="500" MinWidth="250">
+                <ColumnDefinition Width="500*" MinWidth="250">
                 </ColumnDefinition>
-                <ColumnDefinition Width="200" MinWidth="100">
+                <ColumnDefinition Width="200*" MinWidth="100">
                 </ColumnDefinition>
-                <ColumnDefinition Width="500" MinWidth="250">
+                <ColumnDefinition Width="500*" MinWidth="250">
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="45"></RowDefinition>
-                <RowDefinition Height="45"></RowDefinition>
-                <RowDefinition Height="45"></RowDefinition>
-                <RowDefinition Height="45"></RowDefinition>
-                <RowDefinition Height="45"></RowDefinition>
-                <RowDefinition Height="45"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
             </Grid.RowDefinitions>
             <RadioButton Checked="RadioButtonProducer_Checked"  x:Name="RadioButtonProducer" GroupName="WeightTicket" Margin="40 0 0 0" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0">Productor</RadioButton>
-            <ComboBox SelectedValue="{Binding ProducerId}"  DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxProducer" Grid.Row="0" Grid.Column="1">
+            <ComboBox IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True"  SelectedValue="{Binding ProducerId}"  DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxProducer" Grid.Row="0" Grid.Column="1">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -47,9 +49,9 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">Producto</Label>
-            <ComboBox SelectedValue="{Binding ProductId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxProduct" Grid.Row="0" Grid.Column="3"></ComboBox>
+            <ComboBox IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True"  SelectedValue="{Binding ProductId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxProduct" Grid.Row="0" Grid.Column="3"></ComboBox>
             <RadioButton Checked="RadioButtonSaleCustomer_Checked" x:Name="RadioButtonSaleCustomer" GroupName="WeightTicket" Margin="40 0 0 0" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0">Cliente de Venta</RadioButton>
-            <ComboBox SelectedValue="{Binding SaleCustomerId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxSaleCustomer" Grid.Row="1" Grid.Column="1">
+            <ComboBox IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True"  SelectedValue="{Binding SaleCustomerId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxSaleCustomer" Grid.Row="1" Grid.Column="1">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -63,7 +65,7 @@
                 <ComboBoxItem>Salidas</ComboBoxItem>
             </ComboBox>
             <RadioButton  Checked="RadioButtonRancher_Checked" x:Name="RadioButtonRancher" GroupName="WeightTicket" Margin="40 0 0 0" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="0">Proveedor/Ganado</RadioButton>
-            <ComboBox SelectedValue="{Binding RancherId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxRancher" Grid.Row="2" Grid.Column="1">
+            <ComboBox IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True"  SelectedValue="{Binding RancherId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxRancher" Grid.Row="2" Grid.Column="1">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -73,7 +75,7 @@
             <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"># Ticket</Label>
             <TextBox Text="{Binding Folio, Converter={StaticResource caseConverter}}" x:Name="TextBoxTicket" Grid.Row="2" Grid.Column="3"></TextBox>
             <RadioButton Checked="RadioButtonSupplier_Checked" x:Name="RadioButtonSupplier" GroupName="WeightTicket" Margin="40 0 0 0" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0">Proveedores</RadioButton>
-            <ComboBox  SelectedValue="{Binding SupplierId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxSupplier" Grid.Row="3" Grid.Column="1">
+            <ComboBox IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" StaysOpenOnEdit="True"  SelectedValue="{Binding SupplierId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxSupplier" Grid.Row="3" Grid.Column="1">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -86,13 +88,13 @@
             <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2">Ciclo</Label>
             <ComboBox SelectedValue="{Binding CicleId}" DisplayMemberPath="Name" SelectedValuePath="Id" x:Name="ComboBoxCicle" Grid.Row="4" Grid.Column="3"></ComboBox>
             <Label  Margin="40 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0">Fecha Inicio</Label>
-            <DatePicker  SelectedDate="{Binding StartTime, StringFormat=d, ConverterCulture=es-MX}"  Grid.Row="5" Grid.Column="1" x:Name="TextBoxStartDate" BorderThickness="0">
+            <DatePicker  SelectedDate="{Binding StartDateTime, StringFormat=d, ConverterCulture=es-MX}"  Grid.Row="5" Grid.Column="1" x:Name="TextBoxStartDate" BorderThickness="0">
                 <DatePicker.Resources>
                     <Style TargetType="{x:Type DatePickerTextBox}">
                         <Setter Property="Control.Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <TextBox x:Name="DateTextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                    <TextBox x:Name="DateTextBox" Text="{Binding Path=SelectedDate, StringFormat=d, ConverterCulture=es-MX, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -106,20 +108,47 @@
                         <Setter Property="Control.Template">
                             <Setter.Value>
                                 <ControlTemplate>
-                                    <TextBox x:Name="DateTextBox" Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                                    <TextBox x:Name="DateTextBox" Text="{Binding Path=SelectedDate, StringFormat=d, ConverterCulture=es-MX, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
                     </Style>
                 </DatePicker.Resources>
             </DatePicker>
-            <Button Margin="5" Grid.Column="0" Grid.ColumnSpan="4" Width="100" Grid.Row="6" x:Name="ButtonReloadReport" Click="ButtonReloadReport_Click">Filtrar</Button>
+            <Button Margin="5" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Grid.Row="6" x:Name="ButtonReloadReport" Click="ButtonReloadReport_Click">Filtrar</Button>
+            <Button Margin="5" Grid.Column="2" Grid.ColumnSpan="2" Width="100" Grid.Row="6" x:Name="ButtonExport" Click="ButtonExport_Click">Exportar</Button>
         </Grid>
-        <Grid Grid.Row="1">
-            <DataGrid x:Name="DataGridWeightTickets" IsReadOnly="True">
-                
-            </DataGrid>
-        </Grid>        
-     
+        
+            <Grid Grid.Row="1">            
+                <DataGrid x:Name="DataGridWeightTickets" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Items[7]}" Value="0">
+                                <Setter Property="Background" Value="Red"></Setter>
+                            </DataTrigger>                            
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>            
+            </Grid>
+       
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="150" />
+                <ColumnDefinition Width="*" MinWidth="150" />
+                <ColumnDefinition Width="*" MinWidth="150" />
+                <ColumnDefinition Width="*" MinWidth="150" />
+                <ColumnDefinition Width="*" MinWidth="150" />
+                <ColumnDefinition Width="*" MinWidth="150" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"  Text="Total boletas:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+            <TextBlock Grid.Column="1" x:Name="LabelTotalWeightTickets" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
+            <TextBlock Grid.Column="2"  Text="Total peso neto:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+            <TextBlock Grid.Column="3" x:Name="LabelTotalNetWeight"  VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+            <TextBlock Grid.Column="4"  Text="Total a pagar:" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource SubHeaderTextBlockStyle}"/>
+            <TextBlock Grid.Column="5" x:Name="LabelTotalToPay"  VerticalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+        </Grid>
+
     </Grid>
 </UserControl>

@@ -40,6 +40,24 @@
       <!-- <Component Id="ProductComponent"> -->
       <!-- TODO: Insert files, registry keys, and other resources here. -->
       <!-- </Component> -->
+      <Component Id="WPFTabTip.dll" Guid="7d154b98-7d15-4ac8-8327-fb8f5b47733b">
+        <File Id="WPFTabTip.dll" Name="WPFTabTip.dll" Source="$(var.LasMargaritas.UI_TargetDir)WPFTabTip.dll" />
+      </Component>
+      <Component Id="System.Reactive.Core.dll" Guid="7e154b18-7d15-4ac8-8327-fb8f5b47733b">
+        <File Id="System.Reactive.Core.dll" Name="System.Reactive.Core.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Reactive.Core.dll" />
+      </Component>
+      <Component Id="System.Reactive.Interfaces.dll" Guid="7e154b18-7d15-4ac8-8327-fb415b47733b">
+        <File Id="System.Reactive.Interfaces.dll" Name="System.Reactive.Interfaces.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Reactive.Interfaces.dll" />
+      </Component>
+      <Component Id="System.Reactive.Linq.dll" Guid="4c154b18-7d15-4ac8-8327-fb415b47733b">
+        <File Id="System.Reactive.Linq.dll" Name="System.Reactive.Linq.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Reactive.Linq.dll" />
+      </Component>
+      <Component Id="System.Reactive.PlatformServices.dll" Guid="7b254b18-7d15-4ac8-8327-fb415b47733b">
+        <File Id="System.Reactive.PlatformServices.dll" Name="System.Reactive.PlatformServices.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Reactive.PlatformServices.dll" />
+      </Component>
+      <Component Id="System.Reactive.Windows.Threading.dll" Guid="1c954b18-7d15-4ac8-8327-fb415b47733b">
+        <File Id="System.Reactive.Windows.Threading.dll" Name="System.Reactive.Windows.Threading.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Reactive.Windows.Threading.dll" />
+      </Component>
       <Component Id="System.Windows.Controls.Input.Toolkit.dll" Guid="0f52cb9e-7d15-4ac8-8327-fb8f5b47733b">
         <File Id="System.Windows.Controls.Input.Toolkit.dll" Name="System.Windows.Controls.Input.Toolkit.dll" Source="$(var.LasMargaritas.UI_TargetDir)System.Windows.Controls.Input.Toolkit.dll" />
       </Component>

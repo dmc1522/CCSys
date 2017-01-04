@@ -35,6 +35,8 @@ namespace LasMargaritas.Models
             string query = "CicleId=" + CicleId.ToString();
             if (ProducerId.HasValue)
                 query += "&ProducerId=" + ProducerId.ToString();
+            if (ProductId.HasValue)
+                query += "&ProductId=" + ProductId.ToString();
             if (SaleCustomerId.HasValue )
                 query += "&SaleCustomerId=" + SaleCustomerId.ToString();
             if (RancherId.HasValue )

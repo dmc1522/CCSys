@@ -55,6 +55,18 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-wpf, Version=1.50.4000.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.4000-beta3b\lib\net30\MigraDoc.DocumentObjectModel-wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-wpf, Version=1.50.4000.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.4000-beta3b\lib\net30\MigraDoc.Rendering-wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-wpf, Version=1.50.4000.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.4000-beta3b\lib\net30\MigraDoc.RtfRendering-wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -63,6 +75,15 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PdfSharp-wpf, Version=1.50.4000.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.4000-beta3b\lib\net30\PdfSharp-wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-wpf, Version=1.50.4000.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-wpf.1.50.4000-beta3b\lib\net30\PdfSharp.Charting-wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="QRCoder, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Resources\QRCoder.dll</HintPath>
@@ -85,6 +106,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\Cacher.cs" />
@@ -104,12 +126,15 @@
     <Compile Include="ProducerBL.cs" />
     <Compile Include="ProductBL.cs" />
     <Compile Include="BadgePrinterHelper.cs" />
+    <Compile Include="SettlementBL.cs" />
     <Compile Include="SupplierBL.cs" />
     <Compile Include="RancherBL.cs" />
     <Compile Include="SaleCustomerBL.cs" />
     <Compile Include="TokenHelper.cs" />
     <Compile Include="UserBL.cs" />
     <Compile Include="Utils\DiscountCalculator.cs" />
+    <Compile Include="Utils\FontResolver.cs" />
+    <Compile Include="Utils\PdfPrinterHelper.cs" />
     <Compile Include="Utils\PropertyCopier.cs" />
     <Compile Include="Views\IWareHouseView.cs" />
     <Compile Include="Views\IProductView.cs" />
@@ -136,14 +161,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <EmbeddedResource Include="Fonts\tahoma.ttf" />
+    <EmbeddedResource Include="Fonts\tahomabd.ttf" />
+    <EmbeddedResource Include="Fonts\times.ttf" />
+    <EmbeddedResource Include="Fonts\timesbd.ttf" />
+    <EmbeddedResource Include="Fonts\timesbi.ttf" />
+    <EmbeddedResource Include="Fonts\timesi.ttf" />
+    <EmbeddedResource Include="Fonts\arial.ttf" />
+    <EmbeddedResource Include="Fonts\arialbd.ttf" />
+    <EmbeddedResource Include="Fonts\arialbi.ttf" />
+    <EmbeddedResource Include="Fonts\ariali.ttf" />
+    <EmbeddedResource Include="Fonts\ARIALN.TTF" />
+    <EmbeddedResource Include="Fonts\ARIALNB.TTF" />
+    <EmbeddedResource Include="Fonts\ARIALNBI.TTF" />
+    <EmbeddedResource Include="Fonts\ARIALNI.TTF" />
+    <EmbeddedResource Include="Fonts\ariblk.ttf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\Logo.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="Images\LogoIPROJALMediumHalf.jpg" />
+    <EmbeddedResource Include="Images\LogoMargaritasMedium.jpg" />
     <Content Include="Resources\QRCoder.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

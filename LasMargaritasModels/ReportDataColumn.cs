@@ -9,6 +9,6 @@ namespace LasMargaritas.Models
     public class ReportDataColumn
     {
         public string Name { get; set; }
-        public Type ColumnType { get; set; }
+        public Type Type { get; set; }
     }
 }

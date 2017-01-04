@@ -139,6 +139,59 @@ namespace LasMargaritas.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [Route("GetWeightTicketsInSettlementFullDetails")]
+        [HttpGet]
+        public IHttpActionResult GetWeightTicketsInSettlementFullDetails(int settlementId)
+        {
+            GetWeightTicketResponse response = new GetWeightTicketResponse();
+            try
+            {
+                List<WeightTicket> tickets = weightTicketsBL.GetWeightTicketsInSettlementFullDetails(settlementId);
+                response.WeightTickets = tickets;
+                response.Success = true;
+            }
+            catch (WeightTicketException ex)
+            {
+                response.ErrorCode = ex.Error;
+                response.ErrorMessage = "Error. " + ex.Error.ToString();
+                response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [Route("GetWeightTicketsAvailablesToSettleFullDetails")]
+        [HttpGet]
+        public IHttpActionResult GetWeightTicketsAvailablesToSettleFullDetails(int cicleId, int producerId)
+        {
+            GetWeightTicketResponse response = new GetWeightTicketResponse();
+            try
+            {
+                List<WeightTicket> tickets = weightTicketsBL.GetWeightTicketsAvailablesToSettleFullDetails(cicleId, producerId);
+                response.WeightTickets = tickets;
+                response.Success = true;
+            }
+            catch (WeightTicketException ex)
+            {
+                response.ErrorCode = ex.Error;
+                response.ErrorMessage = "Error. " + ex.Error.ToString();
+                response.Success = false;
+            }
+            catch (Exception ex)
+            {
+                response.ErrorMessage = "Error. " + ex.Message;
+                response.Success = false;
+            }
+            return Ok(response);
+        }
+
+        [Authorize(Roles = "Admin")]
         [Route("GetAll")]
         [HttpGet]
         public IHttpActionResult GetAll()
@@ -193,12 +246,12 @@ namespace LasMargaritas.Controllers
         [Authorize(Roles = "Admin")]
         [Route("GetSelectableModels")]
         [HttpGet]
-        public IHttpActionResult GetSelectableModels(int cicleId)
+        public IHttpActionResult GetSelectableModels(int cicleId, bool onlyPendingTickets)
         {
             GetSelectableModelResponse response = new GetSelectableModelResponse();
             try
             {
-                List<SelectableModel> weightTickets = weightTicketsBL.GetSelectableModels(cicleId);
+                List<SelectableModel> weightTickets = weightTicketsBL.GetSelectableModels(cicleId, onlyPendingTickets);
                 response.SelectableModels = weightTickets;
                 response.Success = true;
             }

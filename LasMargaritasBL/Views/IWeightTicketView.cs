@@ -9,6 +9,7 @@ namespace LasMargaritas.BL.Views
 {
     public interface IWeightTicketView
     {
+        bool LoadOnlyPendingWeightTickets { get; set; }
         List<SelectableModel> Producers { get; set; }
         List<SelectableModel> FilterCicles { get; set; }
         List<SelectableModel> Products { get; set; }

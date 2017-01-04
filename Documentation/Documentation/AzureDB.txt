@@ -2,3 +2,24 @@
 tcp:lasmargaritas.database.windows.net,1433
 LasMargaritasDbUser
 LasMargaritasPassw0rd!
+
+
+PAGOS!
+Agregar transferencia electronica
+No. Cuenta (cheque o transfer)
+
+BOLETAS!
+Editar boletas en sección de agregadas ....
+
+GENERAL!
+search in productor box
+Cancelar volver a lista opción
+
+IMPRESION!
+HEADER!
+Ciclo
+Fecha
+Nombre y domicilio
+Tabla de boletas (más espacio)
+Logo más grande y cambiar a margaritas
+footer row with totals

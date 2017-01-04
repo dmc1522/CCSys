@@ -8,6 +8,6 @@ namespace LasMargaritas.Models
 {
     public class ReportDataRow
     {
-        public List<object> Items;
+        public List<object> Items { get; set; }
     }
 }

@@ -41,6 +41,7 @@ namespace LasMargaritas.UI.UserControls
         #endregion
 
         #region IWeightTicketView
+        public bool LoadOnlyPendingWeightTickets { get; set; }
         public List<SelectableModel> Producers
         {
             get
@@ -276,6 +277,7 @@ namespace LasMargaritas.UI.UserControls
 
         private void btnReloadTicket_Click(object sender, RoutedEventArgs e)
         {
+            LoadOnlyPendingWeightTickets = CheckBoxPending.IsChecked.Value;
             presenter.LoadWeightTickets();
         }
        
@@ -293,6 +295,7 @@ namespace LasMargaritas.UI.UserControls
                 ComboBoxTicketType.SelectedIndex = 0;
                 presenter.LoadProducts();
                 ComboBoxProducts.ItemsSource = Products;
+                LoadOnlyPendingWeightTickets = CheckBoxPending.IsChecked.Value;
                 presenter.LoadWeightTickets();                
                // CreateDummyTicket();
             }
@@ -398,15 +401,7 @@ namespace LasMargaritas.UI.UserControls
             presenter.SaveWeightTicket();
         }
 
-        private void ButtonGetDate2_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
-        private void ButtonGetDate_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
+   
 
         private void CheckBoxCalculatePrices_CheckedUnChecked(object sender, RoutedEventArgs e)
         {
@@ -474,6 +469,12 @@ namespace LasMargaritas.UI.UserControls
         private void btnReloadSellerBuyer_Click(object sender, RoutedEventArgs e)
         {
             presenter.ReloadSellerBuyer();
+        }
+
+        private void CheckBoxPending_Checked(object sender, RoutedEventArgs e)
+        {
+            LoadOnlyPendingWeightTickets = CheckBoxPending.IsChecked.Value;
+            presenter.LoadWeightTickets();
         }
     }     
 }

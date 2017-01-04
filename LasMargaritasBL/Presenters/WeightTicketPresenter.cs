@@ -731,7 +731,7 @@ namespace LasMargaritas.BL.Presenters
             client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.access_token);
-            string action = string.Format("{0}?cicleId={1}", getAllAction, view.SelectedFilterCicleId);
+            string action = string.Format("{0}?cicleId={1}&onlyPendingTickets={2}", getAllAction, view.SelectedFilterCicleId, view.LoadOnlyPendingWeightTickets);
             HttpResponseMessage response = client.GetAsync(action).Result;
             if (response.IsSuccessStatusCode)
             {

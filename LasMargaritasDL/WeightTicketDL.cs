@@ -24,13 +24,18 @@ namespace LasMargaritas.DL
             excludedPropertiesInInsert.Add("UpdateTs");
             excludedPropertiesInInsert.Add("IsEntranceWeightTicket");
             excludedPropertiesInInsert.Add("FirstPartPrinted");
+            excludedPropertiesInInsert.Add("ProductName");
+
             //exluding these while updating
             excludedPropertiesInUpdate.Add("StoreTs");
             excludedPropertiesInUpdate.Add("UpdateTs");
             excludedPropertiesInUpdate.Add("IsEntranceWeightTicket");
             excludedPropertiesInUpdate.Add("FirstPartPrinted");
+            excludedPropertiesInUpdate.Add("ProductName");
+              
             //exclude properties in reader
             excludedPropertiesInReader.Add("IsEntranceWeightTicket");
+           
 
         }
 
@@ -40,7 +45,7 @@ namespace LasMargaritas.DL
 
         private List<string> excludedPropertiesInReader;
 
-        public List<SelectableModel> GetSelectableModels(int? cicleId)
+        public List<SelectableModel> GetSelectableModels(int? cicleId, bool? onlyPendingTickets)
         {
             List<SelectableModel> tickets = new List<SelectableModel>();
             using (SqlCommand command = new SqlCommand())
@@ -51,6 +56,7 @@ namespace LasMargaritas.DL
                     command.Connection = connection;
                     command.CommandText = "spGetWeightTicketSelectableModels";
                     command.Parameters.Add("@CicleId", SqlDbType.Int).Value = cicleId;
+                    command.Parameters.Add("@OnlyPendingTickets", SqlDbType.Bit).Value = onlyPendingTickets;
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
@@ -187,6 +193,57 @@ namespace LasMargaritas.DL
                 return tickets;
             }
         }
+
+
+
+        public List<WeightTicket> GetWeightTicketsInSettlementFullDetails(int? id = null)
+        {
+            List<WeightTicket> tickets = new List<WeightTicket>();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetWeightTicketsInSettlementFullDetails";
+                    command.Parameters.Add("@SettlementId", SqlDbType.Int).Value = id;
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    excludedPropertiesInReader.Remove("ProductName");
+                    tickets = DataReaderMapper.Map<WeightTicket>(reader, excludedPropertiesInReader);
+                    excludedPropertiesInReader.Add("ProductName");
+                    reader.Close();
+                    connection.Close();
+                }
+                return tickets;
+            }
+        }
+        public List<WeightTicket> GetWeightTicketsAvailablesToSettleFullDetails(int cicleId, int producerId)
+        {
+            List<WeightTicket> tickets = new List<WeightTicket>();
+            using (SqlCommand command = new SqlCommand())
+            {
+                using (SqlConnection connection = new SqlConnection())
+                {
+                    connection.ConnectionString = ConnectionString;
+                    command.Connection = connection;
+                    command.CommandText = "spGetWeightTicketsAvailablesToSettle";
+                    command.Parameters.Add("@CicleId", SqlDbType.Int).Value = cicleId;
+                    command.Parameters.Add("@ProducerId", SqlDbType.Int).Value = producerId;
+                    command.CommandType = CommandType.StoredProcedure;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    excludedPropertiesInReader.Remove("ProductName");
+                    tickets = DataReaderMapper.Map<WeightTicket>(reader, excludedPropertiesInReader);
+                    excludedPropertiesInReader.Add("ProductName");
+                    reader.Close();
+                    connection.Close();
+                }
+                return tickets;
+            }
+        }
+    
 
         public bool DeleteWeightTicket(int id)
         {

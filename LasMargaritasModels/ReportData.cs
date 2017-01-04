@@ -8,7 +8,12 @@ namespace LasMargaritas.Models
 {
     public class ReportData
     {
-        public List<ReportDataColumn> Columns;
-        public List<ReportDataRow> Rows;
+        public ReportData()
+        {
+            Columns = new List<ReportDataColumn>();
+            Rows = new List<ReportDataRow>();
+        }
+        public List<ReportDataColumn> Columns { get; set; } 
+        public List<ReportDataRow> Rows { get; set; }
     }
 }

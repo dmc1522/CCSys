@@ -71,6 +71,7 @@ namespace LasMargaritas.UI
             ranchers.Visibility = Visibility.Hidden;
             saleCustomers.Visibility = Visibility.Hidden;
             suppliers.Visibility = Visibility.Hidden;
+            weightTicketsReport.Visibility = Visibility.Hidden;
         }
 
         private void buttonViewSuppliers_Click(object sender, RoutedEventArgs e)

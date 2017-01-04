@@ -5,6 +5,7 @@ namespace LasMargaritas.Models
 {
     public class WeightTicket : INotifyPropertyChanged
     {
+        public string ProductName { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void RaiseUpdateProperties()

@@ -93,6 +93,14 @@
     <Compile Include="ReportData.cs" />
     <Compile Include="ReportDataRow.cs" />
     <Compile Include="SelectableModelException.cs" />
+    <Compile Include="Settlement\GetSettlementPaymentResponse.cs" />
+    <Compile Include="Settlement\GetSettlementResponse.cs" />
+    <Compile Include="Settlement\Settlement.cs" />
+    <Compile Include="Settlement\SettlementPayment.cs" />
+    <Compile Include="Settlement\SettlementPaymentResponse.cs" />
+    <Compile Include="Settlement\SettlementResponse.cs" />
+    <Compile Include="Settlement\SettlementError.cs" />
+    <Compile Include="Settlement\SettlementException.cs" />
     <Compile Include="WeightTicketReportFilterModel.cs" />
     <Compile Include="WeightTicket\WeightTicketType.cs" />
     <Compile Include="SaleCustomer\GetSaleCustomerResponse.cs" />

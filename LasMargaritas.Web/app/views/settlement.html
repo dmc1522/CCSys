@@ -1,0 +1,63 @@
+﻿
+<div class="row">    
+        <h2>Liquidaciones</h2>           
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="cicleSelect">Ciclo: </label>
+            <select class="form-control" name="cicleSelect" id="cicleSelect"
+                    ng-options="option.name for option in cicles track by option.id"
+                    ng-model="selectedCicle"></select>
+           
+        </div>
+        <button class="btn btn-primary" type="submit" data-ng-click="newSettlement()">Nueva liquidación</button>
+    </form>
+    <div class="col-md-8">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Productor</th>
+                    <th>Total en boletas</th>
+                    <th>Total en anticipos</th>
+                    <th>Total en créditos</th>
+                    <th>Total</th>  
+                    <th>Pagada</th>                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="settlement in settlements">
+                    <td>
+                        <a ng-href="#settlement-details/{{settlement.id}}">Abrir</a>
+                    </td>
+                    <td>
+                        {{ settlement.id }}
+                    </td>   
+                    <td>
+                        {{ settlement.producerName }}
+                    </td>   
+                    <td>
+                        {{ settlement.weightTicketsTotal | currency }}
+                    </td>   
+                    <td>
+                        {{ settlement.cashAdvancesTotal | currency }}
+                    </td>   
+                    <td>
+                        {{ settlement.creditsTotal | currency }}
+                    </td>                      
+                    <td>
+                        {{ settlement.total | currency }}
+
+                    </td>          
+                    <td>
+                        <input readonly disabled type="checkbox" ng-checked="settlement.paid" />
+                    </td>          
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+</div>

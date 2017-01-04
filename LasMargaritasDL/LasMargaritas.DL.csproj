@@ -71,6 +71,7 @@
     <Compile Include="RancherDL.cs" />
     <Compile Include="SaleCustomerDL.cs" />
     <Compile Include="WareHouseDL.cs" />
+    <Compile Include="SettlementDL.cs" />
     <Compile Include="WeightTicketDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

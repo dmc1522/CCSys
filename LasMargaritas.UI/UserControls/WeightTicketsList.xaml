@@ -54,7 +54,7 @@
                 <TextBlock  Grid.Column="0" Text="Ciclo:"  Style="{StaticResource SubHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <ComboBox  Grid.Column="1" HorizontalContentAlignment="Center"  DisplayMemberPath="Name" SelectedValuePath="Id"  x:Name="ComboBoxCiclesFilter">
                 </ComboBox>
-                <CheckBox IsEnabled="False" Grid.Column ="3" x:Name="CheckBoxPending" Content="Pendientes" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <CheckBox  Grid.Column ="3" x:Name="CheckBoxPending" Content="Solo Pendientes" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="CheckBoxPending_Checked" Unchecked="CheckBoxPending_Checked"/>
             </Grid>
 
             <Grid Grid.Row="4" Margin="5">

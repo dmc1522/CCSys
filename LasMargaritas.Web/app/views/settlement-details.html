@@ -1,0 +1,333 @@
+﻿
+<div class="container">
+    <form> 
+        <h2>Liquidación {{ settlement.id > 0 ? settlement.id : 'Nueva'}}</h2>   
+        <div class="form-group" >
+            <div class="form-group row">
+                <label for="settlementDate" readOnly>Fecha:</label>
+                <input class="form-control" app-datetime ng-model="settlement.date" />
+            </div>
+            <div class="form-group row">
+                <label for="cicleSelect">Ciclo: </label>
+                <select class="form-control" name="cicleSelect" id="cicleSelect"
+                        ng-options="cicle.id as cicle.name for cicle in cicles"
+                        ng-model="settlement.cicleId"></select> 
+            </div>
+            <div class="form-group row">
+                <label for="producerSelect">Productor: </label>
+                <select  class="form-control" name="producerSelect" id="producerSelects" ng-change="producerChanged()"
+                        ng-options="producer.id as producer.name  for producer in producers"
+                        ng-model="settlement.producerId"></select>
+            </div>
+        </div> 
+        <div ng-show="settlement.id>0" class="form-group row">
+            <div class="col-md-8 ">
+                <h2>Boletas disponibles</h2>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Folio</th>
+                            <th>Fecha</th>
+                            <th>Producto</th>                            
+                            <th>Peso Neto</th>
+                            <th>Humedad</th>
+                            <th>D.Humedad</th>
+                            <th>Impurezas</th>
+                            <th>D.Impurezas</th>
+                            <th>Peso total a pagar</th>
+                            <th>Precio</th>
+                            <th>Subtotal</th>
+                            <th>D.Secado</th>                          
+                            <th>Total a pagar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="weightTicket in weightTicketsAvailablesToSettle">
+                            <td>
+                                <button ng-click="addWeightTicketToSettlement($index)">Agregar</button>
+                            </td>
+                                                 
+                            <td>
+                                {{ weightTicket.folio }}
+                            </td>
+                            <td>
+                                {{ weightTicket.entranceDate | date:'yyyy-MM-dd' }}
+                            </td>
+                            <td>
+                                {{ weightTicket.productName }}
+                            </td>                            
+                            <td>
+                                {{ weightTicket.netWeight  | number:2}}
+                            </td>
+                            <td>
+                                {{ weightTicket.humidity  | number:2}}
+                            </td>
+                            <td>
+                                {{ weightTicket.humidityDiscount  | number:2}}
+                            </td>
+                            <td>
+                                {{ weightTicket.impurities  | number:2}}
+                            </td>
+                            <td>
+                                {{ weightTicket.impuritiesDiscount  | number:2 }}
+                            </td>
+                            <td>
+                                {{ weightTicket.totalWeightToPay  | number:2}}
+                            </td>
+                            <td>
+                                {{ weightTicket.price | currency }}
+                            </td>
+                            <td>
+                                {{ weightTicket.subTotal | currency }}
+                            </td>
+                            <td>
+                                {{ weightTicket.dryingDiscount | currency }}
+                            </td>
+                            <td>
+                                {{ weightTicket.totalToPay | currency}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      
+        <div class="form-group row" ng-show="settlement.id>0">
+            <div class="col-md-8">
+                <h2>Boletas agregadas a liquidacion</h2>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>    
+                            <th></th>                     
+                            <th>Folio</th>
+                            <th>Fecha</th>
+                            <th>Producto</th>
+                            <th>Peso Neto</th>
+                            <th>Humedad</th>
+                            <th>D.Humedad</th>
+                            <th>Impurezas</th>
+                            <th>D.Impurezas</th>
+                            <th>Peso total a pagar</th>
+                            <th>Precio</th>
+                            <th>Subtotal</th>
+                            <th>D.Secado</th>
+                            <th>Total a pagar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="weightTicket in weightTicketsInSettlement">
+                            <td>
+                                <button ng-click="removeWeightTicketFromSettlement($index)">Quitar</button>
+                            </td>
+                            <td>
+                                <button ng-click="editWeightTicket($index)">Editar</button>
+                            </td>   
+                            <td>
+                                {{ weightTicket.folio }}
+                            </td>
+                            <td>
+                                {{ weightTicket.entranceDate | date:'yyyy-MM-dd' }}
+                            </td>
+                            <td>
+                                {{ weightTicket.productName }}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.netWeight  | number:2}}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.humidity  | number:2}}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.humidityDiscount  | number:2}}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.impurities  | number:2}}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.impuritiesDiscount  | number:2 }}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.totalWeightToPay  | number:2}}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.price | currency }}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.subTotal | currency }}
+                          
+                            <td align="right">
+                                {{ weightTicket.dryingDiscount | currency }}
+                            </td>
+                            <td align="right">
+                                {{ weightTicket.totalToPay | currency }}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="footer-empty"></td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-text"> 
+                                {{ sum('netWeight')  | number:2}}
+                            </td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-text">
+                                {{ sum('totalWeightToPay') | number:2}}
+                            </td>
+                            <td class="footer-empty"></td>                           
+                            <td class="footer-empty"></td>
+                            <td class="footer-empty"></td>
+                            <td class="footer-text" >
+                                {{ sum('totalToPay') | currency }}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+   
+        <button ng-show="settlement.id>0" class="btn btn-info btn-xs" data-toggle="collapse" data-target="#add-pago" >Mostrar agregar pago</button>
+        <div ng-show="settlement.id>0" id="add-pago" class="form-group collapse">
+            <h2>
+                Nuevo pago
+            </h2>
+            <div class="form-group row">
+                <label for="settlementDate" readOnly>Fecha:</label>
+                <input class="form-control"  app-datetime  ng-model="payment.date" />
+                
+            </div>
+
+
+            <div class="form-group row">
+                <label for="paymentTypes">Tipo: </label>
+                <select class="form-control" name="cicleSelect" id="cicleSelect"
+                        ng-options="paymentType.id as paymentType.name for paymentType in paymentTypes"
+                        ng-model="payment.paymentType"></select>
+            </div>
+
+            <div class="form-group row">
+                <label for="paymentDescription" readOnly>Descripción:</label>
+                <input class="form-control" ng-model="payment.description" />
+            </div>
+
+            <div class="form-group row">
+                <label for="paymentDescription" readOnly>Cheque/Vale/Ref:</label>
+                <input  class="form-control" ng-model="payment.checkOrVoucher" />
+            </div>
+            <div class="form-group row" ng-hide="payment.paymentType == 0">
+                <label for="paymentDescription" readOnly>Cuenta de banco:</label>
+                <input class="form-control" ng-model="payment.bankAccount" />
+            </div>
+
+            <div class="form-group row">
+                <label for="paymentTotal" readOnly>Total:</label>
+                <input  class="form-control"  currency-format ng-model="payment.total" />
+            </div>
+            <div class="form-group row">
+                <button class="btn btn-primary" type="submit" data-ng-click="addPayment()">Agregar Pago</button>
+            </div>
+        </div>
+
+        <div class="form-group row" ng-show="settlement.id > 0">
+            <div class="col-md-8">
+                <h2>Pagos agregados a liquidacion</h2>
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th>Cheque/Vale/Transf</th>
+                            <th>Cuenta</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="payment in payments">
+                            <td>
+                                <button ng-click="deletePayment($index)">Eliminar</button>
+                            </td>
+                            <td>
+                                {{ payment.id }}
+                            </td>
+                            <td>
+                                {{ payment.date | date:'yyyy-MM-dd' }}
+                            </td>
+                            <td ng-if="payment.paymentType==0" >
+                                {{ 'Efectivo' }}
+                            </td>
+                            <td ng-if="payment.paymentType==1">
+                                {{ 'Cheque' }}
+                            </td>
+                            <td ng-if="payment.paymentType==2">
+                                {{ 'Transferencia' }}
+                            </td>
+                            <td>
+                                {{ payment.description }}
+                            </td>
+                            <td>
+                                {{ payment.checkOrVoucher }}
+                            </td>
+                            <td>
+                                {{ payment.bankAccount  }}
+                            </td>
+                            <td>
+                                {{ payment.total | currency}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+
+        <div ng-show="settlement.id>0" class="form-group">
+            <h2>
+                Totales
+            </h2>
+
+            <div class="form-group row">
+                <label for="subTotalInput" readOnly>+Total en boletas: </label>
+                <input class="form-control" currency-format  readonly ng-model="settlement.weightTicketsTotal" />
+            </div>
+            <div class="form-group row">
+                <label for="cashAdvancesInput">-Anticipos: </label>
+                <input class="form-control" currency-format ng-change="updateTotals()" ng-model="settlement.cashAdvancesTotal" />
+            </div>
+            <div class="form-group row">
+                <label for="creditsInput">-Creditos: </label>
+                <input class="form-control" currency-format ng-change="updateTotals()" ng-model="settlement.creditsTotal" />
+            </div>
+            <div class="form-group row">
+                <label for="totalInput">=Total: </label>
+                <input class="form-control" readonly currency-format ng-change="updateTotals()" ng-model="settlement.total"/>
+            </div>
+            <div class="form-group row">
+                <label for="totalInput">-Total Pagos: </label>
+                <input class="form-control" readonly currency-format ng-change="updateTotals()" ng-model="paymentsTotal" />
+            </div>
+            <div class="form-group row">
+                <label for="totalInput">=Saldo final:</label>
+                <input class="form-control" readonly currency-format ng-change="updateTotals()" ng-model="finalBalance" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit" data-ng-click="saveSettlement()">Guardar</button>
+                <button class="btn btn-primary" type="submit" data-ng-click="backToList()">Cancelar y volver a lista</button>
+                <button class="btn btn-primary" ng-disabled="settlement.id==0" type="submit" data-ng-click="print()">Imprimir</button>
+            </div>
+        </div>
+</form>
+   
+</div>
